@@ -1,0 +1,48 @@
+# About
+
+This repo contains my configuration files for various applications.
+
+# Requirements
+
+Before using this, you must first install GNU Stow.
+
+On MacOS this can be performed using `brew`:
+
+```zsh
+brew install stow
+```
+
+# Maintaining
+
+Each folder in this repo represents an application configuration.
+
+The contents of each directory should represent the files you wish to include if that particular directory symbolic links added into your home (ie. `~/`) directory.
+
+For example, `/nvim/.config/nvim/init.lua` will have a symbolic link created in `~/.config/nvim/init.lua`.
+
+# Usage
+
+* Clone the repo into your home directory.
+
+```zsh
+cd ~/
+git clone https://github.com/greggannicott/dotfiles.git
+```
+
+* Change directories into the repo
+
+```zsh
+cd dotfiles
+```
+
+* Execute `stow <directory name>` for every directory you wish to create a symbolic link for. eg.
+
+```zsh
+stow nvim
+```
+
+* Note wildcards can be used. eg. the following will handle all the directories:
+
+```zsh
+stow /*
+```
