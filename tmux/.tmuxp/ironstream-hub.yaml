@@ -1,0 +1,25 @@
+session_name: ironstream-hub
+start_directory: ~/code/ironstream-hub-ui/
+windows:
+  - window_name: Editor
+    panes:
+      - shell_command: nvim .
+  - window_name: Terminal
+    layout: even-horizontal
+    panes:
+      - shell_command: cd ~/code/ironstream-hub-ui/
+      - shell_command: cd ~/code/eview_mcs/
+      - shell_command: cd /opt/ihub/
+  - window_name: UI Running Processes
+    panes:
+      - shell_command: npm run start
+      - shell_command: npm run test:firefox
+  - window_name: API Running Processes
+    start_directory: ~/code/eview_mcs/
+    panes:
+      - shell_command:
+        - cd ./iris/web/
+        - sudo go build -o ../ironstreamhubportal && sudo ../ironstreamhubportal
+      - shell_command:
+        - cd ./mcs/
+        - sudo go build -o ../ironstreamhub && sudo ../ironstreamhub foreground
