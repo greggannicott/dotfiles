@@ -18,6 +18,14 @@ brew install stow
 
 Required for the `.zshrc` file.
 
+## TPM - Tmux Plugin Manager
+
+Instructions:
+
+```zsh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
 # Maintaining
 
 Each folder in this repo represents an application configuration.
