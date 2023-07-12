@@ -4,13 +4,19 @@ This repo contains my configuration files for various applications.
 
 # Requirements
 
-Before using this, you must first install GNU Stow.
+## GNU Stow
+
+Before using this, you must first install GNU Stow. This is used to handle the symbolic links.
 
 On MacOS this can be performed using `brew`:
 
 ```zsh
 brew install stow
 ```
+
+## Oh My Zsh!
+
+Required for the `.zshrc` file.
 
 # Maintaining
 
