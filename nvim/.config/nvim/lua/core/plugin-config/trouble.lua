@@ -51,3 +51,7 @@ require('trouble').setup(
     use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
 }
 )
+
+-- Key mappings to open trouble
+vim.keymap.set('n', '<leader>tt', '<cmd>TroubleToggle<cr>', { desc='[T]oggle [T]rouble', silent = true, noremap = true})
+vim.keymap.set('n', '<leader>tr', '<cmd>TroubleToggle lsp_references<cr>', { desc='Display references in Trouble', silent = true, noremap = true})
