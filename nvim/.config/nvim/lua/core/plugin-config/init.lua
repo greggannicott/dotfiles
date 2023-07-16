@@ -8,4 +8,5 @@ require('core.plugin-config.prettier')
 require('core.plugin-config.gitsigns')
 require('core.plugin-config.nvim-cmp')
 require('core.plugin-config.diffview')
+require('core.plugin-config.trouble')
 
