@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<leader>db', ':DiffviewOpen origin/main... --imply-local<CR>')
+vim.keymap.set('n', '<leader>gdb', ':DiffviewOpen origin/main... --imply-local<CR>')
