@@ -1,8 +1,18 @@
-require('telescope').setup();
+local trouble = require("trouble.providers.telescope")
+local telescope = require("telescope")
+telescope.setup {
+  defaults = {
+    mappings = {
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
+    },
+  },
+}
 
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+pcall(telescope.load_extension, 'fzf')
 
+-- Define keymappings to display presets
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch existing [B]uffers' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch git [F]iles' })
@@ -23,3 +33,4 @@ vim.keymap.set('n', '<C-p>', function()
     }
   })
 end, { desc = '[p] Find files' })
+
