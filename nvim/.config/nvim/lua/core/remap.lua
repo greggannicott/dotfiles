@@ -77,3 +77,13 @@ vim.go.winbar = '%=%m %t'
 -- Open file to right when performing split
 vim.go.splitright = true
 vim.go.splitbelow = true
+
+-- Tab related mappings
+vim.keymap.set('n', '<leader>nt', ':tabnext<CR>', { desc='[N]ext [T]ab'})
+vim.keymap.set('n', '<leader>pt', ':tabprevious<CR>', { desc='[P]revious [T]ab'})
+
+-- Remap navigation of windows so you can just use ctrl + h/j/k/l
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
