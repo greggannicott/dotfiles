@@ -10,4 +10,5 @@ require('core.plugin-config.nvim-cmp')
 require('core.plugin-config.diffview')
 require('core.plugin-config.trouble')
 require('core.plugin-config.fugitive')
+require('core.plugin-config.which-key')
 
