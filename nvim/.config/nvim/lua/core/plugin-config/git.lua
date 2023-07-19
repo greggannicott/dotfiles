@@ -1,6 +1,4 @@
-vim.api.nvim_set_keymap('n', '<Leader>gg', ':Git<CR>', { desc = '[G]it' } )
-vim.api.nvim_set_keymap('n', '<Leader>gc', ':Git commit<CR>', { desc = '[G]it [C]ommit' } ) 
-vim.api.nvim_set_keymap('n', '<Leader>ga', ':Git commit --amend<CR>', { desc = '[G]it [A]mend Commit' } ) 
+local wk = require('which-key')
 
 require('gitsigns').setup({
 
@@ -13,11 +11,37 @@ require('gitsigns').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[P]revious [H]unk' })
-        vim.keymap.set('n', '<leader>nh', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[N]ext [H]unk' })
-        vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview [G]it [H]unk' })
-        vim.keymap.set('n', '<leader>gsh', require('gitsigns').stage_hunk, { buffer = bufnr, desc = 'Stage Git Hunk' })
-        vim.keymap.set('n', '<leader>grh', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'Reset Git Hunk' })
+        -- Note: the 'which' description for these mappings are handled below as you were
+        -- unable to get which-key.register to work within the on_attach.
+        vim.keymap.set('n', '<leader>ghp', require('gitsigns').prev_hunk,
+          { buffer = bufnr })
+        vim.keymap.set('n', '<leader>ghn', require('gitsigns').next_hunk, { buffer = bufnr})
+        vim.keymap.set('n', '<leader>ghv', require('gitsigns').preview_hunk, { buffer = bufnr})
+        vim.keymap.set('n', '<leader>ghs', require('gitsigns').stage_hunk, { buffer = bufnr})
+        vim.keymap.set('n', '<leader>ghr', require('gitsigns').reset_hunk, { buffer = bufnr})
       end,
 })
+
+wk.register({
+  g = {
+    name = "Git",
+    g = {':Git<CR>', 'Git Status'},
+    c = {
+      name = "Commit",
+      c = {':Git commit<CR>', 'Git Commit'},
+      a = {':Git commit --amend<CR>', 'Git Commit Amend'},
+    },
+    h = {
+      name = "Hunk",
+      p = "Previous Hunk",
+      n = "Next Hunk",
+      v = "View Hunk",
+      s = "Stage Hunk",
+      r = "Reset Hunk"
+    },
+    d = {
+        name = "Diff",
+        b = {':DiffviewOpen origin/main... --imply-local<CR>', "Diff branch with main"}
+    }
+  },
+}, { prefix = "<leader>" })
