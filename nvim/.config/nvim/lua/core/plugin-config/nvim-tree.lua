@@ -25,8 +25,10 @@ require('nvim-tree').setup({
 wk.register({
   e = {
     name = 'Explorer',
+    c = { ':NvimTreeCollapse<CR>', 'Collapse All Nodes' },
     e = { ':NvimTreeToggle<CR>', 'Toggle' },
     f = { ':NvimTreeFindFile<CR>', 'Focus Current File' },
-    x = { ':NvimTreeResize 70<CR>', 'Expand' },
+    r = { ':NvimTreeResize 30<CR>', 'Reduce Window Size' },
+    x = { ':NvimTreeResize 70<CR>', 'Expand Window Size' },
   }
 }, { prefix = '<leader>'})
