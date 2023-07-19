@@ -1,3 +1,4 @@
+local wk = require('which-key')
 -- The following are the defaults, but some may have been changed
 require('trouble').setup(
 {
@@ -52,6 +53,18 @@ require('trouble').setup(
 }
 )
 
--- Key mappings to open trouble
-vim.keymap.set('n', '<leader>tt', '<cmd>TroubleToggle<cr>', { desc='[T]oggle [T]rouble', silent = true, noremap = true})
-vim.keymap.set('n', '<leader>tr', '<cmd>TroubleToggle lsp_references<cr>', { desc='Display references in Trouble', silent = true, noremap = true})
+wk.register({
+    t = {
+        name = 'Trouble',
+        t = {'<cmd>TroubleToggle<cr>', 'Toggle'},
+        q = { '<cmd>TroubleToggle quickfix<cr>', 'Quickfix Items'},
+        d = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics'},
+        l = {
+            name = 'LSP',
+            d = { '<cmd>TroubleToggle lsp_definitions<cr>', 'LSP Definitions'},
+            i = { '<cmd>TroubleToggle lsp_implementations<cr>', 'LSP Implentations'},
+            r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References'},
+            t = { '<cmd>TroubleToggle lsp_type_definitions<cr>', 'LSP Type Definitions'},
+        }
+    }
+},{prefix = '<leader>'})
