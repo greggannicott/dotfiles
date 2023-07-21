@@ -1,3 +1,4 @@
+local wk = require('which-key')
 vim.g.mapleader = " "
 vim.g.maplocalleader = ' '
 
@@ -79,8 +80,17 @@ vim.go.splitright = true
 vim.go.splitbelow = true
 
 -- Tab related mappings
-vim.keymap.set('n', '<leader>nt', ':tabnext<CR>', { desc='[N]ext [T]ab'})
-vim.keymap.set('n', '<leader>pt', ':tabprevious<CR>', { desc='[P]revious [T]ab'})
+wk.register({
+  T = {
+    name = 'Tabs',
+    c = { '<cmd>:tabclose<CR>', 'Close Tab' },
+    h = { '<cmd>:tabprevious<CR>', 'Previous Tab' },
+    l = { '<cmd>:tabnext<CR>', 'Next Tab' },
+    n = { '<cmd>:tabnew<CR>', 'New Tab' }
+  }
+}, { prefix = '<leader>' })
+vim.keymap.set('n', 'L', '<cmd>tabnext<CR>', { desc = 'Next Tab' })
+vim.keymap.set('n', 'H', '<cmd>tabprevious<CR>', { desc = 'Previous Tab' })
 
 -- Remap navigation of windows so you can just use ctrl + h/j/k/l
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
