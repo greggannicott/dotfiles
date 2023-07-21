@@ -15,16 +15,25 @@ pcall(telescope.load_extension, 'fzf')
 
 -- Define keymappings to display presets
 wk.register({
-  ["?"] = {require('telescope.builtin').oldfiles, '[?] Find recently opened files' },
-  ["/"] = {require('telescope.builtin').current_buffer_fuzzy_find, '[/] Fuzzily search in current buffer' },
+  ["?"] = {require('telescope.builtin').oldfiles, 'Find recently opened files' },
+  ["/"] = {require('telescope.builtin').current_buffer_fuzzy_find, 'Fuzzily search in current buffer' },
   s = {
     name = "Search",
-    b = {require('telescope.builtin').buffers,'[S]earch existing [B]uffers' },
-    d = {require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics' },
-    f = {require('telescope.builtin').find_files, "[S]earch git [F]iles" },
-    g = {require('telescope.builtin').live_grep, '[S]earch by [G]rep' },
-    h = {require('telescope.builtin').help_tags, '[S]earch [H]elp' },
-    r = {require('telescope.builtin').lsp_references, '[S]earch [R]eferences' },
+    b = {require('telescope.builtin').buffers,'Search existing Buffers' },
+    d = {require('telescope.builtin').diagnostics, 'Search Diagnostics' },
+    f = {require('telescope.builtin').find_files, "Search git Files" },
+    g = {require('telescope.builtin').live_grep, 'Search using Grep' },
+    G = {function()
+      local glob_pattern = vim.fn.input("File Name (GLOB Pattern) > ")
+      if (glob_pattern == '') then
+        return
+      end
+      require('telescope.builtin').live_grep({
+        glob_pattern = glob_pattern
+      })
+    end, 'Search using Grep (Filter by File Name)' },
+    h = {require('telescope.builtin').help_tags, 'Search Help' },
+    r = {require('telescope.builtin').lsp_references, 'Search References' },
   },
 }, { prefix = "<leader>" })
 
@@ -38,4 +47,5 @@ vim.keymap.set('n', '<C-p>', function()
       width = 200
     }
   })
-end, { desc = '[p] Find files' })
+end, { desc = 'Find files' })
+
