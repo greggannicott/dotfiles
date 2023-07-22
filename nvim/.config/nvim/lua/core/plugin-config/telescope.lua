@@ -20,6 +20,8 @@ wk.register({
   s = {
     name = "Search",
     b = {require('telescope.builtin').buffers,'Search existing Buffers' },
+    c = {require('telescope.builtin').commands,'Search Commands' },
+    C = {require('telescope.builtin').command_history,'Search Command History' },
     d = {require('telescope.builtin').diagnostics, 'Search Diagnostics' },
     f = {require('telescope.builtin').find_files, "Search git Files" },
     g = {require('telescope.builtin').live_grep, 'Search using Grep' },
@@ -33,7 +35,10 @@ wk.register({
       })
     end, 'Search using Grep (Filter by File Name)' },
     h = {require('telescope.builtin').help_tags, 'Search Help' },
+    k = {require('telescope.builtin').keymaps, 'Search Keymaps' },
+    m = {require('telescope.builtin').marks, 'Search Marks' },
     r = {require('telescope.builtin').lsp_references, 'Search References' },
+    s = {require('telescope.builtin').grep_string, 'Grep String Under Cursor' }
   },
 }, { prefix = "<leader>" })
 
