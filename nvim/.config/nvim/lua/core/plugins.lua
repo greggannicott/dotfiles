@@ -108,5 +108,6 @@ require('lazy').setup({
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {} -- this is equalent to setup({}) function
-  }
+  },
+  'rgroli/other.nvim'
 }, {})

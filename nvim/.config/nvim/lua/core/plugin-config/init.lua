@@ -9,4 +9,5 @@ require('core.plugin-config.nvim-cmp')
 require('core.plugin-config.trouble')
 require('core.plugin-config.which-key')
 require('core.plugin-config.git')
+require('core.plugin-config.other')
 
