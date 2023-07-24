@@ -11,4 +11,5 @@ require('core.plugin-config.which-key')
 require('core.plugin-config.git')
 require('core.plugin-config.other')
 require('core.plugin-config.surround')
+require('core.plugin-config.marks')
 
