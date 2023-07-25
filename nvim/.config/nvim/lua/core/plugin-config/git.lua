@@ -23,25 +23,33 @@ require('gitsigns').setup({
 })
 
 wk.register({
-  g = {
-    name = "Git",
-    g = {':Git<CR>', 'Git Status'},
-    c = {
-      name = "Commit",
-      c = {':Git commit<CR>', 'Git Commit'},
-      a = {':Git commit --amend<CR>', 'Git Commit Amend'},
-    },
-    h = {
-      name = "Hunk",
-      p = "Previous Hunk",
-      n = "Next Hunk",
-      v = "View Hunk",
-      s = "Stage Hunk",
-      r = "Reset Hunk"
-    },
-    d = {
-        name = "Diff",
-        b = {':DiffviewOpen origin/main... --imply-local<CR>', "Diff branch with main"}
-    }
+  ['['] = {
+    h = { require('gitsigns').prev_hunk, 'Previous hunk' },
   },
-}, { prefix = "<leader>" })
+  [']'] = {
+    h = { require('gitsigns').next_hunk, 'Next hunk' },
+  },
+  ['<leader>'] = {
+    g = {
+      name = "Git",
+      g = {':Git<CR>', 'Git Status'},
+      c = {
+        name = "Commit",
+        c = {':Git commit<CR>', 'Git Commit'},
+        a = {':Git commit --amend<CR>', 'Git Commit Amend'},
+      },
+      h = {
+        name = "Hunk",
+        p = "Previous Hunk",
+        n = "Next Hunk",
+        v = "View Hunk",
+        s = "Stage Hunk",
+        r = "Reset Hunk"
+      },
+      d = {
+          name = "Diff",
+          b = {':DiffviewOpen origin/main... --imply-local<CR>', "Diff branch with main"}
+      }
+    },
+  }
+}, {})
