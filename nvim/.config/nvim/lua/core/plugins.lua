@@ -76,8 +76,8 @@ require('lazy').setup({
   -- Install prettier and null-ls for prettier support
   'jose-elias-alvarez/null-ls.nvim',
   'MunifTanjim/prettier.nvim',
+  -- Autocompletion & Snippets
   {
-    -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
