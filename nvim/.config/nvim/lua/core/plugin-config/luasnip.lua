@@ -11,4 +11,3 @@ vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/core/pl
 
 -- Import Snippets
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/core/snippets"})
-
