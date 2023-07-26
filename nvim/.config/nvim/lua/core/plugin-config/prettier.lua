@@ -30,6 +30,11 @@ null_ls.setup({
       end, { buffer = bufnr, desc = "[lsp] format" })
     end
   end,
+  -- Add auto-formatting for Lua
+  -- NOTE: If Prettier stops working, comment out the `sources` part of the code. It was working before you added this.
+  sources = {
+    null_ls.builtins.formatting.stylua
+  }
 })
 
 local prettier = require("prettier")
