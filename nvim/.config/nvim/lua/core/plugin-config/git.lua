@@ -32,7 +32,12 @@ wk.register({
   ['<leader>'] = {
     g = {
       name = "Git",
-      b = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Line Blame' },
+      b = {
+        name = "Blame",
+        b = { ':Git blame<CR>', 'Display blame column' },
+        d = { ':Gitsigns blame_line<CR>', 'Display blame detail for current line' },
+        l = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle line blame' },
+      },
       g = { ':Git<CR>', 'Git Status' },
       c = {
         name = "Commit",
