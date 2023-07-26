@@ -38,6 +38,10 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+  nmap('<leader>d[', vim.diagnostic.goto_prev, 'Go to previous error')
+  nmap('[e', vim.diagnostic.goto_prev, 'Go to previous error')
+  nmap('<leader>d]', vim.diagnostic.goto_next, 'Go to next error')
+  nmap(']e', vim.diagnostic.goto_next, 'Go to next error')
 end
 
 -- Enable the following language servers
