@@ -52,9 +52,9 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
-    'nvim-lualine/lualine.nvim',
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
+  'nvim-lualine/lualine.nvim',
+  -- Add indentation guides even on blank lines
+  'lukas-reineke/indent-blankline.nvim',
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -87,6 +87,9 @@ require('lazy').setup({
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
+      -- Buffer completion
+      'hrsh7th/cmp-buffer',
+
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
@@ -95,15 +98,15 @@ require('lazy').setup({
   { 'folke/which-key.nvim',          opts = {} },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim',         opts = {} },
-    -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  -- Adds git releated signs to the gutter, as well as utilities for managing changes
   'lewis6991/gitsigns.nvim',
   'tpope/vim-sleuth',
-  'sindrets/diffview.nvim',{
-   "folke/trouble.nvim",
-     dependencies = { "nvim-tree/nvim-web-devicons" },
-     opts = {
-     },
+  'sindrets/diffview.nvim', {
+  "folke/trouble.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  opts = {
   },
+},
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
