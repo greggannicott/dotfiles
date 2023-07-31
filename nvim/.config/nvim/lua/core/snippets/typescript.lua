@@ -14,4 +14,7 @@ return {
   s({trig="ct", name="Console Table"},
     fmt("console.table({});", i(1))
   ),
+  s({trig="ctr", name="Console Trace"},
+    fmt("console.trace({});", i(1))
+  ),
 }
