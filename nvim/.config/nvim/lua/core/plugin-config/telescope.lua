@@ -39,8 +39,8 @@ wk.register({
     m = {require('telescope.builtin').marks, 'Search Marks' },
     r = {require('telescope.builtin').lsp_references, 'Search References' },
     s = {require('telescope.builtin').grep_string, 'Grep String Under Cursor' },
-    y = {require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols' },
-    Y = {require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols' },
+    Y = {require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols' },
+    y = {require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols' },
   },
 }, { prefix = "<leader>" })
 
