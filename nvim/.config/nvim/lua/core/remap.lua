@@ -79,6 +79,9 @@ vim.go.winbar = '%=%m %t'
 vim.go.splitright = true
 vim.go.splitbelow = true
 
+-- Always have the top/bottom N lines displayed in buffer
+vim.o.scrolloff = 8
+
 -- Tab related mappings
 wk.register({
   T = {
