@@ -35,6 +35,7 @@ wk.register({
       })
     end, 'Search using Grep (Filter by File Name)' },
     h = {require('telescope.builtin').help_tags, 'Search Help' },
+    j = {require('telescope.builtin').jumplist, 'Search Jumplist' },
     k = {require('telescope.builtin').keymaps, 'Search Keymaps' },
     m = {require('telescope.builtin').marks, 'Search Marks' },
     r = {require('telescope.builtin').lsp_references, 'Search References' },
