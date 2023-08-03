@@ -28,9 +28,11 @@ wk.register({
     C = { '<cmd>:OtherVSplit component<cr>', 'Open Component (vertical split)'},
     h = { '<cmd>:Other html<cr>', 'Open HTML'},
     H = { '<cmd>:OtherVSplit html<cr>', 'Open HTML (vertical split)'},
-    s = { '<cmd>:Other scss<cr>', 'Open SCSS'},
-    S = { '<cmd>:OtherVSplit scss<cr>', 'Open SCSS (vertical split)'},
+    s = { '<cmd>:Other service<cr>', 'Open Service'},
+    S = { '<cmd>:OtherVSplit service<cr>', 'Open Service (vertical split)'},
     t = { '<cmd>:Other test<cr>', 'Open Test'},
     T = { '<cmd>:OtherVSplit test<cr>', 'Open Test (vertical split)'},
+    y = { '<cmd>:Other scss<cr>', 'Open SCSS'},
+    Y = { '<cmd>:OtherVSplit scss<cr>', 'Open SCSS (vertical split)'},
   }
 }, { prefix = '<leader>'})
