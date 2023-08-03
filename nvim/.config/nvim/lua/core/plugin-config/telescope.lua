@@ -35,10 +35,12 @@ wk.register({
       })
     end, 'Search using Grep (Filter by File Name)' },
     h = {require('telescope.builtin').help_tags, 'Search Help' },
+    j = {require('telescope.builtin').jumplist, 'Search Jumplist' },
     k = {require('telescope.builtin').keymaps, 'Search Keymaps' },
     m = {require('telescope.builtin').marks, 'Search Marks' },
     r = {require('telescope.builtin').lsp_references, 'Search References' },
     s = {require('telescope.builtin').grep_string, 'Grep String Under Cursor' },
+    t = {require('telescope.builtin').tagstack, 'Search Tagstack' },
     Y = {require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Search Workspace Symbols' },
     y = {require('telescope.builtin').lsp_document_symbols, 'Search Document Symbols' },
   },
