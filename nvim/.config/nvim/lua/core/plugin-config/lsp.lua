@@ -49,6 +49,13 @@ local on_attach = function(_, bufnr)
       name = 'Code'
     }
   },{prefix = '<leader>'})
+
+  -- Automatically highlight instances of the variable your cursor is currently on
+  -- See vim.lsp.buf.document_highlight() in help.
+  vim.cmd([[autocmd CursorHold * lua vim.lsp.buf.document_highlight()]])
+  vim.cmd([[autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()]])
+  vim.cmd([[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]])
+  vim.cmd([[autocmd CursorMovedI * lua vim.lsp.buf.clear_references()]])
 end
 
 -- Enable the following language servers
