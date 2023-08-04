@@ -103,3 +103,6 @@ vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
 
 -- Mapping for opening config file
 vim.keymap.set('n', '<leader>.', ':vs ~/.config/nvim/init.lua<CR>', { desc='Open Neovim Config'})
+
+-- Plugin Development mappings
+vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc='Source current file'})
