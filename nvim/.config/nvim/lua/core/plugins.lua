@@ -118,5 +118,11 @@ require('lazy').setup({
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy"
   },
-  'chentoast/marks.nvim'
-}, {})
+  'chentoast/marks.nvim',
+  -- Your own plugin:
+  { 'greggannicott/angular-cli.nvim', dev = true }
+}, {
+    dev = {
+      path = "~/code"
+    }
+  })
