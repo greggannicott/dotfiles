@@ -120,6 +120,16 @@ require("lazy").setup({
 	},
 	"chentoast/marks.nvim",
 	"rcarriga/nvim-notify",
+	-- Ability to search various dev docs
+	{
+		"luckasRanarison/nvim-devdocs",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
 }, {
