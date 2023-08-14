@@ -127,6 +127,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"debugloop/telescope-undo.nvim",
 		},
 	},
 	{ "nvim-pack/nvim-spectre", dev = true },

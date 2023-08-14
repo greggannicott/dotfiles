@@ -24,10 +24,33 @@ telescope.setup({
 			path_display = { "tail" },
 		},
 	},
+	extensions = {
+		undo = {
+			use_delta = true,
+			use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
+			side_by_side = true,
+			diff_context_lines = vim.o.scrolloff,
+			entry_format = "state #$ID, $STAT, $TIME",
+			time_format = "",
+			mappings = {
+				i = {
+					-- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
+					-- you want to replicate these defaults and use the following actions. This means
+					-- installing as a dependency of telescope in it's `requirements` and loading this
+					-- extension from there instead of having the separate plugin definition as outlined
+					-- above.
+					["<cr>"] = require("telescope-undo.actions").yank_additions,
+					["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+					["<C-cr>"] = require("telescope-undo.actions").restore,
+				},
+			},
+		},
+	},
 })
 
 -- Enable telescope fzf native, if installed
 pcall(telescope.load_extension, "fzf")
+require("telescope").load_extension("undo")
 
 -- Define keymappings to display presets
 wk.register({
@@ -69,6 +92,7 @@ wk.register({
 		r = { require("telescope.builtin").lsp_references, "Search References" },
 		s = { require("telescope.builtin").grep_string, "Grep String Under Cursor" },
 		t = { require("telescope.builtin").tagstack, "Search Tagstack" },
+		u = { require("telescope.").extensions.undo.undo, "Search Undo History" },
 		Y = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols" },
 		y = { require("telescope.builtin").lsp_document_symbols, "Search Document Symbols" },
 	},
