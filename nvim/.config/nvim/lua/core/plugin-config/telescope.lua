@@ -93,6 +93,7 @@ wk.register({
 		s = { require("telescope.builtin").grep_string, "Grep String Under Cursor" },
 		t = { require("telescope.builtin").tagstack, "Search Tagstack" },
 		u = { require("telescope.").extensions.undo.undo, "Search Undo History" },
+		v = { require("telescope.builtin").vim_options, "Search Vim Options" },
 		Y = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols" },
 		y = { require("telescope.builtin").lsp_document_symbols, "Search Document Symbols" },
 	},
