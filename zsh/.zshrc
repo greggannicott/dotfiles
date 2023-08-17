@@ -131,6 +131,10 @@ PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
 
+# Use `neovim` to display man pages
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+
 # Required for tmuxp
 export DISABLE_AUTO_TITLE='true'
 
