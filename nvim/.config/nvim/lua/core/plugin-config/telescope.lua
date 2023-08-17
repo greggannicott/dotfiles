@@ -56,6 +56,7 @@ require("telescope").load_extension("undo")
 wk.register({
 	["?"] = { require("telescope.builtin").oldfiles, "Find recently opened files" },
 	["/"] = { require("telescope.builtin").current_buffer_fuzzy_find, "Fuzzily search in current buffer" },
+	["<space>"] = { require("telescope.builtin").resume, "Re-open Telescope" },
 	s = {
 		name = "Search",
 		b = { require("telescope.builtin").buffers, "Search existing Buffers" },
@@ -89,6 +90,7 @@ wk.register({
 		j = { require("telescope.builtin").jumplist, "Search Jumplist" },
 		k = { require("telescope.builtin").keymaps, "Search Keymaps" },
 		m = { require("telescope.builtin").marks, "Search Marks" },
+		M = { require("telescope.builtin").man_pages, "Search Man Pages" },
 		r = { require("telescope.builtin").lsp_references, "Search References" },
 		s = { require("telescope.builtin").grep_string, "Grep String Under Cursor" },
 		t = { require("telescope.builtin").tagstack, "Search Tagstack" },
