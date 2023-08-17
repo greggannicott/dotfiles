@@ -106,7 +106,20 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Custom Functions
+
+function copyCurrentBranchToClipboard()
+{
+  local currentBranchName=`git branch --show-current`
+  echo $currentBranchName | pbcopy
+  echo "✅ Current branch ($currentBranchName) copied to clipboard!"
+}
+
+# Aliases
 alias gs="git status"
+functions[cbranch]=copyCurrentBranchToClipboard
+functions[copybranch]=copyCurrentBranchToClipboard
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
