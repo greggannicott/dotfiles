@@ -121,15 +121,15 @@ alias gs="git status"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
 
+# Add alias for `colorls` so it replaces `ls`
+alias ls='colorls'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Add homebrew's ruby to the path. Required for `colorls`.
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 PATH=$PATH:$(ruby -e 'puts Gem.bindir')
-
-# Add alias for `colorls` so it replaces `ls`
-alias ls='colorls'
 
 # Use `neovim` to display man pages
 export MANPAGER='nvim +Man!'
