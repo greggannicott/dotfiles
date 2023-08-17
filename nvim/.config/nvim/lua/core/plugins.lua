@@ -130,6 +130,8 @@ require("lazy").setup({
 			"debugloop/telescope-undo.nvim",
 		},
 	},
+	-- Have your vim keybindings work with tmux when navigating windows
+	"christoomey/vim-tmux-navigator",
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
