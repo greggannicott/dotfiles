@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,6 +134,10 @@ PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 # Use `neovim` to display man pages
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+
+# Configure vi-mode (handled by the `vi-mode` plugin)
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export VI_MODE_SET_CURSOR=true
 
 # Required for tmuxp
 export DISABLE_AUTO_TITLE='true'
