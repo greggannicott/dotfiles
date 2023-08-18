@@ -66,6 +66,7 @@ local servers = {
 	angularls = {},
 	tsserver = {},
 	html = {},
+	cssls = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
