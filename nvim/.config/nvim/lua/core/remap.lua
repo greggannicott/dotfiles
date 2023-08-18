@@ -100,12 +100,6 @@ wk.register({
 vim.keymap.set("n", "L", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "H", "<cmd>tabprevious<CR>", { desc = "Previous Tab" })
 
--- Remap navigation of windows so you can just use ctrl + h/j/k/l
--- vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
--- vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
--- vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
--- vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
-
 -- Remap resizing of windows
 vim.api.nvim_set_keymap("n", "<C-Right>", "<cmd>:vertical res +1<cr>", { desc = "Increase Window Width" })
 vim.api.nvim_set_keymap("n", "<C-Left>", "<cmd>:vertical res -1<cr>", { desc = "Decrease Window Width" })
