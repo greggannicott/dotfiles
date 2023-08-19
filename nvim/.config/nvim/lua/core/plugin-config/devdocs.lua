@@ -13,5 +13,9 @@ require("nvim-devdocs").setup({
 		border = "rounded",
 	},
 	wrap = false, -- text wrap
+	previewer_cmd = "glow", -- for example: "glow"
+	cmd_args = { "-s", "dark", "-w", "80" },
+	picker_cmd = true,
+	picker_cmd_args = { "-p" },
 	ensure_installed = {}, -- get automatically installed
 })
