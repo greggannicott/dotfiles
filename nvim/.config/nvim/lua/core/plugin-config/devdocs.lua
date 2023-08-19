@@ -1,3 +1,4 @@
+local wk = require("which-key")
 require("nvim-devdocs").setup({
 	dir_path = vim.fn.stdpath("data") .. "/devdocs", -- installation directory
 	telescope = {}, -- passed to the telescope picker
@@ -19,3 +20,9 @@ require("nvim-devdocs").setup({
 	picker_cmd_args = { "-p" },
 	ensure_installed = {}, -- get automatically installed
 })
+
+wk.register({
+	s = {
+		D = { "<cmd>DevdocsOpen<cr>", "Search Devdocs" },
+	},
+}, { prefix = "<leader>" })
