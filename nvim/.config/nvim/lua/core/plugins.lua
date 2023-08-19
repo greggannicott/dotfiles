@@ -132,6 +132,8 @@ require("lazy").setup({
 	},
 	-- Have your vim keybindings work with tmux when navigating windows
 	"christoomey/vim-tmux-navigator",
+	-- Ability to bookmark certain files within a project:
+	"ThePrimeagen/harpoon",
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },

@@ -51,6 +51,7 @@ telescope.setup({
 -- Enable telescope fzf native, if installed
 pcall(telescope.load_extension, "fzf")
 require("telescope").load_extension("undo")
+require("telescope").load_extension("harpoon")
 
 -- Define keymappings to display presets
 wk.register({
