@@ -1,0 +1,10 @@
+session_name: hearkened
+start_directory: ~/code/hearkened/
+windows:
+  - window_name: Editor
+    panes:
+      - shell_command: nvim .
+  - window_name: Terminal
+  - window_name: Docker
+    panes:
+      - shell_command: docker-compose up
