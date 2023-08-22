@@ -139,6 +139,9 @@ export MANWIDTH=999
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export VI_MODE_SET_CURSOR=true
 
+# Load command completions for GitLab CLI (glab)
+glab completion -s zsh > /usr/local/share/zsh/site-functions/_glab
+
 # Required for tmuxp
 export DISABLE_AUTO_TITLE='true'
 
