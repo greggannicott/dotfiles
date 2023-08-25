@@ -87,5 +87,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- Repeat movement with ; and ,
-vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+-- Commented out as it was interfering with the built in `;` functionality:
+-- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
 vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
