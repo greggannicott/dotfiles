@@ -59,6 +59,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 })
 
+-- Add a way to print that doesn't replace your register with what gets removed
+vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { desc = "Paste without replacing register." })
+
 -- Formatting.
 
 -- Don't start new lines with comment symbols if current line has comment symbols
