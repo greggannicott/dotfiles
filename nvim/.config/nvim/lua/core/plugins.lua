@@ -134,6 +134,9 @@ require("lazy").setup({
 	"christoomey/vim-tmux-navigator",
 	-- Ability to bookmark certain files within a project:
 	"ThePrimeagen/harpoon",
+	-- Highlight lines used when specifying ranges:
+	"winston0410/cmd-parser.nvim",
+	"winston0410/range-highlight.nvim",
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
