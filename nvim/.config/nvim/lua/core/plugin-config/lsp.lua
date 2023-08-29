@@ -63,7 +63,7 @@ local servers = {
 	-- rust_analyzer = {},
 	-- tsserver = {},
 
-	angularls = {},
+	["angularls@15.2.1"] = {},
 	tsserver = {},
 	html = {},
 	cssls = {},
