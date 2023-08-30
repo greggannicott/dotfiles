@@ -1,3 +1,7 @@
+# Required for nvm/npm to work within tmux
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm use default
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -139,13 +143,6 @@ export MANWIDTH=999
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export VI_MODE_SET_CURSOR=true
 
-# Load command completions for GitLab CLI (glab)
-glab completion -s zsh > /usr/local/share/zsh/site-functions/_glab
-
 # Required for tmuxp
 export DISABLE_AUTO_TITLE='true'
 
-# Required for nvm/npm to work within tmux
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use default
