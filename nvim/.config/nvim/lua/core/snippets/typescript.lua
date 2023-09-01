@@ -14,7 +14,11 @@ return {
 	s({ trig = "ct", name = "Console Table" }, fmt("console.table({});", i(1))),
 	s({ trig = "ctr", name = "Console Trace" }, fmt("console.trace({});", i(1))),
 	s(
-		{ trig = "mockService", name = "Mock Service", dscr = { "Mocks an Angular service using Jasmine." } },
+		{ trig = "mockservice", name = "mock service", dscr = { "mocks an angular service using jasmine." } },
 		fmt("const mock{} = jasmine.createSpyObj<{}>('{}', [{}])", { i(1), rep(1), rep(1), i(2) })
+	),
+	s(
+		{ trig = "mockprovider", name = "insert mock provider" },
+		fmt("{{ provide: {}, useValue: mock{}}}", { i(1), rep(1) })
 	),
 }
