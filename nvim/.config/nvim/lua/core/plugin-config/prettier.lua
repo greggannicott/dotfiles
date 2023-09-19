@@ -33,23 +33,23 @@ null_ls.setup({
 	-- Add auto-formatting for Lua
 	sources = {
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.prettierd,
+		-- null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.diagnostics.eslint_d,
 	},
 })
 
-local prettier = require("prettier")
-
-prettier.setup({
-	bin = "prettierd",
-	filetypes = {
-		"css",
-		"html",
-		"javascript",
-		"json",
-		"markdown",
-		"scss",
-		"typescript",
-		"yaml",
-	},
-})
+-- local prettier = require("prettier")
+--
+-- prettier.setup({
+-- 	bin = "prettierd",
+-- 	filetypes = {
+-- 		"css",
+-- 		"html",
+-- 		"javascript",
+-- 		"json",
+-- 		"markdown",
+-- 		"scss",
+-- 		"typescript",
+-- 		"yaml",
+-- 	},
+-- })
