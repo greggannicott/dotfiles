@@ -4,6 +4,7 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
+local wk = require("which-key")
 
 cmp.setup({
 	snippet = {
@@ -21,7 +22,8 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
+		-- 'Tab' binding disabled so you can use Copilot. You've left it commented out in case it doesn't quite work out with copilot.
+		--[[ ["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_locally_jumpable() then
@@ -38,7 +40,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { "i", "s" }), ]]
 	}),
 	sources = {
 		{ name = "nvim_lsp" },
@@ -46,3 +48,10 @@ cmp.setup({
 		{ name = "buffer", keyword_length = 4 },
 	},
 })
+
+wk.register({
+	c = {
+		c = { "<cmd>Copilot enable<CR>", "Enable Copilot" },
+		C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
+	},
+}, { prefix = "<leader>" })

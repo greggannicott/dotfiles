@@ -138,6 +138,7 @@ require("lazy").setup({
 	"winston0410/cmd-parser.nvim",
 	"winston0410/range-highlight.nvim",
 	"Wansmer/treesj",
+	"github/copilot.vim",
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
