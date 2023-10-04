@@ -1,0 +1,10 @@
+session_name: raycast-projects-plugin
+start_directory: ~/code/raycast-extensions/task-manager/
+windows:
+  - window_name: Editor
+    panes:
+      - shell_command: nvim .
+  - window_name: Terminal
+  - window_name: Server
+    panes:
+      - shell_command: npm run dev
