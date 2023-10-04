@@ -8,13 +8,17 @@ telescope.setup({
 		mappings = {
 			i = {
 				["<c-t>"] = trouble.open_with_trouble,
-				["<c-k>"] = actions.cycle_history_prev,
-				["<c-j>"] = actions.cycle_history_next,
+				["<c-j>"] = actions.move_selection_next,
+				["<c-k>"] = actions.move_selection_previous,
+				["<c-p>"] = actions.cycle_history_prev,
+				["<c-n>"] = actions.cycle_history_next,
 			},
 			n = {
 				["<c-t>"] = trouble.open_with_trouble,
-				["<c-k>"] = actions.cycle_history_prev,
-				["<c-j>"] = actions.cycle_history_next,
+				["<c-j>"] = actions.move_selection_next,
+				["<c-k>"] = actions.move_selection_previous,
+				["<c-p>"] = actions.cycle_history_prev,
+				["<c-n>"] = actions.cycle_history_next,
 			},
 		},
 	},
