@@ -1,0 +1,10 @@
+session_name: blog
+start_directory: ~/code/blog/
+windows:
+  - window_name: Editor
+    panes:
+      - shell_command: nvim .
+  - window_name: Terminal
+  - window_name: Server
+    panes:
+      - shell_command: npm run serve
