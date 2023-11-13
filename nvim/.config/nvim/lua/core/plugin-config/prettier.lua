@@ -35,6 +35,8 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		-- null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.diagnostics.eslint_d,
+		null_ls.builtins.formatting.beautysh,
+		null_ls.builtins.formatting.fixjson,
 	},
 })
 
