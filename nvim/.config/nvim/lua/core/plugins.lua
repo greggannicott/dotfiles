@@ -54,7 +54,7 @@ require("lazy").setup({
 	},
 	"nvim-lualine/lualine.nvim",
 	-- Add indentation guides even on blank lines
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}},
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
 	{
@@ -139,6 +139,8 @@ require("lazy").setup({
 	"winston0410/range-highlight.nvim",
 	"Wansmer/treesj",
 	"github/copilot.vim",
+	-- Note: dev is used as you had to apply a local fix
+	{ "ThePrimeagen/git-worktree.nvim", dev = true },
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
