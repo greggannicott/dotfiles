@@ -2,34 +2,36 @@
 
 # Find all git repos in ~/code
 repos=$(find ~/code -d 1 -type d -prune -print | sed 's/ /SPACE/g')
-
 for repo in $repos
 do
     unescapedRepo=$(echo $repo | sed 's/SPACE/ /g')
-    if [ -d "$unescapedRepo/.git/" ]; then
-        git_repos+="${repo}\n"
+    if [ -d "$unescapedRepo/.git/" ] || [ -e "$unescapedRepo/.git" ]; then
+        for worktree in $(git -C "$unescapedRepo" worktree list --porcelain | grep branch | cut -d' ' -f2 | cut -d '/' -f3); do
+            git_repos+="${repo} -> ${worktree}\n"
+        done
     fi
 done
-selected_repo_path=$(printf $git_repos | sed 's/SPACE/ /g' | fzf-tmux)
+selected_repo_and_branch=$(echo $git_repos | sed 's/SPACE/ /g' | fzf)
 
 # If user escapes at this point (ie. without selecting a repo) exit.
-if [ -z $selected_repo_path ]; then
+if [ -z "$selected_repo_and_branch" ]; then
     exit 0
 fi
 
-
 # Find out whether a session already exists for this repos
-folder_name=$(basename $selected_repo_path)
+path_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $1 }')
+branch_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $2 }')
+folder_name=$(basename $path_name)
 existing_session=$(tmux list-sessions |  cut -d ':' -f 1 | grep $folder_name )
 
 # If no session exists, create one
 if [ -z $existing_session ]; then
     # If we're not in tmux, create a new session and attach to it
     if [ -z $TMUX ]; then
-        tmux new-session -s $folder_name -c $selected_repo_path
+        tmux new-session -s $folder_name -c $path_name
         # If we're in tmux, create a new detached session and switch to it
     else
-        tmux new-session -d -s $folder_name -c $selected_repo_path
+        tmux new-session -d -s $folder_name -c $path_name
         tmux switch-client -t $folder_name
     fi
     # If a session exists, attach to it
