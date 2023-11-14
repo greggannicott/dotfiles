@@ -12,6 +12,11 @@ do
 done
 selected_repo_path=$(printf $git_repos | sed 's/SPACE/ /g' | fzf-tmux)
 
+# If user escapes at this point (ie. without selecting a repo) exit.
+if [ -z $selected_repo_path ]; then
+    exit 0
+fi
+
 
 # Find out whether a session already exists for this repos
 folder_name=$(basename $selected_repo_path)
