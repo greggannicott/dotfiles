@@ -10,15 +10,15 @@ do
     if [ -d "$unescapedRepo/.git/" ] || [ -e "$unescapedRepo/.git" ]; then
         for worktree in $(git -C "$unescapedRepo" worktree list --porcelain | grep branch | cut -d' ' -f2 | cut -d '/' -f3); do
             # git_repos+="${repo} -> ${worktree}\n"
-            entry['path']="$repo"
-            entry['unescaped_path']="$unescapedRepo"
-            entry['display_value']="${repo} -> ${worktree}"
+            entry['path']="$unescapedRepo"
+            entry['escaped_repo']="${repo}"
+            entry['display_value']=$(printf "%s\t" "${unescapedRepo}->${worktree}")
             entries+=($entry)
         done
     fi
 done
 # selected_repo_and_branch=$(echo $git_repos | sed 's/SPACE/ /g' | fzf)
-selected_repo_and_branch=$(printf "%s\n" "${entries[@]['display_value']}"| sed 's/SPACE/ /g' | fzf)
+selected_repo_and_branch=$(printf "%s" "${entries[@]['display_value']}" | fzf --delimiter='\t' --with-nth=1)
 
 # If user escapes at this point (ie. without selecting a repo) exit.
 if [ -z "$selected_repo_and_branch" ]; then
