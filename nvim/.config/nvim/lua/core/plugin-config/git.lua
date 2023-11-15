@@ -55,6 +55,7 @@ wk.register({
 				name = "Diff",
 				b = { ":DiffviewOpen origin/main... --imply-local<CR>", "Diff branch with main" },
 				d = { "<CMD>DiffviewOpen<CR>", "View diff of altered files" },
+				o = { "<CMD>DiffviewOpen @{u}<CR>", "Diff branch with remote" },
 			},
 		},
 	},
