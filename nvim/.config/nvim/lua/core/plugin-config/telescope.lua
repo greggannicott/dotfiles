@@ -56,20 +56,12 @@ telescope.setup({
 pcall(telescope.load_extension, "fzf")
 require("telescope").load_extension("undo")
 require("telescope").load_extension("harpoon")
-require("telescope").load_extension("git_worktree")
 
 -- Define keymappings to display presets
 wk.register({
 	["?"] = { require("telescope.builtin").oldfiles, "Find recently opened files" },
 	["/"] = { require("telescope.builtin").current_buffer_fuzzy_find, "Fuzzily search in current buffer" },
 	["<space>"] = { require("telescope.builtin").resume, "Re-open Telescope" },
-	g = {
-		w = {
-			name = "Worktrees",
-			l = { require("telescope").extensions.git_worktree.git_worktrees, "List Worktrees" },
-			c = { require("telescope").extensions.git_worktree.create_git_worktree, "Create Worktree" },
-		},
-	},
 	s = {
 		name = "Search",
 		b = { require("telescope.builtin").buffers, "Search existing Buffers" },
