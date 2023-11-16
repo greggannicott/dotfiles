@@ -139,8 +139,6 @@ require("lazy").setup({
 	"winston0410/range-highlight.nvim",
 	"Wansmer/treesj",
 	"github/copilot.vim",
-	-- Note: dev is used as you had to apply a local fix
-	{ "ThePrimeagen/git-worktree.nvim", dev = true },
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },

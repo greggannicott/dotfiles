@@ -1,8 +1,7 @@
-# #!/bin/zsh
+#!/bin/zsh
 
 # Find all git repos in ~/code
-repos=$(find ~/code -d 1 -type d -prune -print | sed 's/ /SPACE/g')
-for repo in $repos
+for repo in $(find ~/code -d 1 -type d -prune -print | sed 's/ /SPACE/g')
 do
     unescapedRepo=$(echo $repo | sed 's/SPACE/ /g')
     if [ -d "$unescapedRepo/.git/" ] || [ -e "$unescapedRepo/.git" ]; then
