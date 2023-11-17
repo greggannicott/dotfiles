@@ -13,7 +13,7 @@ local on_attach = function(_, bufnr)
 	end
 
 	nmap("<leader>cr", vim.lsp.buf.rename, "Rename")
-	nmap("<leader><C-a>", vim.lsp.buf.code_action, "Code Actions")
+	nmap("<leader>c<C-a>", vim.lsp.buf.code_action, "Code Actions")
 
 	nmap("gd", vim.lsp.buf.definition, "Goto Definition")
 	nmap("<leader>cd", vim.lsp.buf.definition, "Goto Definition")
