@@ -5,9 +5,45 @@ for repo in $(find ~/code -d 1 -type d -prune -print | sed 's/ /SPACE/g')
 do
     unescapedRepo=$(echo $repo | sed 's/SPACE/ /g')
     if [ -d "$unescapedRepo/.git/" ] || [ -e "$unescapedRepo/.git" ]; then
-        for worktree in $(git -C "$unescapedRepo" worktree list --porcelain | grep branch | cut -d' ' -f2 | cut -d '/' -f3); do
-            git_repos+="${repo} -> ${worktree}\n"
+        # Obtrain worktree details for this repo
+        output=$(git -C "$unescapedRepo" worktree list --porcelain)
+
+        # Split output of worktree list by line breaks (this is what the `@f` does...)
+        lines=("${(@f)output}")
+
+        # Create an associative array to handle this worktree.
+        # We'll work through each line builing up information about the worktree.
+        # When we reach the line regarding the branch we know it is the final one for that
+        # branch and we can then go about adding that entry to the list.
+        typeset -A current_entry
+        for line in "${lines[@]}"; do
+            key=$(echo $line | cut -d ' ' -f 1)
+            value=$(echo $line | cut -d ' ' -f 2-)
+
+            # Read the key/value pair in this line, and note the key type
+            if [ "$key" = "worktree" ]; then
+                current_entry[worktree]="${value}"
+                key_type="worktree"
+            elif [[ "$key" = "branch" ]]; then
+                current_entry[branch]=$value
+                key_type="branch"
+            else
+                key_type="unknown"
+            fi
+
+            # If the key type is branch, then we can consider this the last key to processs and act on the worktree entry as a whole.
+            if [ "$key_type" = "branch" ]; then
+                if [ $current_entry[worktree] =  $unescapedRepo ]; then
+                    # If the worktree parth equals the repo path, we're not dealing with a worktree
+                    # and we shouldn't print the branch name
+                    git_repos+="${repo}\n"
+                else
+                    # If they don't equal, we're dealing with a worktree and we should include the branch name
+                    git_repos+="${repo} -> ${current_entry[branch]}\n"
+                fi
+            fi
         done
+
     fi
 done
 selected_repo_and_branch=$(echo $git_repos | sed 's/SPACE/ /g' | fzf)
