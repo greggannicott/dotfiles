@@ -56,6 +56,7 @@ fi
 # Determine the path, branch and folder name for the selected repo
 path_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $1 }')
 branch_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $2 }')
+friendly_branch_name=$(echo $branch_name | sed 's/refs\/heads\///g')
 folder_name=$(basename $path_name)
 
 # Determine the path that needs to be opened. This depends on whether we're dealing with a worktree or not.
@@ -76,7 +77,7 @@ else
                 branch=${line#branch }
                 if [ "$branch" = "$branch_name" ]; then
                     path_to_open=$worktree
-                    session_name=$folder_name-$branch_name
+                    session_name="$folder_name -> $friendly_branch_name"
                 fi
                 ;;
         esac
