@@ -53,21 +53,48 @@ if [ -z "$selected_repo_and_branch" ]; then
     exit 0
 fi
 
-# Find out whether a session already exists for this repos
+# Determine the path, branch and folder name for the selected repo
 path_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $1 }')
 branch_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $2 }')
 folder_name=$(basename $path_name)
-existing_session=$(tmux list-sessions |  cut -d ':' -f 1 | grep $folder_name )
 
-# If no session exists, create one
+# Determine the path that needs to be opened. This depends on whether we're dealing with a worktree or not.
+if [ -z "$branch_name" ]; then
+    # If we're not dealing with a worktree, we can just open the repo path
+    path_to_open=$path_name
+    session_name=$folder_name
+else
+    git -C "$path_name" worktree list --porcelain | while IFS= read -r line; do
+        case $line in
+            worktree*)
+                worktree=${line#worktree }
+                ;;
+            HEAD*)
+                head=${line#HEAD }
+                ;;
+            branch*)
+                branch=${line#branch }
+                if [ "$branch" = "$branch_name" ]; then
+                    path_to_open=$worktree
+                    session_name=$folder_name-$branch_name
+                fi
+                ;;
+        esac
+    done
+fi
+
+# Get a session for the selected entry if one already exists
+existing_session=$(tmux list-sessions |  cut -d ':' -f 1 | grep $session_name )
+
+# Open repo/branch in tmux
 if [ -z $existing_session ]; then
     # If we're not in tmux, create a new session and attach to it
     if [ -z $TMUX ]; then
-        tmux new-session -s $folder_name -c $path_name
+        tmux new-session -s $session_name -c $path_to_open
         # If we're in tmux, create a new detached session and switch to it
     else
-        tmux new-session -d -s $folder_name -c $path_name
-        tmux switch-client -t $folder_name
+        tmux new-session -d -s $session_name -c $path_to_open
+        tmux switch-client -t $session_name
     fi
     # If a session exists, attach to it
 else
