@@ -25,7 +25,7 @@ do
                 current_entry[worktree]="${value}"
                 key_type="worktree"
             elif [[ "$key" = "branch" ]]; then
-                current_entry[branch]=$value
+                current_entry[branch]=$(echo $value | sed 's/refs\/heads\///g')
                 key_type="branch"
             else
                 key_type="unknown"
@@ -56,7 +56,6 @@ fi
 # Determine the path, branch and folder name for the selected repo
 path_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $1 }')
 branch_name=$(echo $selected_repo_and_branch | awk -F " -> " '{ print $2 }')
-friendly_branch_name=$(echo $branch_name | sed 's/refs\/heads\///g')
 folder_name=$(basename $path_name)
 
 # Determine the path that needs to be opened. This depends on whether we're dealing with a worktree or not.
@@ -75,9 +74,9 @@ else
                 ;;
             branch*)
                 branch=${line#branch }
-                if [ "$branch" = "$branch_name" ]; then
+                if [ "$branch" = "refs/heads/$branch_name" ]; then
                     path_to_open=$worktree
-                    session_name="$folder_name -> $friendly_branch_name"
+                    session_name="$folder_name -> $branch_name"
                 fi
                 ;;
         esac
