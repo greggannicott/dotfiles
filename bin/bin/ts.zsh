@@ -1,5 +1,26 @@
 #!/bin/zsh
 
+create_new_session() {
+    local session_name="$1"
+    local path_to_open="$2"
+    if [ -z $TMUX ]; then
+        tmux new-session -s $session_name -c $path_to_open
+    else
+        tmux new-session -d -s $session_name -c $path_to_open
+        tmux switch-client -t "$(echo $session_name | sed 's/\./_/g')"
+    fi
+}
+
+attach_to_session() {
+    local existing_session="$1"
+    if [ -z $TMUX ]; then
+        tmux attach-session -t $existing_session
+        # If we're in tmux, switch to the session
+    else
+        tmux switch-client -t $existing_session
+    fi
+}
+
 # Find all git repos in ~/code
 for repo in $(find ~/code -d 1 -type d -prune -print | sed 's/ /SPACE/g')
 do
@@ -83,26 +104,18 @@ else
     done
 fi
 
-# Get a session for the selected entry if one already exists
-existing_session=$(tmux list-sessions |  cut -d ':' -f 1 | grep $session_name )
-
-# Open repo/branch in tmux
-if [ -z $existing_session ]; then
-    # If we're not in tmux, create a new session and attach to it
-    if [ -z $TMUX ]; then
-        tmux new-session -s $session_name -c $path_to_open
-        # If we're in tmux, create a new detached session and switch to it
-    else
-        tmux new-session -d -s $session_name -c $path_to_open
-        tmux switch-client -t $session_name
-    fi
-    # If a session exists, attach to it
+tmuxp_file_path="${path_to_open}/.tmuxp.yaml"
+if [ -e $tmuxp_file_path ]; then
+    # If the directory has a tmuxp file, connect using tmuxp
+    tmuxp load $tmuxp_file_path -s $session_name -y
 else
-    # If we're not in tmux, attach to the session
-    if [ -z $TMUX ]; then
-        tmux attach-session -t $existing_session
-        # If we're in tmux, switch to the session
+    # Otherwise use the conventional tmux approach
+    # Get a session for the selected entry if one already exists
+    existing_session=$(tmux list-sessions |  cut -d ':' -f 1 | grep $session_name )
+
+    if [ -z $existing_session ]; then
+        create_new_session $session_name $path_to_open
     else
-        tmux switch-client -t $existing_session
+        attach_to_session $existing_session 
     fi
 fi
