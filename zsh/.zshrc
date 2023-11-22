@@ -6,7 +6,7 @@ nvm use default
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -14,6 +14,9 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Add your custom scripts to the path.
+export PATH="$HOME/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -115,15 +118,16 @@ source $ZSH/oh-my-zsh.sh
 
 function copyCurrentBranchToClipboard()
 {
-  local currentBranchName=`git branch --show-current`
-  echo $currentBranchName | pbcopy
-  echo "✅ Current branch ($currentBranchName) copied to clipboard!"
+    local currentBranchName=`git branch --show-current`
+    echo $currentBranchName | pbcopy
+    echo "✅ Current branch ($currentBranchName) copied to clipboard!"
 }
 
 # Aliases
 alias gs="git status"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
+alias ts="~/bin/ts.zsh"
 
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
@@ -145,4 +149,3 @@ export VI_MODE_SET_CURSOR=true
 
 # Required for tmuxp
 export DISABLE_AUTO_TITLE='true'
-
