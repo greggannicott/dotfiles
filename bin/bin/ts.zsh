@@ -67,7 +67,7 @@ do
 
     fi
 done
-selected_repo_and_branch=$(echo $git_repos | sed 's/SPACE/ /g' | fzf)
+selected_repo_and_branch=$(echo $git_repos | sed 's/SPACE/ /g' | fzf-tmux -p --cycle --reverse --border --border-label="| Git Repos |" --header="Select a repo to open in tmux" --info=inline-right)
 
 # If user escapes at this point (ie. without selecting a repo) exit.
 if [ -z "$selected_repo_and_branch" ]; then
@@ -116,6 +116,6 @@ else
     if [ -z $existing_session ]; then
         create_new_session $session_name $path_to_open
     else
-        attach_to_session $existing_session 
+        attach_to_session $existing_session
     fi
 fi
