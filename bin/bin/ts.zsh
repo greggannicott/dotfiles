@@ -21,13 +21,20 @@ attach_to_session() {
     fi
 }
 
-# Find all git repos in ~/code
-for repo in $(find ~/code -d 1 -type d -prune -print | sed 's/ /SPACE/g')
-do
-    unescapedRepo=$(echo $repo | sed 's/SPACE/ /g')
-    if [ -d "$unescapedRepo/.git/" ] || [ -e "$unescapedRepo/.git" ]; then
-        # Obtrain worktree details for this repo
-        output=$(git -C "$unescapedRepo" worktree list --porcelain)
+# Check the user has a config file
+if [[ ! -e ~/.ts.yaml ]]; then
+    echo "No '~/.ts.yaml' file found. Please create one."
+    exit 1
+fi
+
+# Find all git repos in the `search_directories` specified in the config
+for search_directory in $(yq '.search_directories[]' ~/.ts.yaml); do
+    eval search_directory=$search_directory
+    for repo in $(find "$search_directory" -d 1 -type d -prune -print | sed 's/ /SPACE/g');do
+        unescapedRepo=$(echo $repo | sed 's/SPACE/ /g')
+        if [ -d "$unescapedRepo/.git/" ] || [ -e "$unescapedRepo/.git" ]; then
+            # Obtrain worktree details for this repo
+            output=$(git -C "$unescapedRepo" worktree list --porcelain)
 
         # Split output of worktree list by line breaks (this is what the `@f` does...)
         lines=("${(@f)output}")
@@ -65,7 +72,8 @@ do
             fi
         done
 
-    fi
+        fi
+    done
 done
 selected_repo_and_branch=$(echo $git_repos | sed 's/SPACE/ /g' | fzf-tmux -p --cycle --reverse --border --border-label="| Git Repos |" --header="Select a repo to open in tmux" --info=inline-right)
 
