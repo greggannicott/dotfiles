@@ -69,6 +69,7 @@ vim.o.formatoptions = cro
 
 -- Set tab width. Default appears to be 8!
 vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- Set relative numbers
 vim.wo.relativenumber = true
