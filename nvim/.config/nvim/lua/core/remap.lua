@@ -105,10 +105,10 @@ vim.keymap.set("n", "L", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "H", "<cmd>tabprevious<CR>", { desc = "Previous Tab" })
 
 -- Remap resizing of windows
-vim.api.nvim_set_keymap("n", "<C-Right>", "<cmd>:vertical res +1<cr>", { desc = "Increase Window Width" })
-vim.api.nvim_set_keymap("n", "<C-Left>", "<cmd>:vertical res -1<cr>", { desc = "Decrease Window Width" })
-vim.api.nvim_set_keymap("n", "<C-up>", "<cmd>:res +1<cr>", { desc = "Increase Window Height" })
-vim.api.nvim_set_keymap("n", "<C-down>", "<cmd>:res -1<cr>", { desc = "Decrease Window Height" })
+vim.api.nvim_set_keymap("n", "<C-Right>", "<cmd>:vertical res +2<cr>", { desc = "Increase Window Width" })
+vim.api.nvim_set_keymap("n", "<C-Left>", "<cmd>:vertical res -2<cr>", { desc = "Decrease Window Width" })
+vim.api.nvim_set_keymap("n", "<C-up>", "<cmd>:res +2<cr>", { desc = "Increase Window Height" })
+vim.api.nvim_set_keymap("n", "<C-down>", "<cmd>:res -2<cr>", { desc = "Decrease Window Height" })
 
 -- Mapping for opening config file
 vim.keymap.set("n", "<leader>.", ":vs ~/.config/nvim/init.lua<CR>", { desc = "Open Neovim Config" })
