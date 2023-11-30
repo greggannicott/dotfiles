@@ -128,7 +128,7 @@ alias gs="git status"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
 alias ts="~/bin/ts.zsh"
-alias kill-ng-serve="ps -eaf | grep 'ng serve' | grep -v 'grep' | awk '{ print $2 }' | xargs kill"
+alias kill-ng-serve='ps -eaf | grep "ng serve" | grep -v "grep" | awk "{ print $2 }" | xargs kill'
 
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
