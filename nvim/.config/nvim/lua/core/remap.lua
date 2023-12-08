@@ -65,7 +65,7 @@ vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { desc = "Paste without replac
 -- Formatting.
 
 -- Don't start new lines with comment symbols if current line has comment symbols
-vim.o.formatoptions = cro
+vim.o.formatoptions = "cro"
 
 -- Set tab width. Default appears to be 8!
 vim.o.tabstop = 4
