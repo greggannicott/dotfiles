@@ -125,6 +125,7 @@ function copyCurrentBranchToClipboard()
 
 # Aliases
 alias gs="git status"
+alias gp="git push"
 alias gpnv="git push --no-verify"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
