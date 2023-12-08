@@ -141,6 +141,7 @@ require("lazy").setup({
 	"github/copilot.vim",
 	"mfussenegger/nvim-dap",
 	"leoluz/nvim-dap-go",
+	"DNLHC/glance.nvim",
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
