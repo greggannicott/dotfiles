@@ -1,7 +1,11 @@
 # Required for nvm/npm to work within tmux
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use default
+
+# NOTE: The following is commented out because it was slowing down the loadtime of the terminal
+#       and I'm not convinced it's necessary. If you run into issues with nvm/npm, uncomment
+# nvm use default
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
