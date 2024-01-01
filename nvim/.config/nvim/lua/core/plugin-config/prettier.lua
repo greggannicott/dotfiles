@@ -33,7 +33,7 @@ null_ls.setup({
 	-- Add auto-formatting for Lua
 	sources = {
 		null_ls.builtins.formatting.stylua,
-		-- null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.beautysh,
 		null_ls.builtins.formatting.fixjson,
 	},
