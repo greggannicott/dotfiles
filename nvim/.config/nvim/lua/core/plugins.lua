@@ -22,7 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	"tpope/vim-fugitive",
 	"nvim-tree/nvim-tree.lua",
-	{ "nvim-telescope/telescope.nvim",       branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built.
 	-- Only load if `make` is available. Make sure you have the system
 	-- requirements installed.
@@ -54,7 +54,7 @@ require("lazy").setup({
 	},
 	"nvim-lualine/lualine.nvim",
 	-- Add indentation guides even on blank lines
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",     opts = {} },
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
 	{
@@ -67,14 +67,14 @@ require("lazy").setup({
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim",       tag = "legacy", opts = {} },
+			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
 		},
 	},
-	-- Install prettier and null-ls for prettier support
-	"jose-elias-alvarez/null-ls.nvim",
+	-- Install prettier and none-ls for prettier support
+	"nvimtools/none-ls.nvim",
 	"MunifTanjim/prettier.nvim",
 	-- Autocompletion & Snippets
 	{
@@ -95,7 +95,7 @@ require("lazy").setup({
 		},
 	},
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim",  opts = {} },
+	{ "folke/which-key.nvim", opts = {} },
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	-- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -154,7 +154,7 @@ require("lazy").setup({
 			"rcarriga/nvim-notify",
 		},
 	},
-	{ "nvim-pack/nvim-spectre",         dev = true },
+	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
 }, {
