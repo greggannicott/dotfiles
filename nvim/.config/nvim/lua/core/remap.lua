@@ -110,6 +110,10 @@ vim.api.nvim_set_keymap("n", "<C-Left>", "<cmd>:vertical res -2<cr>", { desc = "
 vim.api.nvim_set_keymap("n", "<C-up>", "<cmd>:res +2<cr>", { desc = "Increase Window Height" })
 vim.api.nvim_set_keymap("n", "<C-down>", "<cmd>:res -2<cr>", { desc = "Decrease Window Height" })
 
+-- Ability to move higlighted lines of code (via The Primeagen)
+vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down", silent = true })
+vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up", silent = true })
+
 -- Mapping for opening config file
 vim.keymap.set("n", "<leader>.", ":vs ~/.config/nvim/init.lua<CR>", { desc = "Open Neovim Config" })
 
