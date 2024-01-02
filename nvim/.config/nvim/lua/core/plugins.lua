@@ -124,10 +124,12 @@ require("lazy").setup({
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
+		opts = {},
 	},
-	"chentoast/marks.nvim",
+	{ "chentoast/marks.nvim", opts = {} },
 	{
 		"rcarriga/nvim-notify",
+		opts = {},
 		event = "VeryLazy",
 	},
 	-- Ability to search various dev docs
@@ -154,14 +156,14 @@ require("lazy").setup({
 	"ThePrimeagen/harpoon",
 	-- Highlight lines used when specifying ranges:
 	"winston0410/cmd-parser.nvim",
-	"winston0410/range-highlight.nvim",
+	{ "winston0410/range-highlight.nvim", opts = {} },
 	"Wansmer/treesj",
 	{
 		"github/copilot.vim",
 		event = "InsertEnter",
 	},
 	"mfussenegger/nvim-dap",
-	"leoluz/nvim-dap-go",
+	{ "leoluz/nvim-dap-go", opts = {} },
 	"DNLHC/glance.nvim",
 	{
 		"folke/noice.nvim",
