@@ -1,11 +1,16 @@
 local wc = require("which-key")
--- [[ Configure LSP ]]
+
+---------------
+-- SETUP LSP --
+---------------
+
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
 	-- Prevent "tsserver" from formatting code. This is to prevent it from clashing with Prettier.
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
+
 	-- NOTE: Remember that lua is a real programming language, and as such it is possible
 	-- to define small helper and utility functions so you don't have to repeat yourself
 	-- many times.
@@ -40,7 +45,6 @@ local on_attach = function(client, bufnr)
 	-- to having a standard set of mappings for LSP stuff.
 	-- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-	-- Lesser used LSP functionality
 	nmap("<leader>ce", vim.lsp.buf.declaration, "Goto Declaration")
 	nmap("<leader>c[", vim.diagnostic.goto_prev, "Go to previous error")
 	nmap("[e", vim.diagnostic.goto_prev, "Go to previous error")
@@ -55,18 +59,11 @@ local on_attach = function(client, bufnr)
 	}, { prefix = "<leader>" })
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-	-- clangd = {},
-	-- gopls = {},
-	-- pyright = {},
-	-- rust_analyzer = {},
-	-- tsserver = {},
+-- Setup neovim lua configuration
+require("neodev").setup()
 
+-- Enable the following language servers
+local servers = {
 	["angularls@15.2.1"] = {},
 	tsserver = {},
 	html = {},
@@ -90,9 +87,6 @@ local servers = {
 	},
 }
 
--- Setup neovim lua configuration
-require("neodev").setup()
-
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -114,16 +108,88 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
--- Setup Glance
+-------------------
+-- SETUP NULL-LS --
+-------------------
+
+local null_ls = require("null-ls")
+
+local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+local event = "BufWritePre" -- or "BufWritePost"
+local async = event == "BufWritePost"
+
+null_ls.setup({
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.keymap.set("n", "<Leader>f", function()
+				vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+			end, { buffer = bufnr, desc = "[lsp] format" })
+
+			-- format on save
+			vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+			vim.api.nvim_create_autocmd(event, {
+				buffer = bufnr,
+				group = group,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = bufnr, async = async })
+				end,
+				desc = "[lsp] format on save",
+			})
+		end
+
+		if client.supports_method("textDocument/rangeFormatting") then
+			vim.keymap.set("x", "<Leader>f", function()
+				vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+			end, { buffer = bufnr, desc = "[lsp] format" })
+		end
+	end,
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.formatting.beautysh,
+		null_ls.builtins.formatting.fixjson,
+	},
+})
+
+-------------------------
+-- SETUP GO FORMATTING --
+-------------------------
+
+-- I don't think this uses null-ls
+
+-- Golang formatting with gopls
+-- Based on: https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports-and-formatting
+vim.api.nvim_create_autocmd(event, {
+	pattern = "*.go",
+	callback = function()
+		local params = vim.lsp.util.make_range_params()
+		params.context = { only = { "source.organizeImports" } }
+		-- buf_request_sync defaults to a 1000ms timeout. Depending on your
+		-- machine and codebase, you may want longer. Add an additional
+		-- argument after params if you find that you have to write the file
+		-- twice for changes to be saved.
+		-- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+		for cid, res in pairs(result or {}) do
+			for _, r in pairs(res.result or {}) do
+				if r.edit then
+					local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+					vim.lsp.util.apply_workspace_edit(r.edit, enc)
+				end
+			end
+		end
+		vim.lsp.buf.format({ async = false })
+	end,
+})
+
+------------------
+-- SETUP GLANCE --
+------------------
+
 local actions = require("glance").actions
 require("glance").setup({
 	height = 18, -- Height of the window
 	zindex = 45,
-
-	-- By default glance will open preview "embedded" within your active window
-	-- when `detached` is enabled, glance will render above all existing windows
-	-- and won't be restiricted by the width of your active window
-	detached = true,
 
 	-- Or use a function to enable `detached` only when the active window is too small
 	-- (default behavior)
