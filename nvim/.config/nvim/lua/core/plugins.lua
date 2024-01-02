@@ -52,7 +52,10 @@ require("lazy").setup({
 			vim.cmd.colorscheme("onedark")
 		end,
 	},
-	"nvim-lualine/lualine.nvim",
+	{
+		"nvim-lualine/lualine.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 	-- Add indentation guides even on blank lines
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- NOTE: This is where your plugins related to LSP can be installed.
@@ -93,13 +96,17 @@ require("lazy").setup({
 			-- Adds a number of user-friendly snippets
 			"rafamadriz/friendly-snippets",
 		},
+		event = "InsertEnter",
 	},
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim", opts = {} },
+	{ "folke/which-key.nvim", opts = {}, event = "VeryLazy" },
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	-- Adds git releated signs to the gutter, as well as utilities for managing changes
-	"lewis6991/gitsigns.nvim",
+	{
+		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 	"tpope/vim-sleuth",
 	"sindrets/diffview.nvim",
 	{
@@ -119,7 +126,10 @@ require("lazy").setup({
 		event = "VeryLazy",
 	},
 	"chentoast/marks.nvim",
-	"rcarriga/nvim-notify",
+	{
+		"rcarriga/nvim-notify",
+		event = "VeryLazy",
+	},
 	-- Ability to search various dev docs
 	{
 		"luckasRanarison/nvim-devdocs",
@@ -131,14 +141,25 @@ require("lazy").setup({
 		},
 	},
 	-- Have your vim keybindings work with tmux when navigating windows
-	"christoomey/vim-tmux-navigator",
+	{
+		"christoomey/vim-tmux-navigator",
+		event = function()
+			-- Only load it if we are inside of a tmux session.
+			if vim.fn.exists("$TMUX") == 1 then
+				return { "VeryLazy" }
+			end
+		end,
+	},
 	-- Ability to bookmark certain files within a project:
 	"ThePrimeagen/harpoon",
 	-- Highlight lines used when specifying ranges:
 	"winston0410/cmd-parser.nvim",
 	"winston0410/range-highlight.nvim",
 	"Wansmer/treesj",
-	"github/copilot.vim",
+	{
+		"github/copilot.vim",
+		event = "InsertEnter",
+	},
 	"mfussenegger/nvim-dap",
 	"leoluz/nvim-dap-go",
 	"DNLHC/glance.nvim",
