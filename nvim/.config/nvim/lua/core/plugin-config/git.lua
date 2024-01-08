@@ -1,5 +1,29 @@
 local wk = require("which-key")
 
+local function showFugitiveGit()
+	if vim.fn.FugitiveHead() ~= "" then
+		vim.cmd([[
+    Git
+    " wincmd H  " Open Git window in vertical split
+    " setlocal winfixwidth
+    " vertical resize 31
+    " setlocal winfixwidth
+    setlocal nonumber
+    setlocal norelativenumber
+    ]])
+	end
+end
+local function toggleFugitiveGit()
+	if
+		(vim.fn.buflisted(vim.fn.bufname("fugitive:///*/.git//$")) ~= 0)
+		or vim.fn.buflisted(vim.fn.bufname("fugitive:///*/.bare/*")) ~= 0
+	then
+		vim.cmd([[ execute ":bdelete" bufname('fugitive:///*/.git//$') ]])
+	else
+		showFugitiveGit()
+	end
+end
+
 require("gitsigns").setup({
 
 	-- See `:help gitsigns.txt`
@@ -37,7 +61,7 @@ wk.register({
 				d = { ":Gitsigns blame_line<CR>", "Display blame detail for current line" },
 				l = { ":Gitsigns toggle_current_line_blame<CR>", "Toggle line blame" },
 			},
-			g = { ":Git<CR>", "Git Status" },
+			g = { toggleFugitiveGit, "Git Status" },
 			c = {
 				name = "Commit",
 				c = { ":Git commit<CR>", "Git Commit" },
