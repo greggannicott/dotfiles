@@ -133,7 +133,8 @@ alias gp="git push"
 alias gpnv="git push --no-verify"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
-alias ts="~/bin/ts.zsh"
+alias ts="~/bin/tmux-too-young"
+alias ty="~/bin/tmux-too-young"
 alias kill-ng-serve='ps -eaf | grep "ng serve" | grep -v "grep" | awk "{ print $2 }" | xargs kill'
 
 # Add alias for `colorls` so it replaces `ls`
