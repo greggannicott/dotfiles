@@ -60,7 +60,25 @@ require("telescope").load_extension("harpoon")
 -- Define keymappings to display presets
 wk.register({
 	["?"] = { require("telescope.builtin").oldfiles, "Find recently opened files" },
-	["/"] = { require("telescope.builtin").current_buffer_fuzzy_find, "Fuzzily search in current buffer" },
+	["/"] = {
+		function()
+			require("telescope.builtin").current_buffer_fuzzy_find({
+				sorting_strategy = "ascending",
+				-- sort by line number (via https://github.com/nvim-telescope/telescope.nvim/issues/1080#issuecomment-1592392087)
+				tiebreak = function(entry1, entry2, prompt)
+					local start_pos1, _ = entry1.ordinal:find(prompt)
+					if start_pos1 then
+						local start_pos2, _ = entry2.ordinal:find(prompt)
+						if start_pos2 then
+							return start_pos1 < start_pos2
+						end
+					end
+					return false
+				end,
+			})
+		end,
+		"Find in current buffer",
+	},
 	["<space>"] = { require("telescope.builtin").resume, "Re-open Telescope" },
 	s = {
 		name = "Search",
