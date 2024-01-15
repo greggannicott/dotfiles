@@ -32,6 +32,12 @@ echo "--------------------------------------------------------------------------
 git branch --set-upstream-to=origin/$branch_name $branch_name
 
 echo
+echo "Getting latest code from origin"
+echo "----------------------------------------------------------------------------------------------------"
+
+git merge origin/$branch_name
+
+echo
 echo "Installing node modules"
 echo "----------------------------------------------------------------------------------------------------"
 npm i
