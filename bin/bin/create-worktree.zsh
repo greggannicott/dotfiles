@@ -48,4 +48,4 @@ cd $original_dir
 
 output_heading "Launching tmux session for '$branch_name' worktree"
 
-./tmux-too-young $branch_name
+tmux-too-young $branch_name
