@@ -50,4 +50,4 @@ cd $original_dir
 echo
 echo "Launching tmux session for '$branch_name' worktree"
 echo "----------------------------------------------------------------------------------------------------"
-./tmux-too-young $branch_name
+tmux-too-young $branch_name
