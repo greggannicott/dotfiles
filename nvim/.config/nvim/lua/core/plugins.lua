@@ -164,7 +164,6 @@ require("lazy").setup({
 	},
 	"mfussenegger/nvim-dap",
 	{ "leoluz/nvim-dap-go", opts = {} },
-	"DNLHC/glance.nvim",
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
