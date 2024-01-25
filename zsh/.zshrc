@@ -157,3 +157,6 @@ export VI_MODE_SET_CURSOR=true
 
 # Required for tmuxp
 export DISABLE_AUTO_TITLE='true'
+
+# Add Go
+export PATH=$PATH:$GOPATH/bin
