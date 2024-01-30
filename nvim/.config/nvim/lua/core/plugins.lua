@@ -93,6 +93,9 @@ require("lazy").setup({
 			-- Buffer completion
 			"hrsh7th/cmp-buffer",
 
+			-- Search and command completion
+			"hrsh7th/cmp-cmdline",
+
 			-- Adds a number of user-friendly snippets
 			"rafamadriz/friendly-snippets",
 		},
