@@ -56,6 +56,7 @@ telescope.setup({
 pcall(telescope.load_extension, "fzf")
 require("telescope").load_extension("undo")
 require("telescope").load_extension("harpoon")
+require("telescope").load_extension("noice")
 
 -- Define keymappings to display presets
 wk.register({
