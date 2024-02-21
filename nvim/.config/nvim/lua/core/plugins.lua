@@ -96,7 +96,7 @@ require("lazy").setup({
 			-- Search and command completion
 			"hrsh7th/cmp-cmdline",
 
-			-- Adds a number of user-friendly snippets
+			-- Adds a number of user-friendly snippetsplugin
 			"rafamadriz/friendly-snippets",
 		},
 		event = "InsertEnter",
@@ -129,7 +129,6 @@ require("lazy").setup({
 		event = "VeryLazy",
 		opts = {},
 	},
-	{ "chentoast/marks.nvim", opts = {} },
 	{
 		"rcarriga/nvim-notify",
 		opts = {},
