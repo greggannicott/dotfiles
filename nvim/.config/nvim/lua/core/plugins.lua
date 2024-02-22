@@ -49,8 +49,14 @@ require("lazy").setup({
 		"navarasu/onedark.nvim",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("onedark")
+			-- Currently disabled as you are trying a different theme
+			-- vim.cmd.colorscheme("onedark")
 		end,
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
