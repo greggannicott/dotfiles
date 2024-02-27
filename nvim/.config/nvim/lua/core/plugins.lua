@@ -102,7 +102,7 @@ require("lazy").setup({
 			-- Search and command completion
 			"hrsh7th/cmp-cmdline",
 
-			-- Adds a number of user-friendly snippetsplugin
+			-- Adds a number of user-friendly snippets
 			"rafamadriz/friendly-snippets",
 		},
 		event = "InsertEnter",
@@ -185,6 +185,7 @@ require("lazy").setup({
 		},
 	},
 	{ "dmmulroy/ts-error-translator.nvim" },
+	{ "chentoast/marks.nvim", opts = {} },
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
