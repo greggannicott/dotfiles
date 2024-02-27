@@ -45,7 +45,7 @@ local on_attach = function(client, bufnr)
 	-- to having a standard set of mappings for LSP stuff.
 	-- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-	nmap("<leader>ce", vim.lsp.buf.declaration, "Goto Declaration")
+	nmap("<leader>ce", vim.diagnostic.open_float, "View Error Details")
 	nmap("<leader>c[", vim.diagnostic.goto_prev, "Go to previous error")
 	nmap("[e", vim.diagnostic.goto_prev, "Go to previous error")
 	nmap("<leader>c]", vim.diagnostic.goto_next, "Go to next error")
@@ -58,6 +58,13 @@ local on_attach = function(client, bufnr)
 		},
 	}, { prefix = "<leader>" })
 end
+
+-- Style the diagnostic message
+vim.diagnostic.config({
+	float = {
+		border = "rounded",
+	},
+})
 
 -- Setup neovim lua configuration
 require("neodev").setup()
