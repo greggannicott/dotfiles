@@ -184,6 +184,7 @@ require("lazy").setup({
 			"rcarriga/nvim-notify",
 		},
 	},
+	{ "dmmulroy/ts-error-translator.nvim" },
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },

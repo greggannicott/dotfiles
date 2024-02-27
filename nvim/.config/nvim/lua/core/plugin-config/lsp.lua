@@ -188,3 +188,9 @@ vim.api.nvim_create_autocmd(event, {
 		vim.lsp.buf.format({ async = false })
 	end,
 })
+
+-------------------------
+-- SETUP TS ERRORS     --
+-------------------------
+
+require("ts-error-translator").setup()
