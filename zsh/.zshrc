@@ -160,3 +160,5 @@ export DISABLE_AUTO_TITLE='true'
 
 # Add Go
 export PATH=$PATH:$GOPATH/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
