@@ -127,6 +127,14 @@ function copyCurrentBranchToClipboard()
     echo "✅ Current branch ($currentBranchName) copied to clipboard!"
 }
 
+# Add fzf completion for `add-worktree`
+# Usage: `add-worktree **<TAB>`
+_fzf_complete_add-worktree() {
+    _fzf_complete "--multi --reverse" "$@" < <(
+        git branch --remote | sed 's/origin\///'
+    )
+}
+
 # Aliases
 alias gs="git status"
 alias gp="git push"
