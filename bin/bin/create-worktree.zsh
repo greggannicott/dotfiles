@@ -19,7 +19,7 @@ original_dir=$(pwd)
 
 output_heading "Changing to root of repo"
 
-cd ~/code/ironstream-hub-ui-worktrees/
+cd `git rev-parse --git-common-dir` && cd ..
 
 output_heading "Adding new worktree with name '$branch_name'"
 
