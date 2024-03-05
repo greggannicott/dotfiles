@@ -22,7 +22,19 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	"tpope/vim-fugitive",
 	"nvim-tree/nvim-tree.lua",
-	{ "nvim-telescope/telescope.nvim",       branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope-live-grep-args.nvim",
+				-- This will not install any breaking changes.
+				-- For major updates, this must be adjusted manually.
+				version = "^1.0.0",
+			},
+		},
+	},
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built.
 	-- Only load if `make` is available. Make sure you have the system
 	-- requirements installed.
@@ -63,7 +75,7 @@ require("lazy").setup({
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	-- Add indentation guides even on blank lines
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",     opts = {} },
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
 	{
@@ -76,7 +88,7 @@ require("lazy").setup({
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim",       tag = "legacy", opts = {} },
+			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
@@ -108,7 +120,7 @@ require("lazy").setup({
 		event = "InsertEnter",
 	},
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim",  opts = {}, event = "VeryLazy" },
+	{ "folke/which-key.nvim", opts = {}, event = "VeryLazy" },
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 	-- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -169,7 +181,7 @@ require("lazy").setup({
 		event = "InsertEnter",
 	},
 	"mfussenegger/nvim-dap",
-	{ "leoluz/nvim-dap-go",               opts = {} },
+	{ "leoluz/nvim-dap-go", opts = {} },
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -183,10 +195,10 @@ require("lazy").setup({
 		},
 	},
 	{ "dmmulroy/ts-error-translator.nvim" },
-	{ "chentoast/marks.nvim",             opts = {} },
-	{ "nvim-pack/nvim-spectre",           dev = true },
+	{ "chentoast/marks.nvim", opts = {} },
+	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
-	{ "greggannicott/angular-cli.nvim",   dev = true },
+	{ "greggannicott/angular-cli.nvim", dev = true },
 }, {
 	dev = {
 		path = "~/code",

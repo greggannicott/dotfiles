@@ -2,6 +2,7 @@ local wk = require("which-key")
 local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local lga_actions = require("telescope-live-grep-args.actions")
 telescope.setup({
 	defaults = {
 		path_display = { "truncate" },
@@ -29,6 +30,15 @@ telescope.setup({
 		},
 	},
 	extensions = {
+		live_grep_args = {
+			auto_quoting = true, -- enable/disable auto-quoting
+			-- define mappings, e.g.
+			mappings = { -- extend mappings
+				i = {
+					["<C-i>"] = lga_actions.quote_prompt(),
+				},
+			},
+		},
 		undo = {
 			use_delta = true,
 			use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
@@ -56,6 +66,7 @@ telescope.setup({
 pcall(telescope.load_extension, "fzf")
 require("telescope").load_extension("undo")
 require("telescope").load_extension("noice")
+require("telescope").load_extension("live_grep_args")
 
 -- Define keymappings to display presets
 wk.register({
@@ -87,19 +98,7 @@ wk.register({
 		C = { require("telescope.builtin").command_history, "Search Command History" },
 		d = { require("telescope.builtin").diagnostics, "Search Diagnostics" },
 		f = { require("telescope.builtin").find_files, "Search git Files" },
-		g = { require("telescope.builtin").live_grep, "Search using Grep" },
-		G = {
-			function()
-				local glob_pattern = vim.fn.input("File Name (GLOB Pattern) > ")
-				if glob_pattern == "" then
-					return
-				end
-				require("telescope.builtin").live_grep({
-					glob_pattern = glob_pattern,
-				})
-			end,
-			"Search using Grep (Filter by File Name)",
-		},
+		g = { require("telescope").extensions.live_grep_args.live_grep_args, "Search using Grep" },
 		h = { require("telescope.builtin").help_tags, "Search Help" },
 		H = {
 			function()
@@ -117,7 +116,7 @@ wk.register({
 		r = { require("telescope.builtin").lsp_references, "Search References" },
 		s = { require("telescope.builtin").grep_string, "Grep String Under Cursor" },
 		t = { require("telescope.builtin").tagstack, "Search Tagstack" },
-		u = { require("telescope.").extensions.undo.undo, "Search Undo History" },
+		u = { require("telescope").extensions.undo.undo, "Search Undo History" },
 		v = { require("telescope.builtin").vim_options, "Search Vim Options" },
 		Y = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols" },
 		y = { require("telescope.builtin").lsp_document_symbols, "Search Document Symbols" },
