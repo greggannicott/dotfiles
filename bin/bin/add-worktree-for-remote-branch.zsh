@@ -13,7 +13,7 @@ original_dir=`pwd`
 echo
 echo "Changing to root of repo"
 echo "----------------------------------------------------------------------------------------------------"
-cd ~/code/ironstream-hub-ui-worktrees/
+cd `git rev-parse --git-common-dir` && cd ..
 
 echo
 echo "Fetching latest from origin"
