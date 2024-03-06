@@ -24,6 +24,19 @@ then
     exit 1
 fi
 
+if [ -z "$run_npm_install" ] && [ -z "$run_npm_setup" ]; then
+    echo "You haven't specified any actions to run after adding the worktree."
+    echo
+    echo "Do you wish to continue? (y/n)"
+    read -k 1 continue
+    if [ "$continue" != "y" ]; then
+        echo
+        echo "Exiting."
+        exit 0
+    fi
+    echo
+fi
+
 original_dir=`pwd`
 
 echo
