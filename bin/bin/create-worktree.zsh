@@ -1,10 +1,40 @@
 #!/bin/zsh
 
-if [ $# -eq 0 ]
+# Parse arguments being passed in
+run_npm_install=
+run_npm_setup=
+
+while getopts "is" opt; do
+  case $opt in
+    i)run_npm_install=1 ;;
+    s)run_npm_setup=1 ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+shift $((OPTIND - 1))
+branch_name=$1
+
+if [ -z "$branch_name" ]
 then
-    echo "No arguments supplied"
-    echo "Usage: ./create_branch.sh <branch_name>"
+    echo "No branch name supplied"
+    echo "Usage: ./create-worktree.zsh <branch_name>"
     exit 1
+fi
+
+if [ -z "$run_npm_install" ] && [ -z "$run_npm_setup" ]; then
+    echo "You haven't specified any actions to run after adding the worktree."
+    echo
+    echo "Do you wish to continue? (y/n)"
+    read -k 1 continue
+    if [ "$continue" != "y" ]; then
+        echo
+        echo "Exiting."
+        exit 0
+    fi
+    echo
 fi
 
 output_heading ()
@@ -14,7 +44,8 @@ output_heading ()
     echo "----------------------------------------------------------------------------------------------------"
 }
 
-branch_name=$1
+echo "Creating new worktree with name '$branch_name'"
+
 original_dir=$(pwd)
 
 output_heading "Changing to root of repo"
@@ -34,9 +65,31 @@ output_heading "Merging in latest from origin/main"
 
 git merge origin/main
 
-output_heading "Installing node modules"
+if [ ! -z "$run_npm_install" ]
+then
+    output_heading "Installing node modules"
+    npm i
+fi
 
-npm install
+if [ ! -z "$run_npm_setup" ]
+then
+    output_heading "Running setup script"
+    npm run setup
+
+    if [ $? -ne 0 ]
+    then
+        echo
+        echo "$(tput setaf 1)Setup script failed.$(tput sgr0)"
+        echo
+        echo "Check you are connected to the VPN."
+        echo
+        echo "Removing worktree and returning to original directory."
+        echo
+        git worktree remove -f $branch_name
+        cd $original_dir
+        exit 1
+    fi
+fi
 
 output_heading "Creating remote branch and setting origin"
 
