@@ -20,7 +20,7 @@ branch_name=$1
 if [ -z "$branch_name" ]
 then
     echo "No branch name supplied"
-    echo "Usage: ./add-worktree-for-remote-branch.sh <branch_name>"
+    echo "Usage: ./add-worktree-for-remote-branch.zsh <branch_name>"
     exit 1
 fi
 
@@ -81,7 +81,7 @@ fi
 if [ ! -z "$run_npm_setup" ]
 then
     echo
-    echo "Installing setup script"
+    echo "Running setup script"
     echo "----------------------------------------------------------------------------------------------------"
     npm run setup
 
