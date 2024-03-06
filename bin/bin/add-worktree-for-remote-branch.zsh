@@ -71,6 +71,20 @@ then
     echo "Installing setup script"
     echo "----------------------------------------------------------------------------------------------------"
     npm run setup
+
+    if [ $? -ne 0 ]
+    then
+        echo
+        echo "$(tput setaf 1)Setup script failed.$(tput sgr0)"
+        echo
+        echo "Check you are connected to the VPN."
+        echo
+        echo "Removing worktree and returning to original directory."
+        echo
+        git worktree remove -f $branch_name
+        cd $original_dir
+        exit 1
+    fi
 fi
 
 echo
