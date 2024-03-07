@@ -33,7 +33,9 @@ then
 else
     echo "Worktree for branch '$source_branch' does not exist."
     echo
-    echo "At present this script does not support creating the worktree."
+    echo "Add worktree for branch '$source_branch'..."
+    echo 
+    add-worktree $source_branch
 fi
 
 echo
