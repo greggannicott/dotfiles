@@ -1,20 +1,5 @@
 #!/bin/zsh
 
-# Parse arguments being passed in
-run_npm_install=
-run_npm_setup=
-
-while getopts "is" opt; do
-  case $opt in
-    i)run_npm_install=1 ;;
-    s)run_npm_setup=1 ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
-
-shift $((OPTIND - 1))
 branch_name=$1
 
 if [ -z "$branch_name" ]
@@ -22,19 +7,6 @@ then
     echo "No branch name supplied"
     echo "Usage: ./create-worktree.zsh <branch_name>"
     exit 1
-fi
-
-if [ -z "$run_npm_install" ] && [ -z "$run_npm_setup" ]; then
-    echo "You haven't specified any actions to run after adding the worktree."
-    echo
-    echo "Do you wish to continue? (y/n)"
-    read -k 1 continue
-    if [ "$continue" != "y" ]; then
-        echo
-        echo "Exiting."
-        exit 0
-    fi
-    echo
 fi
 
 output_heading ()
@@ -51,6 +23,7 @@ original_dir=$(pwd)
 output_heading "Changing to root of repo"
 
 cd `git rev-parse --git-common-dir` && cd ..
+repo_root=`pwd`
 
 output_heading "Adding new worktree with name '$branch_name'"
 
@@ -65,31 +38,24 @@ output_heading "Merging in latest from origin/main"
 
 git merge origin/main
 
-if [ ! -z "$run_npm_install" ]
-then
-    output_heading "Installing node modules"
-    npm i
-fi
+output_heading "Inialising repo (if required)"
 
-if [ ! -z "$run_npm_setup" ]
+init_command=`yq ".repositories[] | select(.path == \"$repo_root\") | .init" ~/.repositories.yaml`
+if [ "$init_command" = "" ]
 then
-    output_heading "Running setup script"
-    npm run setup
+    echo "No init command found. Skipping..."
+else
+    echo "Running init command: '$init_command'"
+    eval $init_command
 
     if [ $? -ne 0 ]
     then
-        echo
-        echo "$(tput setaf 1)Setup script failed.$(tput sgr0)"
-        echo
-        echo "Check you are connected to the VPN."
-        echo
-        echo "Removing worktree and returning to original directory."
-        echo
-        git worktree remove -f $branch_name
+        echo "$(tput setaf 1)Error running init command...$(tput sgr0)"
         cd $original_dir
         exit 1
-    fi
+    fi 
 fi
+
 
 output_heading "Creating remote branch and setting origin"
 
