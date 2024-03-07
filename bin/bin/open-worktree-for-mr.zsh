@@ -13,6 +13,12 @@ done
 # Obtain selection from user
 selected_merge_request=` echo $merge_requests | fzf `
 
+if [[ -z $selected_merge_request ]]
+then
+    echo "No merge request selected. Exiting..."
+    exit 1
+fi
+
 # Extract branch from selection
 source_branch=`echo $selected_merge_request | awk -F ' -- ' '{print $2}' | awk -F ' ← ' '{print $2}' | sed 's/^(//' | sed 's/)$//'`
 
