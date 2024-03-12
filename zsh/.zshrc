@@ -134,6 +134,7 @@ function copyCurrentBranchToClipboard()
 # Usage: `add-worktree **<TAB>`
 _fzf_complete_add-worktree() {
     _fzf_complete "--multi --reverse" "$@" < <(
+        cd `git rev-parse --git-common-dir` && cd ..
         remote_branches=`git branch --remote | sed 's/origin\///' | sed 's/[ ][ ]//'`
         local_directories=`ls --dirs -l | awk '{print $13}' | sed 's/\/$//'`
         difference=`comm -23 <(echo "$remote_branches" | sort) <(echo "$local_directories" | sort)`
