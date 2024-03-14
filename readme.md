@@ -73,4 +73,5 @@ It resembles the following:
 init-scripts:
     - path: "path to a repo that uses worktrees"
       init: "command used to initiate repo, eg npm install"
+obsidian-directory: "path to obsidian directory containing your knowledge base"
 ```
