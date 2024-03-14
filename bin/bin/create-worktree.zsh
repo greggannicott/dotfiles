@@ -40,20 +40,24 @@ git merge origin/main
 
 output_heading "Inialising repo (if required)"
 
-init_command=`yq ".repositories[] | select(.path == \"$repo_root\") | .init" ~/.repositories.yaml`
-if [ "$init_command" = "" ]
-then
-    echo "No init command found. Skipping..."
-else
-    echo "Running init command: '$init_command'"
-    eval $init_command
-
-    if [ $? -ne 0 ]
+if [ -e "~/workflow-config.yaml" ]; then
+    init_command=`yq ".init-scripts[] | select(.path == \"$repo_root\") | .init" ~/.workflow-config.yaml`
+    if [ "$init_command" = "" ]
     then
-        echo "$(tput setaf 1)Error running init command...$(tput sgr0)"
-        cd $original_dir
-        exit 1
-    fi 
+        echo "No init command found. Skipping..."
+    else
+        echo "Running init command: '$init_command'"
+        eval $init_command
+
+        if [ $? -ne 0 ]
+        then
+            echo "$(tput setaf 1)Error running init command...$(tput sgr0)"
+            cd $original_dir
+            exit 1
+        fi
+    fi
+else
+    echo "Not attepting to initialise repo. 'workflow-config.yaml' not found..."
 fi
 
 

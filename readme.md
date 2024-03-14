@@ -60,3 +60,17 @@ stow nvim
 ```zsh
 stow /*
 ```
+
+# Config file
+
+Some of the scripts included in this repo depend on the `~/workflow-config.yaml` config file.
+
+This file isn't included in the repo as it is specific to each machine, and so needs to be manually created.
+
+It resembles the following:
+
+```yaml
+init-scripts:
+    - path: "path to a repo that uses worktrees"
+      init: "command used to initiate repo, eg npm install"
+```
