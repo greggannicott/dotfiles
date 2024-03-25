@@ -1,3 +1,9 @@
+# Include the following line to make profiling of your rc file possible.
+# In order to perform the profiling, run `time ZSH_DEBUGRC=1 zsh -i -c exit`.
+if [[ -n "$ZSH_DEBUGRC" ]]; then
+  zmodload zsh/zprof
+fi
+
 # Required for nvm/npm to work within tmux
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -178,3 +184,9 @@ export DISABLE_AUTO_TITLE='true'
 export PATH=$PATH:$GOPATH/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Required to make profiling possible.
+if [[ -n "$ZSH_DEBUGRC" ]]; then
+  zprof
+fi
+
