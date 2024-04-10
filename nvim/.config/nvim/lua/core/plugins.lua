@@ -196,6 +196,11 @@ require("lazy").setup({
 	},
 	{ "dmmulroy/ts-error-translator.nvim" },
 	{ "chentoast/marks.nvim", opts = {} },
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 	{ "nvim-pack/nvim-spectre", dev = true },
 	-- Your own plugin:
 	{ "greggannicott/angular-cli.nvim", dev = true },
