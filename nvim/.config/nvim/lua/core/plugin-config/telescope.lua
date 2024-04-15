@@ -3,6 +3,7 @@ local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
+local harpoon = require("harpoon")
 telescope.setup({
 	defaults = {
 		path_display = { "truncate" },
@@ -68,6 +69,26 @@ require("telescope").load_extension("undo")
 require("telescope").load_extension("noice")
 require("telescope").load_extension("live_grep_args")
 
+-- Harpoon integration
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+		})
+		:find()
+end
+
 -- Define keymappings to display presets
 wk.register({
 	["?"] = { require("telescope.builtin").oldfiles, "Find recently opened files" },
@@ -118,6 +139,12 @@ wk.register({
 		t = { require("telescope.builtin").tagstack, "Search Tagstack" },
 		u = { require("telescope").extensions.undo.undo, "Search Undo History" },
 		v = { require("telescope.builtin").vim_options, "Search Vim Options" },
+		x = {
+			function()
+				toggle_telescope(harpoon:list())
+			end,
+			"Search Harpoon",
+		},
 		Y = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols" },
 		y = { require("telescope.builtin").lsp_document_symbols, "Search Document Symbols" },
 	},
