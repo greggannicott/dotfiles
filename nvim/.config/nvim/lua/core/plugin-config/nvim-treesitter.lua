@@ -60,18 +60,22 @@ require("nvim-treesitter.configs").setup({
 			goto_next_start = {
 				["]m"] = "@function.outer",
 				["]]"] = "@class.outer",
+				["]v"] = "@assignment.lhs",
 			},
 			goto_next_end = {
 				["]M"] = "@function.outer",
 				["]["] = "@class.outer",
+				["]V"] = "@assignment.rhs",
 			},
 			goto_previous_start = {
 				["[m"] = "@function.outer",
 				["[["] = "@class.outer",
+				["[v"] = "@assignment.lhs",
 			},
 			goto_previous_end = {
 				["[M"] = "@function.outer",
 				["[]"] = "@class.outer",
+				["[V"] = "@assignment.rhs",
 			},
 		},
 		swap = {
