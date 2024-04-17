@@ -144,7 +144,7 @@ _fzf_complete_add-worktree() {
 }
 
 # Aliases
-alias gs="git status"
+alias gs="git status -s"
 alias gp="git push"
 alias gpnv="git push --no-verify"
 functions[cbranch]=copyCurrentBranchToClipboard
