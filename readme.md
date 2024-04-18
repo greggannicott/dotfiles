@@ -36,26 +36,26 @@ For example, `/nvim/.config/nvim/init.lua` will have a symbolic link created in 
 
 # Usage
 
-* Clone the repo into your home directory.
+- Clone the repo into your home directory.
 
 ```zsh
 cd ~/
 git clone https://github.com/greggannicott/dotfiles.git
 ```
 
-* Change directories into the repo
+- Change directories into the repo
 
 ```zsh
 cd dotfiles
 ```
 
-* Execute `stow <directory name>` for every directory you wish to create a symbolic link for. eg.
+- Execute `stow <directory name>` for every directory you wish to create a symbolic link for. eg.
 
 ```zsh
 stow nvim
 ```
 
-* Note wildcards can be used. eg. the following will handle all the directories:
+- Note wildcards can be used. eg. the following will handle all the directories:
 
 ```zsh
 stow /*
@@ -63,7 +63,7 @@ stow /*
 
 # Config file
 
-Some of the scripts included in this repo depend on the `~/workflow-config.yaml` config file.
+Some of the scripts included in this repo depend on the `~/.workflow-config.yaml` config file.
 
 This file isn't included in the repo as it is specific to each machine, and so needs to be manually created.
 
@@ -71,7 +71,7 @@ It resembles the following:
 
 ```yaml
 init-scripts:
-    - path: "path to a repo that uses worktrees"
-      init: "command used to initiate repo, eg npm install"
+  - path: "path to a repo that uses worktrees"
+    init: "command used to initiate repo, eg npm install"
 obsidian-directory: "path to obsidian directory containing your knowledge base"
 ```
