@@ -89,7 +89,7 @@ zstyle ':omz:plugins:nvm' lazy yes
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions vi-mode aliases golang ng ripgrep z nvm)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions vi-mode aliases golang ng ripgrep z nvm brew)
 
 source $ZSH/oh-my-zsh.sh
 
