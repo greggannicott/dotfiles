@@ -61,6 +61,12 @@ stow nvim
 stow /*
 ```
 
+# Local .zshrc.local file
+
+The `.zshrc` file includes a line to source a `.zshrc.local` file if it exists.
+
+Use this if you wish to run commands that are specific to your local machine.
+
 # Config file
 
 Some of the scripts included in this repo depend on the `~/.workflow-config.yaml` config file.

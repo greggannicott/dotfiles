@@ -177,6 +177,11 @@ export PATH=$PATH:$GOPATH/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Load local zshrc file if it exists
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
+
 # Required to make profiling possible.
 if [[ -n "$ZSH_DEBUGRC" ]]; then
   zprof
