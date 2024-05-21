@@ -89,11 +89,39 @@ zstyle ':omz:plugins:nvm' lazy yes
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions vi-mode aliases golang ng ripgrep z nvm brew)
+plugins=(
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    vi-mode
+    aliases
+    golang
+    ng
+    ripgrep
+    z
+    nvm
+    brew
+    fzf-tab 
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# fzf-tab configuration - see https://github.com/Aloxaf/fzf-tab/wiki/Configuration
+
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# Enable group mode (so certain results are grouped) and set keys to move between groups
+# zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+# Customize how certain commands are handled by fzf-tab
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'
+zstyle ':fzf-tab:complete:tree:*' fzf-preview 'tree -ld --noreport $realpath'
+
+# Use colours when displaying files/directories
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -175,7 +203,8 @@ export DISABLE_AUTO_TITLE='true'
 # Add Go
 export PATH=$PATH:$GOPATH/bin
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Shell Integrations
+eval "$(fzf --zsh)"
 
 # Load local zshrc file if it exists
 if [ -f ~/.zshrc.local ]; then

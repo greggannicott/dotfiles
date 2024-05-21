@@ -18,6 +18,14 @@ brew install stow
 
 Required for the `.zshrc` file.
 
+## fzf-tab
+
+Running the following is required to use (https://github.com/Aloxaf/fzf-tab)[fzf-tab], which makes it possible to use `fzf` when completing cd commands, entering flags etc.
+
+```bash
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+```
+
 ## TPM - Tmux Plugin Manager
 
 Instructions:
