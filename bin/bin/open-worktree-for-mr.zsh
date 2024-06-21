@@ -3,7 +3,7 @@
 merge_requests=''
 
 # Generate list of merge requests to choose from
-glab mr list | sed '1,2d;$d'| while IFS= read -r line
+glab mr list --reviewer "@me" | sed '1,2d;$d'| while IFS= read -r line
 do
     name=`echo $line | awk -F '\t' '{print $3}'`
     branches=`echo $line | awk -F '\t' '{print $4}'`
