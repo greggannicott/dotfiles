@@ -23,7 +23,7 @@ fi
 source_branch=`echo $selected_merge_request | awk -F ' -- ' '{print $2}' | awk -F ' ← ' '{print $2}' | sed 's/^(//' | sed 's/)$//'`
 
 # See if worktree already exists
-existing_worktree_count=`git worktree list | awk '{ print $3 }' | sed 's/^\[//' | sed 's/\]$//' | grep --count $source_branch`
+existing_worktree_count=`git worktree list | awk '{ print $3 }' | sed 's/^\[//' | sed 's/\]$//' | grep --count "^$source_branch$"`
 
 # If worktree exists, open tmux session
 if [[ $existing_worktree_count -eq 1 ]]
