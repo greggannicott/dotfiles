@@ -97,7 +97,6 @@ plugins=(
     aliases
     golang
     ng
-    ripgrep
     z
     nvm
     brew
