@@ -48,7 +48,7 @@ echo "Inialising repo (if required)"
 echo "----------------------------------------------------------------------------------------------------"
 
 if [ -e ~/.workflow-config.yaml ]; then
-    init_command=`yq ".init-scripts[] | select(.path == \"$repo_root\") | .init" ~/.workflow-config.yaml`
+    init_command=`yq ".repos[] | select(.path == \"$repo_root\") | .init" ~/.workflow-config.yaml`
     if [ "$init_command" = "" ]
     then
         echo "No init command found. Skipping..."
