@@ -39,10 +39,21 @@ bff=false
 shell=false
 copy_branch=false
 branch_name=""
+help=false
 
 # Parse arguments
 for (( i = 1; i <= $#; i++ )); do
     case "${(P)i}" in
+        --branch)
+            # Check if the next argument exists
+            if [[ $((i + 1)) -le $# ]]; then
+                branch_name="${(P)$((i + 1))}"
+                ((i++))  # Skip the next argument since it's the value for --branch
+            else
+                echo "Error: --branch requires a value."
+                exit 1
+            fi
+            ;;
         --ui)
             ui=true
             ;;
@@ -55,15 +66,8 @@ for (( i = 1; i <= $#; i++ )); do
         --copy-branch)
             copy_branch=true
             ;;
-        --branch)
-            # Check if the next argument exists
-            if [[ $((i + 1)) -le $# ]]; then
-                branch_name="${(P)$((i + 1))}"
-                ((i++))  # Skip the next argument since it's the value for --branch
-            else
-                echo "Error: --branch requires a value."
-                exit 1
-            fi
+        --help)
+            help=true
             ;;
         *)
             echo "Unknown option: ${(P)i}"
@@ -71,6 +75,24 @@ for (( i = 1; i <= $#; i++ )); do
             ;;
     esac
 done
+
+if [ $help = true ]; then
+    echo "Usage: create-project.zsh [options]"
+    echo ""
+    echo "Options:"
+    echo "  --branch        Specify the branch name (required)"
+    echo "  --ui            Create a worktree for the UI"
+    echo "  --bff           Create a worktree for the BFF"
+    echo "  --shell         Create a worktree for the Shell"
+    echo "  --copy-branch   Copy the branch name to the clipboard"
+    echo "  --help          Display this help message"
+    exit 0
+fi
+
+if [ -z $branch_name ]; then
+    echo "Error: --branch is required."
+    exit 1
+fi
 
 ## Obtain current working directory so we can switch back
 original_dir=$(pwd)
