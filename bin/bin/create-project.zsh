@@ -8,10 +8,34 @@ output_heading ()
     echo ""
 }
 
+install_dependencies ()
+{
+    id=$1
+    output_heading "Installing dependencies for $id"
+    if [ -e ~/.workflow-config.yaml ]; then
+        init_command=`yq ".repos[] | select(.id == \"$id\") | .init" ~/.workflow-config.yaml`
+        if [ "$init_command" = "" ]
+        then
+            echo "No init command found. Skipping..."
+        else
+            echo "Running init command: '$init_command'"
+            eval $init_command
+
+            if [ $? -ne 0 ]
+            then
+                echo "$(tput setaf 1)Error running init command...$(tput sgr0)"
+            fi
+        fi
+    else
+        echo "Not attepting to initialise repo. 'workflow-config.yaml' not found..."
+    fi
+}
+
 create_worktree ()
 {
     id=$1
     branch_name=$2
+    skip_dependencies=$3
     output_heading "Creating worktree for $id"
 
     ## Obtain the path of the repo
@@ -20,7 +44,7 @@ create_worktree ()
 
     if [ -z "$repo_path" ]
     then
-        echo "No path found for $id in 'workflow-config.yaml'"
+        echo "$(tput setaf 1)No path found for $id in 'workflow-config.yaml'$(tput sgr0)"
         exit 1
     fi
 
@@ -30,6 +54,9 @@ create_worktree ()
     cd $branch_name
     git fetch
     git merge origin/main
+    if [ $skip_dependencies = false ]; then
+        install_dependencies $id
+    fi
     git push -u
 }
 
@@ -41,6 +68,7 @@ name=""
 project_type="story"
 branch_name=""
 skip_notion=false
+skip_dependencies=false
 copy_branch=false
 help=false
 
@@ -92,6 +120,9 @@ for (( i = 1; i <= $#; i++ )); do
         --skip-notion)
             skip_notion=true
             ;;
+        --skip-dependencies)
+            skip_dependencies=true
+            ;;
         --help)
             help=true
             ;;
@@ -114,6 +145,7 @@ if [ $help = true ]; then
     echo "  --shell         Create a worktree for the Shell"
     echo "  --copy-branch   Copy the branch name to the clipboard"
     echo "  --skip-notion   Skip creating a Notion project"
+    echo "  --skip-dependencies   Skip installing dependencies"
     echo "  --help          Display this help message"
     exit 0
 fi
@@ -133,17 +165,17 @@ original_dir=$(pwd)
 
 # Create worktree for UI
 if [ $ui = true ]; then
-    create_worktree "govern-ui" $branch_name
+    create_worktree "govern-ui" $branch_name $skip_dependencies
 fi
 
 # Create worktree for BFF
 if [ $ui = true ]; then
-    create_worktree "govern-bff" $branch_name
+    create_worktree "govern-bff" $branch_name $skip_dependencies
 fi
 
 # Create worktree for Shell
 if [ $ui = true ]; then
-    create_worktree "di-shell" $branch_name
+    create_worktree "di-shell" $branch_name $skip_dependencies
 fi
 
 if [ $skip_notion = false ]; then
