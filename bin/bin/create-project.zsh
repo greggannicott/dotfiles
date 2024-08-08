@@ -169,12 +169,12 @@ if [ $ui = true ]; then
 fi
 
 # Create worktree for BFF
-if [ $ui = true ]; then
+if [ $bff = true ]; then
     create_worktree "govern-bff" $branch_name $skip_dependencies
 fi
 
 # Create worktree for Shell
-if [ $ui = true ]; then
+if [ $shell = true ]; then
     create_worktree "di-shell" $branch_name $skip_dependencies
 fi
 
