@@ -139,7 +139,7 @@ if [ $help = true ]; then
     echo "Options:"
     echo "  --name        Specify the project name (required)"
     echo "  --type        Specify the project type (default: 'story')"
-    echo "  --branch        Specify the branch name (required)"
+    echo "  --branch        Specify the branch name. Jira ID is extracted from this (required)"
     echo "  --ui            Create a worktree for the UI"
     echo "  --bff           Create a worktree for the BFF"
     echo "  --shell         Create a worktree for the Shell"
