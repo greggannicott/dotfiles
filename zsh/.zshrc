@@ -167,6 +167,26 @@ _fzf_complete_add-worktree() {
     )
 }
 
+# Interactive RipGreg (uses fzf).
+# See https://junegunn.github.io/fzf/tips/ripgrep-integration/
+interactive_rip_grep() (
+  RELOAD='reload:rg --column --color=always --hidden --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+      --delimiter : \
+      --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)
+
 # Aliases
 alias gs="git status -s"
 alias gp="git push"
@@ -177,6 +197,7 @@ alias ts="~/bin/tmux-too-young"
 alias ty="~/bin/tmux-too-young"
 alias kill-ng-serve='ps -eaf | grep "ng serve" | grep -v "grep" | awk "{ print $2 }" | xargs kill'
 alias add-worktree="add-worktree-for-remote-branch.zsh"
+alias irg="interactive_rip_grep"
 
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
