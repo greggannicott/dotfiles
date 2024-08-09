@@ -46,45 +46,29 @@ require("gitsigns").setup({
 	end,
 })
 
-wk.register({
-	["["] = {
-		h = { require("gitsigns").prev_hunk, "Previous hunk" },
-	},
-	["]"] = {
-		h = { require("gitsigns").next_hunk, "Next hunk" },
-	},
-	["<leader>"] = {
-		g = {
-			name = "Git",
-			b = {
-				name = "Blame",
-				b = { ":Git blame<CR>", "Display blame column" },
-				d = { ":Gitsigns blame_line<CR>", "Display blame detail for current line" },
-				l = { ":Gitsigns toggle_current_line_blame<CR>", "Toggle line blame" },
-			},
-			g = { toggleFugitiveGit, "Git Status" },
-			c = {
-				name = "Commit",
-				c = { ":Git commit<CR>", "Git Commit" },
-				a = { ":Git commit --amend<CR>", "Git Commit Amend" },
-			},
-			h = {
-				name = "Hunk",
-				p = "Previous Hunk",
-				n = "Next Hunk",
-				v = "View Hunk",
-				s = "Stage Hunk",
-				r = "Reset Hunk",
-			},
-			d = {
-				name = "Diff",
-				b = { ":DiffviewOpen origin/main... --imply-local<CR>", "Diff branch with main" },
-				d = { "<CMD>DiffviewOpen<CR>", "View diff of altered files" },
-				o = { "<CMD>DiffviewOpen @{u}<CR>", "Diff branch with remote" },
-			},
-		},
-	},
-}, {})
+wk.add({
+	{ "<leader>g", group = "Git" },
+	{ "<leader>gb", group = "Blame" },
+	{ "<leader>gbb", ":Git blame<CR>", desc = "Display blame column" },
+	{ "<leader>gbd", ":Gitsigns blame_line<CR>", desc = "Display blame detail for current line" },
+	{ "<leader>gbl", ":Gitsigns toggle_current_line_blame<CR>", desc = "Toggle line blame" },
+	{ "<leader>gc", group = "Commit" },
+	{ "<leader>gca", ":Git commit --amend<CR>", desc = "Git Commit Amend" },
+	{ "<leader>gcc", ":Git commit<CR>", desc = "Git Commit" },
+	{ "<leader>gd", group = "Diff" },
+	{ "<leader>gdb", ":DiffviewOpen origin/main... --imply-local<CR>", desc = "Diff branch with main" },
+	{ "<leader>gdd", "<CMD>DiffviewOpen<CR>", desc = "View diff of altered files" },
+	{ "<leader>gdo", "<CMD>DiffviewOpen @{u}<CR>", desc = "Diff branch with remote" },
+	{ "<leader>gg", toggleFugitiveGit, desc = "Git Status" },
+	{ "<leader>gh", group = "Hunk" },
+	{ "<leader>ghn", desc = "Next Hunk" },
+	{ "<leader>ghp", desc = "Previous Hunk" },
+	{ "<leader>ghr", desc = "Reset Hunk" },
+	{ "<leader>ghs", desc = "Stage Hunk" },
+	{ "<leader>ghv", desc = "View Hunk" },
+	{ "[h", require("gitsigns").prev_hunk, desc = "Previous hunk" },
+	{ "]h", require("gitsigns").next_hunk, desc = "Next hunk" },
+})
 
 -- DiffView Configuration
 require("diffview").setup({

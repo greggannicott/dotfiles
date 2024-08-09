@@ -75,9 +75,7 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
-wk.register({
-	c = {
-		c = { "<cmd>Copilot enable<CR>", "Enable Copilot" },
-		C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
-	},
-}, { prefix = "<leader>" })
+wk.add({
+	{ "<leader>cC", "<cmd>Copilot disable<CR>", desc = "Disable Copilot" },
+	{ "<leader>cc", "<cmd>Copilot enable<CR>", desc = "Enable Copilot" },
+})

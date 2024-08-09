@@ -92,15 +92,13 @@ vim.go.splitbelow = true
 vim.o.scrolloff = 8
 
 -- Tab related mappings
-wk.register({
-	T = {
-		name = "Tabs",
-		c = { "<cmd>:tabclose<CR>", "Close Tab" },
-		h = { "<cmd>:tabprevious<CR>", "Previous Tab" },
-		l = { "<cmd>:tabnext<CR>", "Next Tab" },
-		n = { "<cmd>:tabnew<CR>", "New Tab" },
-	},
-}, { prefix = "<leader>" })
+wk.add({
+	{ "<leader>T", group = "Tabs" },
+	{ "<leader>Tc", "<cmd>:tabclose<CR>", desc = "Close Tab" },
+	{ "<leader>Th", "<cmd>:tabprevious<CR>", desc = "Previous Tab" },
+	{ "<leader>Tl", "<cmd>:tabnext<CR>", desc = "Next Tab" },
+	{ "<leader>Tn", "<cmd>:tabnew<CR>", desc = "New Tab" },
+})
 vim.keymap.set("n", "L", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "H", "<cmd>tabprevious<CR>", { desc = "Previous Tab" })
 

@@ -3,7 +3,6 @@ local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
-local harpoon = require("harpoon")
 telescope.setup({
 	defaults = {
 		path_display = { "truncate" },
@@ -90,9 +89,9 @@ local function toggle_telescope(harpoon_files)
 end
 
 -- Define keymappings to display presets
-wk.register({
-	["?"] = { require("telescope.builtin").oldfiles, "Find recently opened files" },
-	["/"] = {
+wk.add({
+	{
+		"<leader>/",
 		function()
 			require("telescope.builtin").current_buffer_fuzzy_find({
 				sorting_strategy = "ascending",
@@ -109,46 +108,40 @@ wk.register({
 				end,
 			})
 		end,
-		"Find in current buffer",
+		desc = "Find in current buffer",
 	},
-	["<space>"] = { require("telescope.builtin").resume, "Re-open Telescope" },
-	s = {
-		name = "Search",
-		b = { require("telescope.builtin").buffers, "Search existing Buffers" },
-		c = { require("telescope.builtin").commands, "Search Commands" },
-		C = { require("telescope.builtin").command_history, "Search Command History" },
-		d = { require("telescope.builtin").diagnostics, "Search Diagnostics" },
-		f = { require("telescope.builtin").find_files, "Search git Files" },
-		g = { require("telescope").extensions.live_grep_args.live_grep_args, "Search using Grep" },
-		h = { require("telescope.builtin").help_tags, "Search Help" },
-		H = {
-			function()
-				local cursor_word = vim.fn.expand("<cword>")
-				require("telescope.builtin").help_tags({
-					default_text = cursor_word,
-				})
-			end,
-			"Search Help Under Cursor",
-		},
-		j = { require("telescope.builtin").jumplist, "Search Jumplist" },
-		k = { require("telescope.builtin").keymaps, "Search Keymaps" },
-		m = { require("telescope.builtin").marks, "Search Marks" },
-		M = { require("telescope.builtin").man_pages, "Search Man Pages" },
-		r = { require("telescope.builtin").lsp_references, "Search References" },
-		s = { require("telescope.builtin").grep_string, "Grep String Under Cursor" },
-		t = { require("telescope.builtin").tagstack, "Search Tagstack" },
-		u = { require("telescope").extensions.undo.undo, "Search Undo History" },
-		v = { require("telescope.builtin").vim_options, "Search Vim Options" },
-		x = {
-			function()
-				toggle_telescope(harpoon:list())
-			end,
-			"Search Harpoon",
-		},
-		Y = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols" },
-		y = { require("telescope.builtin").lsp_document_symbols, "Search Document Symbols" },
+	{ "<leader><space>", require("telescope.builtin").resume, desc = "Re-open Telescope" },
+	{ "<leader>?", require("telescope.builtin").oldfiles, desc = "Find recently opened files" },
+	{ "<leader>s", group = "Search" },
+	{ "<leader>sC", require("telescope.builtin").commands, desc = "Search Command History" },
+	{
+		"<leader>sH",
+		function()
+			local cursor_word = vim.fn.expand("<cword>")
+			require("telescope.builtin").help_tags({
+				default_text = cursor_word,
+			})
+		end,
+		desc = "Search Help Under Cursor",
 	},
-}, { prefix = "<leader>" })
+	{ "<leader>sM", require("telescope.builtin").man_pages, desc = "Search Man Pages" },
+	{ "<leader>sY", require("telescope.builtin").lsp_dynamic_workspace_symbols, desc = "Search Workspace Symbols" },
+	{ "<leader>sb", require("telescope.builtin").buffers, desc = "Search existing Buffers" },
+	{ "<leader>sc", require("telescope.builtin").commands, desc = "Search Commands" },
+	{ "<leader>sd", require("telescope.builtin").diagnostics, desc = "Search Diagnostics" },
+	{ "<leader>sf", require("telescope.builtin").find_files, desc = "Search git Files" },
+	{ "<leader>sg", require("telescope").extensions.live_grep_args.live_grep_args, desc = "Search using Grep" },
+	{ "<leader>sh", require("telescope.builtin").help_tags, desc = "Search Help" },
+	{ "<leader>sj", require("telescope.builtin").jumplist, desc = "Search Jumplist" },
+	{ "<leader>sk", require("telescope.builtin").keymaps, desc = "Search Keymaps" },
+	{ "<leader>sm", require("telescope.builtin").marks, desc = "Search Marks" },
+	{ "<leader>sr", require("telescope.builtin").lsp_references, desc = "Search References" },
+	{ "<leader>ss", require("telescope.builtin").grep_string, desc = "Grep String Under Cursor" },
+	{ "<leader>st", require("telescope.builtin").tagstack, desc = "Search Tagstack" },
+	{ "<leader>su", require("telescope").extensions.undo.undo, desc = "Search Undo History" },
+	{ "<leader>sv", require("telescope.builtin").vim_options, desc = "Search Vim Options" },
+	{ "<leader>sy", require("telescope.builtin").lsp_document_symbols, desc = "Search Document Symbols" },
+})
 
 vim.keymap.set("n", "<C-p>", function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.

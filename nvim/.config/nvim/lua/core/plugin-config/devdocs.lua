@@ -21,8 +21,6 @@ require("nvim-devdocs").setup({
 	ensure_installed = {}, -- get automatically installed
 })
 
-wk.register({
-	s = {
-		D = { "<cmd>DevdocsOpen<cr>", "Search Devdocs" },
-	},
-}, { prefix = "<leader>" })
+wk.add({
+	{ "<leader>sD", "<cmd>DevdocsOpen<cr>", desc = "Search Devdocs" },
+})

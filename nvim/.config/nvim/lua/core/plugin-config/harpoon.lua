@@ -3,32 +3,34 @@ local wk = require("which-key")
 
 harpoon:setup()
 
-wk.register({
-	["<leader>h"] = {
-		name = "Harpoon",
-		a = {
-			function()
-				harpoon:list():add()
-			end,
-			"Add current file to Harpoon",
-		},
-		h = {
-			function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end,
-			"Toggle Harpoon menu",
-		},
+wk.add({
+	{ "<leader>h", group = "Harpoon" },
+	{
+		"<leader>ha",
+		function()
+			harpoon:list():add()
+		end,
+		desc = "Add current file to Harpoon",
 	},
-	["[f"] = {
+	{
+		"<leader>hh",
+		function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end,
+		desc = "Toggle Harpoon menu",
+	},
+	{
+		"[f",
 		function()
 			harpoon:list():prev()
 		end,
-		"Harpoon: Previous buffer",
+		desc = "Harpoon: Previous buffer",
 	},
-	["]f"] = {
+	{
+		"]f",
 		function()
 			harpoon:list():next()
 		end,
-		"Harpoon: Next buffer",
+		desc = "Harpoon: Next buffer",
 	},
-}, {})
+})

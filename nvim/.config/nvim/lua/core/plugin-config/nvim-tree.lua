@@ -24,13 +24,11 @@ require("nvim-tree").setup({
 })
 
 -- Mappings
-wk.register({
-	e = {
-		name = "Explorer",
-		c = { ":NvimTreeCollapse<CR>", "Collapse All Nodes" },
-		e = { ":NvimTreeToggle<CR>", "Toggle" },
-		f = { ":NvimTreeFindFile<CR>", "Focus Current File" },
-		r = { ":NvimTreeResize 30<CR>", "Reduce Window Size" },
-		x = { ":NvimTreeResize 70<CR>", "Expand Window Size" },
-	},
-}, { prefix = "<leader>" })
+wk.add({
+	{ "<leader>e", group = "Explorer" },
+	{ "<leader>ec", ":NvimTreeCollapse<CR>", desc = "Collapse All Nodes" },
+	{ "<leader>ee", ":NvimTreeToggle<CR>", desc = "Toggle" },
+	{ "<leader>ef", ":NvimTreeFindFile<CR>", desc = "Focus Current File" },
+	{ "<leader>er", ":NvimTreeResize 30<CR>", desc = "Reduce Window Size" },
+	{ "<leader>ex", ":NvimTreeResize 70<CR>", desc = "Expand Window Size" },
+})

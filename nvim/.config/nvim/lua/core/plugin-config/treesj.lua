@@ -1,8 +1,6 @@
 require("treesj").setup()
 local wk = require("which-key")
 
-wk.register({
-	c = {
-		["<C-t>"] = { "<cmd>TSJToggle<cr>", "Toggle fuction/array/object" },
-	},
-}, { prefix = "<leader>" })
+wk.add({
+	{ "<leader>c<C-t>", "<cmd>TSJToggle<cr>", desc = "Toggle function/array/object" },
+})
