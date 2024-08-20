@@ -34,7 +34,7 @@ install_dependencies ()
 create_worktree ()
 {
     id=$1
-    branch_name=$2
+    branch=$2
     skip_dependencies=$3
     output_heading "Creating worktree for $id"
 
@@ -50,14 +50,26 @@ create_worktree ()
 
     ## Create the worktree
     cd $repo_path
-    git worktree add $branch_name
-    cd $branch_name
+    git worktree add $branch
+    cd $branch
     git fetch
     git merge origin/main
     if [ $skip_dependencies = false ]; then
         install_dependencies $id
     fi
     git push -u
+}
+
+update_catalog_govern_json ()
+{
+    branch=$1
+    repo_path=`yq ".repos[] | select(.id == \"di-shell\") | .path" ~/.workflow-config.yaml`
+    branch_path="$repo_path/$branch"
+    json_file="$branch_path/client/src/assets/remotes/catalog-govern.json"
+    temp_file="$branch_path/client/src/assets/remotes/catalog-govern.temp.json"
+    output_heading "Updating catalog-govern.json"
+    jq 'map(.application |= del(.namespace))' $json_file > $temp_file && mv $temp_file $json_file 
+    jq 'map(.federation.remoteEntry = "http://localhost:4200/remoteEntry.js")' $json_file > $temp_file && mv $temp_file $json_file 
 }
 
 # Default values
@@ -181,6 +193,7 @@ fi
 # Create worktree for Shell
 if [ $shell = true ]; then
     create_worktree "di-shell" $branch_name $skip_dependencies
+    update_catalog_govern_json $branch_name
 fi
 
 if [ $skip_notion = false ]; then
@@ -195,6 +208,7 @@ fi
 
 # Copy branch name to clipboard as it might be handy
 if [ $copy_branch = true ]; then
+    output_heading "Copying branch name to clipboard"
     echo $branch_name | pbcopy
     echo ""
     echo "Branch name copied to clipboard: $branch_name"
