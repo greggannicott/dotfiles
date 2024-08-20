@@ -70,6 +70,7 @@ branch_name=""
 skip_notion=false
 skip_dependencies=false
 copy_branch=false
+open_tmux_too_young=false
 help=false
 
 # Parse arguments
@@ -117,6 +118,9 @@ for (( i = 1; i <= $#; i++ )); do
         --copy-branch)
             copy_branch=true
             ;;
+        --open-tmux-too-young)
+            open_tmux_too_young=true
+            ;;
         --skip-notion)
             skip_notion=true
             ;;
@@ -144,6 +148,7 @@ if [ $help = true ]; then
     echo "  --bff           Create a worktree for the BFF"
     echo "  --shell         Create a worktree for the Shell"
     echo "  --copy-branch   Copy the branch name to the clipboard"
+    echo "  --open-tmux-too-young   Opens tmux-too-young following creation of project"
     echo "  --skip-notion   Skip creating a Notion project"
     echo "  --skip-dependencies   Skip installing dependencies"
     echo "  --help          Display this help message"
@@ -194,6 +199,13 @@ if [ $copy_branch = true ]; then
     echo ""
     echo "Branch name copied to clipboard: $branch_name"
     echo ""
+fi
+
+# Copy branch name to clipboard as it might be handy
+if [ $open_tmux_too_young = true ]; then
+    output_heading "Opening project with tmux-too-young"
+    echo ""
+    tmux-too-young open --search $branch_name
 fi
 
 cd $original_dir
