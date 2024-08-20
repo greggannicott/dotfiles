@@ -150,8 +150,8 @@ if [ $help = true ]; then
     exit 0
 fi
 
-if [ -z $name ]; then
-    echo "Error: --name is required."
+if [[ -z $name && $skip_notion == false ]]; then
+    echo "Error: --name is required when Notion project is being created."
     exit 1
 fi
 
