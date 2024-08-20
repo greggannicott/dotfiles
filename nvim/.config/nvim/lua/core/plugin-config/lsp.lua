@@ -54,11 +54,9 @@ local on_attach = function(client, bufnr)
 	nmap("]e", vim.diagnostic.goto_next, "Go to next error")
 
 	-- Give the '<leader>c' the name 'Code' in which-key.
-	wc.register({
-		c = {
-			name = "Code",
-		},
-	}, { prefix = "<leader>" })
+	wc.add({
+		{ "<leader>c", group = "Code" },
+	})
 end
 
 -- Style the diagnostic message
