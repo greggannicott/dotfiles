@@ -33,4 +33,18 @@ wk.add({
 		end,
 		desc = "Harpoon: Next buffer",
 	},
+	{
+		"[[",
+		function()
+			harpoon:list():prev()
+		end,
+		desc = "Previous Harpoon buffer",
+	},
+	{
+		"]]",
+		function()
+			harpoon:list():next()
+		end,
+		desc = "Next Harpoon buffer",
+	},
 })
