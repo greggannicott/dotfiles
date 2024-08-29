@@ -1,5 +1,5 @@
 local wk = require("which-key")
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
@@ -8,14 +8,14 @@ telescope.setup({
 		path_display = { "truncate" },
 		mappings = {
 			i = {
-				["<c-t>"] = trouble.open_with_trouble,
+				["<c-t>"] = trouble.open,
 				["<c-j>"] = actions.move_selection_next,
 				["<c-k>"] = actions.move_selection_previous,
 				["<c-p>"] = actions.move_selection_previous,
 				["<c-n>"] = actions.move_selection_next,
 			},
 			n = {
-				["<c-t>"] = trouble.open_with_trouble,
+				["<c-t>"] = trouble.open,
 				["<c-j>"] = actions.move_selection_next,
 				["<c-k>"] = actions.move_selection_previous,
 				["<c-p>"] = actions.move_selection_previous,
@@ -43,7 +43,7 @@ telescope.setup({
 			use_delta = true,
 			use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
 			side_by_side = true,
-			diff_context_lines = vim.o.scrolloff,
+			vim_diff_opts = { ctxlen = 8 },
 			entry_format = "state #$ID, $STAT, $TIME",
 			time_format = "",
 			mappings = {
