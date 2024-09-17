@@ -151,4 +151,9 @@ fi
 if [ $shell = true ]; then
     create_worktree "di-shell" $jira_id
 fi
+
 cd $current_dir
+
+echo
+echo "New worktrees created where required. Launching tmux-too-young..."
+tmux-too-young open --search $jira_id
