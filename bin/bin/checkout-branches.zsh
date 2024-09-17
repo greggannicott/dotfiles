@@ -52,7 +52,7 @@ create_worktree ()
     fi
 
     # See which branches are available on the repo containing the jira id.
-    branches=`git ls-remote --heads | awk -F '\/' '{print $3}' | grep -i $jira`
+    branches=`git ls-remote --heads --quiet | awk -F '\/' '{print $3}' | grep -i $jira`
 
     # If there is more than one, prompt the user to select one using fzf.
     if [[ `echo $branches | wc -l` -gt 1 ]]
