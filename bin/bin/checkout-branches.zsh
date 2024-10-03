@@ -52,13 +52,14 @@ create_worktree ()
     fi
 
     # See which branches are available on the repo containing the jira id.
+    git fetch
     branches=`git ls-remote --heads --quiet | awk -F '\/' '{print $3}' | grep -i $jira`
 
     # If there is more than one, prompt the user to select one using fzf.
     if [[ `echo $branches | wc -l` -gt 1 ]]
     then
         branch=`echo $branches | fzf --header "Multiple branches exist with the Jira ID. Please select a '"$id"' branch"`
-    elif [[ `echo $branches | wc -l` -gt 0 ]]; then
+    elif [[ `echo $branches | wc -l` -eq 0 ]]; then
         echo "No branches found with the Jira ID '$jira' for '$id'. Skipping..."
         return
     else
@@ -78,6 +79,7 @@ create_worktree ()
     # Create the worktree
     git worktree add $branch
     cd $branch
+    git branch --set-upstream-to=origin/$branch_name $branch_name
     git fetch
     git merge origin/main
     install_dependencies $id
