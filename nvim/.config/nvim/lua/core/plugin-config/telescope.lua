@@ -146,7 +146,6 @@ wk.add({
 vim.keymap.set("n", "<C-p>", function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	require("telescope.builtin").git_files({
-		winblend = 10,
 		previewer = true,
 		prompt_title = "Find files...",
 		sorting_strategy = "ascending",
