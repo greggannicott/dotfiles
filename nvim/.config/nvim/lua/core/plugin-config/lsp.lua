@@ -27,7 +27,15 @@ local on_attach = function(client, bufnr)
 	nmap("gd", vim.lsp.buf.definition, "Goto Definition")
 	nmap("<leader>cd", vim.lsp.buf.definition, "Goto Definition")
 
-	nmap("gr", require("telescope.builtin").lsp_references, "Search References")
+	nmap("gr", function()
+		require("telescope.builtin").lsp_references({
+			layout_config = {
+				prompt_position = "top",
+				width = 200,
+			},
+			sorting_strategy = "ascending",
+		})
+	end, "Search References")
 	nmap("<leader>cR", require("telescope.builtin").lsp_references, "Search References")
 
 	nmap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
