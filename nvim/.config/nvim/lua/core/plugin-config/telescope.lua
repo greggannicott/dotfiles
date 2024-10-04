@@ -9,15 +9,11 @@ telescope.setup({
 		mappings = {
 			i = {
 				["<c-t>"] = trouble.open,
-				["<c-j>"] = actions.move_selection_next,
-				["<c-k>"] = actions.move_selection_previous,
 				["<c-p>"] = actions.move_selection_previous,
 				["<c-n>"] = actions.move_selection_next,
 			},
 			n = {
 				["<c-t>"] = trouble.open,
-				["<c-j>"] = actions.move_selection_next,
-				["<c-k>"] = actions.move_selection_previous,
 				["<c-p>"] = actions.move_selection_previous,
 				["<c-n>"] = actions.move_selection_next,
 			},
