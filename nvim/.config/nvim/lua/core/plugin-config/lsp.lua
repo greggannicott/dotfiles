@@ -6,8 +6,8 @@ local wc = require("which-key")
 
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
-	-- Prevent "tsserver" from formatting code. This is to prevent it from clashing with Prettier.
-	if client.name == "tsserver" then
+	-- Prevent "ts_ls" from formatting code. This is to prevent it from clashing with Prettier.
+	if client.name == "ts_ls" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
@@ -80,7 +80,7 @@ require("neodev").setup()
 -- Enable the following language servers
 local servers = {
 	["angularls@16.2.0"] = {},
-	tsserver = {},
+	ts_ls = {},
 	html = {},
 	cssls = {},
 	lua_ls = {
