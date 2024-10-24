@@ -24,8 +24,7 @@ require("noice").setup({
 		-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 		-- This is a current Neovim limitation.
 		enabled = true, -- enables the Noice messages UI
-		-- IMPORTANT: Using 'mini' rather than 'notify' as 'notify' stopped displaying the code action options.
-		view = "mini",
+		view = "notify",
 		view_error = "notify", -- view for errors
 		view_warn = "notify", -- view for warnings
 		view_history = "messages", -- view for :messages
