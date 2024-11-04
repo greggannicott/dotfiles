@@ -1,14 +1,12 @@
 #!/bin/zsh
 
-current_dir=`pwd`
+# Get the directory of the current script
+script_directory="$(cd "$(dirname "$0")" && pwd)"
 
-output_heading ()
-{
-    echo
-    echo $1
-    echo "----------------------------------------------------------------------------------------------------"
-    echo ""
-}
+# Source the helper script
+source "$script_directory/helper-functions.zsh"
+
+current_dir=`pwd`
 
 install_dependencies ()
 {

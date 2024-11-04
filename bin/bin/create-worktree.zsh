@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+# Get the directory of the current script
+script_directory="$(cd "$(dirname "$0")" && pwd)"
+
+# Source the helper script
+source "$script_directory/helper-functions.zsh"
+
 branch_name=$1
 
 if [ -z "$branch_name" ]
@@ -8,13 +14,6 @@ then
     echo "Usage: ./create-worktree.zsh <branch_name>"
     exit 1
 fi
-
-output_heading ()
-{
-    echo
-    echo $1
-    echo "----------------------------------------------------------------------------------------------------"
-}
 
 echo "Creating new worktree with name '$branch_name'"
 
