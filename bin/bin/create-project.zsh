@@ -10,7 +10,7 @@ create_worktree ()
 {
     id=$1
     branch=$2
-    skip_dependencies=$3
+    install_dependencies=$3
     output_heading "Creating worktree for $id"
 
     ## Obtain the path of the repo
@@ -29,7 +29,7 @@ create_worktree ()
     cd $branch
     git fetch
     git merge origin/main
-    if [ $skip_dependencies = false ]; then
+    if [ $install_dependencies = true ]; then
         install_dependencies $id
     fi
     git push -u
@@ -47,145 +47,54 @@ update_catalog_govern_json ()
     jq 'map(.federation.remoteEntry = "http://localhost:4200/remoteEntry.js")' $json_file > $temp_file && mv $temp_file $json_file 
 }
 
-pre_selected_ui="No"
-pre_selected_bff="No"
-pre_selected_shell="No"
-pre_selected_skip_notion="No"
-pre_selected_skip_dependencies="No"
-pre_selected_open_tmux_too_young="No"
-copy_branch=false
-help=false
+# Setup possible options
+UI_WORKTREE_OPTION="Create UI Worktree"
+BFF_WORKTREE_OPTION="Create BFF Worktree"
+SHELL_WORKTREE_OPTION="Create Shell Worktree"
+NOTION_PROJECT_OPTION="Create Notion Project"
+INSTALL_DEPENDENCIES_OPTION="Install Dependencies"
+OPEN_TMUX_TOO_YOUNG_OPTION="Open tmux-too-young following creation of project"
+COPY_BRANCH_NAME_OPTION="Copy branch name to clipboard"
 
-# Parse arguments
-for (( i = 1; i <= $#; i++ )); do
-    case "${(P)i}" in
-        --name)
-            # Check if the next argument exists
-            if [[ $((i + 1)) -le $# ]]; then
-                name="${(P)$((i + 1))}"
-                ((i++))  # Skip the next argument since it's the value for --branch
-            else
-                echo "Error: --name requires a value."
-                exit 1
-            fi
-            ;;
-        --type)
-            # Check if the next argument exists
-            if [[ $((i + 1)) -le $# ]]; then
-                project_type="${(P)$((i + 1))}"
-                ((i++))  # Skip the next argument since it's the value for --branch
-            else
-                echo "Error: --type requires a value."
-                exit 1
-            fi
-            ;;
-        --branch)
-            # Check if the next argument exists
-            if [[ $((i + 1)) -le $# ]]; then
-                branch_name="${(P)$((i + 1))}"
-                ((i++))  # Skip the next argument since it's the value for --branch
-            else
-                echo "Error: --branch requires a value."
-                exit 1
-            fi
-            ;;
-        --ui)
-            pre_selected_ui="Yes"
-            ;;
-        --bff)
-            pre_selected_bff="Yes"
-            ;;
-        --shell)
-            pre_selected_shell="Yes"
-            ;;
-        --skip-notion)
-            pre_selected_skip_notion="Yes"
-            ;;
-        --skip-dependencies)
-            pre_selected_skip_dependencies="Yes"
-            ;;
-        --open-tmux-too-young)
-            pre_selected_open_tmux_too_young="Yes"
-            ;;
-        --copy-branch)
-            copy_branch=true
-            ;;
-        --help)
-            help=true
-            ;;
-        *)
-            echo "Unknown option: ${(P)i}"
-            exit 1
-            ;;
-    esac
-done
+# Set default values
+name=""
+project_type="bug"
+branch_name="DIUI-"
+# For some reason you need commas either end of the string. Without this the first and last options are not set by default.
+DEFAULT_OPTIONS=",$NOTION_PROJECT_OPTION,$INSTALL_DEPENDENCIES_OPTION,$OPEN_TMUX_TOO_YOUNG_OPTION,$COPY_BRANCH_NAME_OPTION,"
 
-if [ $help = true ]; then
-    echo "Usage: create-project.zsh [options]"
-    echo ""
-    echo "Options:"
-    echo "  --name        Specify the project name (required)"
-    echo "  --type        Specify the project type (default: 'story')"
-    echo "  --branch        Specify the branch name. Jira ID is extracted from this (required)"
-    echo "  --ui            Create a worktree for the UI"
-    echo "  --bff           Create a worktree for the BFF"
-    echo "  --shell         Create a worktree for the Shell"
-    echo "  --skip-notion   Skip creating a Notion project"
-    echo "  --skip-dependencies   Skip installing dependencies"
-    echo "  --open-tmux-too-young   Opens tmux-too-young following creation of project"
-    echo "  --copy-branch   Copy the branch name to the clipboard"
-    echo "  --help          Display this help message"
-    exit 0
-fi
-
-# Prompt user for values. Pre-populate with any that have been provided via command line
+# Prompt user for values. 
 name=$(gum input --header="Project Name:" --value="$name")
 project_type=$(gum choose "story" "bug" --header="Project Type:" --selected="$project_type")
 branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 
-ui_choice=$(gum choose "Yes" "No" --header="Create UI Worktree?" --selected="$pre_selected_ui")
-if [ $ui_choice = "Yes" ]; then
+# Prompt user for options
+script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BFF_WORKTREE_OPTION $SHELL_WORKTREE_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
+
+if [[ "${script_options[@]}" =~ $UI_WORKTREE_OPTION ]]; then
     ui=true
-else
-    ui=false
 fi
-
-bff_choice=$(gum choose "Yes" "No" --header="Create BFF Worktree?" --selected="$pre_selected_bff")
-if [ $bff_choice = "Yes" ]; then
+if [[ "${script_options[@]}" =~ $BFF_WORKTREE_OPTION ]]; then
     bff=true
-else
-    bff=false
 fi
-
-shell_choice=$(gum choose "Yes" "No" --header="Create Shell Worktree?" --selected="$pre_selected_shell")
-if [ $shell_choice = "Yes" ]; then
+if [[ "${script_options[@]}" =~ $SHELL_WORKTREE_OPTION ]]; then
     shell=true
-else
-    shell=false
 fi
-
-skip_notion_choice=$(gum choose "Yes" "No" --header="Skip creating Notion Project?" --selected="$pre_selected_skip_notion")
-if [ $skip_notion_choice = "Yes" ]; then
-    skip_notion=true
-else
-    skip_notion=false
+if [[ "${script_options[@]}" =~ $NOTION_PROJECT_OPTION ]]; then
+    notion=true
 fi
-
-skip_dependencies_choice=$(gum choose "Yes" "No" --header="Skip installing dependencies?" --selected="$pre_selected_skip_dependencies")
-if [ $skip_dependencies_choice = "Yes" ]; then
-    skip_dependencies=true
-else
-    skip_dependencies=false
+if [[ "${script_options[@]}" =~ $INSTALL_DEPENDENCIES_OPTION ]]; then
+    install_dependencies=true
 fi
-
-open_tmux_too_young_choice=$(gum choose "Yes" "No" --header="Open tmux-too-young following creation of project?" --selected="$pre_selected_open_tmux_too_young")
-if [ $open_tmux_too_young_choice = "Yes" ]; then
+if [[ "${script_options[@]}" =~ $OPEN_TMUX_TOO_YOUNG_OPTION ]]; then
     open_tmux_too_young=true
-else
-    open_tmux_too_young=false
+fi
+if [[ "${script_options[@]}" =~ $COPY_BRANCH_NAME_OPTION ]]; then
+    copy_branch=true
 fi
 
-if [[ -z $name && $skip_notion == false ]]; then
+# Validate inputs
+if [[ -z $name && $notion == true ]]; then
     echo "Error: Project Name is required when Notion project is being created."
     exit 1
 fi
@@ -195,26 +104,28 @@ if [ -z $branch_name ]; then
     exit 1
 fi
 
+# Create the project.
+
 ## Obtain current working directory so we can switch back
 original_dir=$(pwd)
 
 # Create worktree for UI
 if [ $ui = true ]; then
-    create_worktree "govern-ui" $branch_name $skip_dependencies
+    create_worktree "govern-ui" $branch_name $install_dependencies
 fi
 
 # Create worktree for BFF
 if [ $bff = true ]; then
-    create_worktree "govern-bff" $branch_name $skip_dependencies
+    create_worktree "govern-bff" $branch_name $install_dependencies
 fi
 
 # Create worktree for Shell
 if [ $shell = true ]; then
-    create_worktree "di-shell" $branch_name $skip_dependencies
+    create_worktree "di-shell" $branch_name $install_dependencies
     update_catalog_govern_json $branch_name
 fi
 
-if [ $skip_notion = false ]; then
+if [ $notion = true ]; then
     # Extract JIRA ID from branch name
     if [[ $branch_name =~ ^([A-Z]+-[0-9]+) ]]; then
         jira_id=${match[1]}  # This captures the first group
