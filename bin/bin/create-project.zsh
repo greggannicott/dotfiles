@@ -47,17 +47,13 @@ update_catalog_govern_json ()
     jq 'map(.federation.remoteEntry = "http://localhost:4200/remoteEntry.js")' $json_file > $temp_file && mv $temp_file $json_file 
 }
 
-# Default values
-ui=false
-bff=false
-shell=false
-name=""
-project_type="story"
-branch_name=""
-skip_notion=false
-skip_dependencies=false
+pre_selected_ui="No"
+pre_selected_bff="No"
+pre_selected_shell="No"
+pre_selected_skip_notion="No"
+pre_selected_skip_dependencies="No"
+pre_selected_open_tmux_too_young="No"
 copy_branch=false
-open_tmux_too_young=false
 help=false
 
 # Parse arguments
@@ -94,25 +90,25 @@ for (( i = 1; i <= $#; i++ )); do
             fi
             ;;
         --ui)
-            ui=true
+            pre_selected_ui="Yes"
             ;;
         --bff)
-            bff=true
+            pre_selected_bff="Yes"
             ;;
         --shell)
-            shell=true
+            pre_selected_shell="Yes"
+            ;;
+        --skip-notion)
+            pre_selected_skip_notion="Yes"
+            ;;
+        --skip-dependencies)
+            pre_selected_skip_dependencies="Yes"
+            ;;
+        --open-tmux-too-young)
+            pre_selected_open_tmux_too_young="Yes"
             ;;
         --copy-branch)
             copy_branch=true
-            ;;
-        --open-tmux-too-young)
-            open_tmux_too_young=true
-            ;;
-        --skip-notion)
-            skip_notion=true
-            ;;
-        --skip-dependencies)
-            skip_dependencies=true
             ;;
         --help)
             help=true
@@ -134,21 +130,68 @@ if [ $help = true ]; then
     echo "  --ui            Create a worktree for the UI"
     echo "  --bff           Create a worktree for the BFF"
     echo "  --shell         Create a worktree for the Shell"
-    echo "  --copy-branch   Copy the branch name to the clipboard"
-    echo "  --open-tmux-too-young   Opens tmux-too-young following creation of project"
     echo "  --skip-notion   Skip creating a Notion project"
     echo "  --skip-dependencies   Skip installing dependencies"
+    echo "  --open-tmux-too-young   Opens tmux-too-young following creation of project"
+    echo "  --copy-branch   Copy the branch name to the clipboard"
     echo "  --help          Display this help message"
     exit 0
 fi
 
+# Prompt user for values. Pre-populate with any that have been provided via command line
+name=$(gum input --header="Project Name:" --value="$name")
+project_type=$(gum choose "story" "bug" --header="Project Type:" --selected="$project_type")
+branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
+
+ui_choice=$(gum choose "Yes" "No" --header="Create UI Worktree?" --selected="$pre_selected_ui")
+if [ $ui_choice = "Yes" ]; then
+    ui=true
+else
+    ui=false
+fi
+
+bff_choice=$(gum choose "Yes" "No" --header="Create BFF Worktree?" --selected="$pre_selected_bff")
+if [ $bff_choice = "Yes" ]; then
+    bff=true
+else
+    bff=false
+fi
+
+shell_choice=$(gum choose "Yes" "No" --header="Create Shell Worktree?" --selected="$pre_selected_shell")
+if [ $shell_choice = "Yes" ]; then
+    shell=true
+else
+    shell=false
+fi
+
+skip_notion_choice=$(gum choose "Yes" "No" --header="Skip creating Notion Project?" --selected="$pre_selected_skip_notion")
+if [ $skip_notion_choice = "Yes" ]; then
+    skip_notion=true
+else
+    skip_notion=false
+fi
+
+skip_dependencies_choice=$(gum choose "Yes" "No" --header="Skip installing dependencies?" --selected="$pre_selected_skip_dependencies")
+if [ $skip_dependencies_choice = "Yes" ]; then
+    skip_dependencies=true
+else
+    skip_dependencies=false
+fi
+
+open_tmux_too_young_choice=$(gum choose "Yes" "No" --header="Open tmux-too-young following creation of project?" --selected="$pre_selected_open_tmux_too_young")
+if [ $open_tmux_too_young_choice = "Yes" ]; then
+    open_tmux_too_young=true
+else
+    open_tmux_too_young=false
+fi
+
 if [[ -z $name && $skip_notion == false ]]; then
-    echo "Error: --name is required when Notion project is being created."
+    echo "Error: Project Name is required when Notion project is being created."
     exit 1
 fi
 
 if [ -z $branch_name ]; then
-    echo "Error: --branch is required."
+    echo "Error: Branch is required."
     exit 1
 fi
 
