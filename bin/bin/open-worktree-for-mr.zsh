@@ -35,7 +35,7 @@ else
     echo
     echo "Add worktree for branch '$source_branch'..."
     echo 
-    add-worktree $source_branch
+    add-worktree --skip-init $source_branch
 fi
 
 echo
