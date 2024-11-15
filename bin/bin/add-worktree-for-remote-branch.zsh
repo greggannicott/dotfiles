@@ -1,12 +1,27 @@
 #!/bin/zsh
 
+skip_init=false
+branch_name=""
+
+for (( i = 1; i <= $#; i++ )); do
+    case "${(P)i}" in
+        --skip-init)
+            skip_init=true
+            ;;
+        *)
+            # Assign the first non-flag argument to the branch_name variable
+            if [[ -z "$branch_name" ]]; then
+                branch_name="${(P)i}"
+            fi
+            ;;
+    esac
+done
+
 # Get the directory of the current script
 script_directory="$(cd "$(dirname "$0")" && pwd)"
 
 # Source the helper script
 source "$script_directory/helper-functions.zsh"
-
-branch_name=$1
 
 if [ -z "$branch_name" ]
 then
@@ -46,7 +61,7 @@ git merge origin/$branch_name
 
 output_heading "Inialising repo (if required)"
 
-if [ -e ~/.workflow-config.yaml ]; then
+if [[ -e ~/.workflow-config.yaml && $skip_init == false ]]; then
     init_command=`yq ".repos[] | select(.path == \"$repo_root\") | .init" ~/.workflow-config.yaml`
     if [ "$init_command" = "" ]
     then
@@ -62,6 +77,8 @@ if [ -e ~/.workflow-config.yaml ]; then
             exit 1
         fi
     fi
+elif [[ $skip_init == true ]]; then
+    echo "Skipping init as specified by '--skip-init' flag"
 else
     echo "Not attepting to initialise repo. 'workflow-config.yaml' not found..."
 fi
