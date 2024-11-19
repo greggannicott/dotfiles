@@ -139,7 +139,8 @@ cmd-alt-ctrl-shift-h = 'workspace H'
 cmd-alt-ctrl-shift-i = 'workspace I'
 # Hyper-J isn't set as we use this to open Jira tickets via Raycast
 # cmd-alt-ctrl-shift-j = 'workspace J'
-cmd-alt-ctrl-shift-k = 'workspace K'
+# Hyper-K isn't set as Shortcat uses this
+# cmd-alt-ctrl-shift-k = 'workspace K'
 cmd-alt-ctrl-shift-l = 'workspace L'
 cmd-alt-ctrl-shift-m = 'workspace M'
 cmd-alt-ctrl-shift-n = 'workspace N'
