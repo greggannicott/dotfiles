@@ -251,18 +251,18 @@ run = ['move-node-to-workspace M']
 check-further-callbacks = true
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = ['move-node-to-workspace C']
-check-further-callbacks = true
-
-[[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = ['move-node-to-workspace C']
+run = ['move-node-to-workspace 7']
 check-further-callbacks = true
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-run = ['move-node-to-workspace C']
+run = ['move-node-to-workspace 9']
+check-further-callbacks = true
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace 0']
 check-further-callbacks = true
 
 [[on-window-detected]]
