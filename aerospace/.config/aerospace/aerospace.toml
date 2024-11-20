@@ -160,8 +160,7 @@ cmd-alt-ctrl-shift-z = 'workspace Z'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
-# Disable alt-shift-3 as we can't have a '3' workspace because we need alt-3 for the # symbol.
-# alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
