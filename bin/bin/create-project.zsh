@@ -110,22 +110,22 @@ fi
 original_dir=$(pwd)
 
 # Create worktree for UI
-if [ $ui = true ]; then
+if [ "$ui" = "true" ]; then
     create_worktree "govern-ui" $branch_name $install_dependencies
 fi
 
 # Create worktree for BFF
-if [ $bff = true ]; then
+if [ "$bff" = "true" ]; then
     create_worktree "govern-bff" $branch_name $install_dependencies
 fi
 
 # Create worktree for Shell
-if [ $shell = true ]; then
+if [ "$shell" = "true" ]; then
     create_worktree "di-shell" $branch_name $install_dependencies
     update_catalog_govern_json $branch_name
 fi
 
-if [ $notion = true ]; then
+if [ "$notion" = "true" ]; then
     # Extract JIRA ID from branch name
     if [[ $branch_name =~ ^([A-Z]+-[0-9]+) ]]; then
         jira_id=${match[1]}  # This captures the first group
@@ -136,7 +136,7 @@ if [ $notion = true ]; then
 fi
 
 # Copy branch name to clipboard as it might be handy
-if [ $copy_branch = true ]; then
+if [ "$copy_branch" = "true" ]; then
     output_heading "Copying branch name to clipboard"
     echo $branch_name | pbcopy
     echo ""
@@ -145,7 +145,7 @@ if [ $copy_branch = true ]; then
 fi
 
 # Copy branch name to clipboard as it might be handy
-if [ $open_tmux_too_young = true ]; then
+if [ "$open_tmux_too_young" = "true" ]; then
     output_heading "Opening project with tmux-too-young"
     echo ""
     tmux-too-young open --search $branch_name
