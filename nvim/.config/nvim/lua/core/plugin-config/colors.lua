@@ -33,16 +33,50 @@ require("catppuccin").setup({
 	custom_highlights = {},
 	integrations = {
 		cmp = true,
+		copilot_vim = true,
+		diffview = true,
 		gitsigns = true,
-		nvimtree = true,
-		treesitter = true,
-		noice = true,
-		notify = true,
-		mini = {
+		harpoon = true,
+		indent_blankline = {
 			enabled = true,
-			indentscope_color = "",
+			scope_color = "text", -- catppuccin color (eg. `lavender`) Default: text
+			colored_indent_levels = false,
 		},
 		lsp_trouble = true,
+		mason = true,
+		native_lsp = {
+			enabled = true,
+			virtual_text = {
+				errors = { "italic" },
+				hints = { "italic" },
+				warnings = { "italic" },
+				information = { "italic" },
+				ok = { "italic" },
+			},
+			underlines = {
+				errors = { "underline" },
+				hints = { "underline" },
+				warnings = { "underline" },
+				information = { "underline" },
+				ok = { "underline" },
+			},
+			inlay_hints = {
+				background = true,
+			},
+		},
+		noice = true,
+		notify = true,
+		nvimtree = true,
+		nvim_surround = true,
+		mini = {
+			enabled = false,
+			indentscope_color = "",
+		},
+		telescope = {
+			enabled = true,
+		},
+		treesitter = true,
+		which_key = true,
 		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 	},
 })
