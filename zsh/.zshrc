@@ -191,7 +191,7 @@ interactive_rip_grep() (
 alias gs="git status -s"
 alias gp="git push"
 alias gpnv="git push --no-verify"
-alias gmorn="git fetch && git merge origin/main"
+alias gmom="git fetch && git merge origin/main"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
 alias ts="~/bin/tmux-too-young"
