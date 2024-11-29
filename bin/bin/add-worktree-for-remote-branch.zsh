@@ -57,7 +57,7 @@ git branch --set-upstream-to=origin/$branch_name $branch_name
 output_heading "Getting latest code from origin"
 
 
-git merge origin/$branch_name
+git merge origin/$branch_name -m "Merging latest from origin/$branch_name"
 
 output_heading "Inialising repo (if required)"
 
