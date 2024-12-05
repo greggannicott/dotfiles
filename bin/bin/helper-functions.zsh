@@ -6,6 +6,16 @@ output_heading ()
     echo ""
 }
 
+output_general_message ()
+{
+    gum log --level info "$1"
+}
+
+output_error_message ()
+{
+    gum log --level error "$1"
+}
+
 install_dependencies ()
 {
     id=$1
