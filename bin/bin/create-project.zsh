@@ -1,10 +1,19 @@
 #!/bin/zsh
 
+figlet "Create Project"
+
 # Get the directory of the current script
 script_directory="$(cd "$(dirname "$0")" && pwd)"
 
 # Source the helper script
 source "$script_directory/helper-functions.zsh"
+
+check_exit_code() {
+if [ $1 -ne 0 ]; then
+    echo "$(tput setaf 1)Script exited prematurely...$(tput sgr0)"
+    exit 1
+fi
+}
 
 create_worktree ()
 {
@@ -65,11 +74,17 @@ DEFAULT_OPTIONS=",$NOTION_PROJECT_OPTION,$INSTALL_DEPENDENCIES_OPTION,$OPEN_TMUX
 
 # Prompt user for values. 
 name=$(gum input --header="Project Name:" --value="$name")
+check_exit_code $?
+
 project_type=$(gum choose "story" "bug" --header="Project Type:" --selected="$project_type")
+check_exit_code $?
+
 branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
+check_exit_code $?
 
 # Prompt user for options
 script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BFF_WORKTREE_OPTION $SHELL_WORKTREE_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
+check_exit_code $?
 
 if [[ "${script_options[@]}" =~ $UI_WORKTREE_OPTION ]]; then
     ui=true
