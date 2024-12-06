@@ -16,8 +16,13 @@ cd `git rev-parse --git-common-dir` && cd ..
 # Obtain a list of all worktrees
 worktrees=`git worktree list | awk '{print $1}' | grep -v ".bare$" | grep -v "main$"`
 
+# Determine how high the list should be
+title_space=8
+consumed_space=$title_space
+list_height=$(($(tput lines)-$consumed_space))
+
 # Display list using `gum`. Allow user to select multiple worktrees.
-selected_worktrees=$(echo $worktrees | gum choose --no-limit)
+selected_worktrees=$(echo $worktrees | gum choose --no-limit --height=$list_height)
 
 if [ -z "$selected_worktrees" ]; then
     output_error_message "No worktrees selected. Exiting..."
