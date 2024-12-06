@@ -10,8 +10,6 @@ script_directory="$(cd "$(dirname "$0")" && pwd)"
 # Source the helper script
 source "$script_directory/helper-functions.zsh"
 
-original_dir=`pwd`
-
 # Change to route of current repo
 cd `git rev-parse --git-common-dir` && cd ..
 
@@ -41,5 +39,3 @@ done <<< $selected_worktrees
 
 echo
 output_general_message "Finished deleting worktrees"
-
-cd $original_dir
