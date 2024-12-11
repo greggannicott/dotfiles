@@ -23,7 +23,8 @@ require("noice").setup({
 	messages = {
 		-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 		-- This is a current Neovim limitation.
-		enabled = true, -- enables the Noice messages UI
+		-- NOTE: messages disabled as it wasn't displaying the choices correctly.
+		enabled = false, -- enables the Noice messages UI
 		view = "notify",
 		view_error = "notify", -- view for errors
 		view_warn = "notify", -- view for warnings
