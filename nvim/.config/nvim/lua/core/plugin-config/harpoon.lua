@@ -1,7 +1,15 @@
 local harpoon = require("harpoon")
 local wk = require("which-key")
 
-harpoon:setup()
+harpoon:setup({
+	settings = {
+		save_on_toggle = true,
+		sync_on_ui_close = false,
+		key = function()
+			return vim.loop.cwd()
+		end,
+	},
+})
 
 wk.add({
 	{ "<leader>h", group = "Harpoon" },
@@ -18,20 +26,6 @@ wk.add({
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end,
 		desc = "Toggle Harpoon menu",
-	},
-	{
-		"[f",
-		function()
-			harpoon:list():prev()
-		end,
-		desc = "Harpoon: Previous buffer",
-	},
-	{
-		"]f",
-		function()
-			harpoon:list():next()
-		end,
-		desc = "Harpoon: Next buffer",
 	},
 	{
 		"[[",
