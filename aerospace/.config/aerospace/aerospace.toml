@@ -239,6 +239,13 @@ if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace S']
 check-further-callbacks = true
 
+# Mochi on 'F' for Flashcards
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.hnfmbabioigdnmjkionhlfjofajkcdmf'
+run = ['move-node-to-workspace F']
+check-further-callbacks = true
+
+# Monkeytype on 'M' for Monkeytype
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.app.picebhhlijnlefeleilfbanaghjlkkna'
 run = ['move-node-to-workspace M']
@@ -262,6 +269,12 @@ check-further-callbacks = true
 [[on-window-detected]]
 if.app-id = 'notion.id'
 run = ['move-node-to-workspace N']
+check-further-callbacks = true
+
+# Firefox on 'R' for code reviews
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = ['move-node-to-workspace R']
 
 [workspace-to-monitor-force-assignment]
 2 = 'LEN L28u-30 \(2\)'
@@ -271,4 +284,5 @@ C = 'LEN L28u-30 \(2\)'
 P = 'LEN L28u-30 \(1\)'
 D = 'LEN L28u-30 \(1\)'
 O = 'LEN L28u-30 \(1\)'
+R = 'LEN L28u-30 \(2\)'
 
