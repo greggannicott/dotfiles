@@ -154,7 +154,7 @@ require("CopilotChat").setup({
 		},
 		show_diff = {
 			normal = "gd",
-			full_diff = false, -- Show full diff instead of unified diff when showing diff window
+			full_diff = true, -- Show full diff instead of unified diff when showing diff window
 		},
 		show_info = {
 			normal = "gi",
