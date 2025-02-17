@@ -1,5 +1,6 @@
 local prompts = require("CopilotChat.config.prompts")
 local select = require("CopilotChat.select")
+local wk = require("which-key")
 require("CopilotChat").setup({
 
 	-- Shared config starts here (can be passed to functions at runtime and configured via setup function)
@@ -135,8 +136,8 @@ require("CopilotChat").setup({
 			normal = "gr",
 		},
 		accept_diff = {
-			normal = "<C-y>",
-			insert = "<C-y>",
+			normal = "<C-f>",
+			insert = "<C-f>",
 		},
 		jump_to_diff = {
 			normal = "gj",
@@ -165,4 +166,10 @@ require("CopilotChat").setup({
 			normal = "gh",
 		},
 	},
+})
+
+wk.add({
+	{ "<leader>ccd", "<cmd>Copilot disable<CR>", desc = "Disable Copilot" },
+	{ "<leader>cce", "<cmd>Copilot enable<CR>", desc = "Enable Copilot" },
+	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat" },
 })

@@ -107,6 +107,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# zsh-autosuggestions configuration
+bindkey '^y' autosuggest-accept
+
 # fzf-tab configuration - see https://github.com/Aloxaf/fzf-tab/wiki/Configuration
 
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix

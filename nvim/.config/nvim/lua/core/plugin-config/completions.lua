@@ -22,7 +22,8 @@ cmp.setup({
 		-- I don't actually know the reasoining behind it though.
 		["<C-y>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+			-- Only select if an item is selected. If there is no selectin then we want to let <C-y> to fallback to copilot.
+			select = false,
 		}),
 		-- <c-l> will move you to the right of each of the expansion locations.
 		-- <c-h> is similar, except moving you backwards.
@@ -77,7 +78,10 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
-wk.add({
-	{ "<leader>cC", "<cmd>Copilot disable<CR>", desc = "Disable Copilot" },
-	{ "<leader>cc", "<cmd>Copilot enable<CR>", desc = "Enable Copilot" },
+-- Add copilot binding to accept suggestion with <C-y>.
+-- This is part of an attempt to make it so whereever you are suggsted something in faded text, you can yse <C-y> to accept it.
+-- This convention will go beyond Neovim.
+vim.keymap.set("i", "<C-y>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
 })
