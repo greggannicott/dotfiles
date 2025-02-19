@@ -66,6 +66,9 @@ wk.add({
 	{ "<leader>ghr", desc = "Reset Hunk" },
 	{ "<leader>ghs", desc = "Stage Hunk" },
 	{ "<leader>ghv", desc = "View Hunk" },
+	{ "<leader>gH", group = "History" },
+	{ "<leader>gHh", "<CMD>DiffviewFileHistory<CR>", desc = "Commit History for Repo" },
+	{ "<leader>gHc", "<CMD>DiffviewFileHistory %<CR>", desc = "Commit History for Buffer" },
 	{ "[h", require("gitsigns").prev_hunk, desc = "Previous hunk" },
 	{ "]h", require("gitsigns").next_hunk, desc = "Next hunk" },
 })
