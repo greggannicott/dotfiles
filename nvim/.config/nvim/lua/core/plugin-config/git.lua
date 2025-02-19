@@ -58,7 +58,7 @@ wk.add({
 	{ "<leader>gd", group = "Diff" },
 	{ "<leader>gdb", ":DiffviewOpen origin/main... --imply-local<CR>", desc = "Diff branch with main" },
 	{ "<leader>gdd", "<CMD>DiffviewOpen<CR>", desc = "View diff of altered files" },
-	{ "<leader>gdo", "<CMD>DiffviewOpen @{u}<CR>", desc = "Diff branch with remote" },
+	{ "<leader>gdo", "<CMD>DiffviewOpen HEAD..@{u}<CR>", desc = "Diff branch with remote" },
 	{ "<leader>gg", toggleFugitiveGit, desc = "Git Status" },
 	{ "<leader>gh", group = "Hunk" },
 	{ "<leader>ghn", desc = "Next Hunk" },
