@@ -173,6 +173,6 @@ wk.add({
 	{ "<leader>ccd", "<cmd>Copilot disable<CR>", desc = "Disable Copilot" },
 	{ "<leader>cce", "<cmd>Copilot enable<CR>", desc = "Enable Copilot" },
 	-- copilot-chat.nvim
-	{ "<leader>cc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat" },
-	{ "<leader>cc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", mode = "v" },
+	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat" },
+	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", mode = "v" },
 })
