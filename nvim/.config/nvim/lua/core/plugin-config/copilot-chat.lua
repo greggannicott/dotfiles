@@ -124,8 +124,8 @@ require("CopilotChat").setup({
 			insert = "<C-c>",
 		},
 		reset = {
-			normal = "<C-l>",
-			insert = "<C-l>",
+			normal = "<C-x>",
+			insert = "<C-x>",
 		},
 		submit_prompt = {
 			normal = "<CR>",
@@ -175,4 +175,5 @@ wk.add({
 	-- copilot-chat.nvim
 	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat" },
 	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", mode = "v" },
+	{ "<leader>ccs", "<cmd>CopilotChatCommitStaged<CR>", desc = "Open Copilot Chat (Staged Prompt)" },
 })
