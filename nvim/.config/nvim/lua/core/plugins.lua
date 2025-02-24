@@ -131,11 +131,6 @@ require("lazy").setup({
 	"tpope/vim-sleuth",
 	"sindrets/diffview.nvim",
 	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
-	},
-	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function

@@ -1,5 +1,4 @@
 local wk = require("which-key")
-local trouble = require("trouble.sources.telescope")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
@@ -8,12 +7,10 @@ telescope.setup({
 		path_display = { "truncate" },
 		mappings = {
 			i = {
-				["<c-t>"] = trouble.open,
 				["<c-p>"] = actions.move_selection_previous,
 				["<c-n>"] = actions.move_selection_next,
 			},
 			n = {
-				["<c-t>"] = trouble.open,
 				["<c-p>"] = actions.move_selection_previous,
 				["<c-n>"] = actions.move_selection_next,
 			},
