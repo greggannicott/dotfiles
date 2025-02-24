@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local gitsigns = require("gitsigns")
 local actions = require("diffview.actions")
 
 local function showFugitiveGit()
@@ -25,7 +26,7 @@ local function toggleFugitiveGit()
 	end
 end
 
-require("gitsigns").setup({
+gitsigns.setup({
 
 	-- See `:help gitsigns.txt`
 	signs = {
@@ -38,39 +39,72 @@ require("gitsigns").setup({
 	on_attach = function(bufnr)
 		-- Note: the 'which' description for these mappings are handled below as you were
 		-- unable to get which-key.register to work within the on_attach.
-		vim.keymap.set("n", "<leader>ghp", require("gitsigns").prev_hunk, { buffer = bufnr })
-		vim.keymap.set("n", "<leader>ghn", require("gitsigns").next_hunk, { buffer = bufnr })
-		vim.keymap.set("n", "<leader>ghv", require("gitsigns").preview_hunk, { buffer = bufnr })
-		vim.keymap.set("n", "<leader>ghs", require("gitsigns").stage_hunk, { buffer = bufnr })
-		vim.keymap.set("n", "<leader>ghr", require("gitsigns").reset_hunk, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>ghp", function()
+			gitsigns.nav_hunk("prev")
+		end)
+		vim.keymap.set("n", "<leader>ghn", function()
+			gitsigns.nav_hunk("next")
+		end)
+		vim.keymap.set("n", "<leader>ghv", gitsigns.preview_hunk, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>ghs", gitsigns.stage_hunk, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>ghr", gitsigns.reset_hunk, { buffer = bufnr })
 	end,
 })
 
 wk.add({
 	{ "<leader>g", group = "Git" },
+	-- Blame
 	{ "<leader>gb", group = "Blame" },
 	{ "<leader>gbb", ":Git blame<CR>", desc = "Display blame column" },
-	{ "<leader>gbd", ":Gitsigns blame_line<CR>", desc = "Display blame detail for current line" },
+	{
+		"<leader>gbd",
+		":Gitsigns blame_line<CR>",
+		desc = "Display blame detail for current line",
+	},
 	{ "<leader>gbl", ":Gitsigns toggle_current_line_blame<CR>", desc = "Toggle line blame" },
+	-- Commit
 	{ "<leader>gc", group = "Commit" },
 	{ "<leader>gca", ":Git commit --amend<CR>", desc = "Git Commit Amend" },
 	{ "<leader>gcc", ":Git commit<CR>", desc = "Git Commit" },
+	-- Diff
 	{ "<leader>gd", group = "Diff" },
 	{ "<leader>gdb", ":DiffviewOpen origin/main... --imply-local<CR>", desc = "Diff branch with main" },
 	{ "<leader>gdd", "<CMD>DiffviewOpen<CR>", desc = "View diff of altered files" },
 	{ "<leader>gdo", "<CMD>DiffviewOpen HEAD..@{u}<CR>", desc = "Diff branch with upstream" },
 	{ "<leader>gg", toggleFugitiveGit, desc = "Git Status" },
+	-- Hunk
 	{ "<leader>gh", group = "Hunk" },
 	{ "<leader>ghn", desc = "Next Hunk" },
 	{ "<leader>ghp", desc = "Previous Hunk" },
 	{ "<leader>ghr", desc = "Reset Hunk" },
 	{ "<leader>ghs", desc = "Stage Hunk" },
 	{ "<leader>ghv", desc = "View Hunk" },
+	{ "<leader>ghq", "<CMD>Gitsigns setqflist<CR>", desc = "Populate QuickFix" },
+	-- Note: You shouldn't need to use `@` in the following. In theory no value should reset it.
+	-- But for whatever reason, that doesn't work.
+	{ "<leader>ghc", group = "Change Base" },
+	{ "<leader>ghcr", "<CMD>Gitsigns change_base @<CR>", desc = "Reset to default base" },
+	{ "<leader>ghcm", "<CMD>Gitsigns change_base origin/main<CR>", desc = "Change base: origin/main" },
+	{ "<leader>ghcM", "<CMD>Gitsigns change_base main<CR>", desc = "Change base: main" },
+	{ "<leader>ghcp", "<CMD>Gitsigns change_base ~1<CR>", desc = "Change base: previous commit (~1)" },
+	{
+		"[h",
+		function()
+			gitsigns.nav_hunk("prev")
+		end,
+		desc = "Previous hunk",
+	},
+	{
+		"]h",
+		function()
+			gitsigns.nav_hunk("next")
+		end,
+		desc = "Next hunk",
+	},
+	-- History
 	{ "<leader>gH", group = "History" },
 	{ "<leader>gHh", "<CMD>DiffviewFileHistory<CR>", desc = "Commit History for Repo" },
 	{ "<leader>gHc", "<CMD>DiffviewFileHistory %<CR>", desc = "Commit History for Buffer" },
-	{ "[h", require("gitsigns").prev_hunk, desc = "Previous hunk" },
-	{ "]h", require("gitsigns").next_hunk, desc = "Next hunk" },
 })
 
 -- DiffView Configuration
