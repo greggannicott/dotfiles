@@ -28,6 +28,10 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
+-- Don't display diagnostic details in the signcolumn.
+require("vim.diagnostic").config({
+	signs = false,
+})
 
 -- Decrease update time
 vim.o.updatetime = 250
