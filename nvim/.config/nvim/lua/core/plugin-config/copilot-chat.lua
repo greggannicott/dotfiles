@@ -110,7 +110,7 @@ require("CopilotChat").setup({
 			prompt = "> /COPILOT_GENERATE\n\nPlease generate tests for my code.",
 		},
 		Commit = {
-			prompt = "> #git:staged\n\nWrite commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.",
+			prompt = "> #git:staged\n\nWrite commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Begin the title with the branch name followed by a colon, unless the branch is 'main'.",
 		},
 	},
 
@@ -124,8 +124,8 @@ require("CopilotChat").setup({
 			insert = "<C-c>",
 		},
 		reset = {
-			normal = "<C-l>",
-			insert = "<C-l>",
+			normal = "<C-x>",
+			insert = "<C-x>",
 		},
 		submit_prompt = {
 			normal = "<CR>",
@@ -175,4 +175,5 @@ wk.add({
 	-- copilot-chat.nvim
 	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat" },
 	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", mode = "v" },
+	{ "<leader>ccs", "<cmd>CopilotChatCommit<CR>", desc = "Open Copilot Chat (Commit Prompt)" },
 })
