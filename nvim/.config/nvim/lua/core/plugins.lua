@@ -33,6 +33,7 @@ require("lazy").setup({
 				-- For major updates, this must be adjusted manually.
 				version = "^1.0.0",
 			},
+			"debugloop/telescope-undo.nvim",
 		},
 	},
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -55,15 +56,6 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
-	},
-	{
-		-- Theme inspired by Atom
-		"navarasu/onedark.nvim",
-		priority = 1000,
-		config = function()
-			-- Currently disabled as you are trying a different theme
-			-- vim.cmd.colorscheme("onedark")
-		end,
 	},
 	{
 		"catppuccin/nvim",
@@ -147,16 +139,6 @@ require("lazy").setup({
 		opts = {},
 		event = "VeryLazy",
 	},
-	-- Ability to search various dev docs
-	{
-		"luckasRanarison/nvim-devdocs",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"debugloop/telescope-undo.nvim",
-		},
-	},
 	-- Have your vim keybindings work with tmux when navigating windows
 	{
 		"christoomey/vim-tmux-navigator",
@@ -167,8 +149,8 @@ require("lazy").setup({
 			end
 		end,
 	},
-	-- Highlight lines used when specifying ranges:
 	"winston0410/cmd-parser.nvim",
+	-- Highlight lines used when specifying ranges:
 	{ "winston0410/range-highlight.nvim", opts = {} },
 	"Wansmer/treesj",
 	{
@@ -206,8 +188,6 @@ require("lazy").setup({
 		opts = {},
 		event = "VeryLazy",
 	},
-	-- Your own plugin:
-	{ "greggannicott/angular-cli.nvim", dev = true },
 }, {
 	dev = {
 		path = "~/code",
