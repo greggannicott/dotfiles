@@ -63,12 +63,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 })
 
--- Add a way to print that doesn't replace your register with what gets removed
-vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { desc = "Paste without replacing register." })
-
 -- Formatting.
 
 -- Don't start new lines with comment symbols if current line has comment symbols
+-- NOTE: This doesn't work for some reason.
 vim.o.formatoptions = "cro"
 
 -- Set tab width. Default appears to be 8!
@@ -115,9 +113,6 @@ vim.api.nvim_set_keymap("n", "<C-down>", "<cmd>:res -2<cr>", { desc = "Decrease 
 -- Ability to move higlighted lines of code (via The Primeagen)
 vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down", silent = true })
 vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up", silent = true })
-
--- Mapping for opening config file
-vim.keymap.set("n", "<leader>.", ":vs ~/.config/nvim/init.lua<CR>", { desc = "Open Neovim Config" })
 
 -- Plugin Development mappings
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
