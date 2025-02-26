@@ -28,6 +28,10 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
+-- Don't display diagnostic details in the signcolumn.
+require("vim.diagnostic").config({
+	signs = false,
+})
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -59,12 +63,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 })
 
--- Add a way to print that doesn't replace your register with what gets removed
-vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { desc = "Paste without replacing register." })
-
 -- Formatting.
 
 -- Don't start new lines with comment symbols if current line has comment symbols
+-- NOTE: This doesn't work for some reason.
 vim.o.formatoptions = "cro"
 
 -- Set tab width. Default appears to be 8!
@@ -112,14 +114,5 @@ vim.api.nvim_set_keymap("n", "<C-down>", "<cmd>:res -2<cr>", { desc = "Decrease 
 vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down", silent = true })
 vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up", silent = true })
 
--- Mapping for opening config file
-vim.keymap.set("n", "<leader>.", ":vs ~/.config/nvim/init.lua<CR>", { desc = "Open Neovim Config" })
-
 -- Plugin Development mappings
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
-
--- Folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldcolumn = "auto:9"
-vim.opt.foldlevel = 99
