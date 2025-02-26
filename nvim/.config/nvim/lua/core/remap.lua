@@ -93,6 +93,10 @@ vim.go.splitbelow = true
 -- Always have the top/bottom N lines displayed in buffer
 vim.o.scrolloff = 8
 
+-- Determine how diffs are displayed
+-- See: https://www.reddit.com/r/neovim/comments/1ihpvaf/the_linematch_diffopt_makes_builtin_diff_so_sweat/
+vim.o.diffopt = "internal,filler,closeoff,linematch:60"
+
 -- Tab related mappings
 wk.add({
 	{ "<leader>T", group = "Tabs" },
