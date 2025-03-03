@@ -55,6 +55,8 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
+		-- Runs each time the package is updated. It updates the parses
+		-- used by 'nvim-treesitter'.
 		build = ":TSUpdate",
 	},
 	{
