@@ -118,5 +118,9 @@ vim.api.nvim_set_keymap("n", "<C-down>", "<cmd>:res -2<cr>", { desc = "Decrease 
 vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down", silent = true })
 vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up", silent = true })
 
+-- Quickfix List Mappings
+vim.api.nvim_set_keymap("n", "[[", "<cmd>cprev<CR>", { desc = "Previous Quickfix" })
+vim.api.nvim_set_keymap("n", "]]", "<cmd>cnext<CR>", { desc = "Next Quickfix" })
+
 -- Plugin Development mappings
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file" })

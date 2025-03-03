@@ -28,20 +28,6 @@ wk.add({
 		desc = "Toggle Harpoon menu",
 	},
 	{
-		"[[",
-		function()
-			harpoon:list():prev()
-		end,
-		desc = "Previous Harpoon buffer",
-	},
-	{
-		"]]",
-		function()
-			harpoon:list():next()
-		end,
-		desc = "Next Harpoon buffer",
-	},
-	{
 		"<leader>1",
 		function()
 			harpoon:list():select(1)
