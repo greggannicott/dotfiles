@@ -79,7 +79,7 @@ require("neodev").setup()
 
 -- Enable the following language servers
 local servers = {
-	["angularls@16.2.0"] = {},
+	["angularls@17.3.12"] = {},
 	ts_ls = {},
 	html = {},
 	cssls = {},
