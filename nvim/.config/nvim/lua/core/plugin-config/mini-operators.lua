@@ -28,10 +28,11 @@ require("mini.operators").setup({
 	},
 
 	-- Replace text with register
-	replace = {
-		prefix = "gr",
-
-		-- Whether to reindent new text to match previous indent
-		reindent_linewise = true,
-	},
+	-- NOTE: Disabled until you can find a mapping that doesn't clash with `gr` (ie. view referencs)
+	-- replace = {
+	-- 	prefix = "gr",
+	--
+	-- 	-- Whether to reindent new text to match previous indent
+	-- 	reindent_linewise = true,
+	-- },
 })
