@@ -21,7 +21,6 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require("lazy").setup({
 	"tpope/vim-fugitive",
-	"nvim-tree/nvim-tree.lua",
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
