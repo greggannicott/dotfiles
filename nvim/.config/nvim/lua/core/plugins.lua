@@ -123,11 +123,6 @@ require("lazy").setup({
 	},
 	"tpope/vim-sleuth",
 	"sindrets/diffview.nvim",
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
-	},
 	"rgroli/other.nvim",
 	{
 		"kylechui/nvim-surround",
