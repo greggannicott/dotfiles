@@ -57,4 +57,5 @@ require("mini.files").setup({
 wk.add({
 	{ "<leader>e", group = "Explorer" },
 	{ "<leader>ee", "<Cmd>lua MiniFiles.open()<CR>", desc = "Open Mini Files" },
+	{ "<leader>ef", "<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>", desc = "Focus Current File" },
 })
