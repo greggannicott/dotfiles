@@ -190,6 +190,7 @@ require("lazy").setup({
 		opts = {},
 		event = "VeryLazy",
 	},
+	{ "echasnovski/mini.nvim", version = false },
 }, {
 	dev = {
 		path = "~/code",
