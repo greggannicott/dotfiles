@@ -57,9 +57,7 @@ local on_attach = function(client, bufnr)
 
 	nmap("<leader>ce", vim.diagnostic.open_float, "View Error Details")
 	nmap("<leader>c[", vim.diagnostic.goto_prev, "Go to previous error")
-	nmap("[e", vim.diagnostic.goto_prev, "Go to previous error")
 	nmap("<leader>c]", vim.diagnostic.goto_next, "Go to next error")
-	nmap("]e", vim.diagnostic.goto_next, "Go to next error")
 
 	-- Give the '<leader>c' the name 'Code' in which-key.
 	wc.add({
