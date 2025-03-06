@@ -28,7 +28,7 @@ require("mini.operators").setup({
 	},
 
 	-- Replace text with register
-	-- NOTE: Disabled until you can find a mapping that doesn't clash with `gr` (ie. view referencs)
+	-- NOTE: Disabled until you can find a mapping that doesn't clash with `gr` (ie. view referencs
 	-- replace = {
 	-- 	prefix = "gr",
 	--
