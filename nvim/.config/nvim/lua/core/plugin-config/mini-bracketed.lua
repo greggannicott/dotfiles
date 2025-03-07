@@ -10,7 +10,7 @@ require("mini.bracketed").setup({
 	-- See `:h MiniBracketed.config` for more info.
 
 	buffer = { suffix = "b", options = {} },
-	comment = { suffix = "r", options = {} },
+	comment = { suffix = "r", options = { add_to_jumplist = true } },
 	conflict = { suffix = "x", options = {} },
 	diagnostic = { suffix = "d", options = { severity = vim.diagnostic.severity.ERROR } },
 	file = { suffix = "f", options = {} },
