@@ -45,8 +45,8 @@ local on_attach = function(client, bufnr)
 
 	nmap("<leader>cy", require("telescope.builtin").lsp_document_symbols, "Search Document Symbols")
 	nmap("<C-t>", require("telescope.builtin").lsp_document_symbols, "Search Document Symbols")
-	nmap("<leader>cY", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols")
-	nmap("<C-y>", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Workspace Symbols")
+	nmap("<leader>cY", require("telescope.builtin").lsp_workspace_symbols, "Search Workspace Symbols")
+	nmap("<C-y>", require("telescope.builtin").lsp_workspace_symbols, "Search Workspace Symbols")
 
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
