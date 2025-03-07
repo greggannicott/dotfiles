@@ -10,7 +10,7 @@ require("mini.bracketed").setup({
 	-- See `:h MiniBracketed.config` for more info.
 
 	buffer = { suffix = "b", options = {} },
-	comment = { suffix = "c", options = {} },
+	comment = { suffix = "r", options = {} },
 	conflict = { suffix = "x", options = {} },
 	diagnostic = { suffix = "d", options = {} },
 	file = { suffix = "f", options = {} },
