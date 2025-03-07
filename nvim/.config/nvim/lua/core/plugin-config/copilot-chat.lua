@@ -169,11 +169,23 @@ require("CopilotChat").setup({
 })
 
 wk.add({
+	{ "<leader>cc", group = "Copilot" },
+	{ "<leader>cc", group = "Copilot", mode = "v" },
+
 	-- copilot.nvim
 	{ "<leader>ccd", "<cmd>Copilot disable<CR>", desc = "Disable Copilot" },
 	{ "<leader>cce", "<cmd>Copilot enable<CR>", desc = "Enable Copilot" },
 	-- copilot-chat.nvim
 	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat" },
 	{ "<leader>ccc", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", mode = "v" },
+	{ "<leader>cce", "<cmd>CopilotChatExplain<CR>", desc = "Open Copilot Chat (Explain Prompt)" },
+	{ "<leader>cce", "<cmd>CopilotChatExplain<CR>", desc = "Open Copilot Chat (Explain Prompt)", mode = "v" },
+	{ "<leader>ccf", "<cmd>CopilotChatFix<CR>", desc = "Open Copilot Chat (Fix Prompt)" },
+	{ "<leader>ccf", "<cmd>CopilotChatFix<CR>", desc = "Open Copilot Chat (Fix Prompt)", mode = "v" },
+	{ "<leader>cco", "<cmd>CopilotChatOptimize<CR>", desc = "Open Copilot Chat (Optimize Prompt)" },
+	{ "<leader>cco", "<cmd>CopilotChatOptimize<CR>", desc = "Open Copilot Chat (Optimize Prompt)", mode = "v" },
+	{ "<leader>ccr", "<cmd>CopilotChatReview<CR>", desc = "Open Copilot Chat (Review Prompt)" },
+	{ "<leader>ccr", "<cmd>CopilotChatReview<CR>", desc = "Open Copilot Chat (Review Prompt)", mode = "v" },
 	{ "<leader>ccs", "<cmd>CopilotChatCommit<CR>", desc = "Open Copilot Chat (Commit Prompt)" },
+	{ "<leader>ccs", "<cmd>CopilotChatCommit<CR>", desc = "Open Copilot Chat (Commit Prompt)", mode = "v" },
 })
