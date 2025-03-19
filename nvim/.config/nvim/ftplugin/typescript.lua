@@ -26,8 +26,8 @@ local function add_async()
 
 	-- Find parent function statement
 	local current_node = vim.treesitter.get_node()
-	local nearest_function_node = find_ancestor(current_node,
-		{ "arrow_function", "function_declaration", "method_definition" })
+	local nearest_function_node =
+		find_ancestor(current_node, { "arrow_function", "function_declaration", "method_definition" })
 	if not nearest_function_node then
 		return
 	end
