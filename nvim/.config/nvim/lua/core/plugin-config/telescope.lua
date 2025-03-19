@@ -52,6 +52,7 @@ telescope.setup({
 				},
 			},
 		},
+		["ui-select"] = {},
 	},
 })
 
@@ -60,6 +61,7 @@ pcall(telescope.load_extension, "fzf")
 require("telescope").load_extension("undo")
 require("telescope").load_extension("noice")
 require("telescope").load_extension("live_grep_args")
+require("telescope").load_extension("ui-select")
 
 -- Define keymappings to display presets
 wk.add({

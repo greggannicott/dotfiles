@@ -35,6 +35,7 @@ require("lazy").setup({
 			"debugloop/telescope-undo.nvim",
 		},
 	},
+	{ "nvim-telescope/telescope-ui-select.nvim" },
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built.
 	-- Only load if `make` is available. Make sure you have the system
 	-- requirements installed.
