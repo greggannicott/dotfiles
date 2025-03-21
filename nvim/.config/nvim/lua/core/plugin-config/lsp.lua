@@ -1,4 +1,4 @@
-local wc = require("which-key")
+local wk = require("which-key")
 
 ---------------
 -- SETUP LSP --
@@ -60,7 +60,7 @@ local on_attach = function(client, bufnr)
 	nmap("<leader>c]", vim.diagnostic.goto_next, "Go to next error")
 
 	-- Give the '<leader>c' the name 'Code' in which-key.
-	wc.add({
+	wk.add({
 		{ "<leader>c", group = "Code" },
 	})
 end
