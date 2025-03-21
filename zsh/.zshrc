@@ -203,6 +203,7 @@ alias kill-ng-serve='ps -eaf | grep "ng serve" | grep -v "grep" | awk "{ print $
 alias add-worktree="add-worktree-for-remote-branch.zsh"
 alias irg="interactive_rip_grep"
 alias remove-worktrees="delete-worktrees.zsh"
+alias rsd="npm run start-dev"
 
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
