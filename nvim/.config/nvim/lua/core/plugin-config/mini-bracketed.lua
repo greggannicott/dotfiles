@@ -12,7 +12,7 @@ require("mini.bracketed").setup({
 	buffer = { suffix = "b", options = {} },
 	comment = { suffix = "r", options = { add_to_jumplist = true } },
 	conflict = { suffix = "x", options = {} },
-	diagnostic = { suffix = "d", options = { severity = vim.diagnostic.severity.ERROR } },
+	diagnostic = { suffix = "d", options = {} },
 	file = { suffix = "f", options = {} },
 	indent = { suffix = "i", options = {} },
 	jump = { suffix = "j", options = {} },
