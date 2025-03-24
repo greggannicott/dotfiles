@@ -20,6 +20,10 @@ require("nvim-treesitter.configs").setup({
 		"markdown",
 		"scss",
 		"yaml",
+		"gitcommit",
+		"diff",
+		"git_rebase",
+		"tmux",
 	},
 
 	-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
