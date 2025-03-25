@@ -62,4 +62,32 @@ wk.add({
 		end,
 		desc = "Open Harpoon 5",
 	},
+	{
+		"<leader>6",
+		function()
+			harpoon:list():select(6)
+		end,
+		desc = "Open Harpoon 6",
+	},
+	{
+		"<leader>7",
+		function()
+			harpoon:list():select(7)
+		end,
+		desc = "Open Harpoon 7",
+	},
+	{
+		"<leader>8",
+		function()
+			harpoon:list():select(8)
+		end,
+		desc = "Open Harpoon 8",
+	},
+	{
+		"<leader>9",
+		function()
+			harpoon:list():select(9)
+		end,
+		desc = "Open Harpoon 9",
+	},
 })
