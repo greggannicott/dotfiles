@@ -65,6 +65,8 @@ require("nvim-treesitter.configs").setup({
 			goto_next_start = {
 				["]m"] = "@function.outer",
 				["]v"] = "@assignment.lhs",
+				-- Requires jasmine-toggle.nvim plugin
+				["]i"] = "@test.it.inner",
 			},
 			goto_next_end = {
 				["]M"] = "@function.outer",
@@ -73,6 +75,8 @@ require("nvim-treesitter.configs").setup({
 			goto_previous_start = {
 				["[m"] = "@function.outer",
 				["[v"] = "@assignment.lhs",
+				-- Requires jasmine-toggle.nvim plugin
+				["[i"] = "@test.it.inner",
 			},
 			goto_previous_end = {
 				["[M"] = "@function.outer",
