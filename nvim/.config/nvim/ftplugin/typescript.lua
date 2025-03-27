@@ -18,6 +18,10 @@ local function add_async()
 	local cursor_position = vim.api.nvim_win_get_cursor(0)
 	local current_row = cursor_position[1]
 	local current_col = cursor_position[2]
+	-- If the cursor is at the start of the line, we can't insert an `async` keyword.
+	if current_col < 4 then
+		return
+	end
 	local preceding_text =
 		vim.api.nvim_buf_get_text(0, current_row - 1, current_col - 4, current_row - 1, current_col, {})[1]
 	if preceding_text ~= "awai" then
