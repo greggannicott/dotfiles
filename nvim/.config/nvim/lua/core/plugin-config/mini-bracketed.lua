@@ -15,7 +15,7 @@ require("mini.bracketed").setup({
 	diagnostic = { suffix = "d", options = {} },
 	file = { suffix = "f", options = {} },
 	-- Disabled as you use `i` for `it()` tests in jasmine.
-	indent = {},
+	indent = { suffix = "" },
 	jump = { suffix = "j", options = {} },
 	location = { suffix = "l", options = {} },
 	oldfile = { suffix = "o", options = {} },
