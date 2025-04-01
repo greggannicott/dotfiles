@@ -10,6 +10,13 @@ return {
 		name = "Console Log with Variable",
 		dscr = { "Inserts a console.log which has a string value that matches the name of a variable." },
 	}, fmt("console.log('{}',{});", { i(1), rep(1) })),
+	s({
+		trig = "clvj",
+		name = "Console Log with JSON Output",
+		dscr = {
+			"Inserts a console.log which has a string value that matches the variable name, and the output uses JSON.stringify.",
+		},
+	}, fmt("console.log('{}', JSON.stringify({}, null, 2));", { i(1), rep(1) })),
 	s({ trig = "ct", name = "Console Table" }, fmt("console.table({});", i(1))),
 	s({ trig = "ctr", name = "Console Trace" }, fmt("console.trace({});", i(1))),
 	s(
