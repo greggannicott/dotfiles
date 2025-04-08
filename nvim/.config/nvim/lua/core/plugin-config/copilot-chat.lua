@@ -169,6 +169,7 @@ require("CopilotChat").setup({
 })
 
 wk.add({
+	{ "<C-c>", "<cmd>CopilotChatToggle<CR>", desc = "Toggle Copilot Chat" },
 	{ "<leader>cc", group = "Copilot" },
 	{ "<leader>cc", group = "Copilot", mode = "v" },
 
