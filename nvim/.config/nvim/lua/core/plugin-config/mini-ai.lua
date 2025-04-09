@@ -1,7 +1,12 @@
+local spec_treesitter = require("mini.ai").gen_spec.treesitter
 require("mini.ai").setup({
 	-- Table with textobject id as fields, textobject specification as values.
 	-- Also use this to disable builtin textobjects. See |MiniAi.config|.
-	custom_textobjects = nil,
+	custom_textobjects = {
+		-- Note: Requires 'jasmine-toggle.nvim' plugin.
+		-- 'i' uses 'inner' as you haven't yet written an inner query yet.
+		i = spec_treesitter({ a = "@test.outer", i = "@test.outer" }),
+	},
 
 	-- Module mappings. Use `''` (empty string) to disable one.
 	mappings = {

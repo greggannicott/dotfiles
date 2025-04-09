@@ -42,22 +42,21 @@ require("nvim-treesitter.configs").setup({
 	},
 	textobjects = {
 		select = {
-			enable = true,
+			enable = false,
 			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
-				-- NOTE: As it stands, these are disabled in favour of mini.ai.
-				-- ["aa"] = "@attribute.outer",
-				-- ["ia"] = "@attribute.inner",
-				-- ["aP"] = "@parameter.outer",
-				-- ["iP"] = "@parameter.inner",
-				-- ["af"] = "@function.outer",
-				-- ["if"] = "@function.inner",
-				-- ["ac"] = "@class.outer",
-				-- ["ic"] = "@class.inner",
-				-- ["aC"] = "@comment.outer",
-				-- ["iC"] = "@comment.inner",
-				["ai"] = "@test.outer",
+				-- NOTE: As it stands, these are disabled in favour of mini.ai. See `enable = false` above.
+				["aa"] = "@attribute.outer",
+				["ia"] = "@attribute.inner",
+				["aP"] = "@parameter.outer",
+				["iP"] = "@parameter.inner",
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["aC"] = "@comment.outer",
+				["iC"] = "@comment.inner",
 			},
 		},
 		move = {
