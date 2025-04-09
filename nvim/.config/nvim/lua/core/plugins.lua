@@ -180,7 +180,10 @@ require("lazy").setup({
 		event = "VeryLazy",
 	},
 	{ "echasnovski/mini.nvim", version = false },
-	{ "greggannicott/jasmine-toggle.nvim" },
+	{
+		"greggannicott/jasmine-toggle.nvim",
+		lazy = true,
+	},
 }, {
 	dev = {
 		path = "~/code",
