@@ -42,21 +42,22 @@ require("nvim-treesitter.configs").setup({
 	},
 	textobjects = {
 		select = {
-			enable = false,
+			enable = true,
 			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
-				-- NOTE: As it stands, these are disabled in favour of mini.ai. See `enable` parameter above.
-				["aa"] = "@attribute.outer",
-				["ia"] = "@attribute.inner",
-				["aP"] = "@parameter.outer",
-				["iP"] = "@parameter.inner",
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-				["aC"] = "@comment.outer",
-				["iC"] = "@comment.inner",
+				-- NOTE: As it stands, these are disabled in favour of mini.ai.
+				-- ["aa"] = "@attribute.outer",
+				-- ["ia"] = "@attribute.inner",
+				-- ["aP"] = "@parameter.outer",
+				-- ["iP"] = "@parameter.inner",
+				-- ["af"] = "@function.outer",
+				-- ["if"] = "@function.inner",
+				-- ["ac"] = "@class.outer",
+				-- ["ic"] = "@class.inner",
+				-- ["aC"] = "@comment.outer",
+				-- ["iC"] = "@comment.inner",
+				["ai"] = "@test.outer",
 			},
 		},
 		move = {
@@ -71,6 +72,8 @@ require("nvim-treesitter.configs").setup({
 			goto_next_end = {
 				["]M"] = "@function.outer",
 				["]V"] = "@assignment.rhs",
+				-- Requires jasmine-toggle.nvim plugin
+				["]I"] = "@test.outer",
 			},
 			goto_previous_start = {
 				["[m"] = "@function.outer",
@@ -81,6 +84,8 @@ require("nvim-treesitter.configs").setup({
 			goto_previous_end = {
 				["[M"] = "@function.outer",
 				["[V"] = "@assignment.rhs",
+				-- Requires jasmine-toggle.nvim plugin
+				["[I"] = "@test.outer",
 			},
 		},
 		swap = {
