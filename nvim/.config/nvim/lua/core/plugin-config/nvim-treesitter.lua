@@ -68,24 +68,28 @@ require("nvim-treesitter.configs").setup({
 				["]v"] = "@assignment.lhs",
 				-- Requires jasmine-toggle.nvim plugin
 				["]i"] = "@test.outer",
+				["]a"] = "@parameter.inner",
 			},
 			goto_next_end = {
 				["]M"] = "@function.outer",
 				["]V"] = "@assignment.rhs",
 				-- Requires jasmine-toggle.nvim plugin
 				["]I"] = "@test.outer",
+				["]A"] = "@parameter.inner",
 			},
 			goto_previous_start = {
 				["[m"] = "@function.outer",
 				["[v"] = "@assignment.lhs",
 				-- Requires jasmine-toggle.nvim plugin
 				["[i"] = "@test.outer",
+				["[a"] = "@parameter.inner",
 			},
 			goto_previous_end = {
 				["[M"] = "@function.outer",
 				["[V"] = "@assignment.rhs",
 				-- Requires jasmine-toggle.nvim plugin
 				["[I"] = "@test.outer",
+				["[A"] = "@parameter.inner",
 			},
 		},
 		swap = {
