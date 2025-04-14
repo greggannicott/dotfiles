@@ -33,6 +33,9 @@ require("vim.diagnostic").config({
 	signs = false,
 })
 
+-- Display dianostic messages in the virtual text (no longer the default in Neovim 0.11)
+vim.diagnostic.config({ virtual_text = true })
+
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeout = true
