@@ -12,7 +12,7 @@ require("mini.bracketed").setup({
 	buffer = { suffix = "b", options = {} },
 	comment = { suffix = "r", options = { add_to_jumplist = true } },
 	conflict = { suffix = "x", options = {} },
-	diagnostic = { suffix = "d", options = {} },
+	diagnostic = { suffix = "d", options = { float = false } },
 	file = { suffix = "f", options = {} },
 	-- Disabled as you use `i` for `it()` tests in jasmine.
 	indent = { suffix = "" },
