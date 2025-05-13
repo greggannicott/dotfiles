@@ -14,12 +14,6 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Add your custom scripts to the path.
-export PATH="$HOME/bin:$PATH"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -130,13 +124,6 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -211,24 +198,6 @@ alias ls='colorls'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Add homebrew's ruby to the path. Required for `colorls`.
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-PATH=$PATH:$(ruby -e 'puts Gem.bindir')
-
-# Use `neovim` to display man pages
-export MANPAGER='nvim +Man!'
-export MANWIDTH=999
-
-# Configure vi-mode (handled by the `vi-mode` plugin)
-export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-export VI_MODE_SET_CURSOR=true
-
-# Required for tmuxp
-export DISABLE_AUTO_TITLE='true'
-
-# Add Go
-export PATH=$PATH:$GOPATH/bin
 
 # Shell Integrations
 eval "$(fzf --zsh)"
