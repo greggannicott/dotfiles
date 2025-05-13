@@ -142,7 +142,6 @@ require("lazy").setup({
 			end
 		end,
 	},
-	"winston0410/cmd-parser.nvim",
 	-- Highlight lines used when specifying ranges:
 	{ "winston0410/range-highlight.nvim", event = "VeryLazy", opts = {} },
 	"Wansmer/treesj",
