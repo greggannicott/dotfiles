@@ -163,8 +163,8 @@ require("lazy").setup({
 			"rcarriga/nvim-notify",
 		},
 	},
-	{ "dmmulroy/ts-error-translator.nvim" },
-	{ "chentoast/marks.nvim",             event = "VeryLazy", opts = {} },
+	{ "dmmulroy/ts-error-translator.nvim", event = "VeryLazy" },
+	{ "chentoast/marks.nvim",              event = "VeryLazy", opts = {} },
 	{
 		"ThePrimeagen/harpoon",
 		event = "VeryLazy",
