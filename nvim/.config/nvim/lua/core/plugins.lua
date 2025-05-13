@@ -20,9 +20,10 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require("lazy").setup({
-	"tpope/vim-fugitive",
+	{ "tpope/vim-fugitive",                     event = "VeryLazy" },
 	{
 		"nvim-telescope/telescope.nvim",
+		event = "VeryLazy",
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -48,7 +49,7 @@ require("lazy").setup({
 			return vim.fn.executable("make") == 1
 		end,
 	},
-	"nvim-tree/nvim-web-devicons",
+	{ "nvim-tree/nvim-web-devicons",         event = "VeryLazy" },
 	{
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
@@ -69,7 +70,7 @@ require("lazy").setup({
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	-- Add indentation guides even on blank lines
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy", main = "ibl", opts = {} },
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
 	{
@@ -78,12 +79,12 @@ require("lazy").setup({
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			-- 09/04/2025: Versions are pinned to 1.0.0 due to: https://github.com/mason-org/mason-lspconfig.nvim/issues/545
-			{ "williamboman/mason.nvim", config = true, version = "^1.0.0" },
+			{ "williamboman/mason.nvim",           config = true,     version = "^1.0.0" },
 			{ "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
+			{ "j-hui/fidget.nvim",                 tag = "legacy",    opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
@@ -91,7 +92,7 @@ require("lazy").setup({
 	},
 	-- Install prettier and none-ls for prettier support
 	"nvimtools/none-ls.nvim",
-	"MunifTanjim/prettier.nvim",
+	{ "MunifTanjim/prettier.nvim", event = "VeryLazy" },
 	-- Autocompletion & Snippets
 	{
 		"hrsh7th/nvim-cmp",
@@ -115,17 +116,17 @@ require("lazy").setup({
 		event = "InsertEnter",
 	},
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim", opts = {}, event = "VeryLazy" },
+	{ "folke/which-key.nvim",      opts = {},          event = "VeryLazy" },
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
+	{ "numToStr/Comment.nvim",     event = "VeryLazy", opts = {} },
 	-- Adds git releated signs to the gutter, as well as utilities for managing changes
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	"tpope/vim-sleuth",
-	"sindrets/diffview.nvim",
-	"rgroli/other.nvim",
+	{ "tpope/vim-sleuth",       event = "VeryLazy" },
+	{ "sindrets/diffview.nvim", event = "VeryLazy" },
+	{ "rgroli/other.nvim",      event = "VeryLazy" },
 	{
 		"rcarriga/nvim-notify",
 		opts = {},
@@ -143,14 +144,14 @@ require("lazy").setup({
 	},
 	"winston0410/cmd-parser.nvim",
 	-- Highlight lines used when specifying ranges:
-	{ "winston0410/range-highlight.nvim", opts = {} },
+	{ "winston0410/range-highlight.nvim", event = "VeryLazy", opts = {} },
 	"Wansmer/treesj",
 	{
 		"github/copilot.vim",
 		event = "InsertEnter",
 	},
 	"mfussenegger/nvim-dap",
-	{ "leoluz/nvim-dap-go", opts = {} },
+	{ "leoluz/nvim-dap-go",               event = "VeryLazy", opts = {} },
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -164,19 +165,20 @@ require("lazy").setup({
 		},
 	},
 	{ "dmmulroy/ts-error-translator.nvim" },
-	{ "chentoast/marks.nvim", opts = {} },
+	{ "chentoast/marks.nvim",             event = "VeryLazy", opts = {} },
 	{
 		"ThePrimeagen/harpoon",
+		event = "VeryLazy",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "github/copilot.vim" },              -- or zbirenbaum/copilot.lua
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
 		},
-		build = "make tiktoken", -- Only on MacOS or Linux
+		build = "make tiktoken",                   -- Only on MacOS or Linux
 		opts = {},
 		event = "VeryLazy",
 	},
