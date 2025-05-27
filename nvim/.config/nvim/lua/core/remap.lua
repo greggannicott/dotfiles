@@ -133,3 +133,7 @@ vim.api.nvim_set_keymap("n", "l", "<Nop>", { silent = true })
 
 -- Plugin Development mappings
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
+
+-- Use ripgrep in place of grep
+vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --follow --hidden"
+vim.o.grepformat = "%f:%l:%c:%m"
