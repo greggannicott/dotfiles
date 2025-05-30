@@ -108,11 +108,10 @@ alt-k = 'focus up'
 alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-# Note: Disabled due to a clash with resizing tmux panes
-# alt-shift-h = 'move left'
-# alt-shift-j = 'move down'
-# alt-shift-k = 'move up'
-# alt-shift-l = 'move right'
+ctrl-alt-h = 'move left'
+ctrl-alt-j = 'move down'
+ctrl-alt-k = 'move up'
+ctrl-alt-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-shift-minus = 'resize smart -50'
@@ -215,6 +214,11 @@ run = ['move-node-to-workspace B']
 check-further-callbacks = true
 
 [[on-window-detected]]
+if.app-id = 'org.qutebrowser.qutebrowser'
+run = ['move-node-to-workspace B']
+check-further-callbacks = true
+
+[[on-window-detected]]
 if.app-id = 'com.microsoft.VSCodeInsiders'
 run = ['move-node-to-workspace C']
 check-further-callbacks = true
@@ -285,6 +289,7 @@ run = ['move-node-to-workspace R']
 2 = 'LEN L28u-30 \(2\)'
 T = 'LEN L28u-30 \(2\)'
 C = 'LEN L28u-30 \(2\)'
+X = 'LEN L28u-30 \(1\)'
 4 = 'LEN L28u-30 \(1\)'
 P = 'LEN L28u-30 \(1\)'
 D = 'LEN L28u-30 \(1\)'
