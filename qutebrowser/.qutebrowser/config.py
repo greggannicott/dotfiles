@@ -122,3 +122,6 @@ config.set('url.searchengines', {"DEFAULT": "https://www.google.com/search?q={}"
 # Key bindings for navigating through command results
 config.bind('<Ctrl-n>', 'completion-item-focus next', mode='command')
 config.bind('<Ctrl-p>', 'completion-item-focus prev', mode='command')
+
+# Increase size of hints font
+config.set('fonts.hints', 'bold 14pt monospace')
