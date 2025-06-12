@@ -148,6 +148,10 @@ require("lazy").setup({
 	{
 		"github/copilot.vim",
 		event = "InsertEnter",
+		config = function()
+			-- Disable Copilot for Go files
+			vim.g.copilot_filetypes = { go = false }
+		end,
 	},
 	"mfussenegger/nvim-dap",
 	{ "leoluz/nvim-dap-go",               event = "VeryLazy", opts = {} },
