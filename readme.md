@@ -34,6 +34,14 @@ Instructions:
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
+## Bat
+
+In order to use the "Catppuccin Mocha" on a fresh install, you need to run:
+
+```zsh
+bat cache --build
+```
+
 # Maintaining
 
 Each folder in this repo represents an application configuration.
