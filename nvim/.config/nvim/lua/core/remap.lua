@@ -126,10 +126,10 @@ vim.api.nvim_set_keymap("n", "[[", "<cmd>cprev<CR>", { desc = "Previous Quickfix
 vim.api.nvim_set_keymap("n", "]]", "<cmd>cnext<CR>", { desc = "Next Quickfix" })
 
 -- EXPERIMENT: Disable h/j/k/l movement in normal mode
-vim.api.nvim_set_keymap("n", "h", "<Nop>", { silent = true })
+--[[ vim.api.nvim_set_keymap("n", "h", "<Nop>", { silent = true })
 vim.api.nvim_set_keymap("n", "j", "<Nop>", { silent = true })
 vim.api.nvim_set_keymap("n", "k", "<Nop>", { silent = true })
-vim.api.nvim_set_keymap("n", "l", "<Nop>", { silent = true })
+vim.api.nvim_set_keymap("n", "l", "<Nop>", { silent = true }) ]]
 
 -- Plugin Development mappings
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
