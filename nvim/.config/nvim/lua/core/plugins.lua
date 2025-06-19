@@ -20,7 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require("lazy").setup({
-	{ "tpope/vim-fugitive",                     event = "VeryLazy" },
+	{ "tpope/vim-fugitive", event = "VeryLazy" },
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "VeryLazy",
@@ -49,7 +49,7 @@ require("lazy").setup({
 			return vim.fn.executable("make") == 1
 		end,
 	},
-	{ "nvim-tree/nvim-web-devicons",         event = "VeryLazy" },
+	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 	{
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
@@ -79,12 +79,12 @@ require("lazy").setup({
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			-- 09/04/2025: Versions are pinned to 1.0.0 due to: https://github.com/mason-org/mason-lspconfig.nvim/issues/545
-			{ "williamboman/mason.nvim",           config = true,     version = "^1.0.0" },
+			{ "williamboman/mason.nvim", config = true, version = "^1.0.0" },
 			{ "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim",                 tag = "legacy",    opts = {} },
+			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
@@ -116,17 +116,17 @@ require("lazy").setup({
 		event = "InsertEnter",
 	},
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim",      opts = {},          event = "VeryLazy" },
+	{ "folke/which-key.nvim", opts = {}, event = "VeryLazy" },
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim",     event = "VeryLazy", opts = {} },
+	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 	-- Adds git releated signs to the gutter, as well as utilities for managing changes
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	{ "tpope/vim-sleuth",       event = "VeryLazy" },
+	{ "tpope/vim-sleuth", event = "VeryLazy" },
 	{ "sindrets/diffview.nvim", event = "VeryLazy" },
-	{ "rgroli/other.nvim",      event = "VeryLazy" },
+	{ "rgroli/other.nvim", event = "VeryLazy" },
 	{
 		"rcarriga/nvim-notify",
 		opts = {},
@@ -154,7 +154,7 @@ require("lazy").setup({
 		end,
 	},
 	"mfussenegger/nvim-dap",
-	{ "leoluz/nvim-dap-go",               event = "VeryLazy", opts = {} },
+	{ "leoluz/nvim-dap-go", event = "VeryLazy", opts = {} },
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -168,7 +168,7 @@ require("lazy").setup({
 		},
 	},
 	{ "dmmulroy/ts-error-translator.nvim", event = "VeryLazy" },
-	{ "chentoast/marks.nvim",              event = "VeryLazy", opts = {} },
+	{ "chentoast/marks.nvim", event = "VeryLazy", opts = {} },
 	{
 		"ThePrimeagen/harpoon",
 		event = "VeryLazy",
@@ -178,10 +178,10 @@ require("lazy").setup({
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "github/copilot.vim" },              -- or zbirenbaum/copilot.lua
+			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
 		},
-		build = "make tiktoken",                   -- Only on MacOS or Linux
+		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {},
 		event = "VeryLazy",
 	},
