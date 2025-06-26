@@ -280,6 +280,11 @@ if.app-id = 'notion.id'
 run = ['move-node-to-workspace N']
 check-further-callbacks = true
 
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenContinuity'
+run = ['move-node-to-workspace I']
+check-further-callbacks = true
+
 # Firefox on 'R' for code reviews
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
