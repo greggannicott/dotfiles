@@ -181,7 +181,7 @@ interactive_rip_grep() (
 alias gs="git status -s"
 alias gp="git push"
 alias gpnv="git push --no-verify"
-alias gmom="git fetch && git merge origin/main"
+alias gmom="git fetch && git merge origin/main --no-edit"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
 alias ts="~/bin/tmux-too-young"
@@ -192,6 +192,8 @@ alias irg="interactive_rip_grep"
 alias remove-worktrees="delete-worktrees.zsh"
 alias rsd="npm run start-dev"
 alias nrsd="npm run start-dev"
+alias ty="tmux-too-young open --search"
+alias gt="go test"
 
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
