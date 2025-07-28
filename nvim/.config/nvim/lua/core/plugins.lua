@@ -201,7 +201,7 @@ require("lazy").setup({
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	{
+	--[[ {
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
 			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
@@ -210,7 +210,7 @@ require("lazy").setup({
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {},
 		event = "VeryLazy",
-	},
+	}, ]]
 	{ "echasnovski/mini.nvim", version = false },
 	{
 		"greggannicott/jasmine-toggle.nvim",
