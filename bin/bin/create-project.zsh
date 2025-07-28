@@ -68,7 +68,7 @@ COPY_BRANCH_NAME_OPTION="Copy branch name to clipboard"
 # Set default values
 name=""
 project_type="bug"
-branch_name="DIUI-"
+branch_name="IS-"
 # For some reason you need commas either end of the string. Without this the first and last options are not set by default.
 DEFAULT_OPTIONS=",$NOTION_PROJECT_OPTION,$INSTALL_DEPENDENCIES_OPTION,$OPEN_TMUX_TOO_YOUNG_OPTION,$COPY_BRANCH_NAME_OPTION,"
 
