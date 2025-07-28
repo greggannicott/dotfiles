@@ -22,7 +22,7 @@ install_dependencies ()
     output_heading "Installing dependencies for $id"
     if [ -e ~/.workflow-config.yaml ]; then
         init_command=`yq ".repos[] | select(.id == \"$id\") | .init" ~/.workflow-config.yaml`
-        if [ "$init_command" = "" ]
+        if [[ -z "$init_command" || $init_command = "null" ]]
         then
             echo "No init command found. Skipping..."
         else
