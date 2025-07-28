@@ -34,4 +34,5 @@ export DISABLE_AUTO_TITLE='true'
 
 # Add Go
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/go/bin
 
