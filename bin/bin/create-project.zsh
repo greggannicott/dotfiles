@@ -9,10 +9,10 @@ script_directory="$(cd "$(dirname "$0")" && pwd)"
 source "$script_directory/helper-functions.zsh"
 
 check_exit_code() {
-if [ $1 -ne 0 ]; then
-    echo "$(tput setaf 1)Script exited prematurely...$(tput sgr0)"
-    exit 1
-fi
+    if [ $1 -ne 0 ]; then
+        echo "$(tput setaf 1)Script exited prematurely...$(tput sgr0)"
+        exit 1
+    fi
 }
 
 create_worktree ()
@@ -44,22 +44,9 @@ create_worktree ()
     git push -u
 }
 
-update_catalog_govern_json ()
-{
-    branch=$1
-    repo_path=`yq ".repos[] | select(.id == \"di-shell\") | .path" ~/.workflow-config.yaml`
-    branch_path="$repo_path/$branch"
-    json_file="$branch_path/client/src/assets/remotes/catalog-govern.json"
-    temp_file="$branch_path/client/src/assets/remotes/catalog-govern.temp.json"
-    output_heading "Updating catalog-govern.json"
-    jq 'map(.application |= del(.namespace))' $json_file > $temp_file && mv $temp_file $json_file 
-    jq 'map(.federation.remoteEntry = "http://localhost:4200/remoteEntry.js")' $json_file > $temp_file && mv $temp_file $json_file 
-}
-
 # Setup possible options
 UI_WORKTREE_OPTION="Create UI Worktree"
-BFF_WORKTREE_OPTION="Create BFF Worktree"
-SHELL_WORKTREE_OPTION="Create Shell Worktree"
+BACKEND_WORKTREE_OPTION="Create Backend Worktree"
 NOTION_PROJECT_OPTION="Create Notion Project"
 INSTALL_DEPENDENCIES_OPTION="Install Dependencies"
 OPEN_TMUX_TOO_YOUNG_OPTION="Open tmux-too-young following creation of project"
@@ -83,17 +70,14 @@ branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
 # Prompt user for options
-script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BFF_WORKTREE_OPTION $SHELL_WORKTREE_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
+script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BACKEND_WORKTREE_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
 check_exit_code $?
 
 if [[ "${script_options[@]}" =~ $UI_WORKTREE_OPTION ]]; then
     ui=true
 fi
-if [[ "${script_options[@]}" =~ $BFF_WORKTREE_OPTION ]]; then
-    bff=true
-fi
-if [[ "${script_options[@]}" =~ $SHELL_WORKTREE_OPTION ]]; then
-    shell=true
+if [[ "${script_options[@]}" =~ $BACKEND_WORKTREE_OPTION ]]; then
+    backend=true
 fi
 if [[ "${script_options[@]}" =~ $NOTION_PROJECT_OPTION ]]; then
     notion=true
@@ -126,18 +110,12 @@ original_dir=$(pwd)
 
 # Create worktree for UI
 if [ "$ui" = "true" ]; then
-    create_worktree "govern-ui" $branch_name $install_dependencies
+    create_worktree "ironstream-hub-ui" $branch_name $install_dependencies
 fi
 
-# Create worktree for BFF
-if [ "$bff" = "true" ]; then
-    create_worktree "govern-bff" $branch_name $install_dependencies
-fi
-
-# Create worktree for Shell
-if [ "$shell" = "true" ]; then
-    create_worktree "di-shell" $branch_name $install_dependencies
-    update_catalog_govern_json $branch_name
+# Create worktree for the Backend
+if [ "$backend" = "true" ]; then
+    create_worktree "ironstream-hub-backend" $branch_name $install_dependencies
 fi
 
 if [ "$notion" = "true" ]; then
