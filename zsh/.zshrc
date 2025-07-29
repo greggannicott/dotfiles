@@ -95,6 +95,7 @@ plugins=(
     nvm
     brew
     fzf-tab 
+    web-search
 )
 
 source $ZSH/oh-my-zsh.sh
