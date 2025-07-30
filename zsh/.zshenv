@@ -36,3 +36,7 @@ export DISABLE_AUTO_TITLE='true'
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/go/bin
 
+# Ironstream Helper Variables
+export is_conf="/opt/ihub/conf/"
+export is_logs="/opt/ihub/log/"
+
