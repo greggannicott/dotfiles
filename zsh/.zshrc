@@ -196,7 +196,7 @@ alias nrsd="npm run start-dev"
 alias ty="tmux-too-young open --search"
 alias gt="go test"
 alias run-hub-api="sudo go build -o ../ironstreamhubportal.exe && sudo ../ironstreamhubportal.exe"
-alias run-hub-service="sudo go build -o ../ironstreamhub && sudo ../ironstreamhub foreground"
+alias run-hub-service="sudo go run . foreground"
 alias run-hub-ui="npm run start"
 
 # Add alias for `colorls` so it replaces `ls`
