@@ -43,10 +43,28 @@ local on_attach = function(client, bufnr)
 
 	nmap("<leader>cD", vim.lsp.buf.type_definition, "Goto Type Definition")
 
-	nmap("<leader>cy", require("telescope.builtin").lsp_document_symbols, "Search Document Symbols")
-	nmap("<C-t>", require("telescope.builtin").lsp_document_symbols, "Search Document Symbols")
-	nmap("<leader>cY", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Dynamic Workspace Symbols")
-	nmap("<C-y>", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Search Dynamic Workspace Symbols")
+	nmap("<C-t>", function()
+		require("telescope.builtin").lsp_document_symbols({
+			symbol_width = 70,
+		})
+	end, "Search Document Symbols")
+	nmap("<leader>cy", function()
+		require("telescope.builtin").lsp_document_symbols({
+			symbol_width = 70,
+		})
+	end, "Search Document Symbols")
+	-- We're using `lsp_dynamic_workspace_symbols` instead of `lsp_workspace_symbols` as it works with golang.
+	-- The drawback is that you're now unable to specify symbol type using `:type:` in the prompt.
+	nmap("<C-y>", function()
+		require("telescope.builtin").lsp_dynamic_workspace_symbols({
+			symbol_width = 45,
+		})
+	end, "Search Dynamic Workspace Symbols")
+	nmap("<leader>cY", function()
+		require("telescope.builtin").lsp_dynamic_workspace_symbols({
+			symbol_width = 45,
+		})
+	end, "Search Dynamic Workspace Symbols")
 
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")

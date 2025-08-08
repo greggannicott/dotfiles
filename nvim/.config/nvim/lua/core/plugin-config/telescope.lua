@@ -100,7 +100,17 @@ wk.add({
 		desc = "Search Help Under Cursor",
 	},
 	{ "<leader>sM", require("telescope.builtin").man_pages, desc = "Search Man Pages" },
-	{ "<leader>sY", require("telescope.builtin").lsp_dynamic_workspace_symbols, desc = "Search Workspace Symbols" },
+	-- We're using `lsp_dynamic_workspace_symbols` instead of `lsp_workspace_symbols` as it works with golang.
+	-- The drawback is that you're now unable to specify symbol type using `:type:` in the prompt.
+	{
+		"<leader>sY",
+		function()
+			require("telescope.builtin").lsp_dynamic_workspace_symbols({
+				symbol_width = 45,
+			})
+		end,
+		desc = "Search Workspace Symbols",
+	},
 	{ "<leader>sb", require("telescope.builtin").buffers, desc = "Search existing Buffers" },
 	{ "<leader>sc", require("telescope.builtin").commands, desc = "Search Commands" },
 	{ "<leader>sd", require("telescope.builtin").diagnostics, desc = "Search Diagnostics" },
@@ -116,7 +126,15 @@ wk.add({
 	{ "<leader>st", require("telescope.builtin").tagstack, desc = "Search Tagstack" },
 	{ "<leader>su", require("telescope").extensions.undo.undo, desc = "Search Undo History" },
 	{ "<leader>sv", require("telescope.builtin").vim_options, desc = "Search Vim Options" },
-	{ "<leader>sy", require("telescope.builtin").lsp_document_symbols, desc = "Search Document Symbols" },
+	{
+		"<leader>sy",
+		function()
+			require("telescope.builtin").lsp_document_symbols({
+				symbol_width = 70,
+			})
+		end,
+		desc = "Search Document Symbols",
+	},
 })
 
 vim.keymap.set("n", "<C-p>", function()
