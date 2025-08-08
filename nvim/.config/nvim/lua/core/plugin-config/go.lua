@@ -1,4 +1,5 @@
-require("go").setup()
+-- Note: The require('go').setup() function is called in the config section of the plugin setup.
+-- This file currently exists to set up key mappings for Go-related commands.
 local wk = require("which-key")
 
 wk.add({
