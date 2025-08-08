@@ -11,5 +11,4 @@ wk.add({
 	{ "<leader>cgs", ":GoSignature<CR>", desc = "Signature Help" },
 	{ "<leader>cgt", ":GoTestFunc<CR>", desc = "Test Function" },
 	{ "<leader>cgT", ":GoTestFile<CR>", desc = "Test File" },
-	{ "<leader>cgp", ":GoPkgBrowser<CR>", desc = "Package Browser" },
 }, { mode = "n" })
