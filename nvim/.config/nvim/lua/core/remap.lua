@@ -87,7 +87,7 @@ vim.wo.cursorlineopt = "both"
 vim.go.laststatus = 3
 
 -- Display the name and state of each file in the top right
-vim.go.winbar = "%=%m %t"
+vim.go.winbar = "%=%m %f"
 
 -- Open file to right when performing split
 vim.go.splitright = true
