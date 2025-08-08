@@ -83,12 +83,18 @@ wk.add({
 	-- Note: You shouldn't need to use `@` in the following. In theory no value should reset it.
 	-- But for whatever reason, that doesn't work.
 	{ "<leader>gC", group = "Change Base" },
-	{ "<leader>gCr", "<CMD>Gitsigns change_base @<CR>", desc = "Reset to default base" },
-	{ "<leader>gCm", "<CMD>Gitsigns change_base origin/main<CR>", desc = "Change base: origin/main" },
-	{ "<leader>gCM", "<CMD>Gitsigns change_base main<CR>", desc = "Change base: main" },
+	{ "<leader>gCr", "<CMD>Gitsigns change_base @ true<CR>", desc = "Reset to default base" },
+	{
+		"<leader>gCi",
+		"<CMD>Gitsigns change_base origin/iisMultiSource true<CR>",
+		desc = "Change base: origin/iisMultiSource",
+	},
+	{ "<leader>gCI", "<CMD>Gitsigns change_base iisMultiSource truw<CR>", desc = "Change base: iisMultiSource" },
+	{ "<leader>gCm", "<CMD>Gitsigns change_base origin/main true<CR>", desc = "Change base: origin/main" },
+	{ "<leader>gCM", "<CMD>Gitsigns change_base main true<CR>", desc = "Change base: main" },
 	{
 		"<leader>gCp",
-		"<CMD>Gitsigns change_base ~1<CR>",
+		"<CMD>Gitsigns change_base ~1 true<CR>",
 		desc = "Change base: previous commit (~1)",
 	},
 	{
