@@ -77,7 +77,7 @@ require("neodev").setup()
 
 -- Enable the following language servers
 local servers = {
-	["angularls@17.3.12"] = {},
+	["angularls@17.3.2"] = {},
 	ts_ls = {},
 	html = {},
 	cssls = {},
@@ -88,14 +88,12 @@ local servers = {
 		},
 	},
 	gopls = {
-		settings = {
-			gopls = {
-				analyses = {
-					unusedparams = true,
-				},
-				staticcheck = true,
-				gofumpt = true,
+		gopls = {
+			analyses = {
+				unusedparams = true,
 			},
+			staticcheck = true,
+			gofumpt = true,
 		},
 	},
 }
