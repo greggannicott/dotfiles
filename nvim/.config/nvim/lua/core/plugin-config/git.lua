@@ -69,6 +69,11 @@ wk.add({
 	-- Diff
 	{ "<leader>gd", group = "Diff" },
 	{ "<leader>gdb", ":DiffviewOpen origin/main... --imply-local<CR>", desc = "Diff branch with main" },
+	{
+		"<leader>gdi",
+		":DiffviewOpen origin/iisMultiSource... --imply-local<CR>",
+		desc = "Diff branch with iisMultiSource",
+	},
 	{ "<leader>gdd", "<CMD>DiffviewOpen<CR>", desc = "View diff of altered files" },
 	{ "<leader>gdo", "<CMD>DiffviewOpen HEAD..@{u}<CR>", desc = "Diff branch with upstream" },
 	{ "<leader>gg", toggleFugitiveGit, desc = "Git Status" },
