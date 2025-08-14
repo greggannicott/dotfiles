@@ -38,7 +38,9 @@ local on_attach = function(client, bufnr)
 	end, "Search References")
 	nmap("<leader>cR", require("telescope.builtin").lsp_references, "Search References")
 
-	nmap("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+	nmap("gI", function()
+		require("telescope.builtin").lsp_implementations({ fname_width = 85 })
+	end, "Goto Implementation")
 	nmap("<leader>cI", require("telescope.builtin").lsp_implementations, "Search Implementations")
 
 	nmap("<leader>cD", vim.lsp.buf.type_definition, "Goto Type Definition")
