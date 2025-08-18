@@ -195,7 +195,7 @@ alias rsd="npm run start-dev"
 alias nrsd="npm run start-dev"
 alias ty="tmux-too-young open --search"
 alias gt="go test"
-alias run-hub-api="sudo go build -o ../ironstreamhubportal.exe && sudo ../ironstreamhubportal.exe"
+alias run-hub-api="sudo go run ."
 alias run-hub-service="sudo go run . foreground"
 alias run-hub-ui="npm run start"
 
