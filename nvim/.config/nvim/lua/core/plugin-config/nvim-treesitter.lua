@@ -24,6 +24,7 @@ require("nvim-treesitter.configs").setup({
 		"diff",
 		"git_rebase",
 		"tmux",
+		"angular",
 	},
 
 	-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
