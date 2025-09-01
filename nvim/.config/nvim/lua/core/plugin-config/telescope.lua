@@ -111,12 +111,30 @@ wk.add({
 		end,
 		desc = "Search Workspace Symbols",
 	},
-	{ "<leader>sb", require("telescope.builtin").buffers, desc = "Search existing Buffers" },
+	{
+		"<leader>sb",
+		require("telescope.builtin").buffers,
+		desc = "Search existing Buffers",
+	},
 	{ "<leader>sc", require("telescope.builtin").commands, desc = "Search Commands" },
-	{ "<leader>sd", require("telescope.builtin").diagnostics, desc = "Search Diagnostics" },
+	{
+		"<leader>sd",
+		require("telescope.builtin").diagnostics,
+		desc = "Search Diagnostics",
+	},
 	{ "<leader>sf", require("telescope.builtin").find_files, desc = "Search Files" },
 	{ "<leader>sg", require("telescope").extensions.live_grep_args.live_grep_args, desc = "Search using Grep" },
-	{ "<leader>sG", require("telescope.builtin").grep_string, desc = "Grep String Under Cursor" },
+	{
+		"<leader>sG",
+		require("telescope-live-grep-args.shortcuts").grep_visual_selection,
+		desc = "Search with visual selection using Grep",
+		mode = "v",
+	},
+	{
+		"<leader>sG",
+		require("telescope.builtin").grep_string,
+		desc = "Grep String Under Cursor",
+	},
 	{ "<leader>sh", require("telescope.builtin").help_tags, desc = "Search Help" },
 	{ "<leader>sj", require("telescope.builtin").jumplist, desc = "Search Jumplist" },
 	{ "<leader>sk", require("telescope.builtin").keymaps, desc = "Search Keymaps" },
@@ -124,8 +142,16 @@ wk.add({
 	{ "<leader>sm", require("telescope.builtin").marks, desc = "Search Marks" },
 	{ "<leader>sr", require("telescope.builtin").lsp_references, desc = "Search References" },
 	{ "<leader>st", require("telescope.builtin").tagstack, desc = "Search Tagstack" },
-	{ "<leader>su", require("telescope").extensions.undo.undo, desc = "Search Undo History" },
-	{ "<leader>sv", require("telescope.builtin").vim_options, desc = "Search Vim Options" },
+	{
+		"<leader>su",
+		require("telescope").extensions.undo.undo,
+		desc = "Search Undo History",
+	},
+	{
+		"<leader>sv",
+		require("telescope.builtin").vim_options,
+		desc = "Search Vim Options",
+	},
 	{
 		"<leader>sy",
 		function()
