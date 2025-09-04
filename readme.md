@@ -18,6 +18,20 @@ brew install stow
 
 Required for the `.zshrc` file.
 
+```zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### Oh My Zsh! Plugins
+
+The following plugins need to be installed:
+
+```zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+```
+
 ## fzf-tab
 
 Running the following is required to use (https://github.com/Aloxaf/fzf-tab)[fzf-tab], which makes it possible to use `fzf` when completing cd commands, entering flags etc.
