@@ -218,3 +218,6 @@ if [[ -n "$ZSH_DEBUGRC" ]]; then
   zprof
 fi
 
+# Required for Ruby to run via a Homebrew install
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
