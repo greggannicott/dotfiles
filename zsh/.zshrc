@@ -146,6 +146,14 @@ function copyCurrentBranchToClipboard()
     echo "✅ Current branch ($currentBranchName) copied to clipboard!"
 }
 
+ty() {
+    if [ $# -eq 0 ]; then
+        tmux-too-young open
+    else
+        tmux-too-young open --search "$@"
+    fi
+}
+
 # Add fzf completion for `add-worktree`
 # Usage: `add-worktree **<TAB>`
 _fzf_complete_add-worktree() {
@@ -185,15 +193,13 @@ alias gpnv="git push --no-verify"
 alias gmom="git fetch && git merge origin/main --no-edit"
 functions[cbranch]=copyCurrentBranchToClipboard
 functions[copybranch]=copyCurrentBranchToClipboard
-alias ts="~/bin/tmux-too-young"
-alias ty="~/bin/tmux-too-young"
 alias kill-ng-serve='ps -eaf | grep "ng serve" | grep -v "grep" | awk "{ print $2 }" | xargs kill'
 alias add-worktree="add-worktree-for-remote-branch.zsh"
 alias irg="interactive_rip_grep"
 alias remove-worktrees="delete-worktrees.zsh"
 alias rsd="npm run start-dev"
 alias nrsd="npm run start-dev"
-alias ty="tmux-too-young open --search"
+alias ty="ty"
 alias gt="go test"
 alias run-hub-api="sudo go run ."
 alias run-hub-service="sudo go run . foreground"
