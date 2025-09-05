@@ -224,6 +224,11 @@ run = ['move-node-to-workspace C']
 check-further-callbacks = true
 
 [[on-window-detected]]
+if.app-id = 'io.capacities.app'
+run = ['move-node-to-workspace C']
+check-further-callbacks = true
+
+[[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
 run = ['move-node-to-workspace T']
 check-further-callbacks = true
@@ -298,7 +303,7 @@ run = ['move-node-to-workspace R']
 [workspace-to-monitor-force-assignment]
 2 = 'LEN L28u-30 \(2\)'
 T = 'LEN L28u-30 \(2\)'
-C = 'LEN L28u-30 \(2\)'
+C = 'LEN L28u-30 \(1\)'
 X = 'LEN L28u-30 \(1\)'
 4 = 'LEN L28u-30 \(1\)'
 P = 'LEN L28u-30 \(1\)'
