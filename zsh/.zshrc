@@ -201,9 +201,13 @@ alias rsd="npm run start-dev"
 alias nrsd="npm run start-dev"
 alias ty="tmux-too-young-search"
 alias gt="go test"
+
 alias run-hub-api="sudo go run ."
+alias rha="run-hub-api"
 alias run-hub-service="sudo go run . foreground"
+alias rhs="run-hub-service"
 alias run-hub-ui="npm run start"
+alias rhu="run-hub-ui"
 
 # Add alias for `colorls` so it replaces `ls`
 alias ls='colorls'
