@@ -40,4 +40,5 @@ export PATH=$PATH:$HOME/go/bin
 export is_conf="/opt/ihub/conf/"
 export is_logs="/opt/ihub/log/"
 export is_licenses="/opt/ihub/conf/license/"
+export is_auth="/opt/ihub/auth/"
 
