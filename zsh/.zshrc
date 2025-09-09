@@ -146,7 +146,7 @@ function copyCurrentBranchToClipboard()
     echo "✅ Current branch ($currentBranchName) copied to clipboard!"
 }
 
-ty() {
+tmux-too-young-search() {
     if [ $# -eq 0 ]; then
         tmux-too-young open
     else
@@ -199,7 +199,7 @@ alias irg="interactive_rip_grep"
 alias remove-worktrees="delete-worktrees.zsh"
 alias rsd="npm run start-dev"
 alias nrsd="npm run start-dev"
-alias ty="ty"
+alias ty="tmux-too-young-search"
 alias gt="go test"
 alias run-hub-api="sudo go run ."
 alias run-hub-service="sudo go run . foreground"
