@@ -201,6 +201,7 @@ alias rsd="npm run start-dev"
 alias nrsd="npm run start-dev"
 alias ty="tmux-too-young-search"
 alias gt="go test"
+alias jira="open-jira.zsh" # First arg should be the Jira ID
 
 alias run-hub-api="sudo go run ."
 alias rha="run-hub-api"
