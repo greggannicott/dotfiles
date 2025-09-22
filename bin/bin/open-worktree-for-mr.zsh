@@ -35,7 +35,7 @@ else
     echo
     echo "Add worktree for branch '$source_branch'..."
     echo 
-    add-worktree-for-remote-branch.zsh --skip-init $source_branch
+    add-worktree-for-remote-branch.zsh $source_branch
 fi
 
 echo
