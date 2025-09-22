@@ -188,6 +188,7 @@ interactive_rip_grep() (
 
 # Aliases
 alias gs="git status -s"
+alias gss="git status"
 alias gp="git push"
 alias gpnv="git push --no-verify"
 alias gmom="git fetch && git merge origin/main --no-edit"
