@@ -42,5 +42,8 @@ export is_logs="/opt/ihub/log/"
 export is_licenses="/opt/ihub/conf/license/"
 export is_auth="/opt/ihub/auth/"
 
+# Knowledge Base (eg. Obsidian) path
+export kb="/Users/greggannicott/kb/"
+
 # Add NPM to the path (for nvim/mason)
 export PATH=/Users/greggannicott/.nvm/versions/node/v18.20.4/bin:$PATH
