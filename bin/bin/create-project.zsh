@@ -22,9 +22,11 @@ create_worktree ()
     install_dependencies=$3
     output_heading "Creating worktree for $id"
 
-    ## Obtain the path of the repo
+    ## Obtain details regarding the repo
 
-    repo_path=`yq ".repos[] | select(.id == \"$id\") | .path" ~/.workflow-config.yaml`
+    repo_path=$(yq ".repos[] | select(.id == \"$id\") | .path" ~/.workflow-config.yaml)
+    origin_branch=$(yq ".repos[] | select(.id == \"$id\") | .defaultBranch // \"main\"" ~/.workflow-config.yaml)
+
 
     if [ -z "$repo_path" ]
     then
@@ -37,7 +39,7 @@ create_worktree ()
     git worktree add $branch
     cd $branch
     git fetch
-    git merge origin/main
+    git merge $origin_branch
     if [ $install_dependencies = true ]; then
         install_dependencies $id
     fi
