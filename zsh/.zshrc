@@ -212,7 +212,7 @@ alias run-hub-ui="npm run start"
 alias rhu="run-hub-ui"
 
 # Add alias for `colorls` so it replaces `ls`
-alias ls='colorls'
+alias ls='colorls --without-icons'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
