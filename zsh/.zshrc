@@ -230,6 +230,10 @@ if [[ -n "$ZSH_DEBUGRC" ]]; then
   zprof
 fi
 
+# Configure globbing (based on the following video: https://youtu.be/g5BoVPhewWM?si=OAnJSGdyKFRjY6sI)
+setopt dot_glob # include dotfiles
+setopt extended_glob # match ~ # ^
+
 # Required for Ruby to run via a Homebrew install
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
