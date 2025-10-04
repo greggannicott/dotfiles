@@ -45,5 +45,8 @@ export is_auth="/opt/ihub/auth/"
 # Knowledge Base (eg. Obsidian) path
 export kb="/Users/greggannicott/kb/"
 
+# BFF related vars
+export bff_url="http://localhost:3123"
+
 # Add NPM to the path (for nvim/mason)
 export PATH=/Users/greggannicott/.nvm/versions/node/v18.20.4/bin:$PATH
