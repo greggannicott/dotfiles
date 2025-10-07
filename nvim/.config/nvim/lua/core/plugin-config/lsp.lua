@@ -131,7 +131,7 @@ mason_lspconfig.setup({
 
 mason_lspconfig.setup_handlers({
 	function(server_name)
-		require("lspconfig")[server_name].setup({
+		vim.lsp.config(server_name, {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = servers[server_name],
