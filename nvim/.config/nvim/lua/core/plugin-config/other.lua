@@ -22,15 +22,15 @@ require("other-nvim").setup({
 })
 
 wk.add({
-	{ "<leader>a", group = "Angular" },
-	{ "<leader>aC", "<cmd>:OtherVSplit component<cr>", desc = "Open Component (vertical split)" },
-	{ "<leader>aH", "<cmd>:OtherVSplit html<cr>", desc = "Open HTML (vertical split)" },
-	{ "<leader>aS", "<cmd>:OtherVSplit service<cr>", desc = "Open Service (vertical split)" },
-	{ "<leader>aT", "<cmd>:OtherVSplit test<cr>", desc = "Open Test (vertical split)" },
-	{ "<leader>aY", "<cmd>:OtherVSplit scss<cr>", desc = "Open SCSS (vertical split)" },
-	{ "<leader>ac", "<cmd>:Other component<cr>", desc = "Open Component" },
-	{ "<leader>ah", "<cmd>:Other html<cr>", desc = "Open HTML" },
-	{ "<leader>as", "<cmd>:Other service<cr>", desc = "Open Service" },
-	{ "<leader>at", "<cmd>:Other test<cr>", desc = "Open Test" },
-	{ "<leader>ay", "<cmd>:Other scss<cr>", desc = "Open SCSS" },
+	{ "<leader>ca", group = "Angular" },
+	{ "<leader>caC", "<cmd>:OtherVSplit component<cr>", desc = "Open Component (vertical split)" },
+	{ "<leader>caH", "<cmd>:OtherVSplit html<cr>", desc = "Open HTML (vertical split)" },
+	{ "<leader>caS", "<cmd>:OtherVSplit service<cr>", desc = "Open Service (vertical split)" },
+	{ "<leader>caT", "<cmd>:OtherVSplit test<cr>", desc = "Open Test (vertical split)" },
+	{ "<leader>caY", "<cmd>:OtherVSplit scss<cr>", desc = "Open SCSS (vertical split)" },
+	{ "<leader>cac", "<cmd>:Other component<cr>", desc = "Open Component" },
+	{ "<leader>cah", "<cmd>:Other html<cr>", desc = "Open HTML" },
+	{ "<leader>cas", "<cmd>:Other service<cr>", desc = "Open Service" },
+	{ "<leader>cat", "<cmd>:Other test<cr>", desc = "Open Test" },
+	{ "<leader>cay", "<cmd>:Other scss<cr>", desc = "Open SCSS" },
 })
