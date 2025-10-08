@@ -204,9 +204,9 @@ alias ty="tmux-too-young-search"
 alias gt="go test"
 alias jira="open-jira.zsh" # First arg should be the Jira ID
 
-alias run-hub-api="sudo go run ."
+alias run-hub-api="go run ."
 alias rha="run-hub-api"
-alias run-hub-service="sudo go run . foreground"
+alias run-hub-service="go run . foreground"
 alias rhs="run-hub-service"
 alias run-hub-ui="npm run start"
 alias rhu="run-hub-ui"
