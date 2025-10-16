@@ -45,6 +45,9 @@ export is_auth="/opt/ihub/auth/"
 # Knowledge Base (eg. Obsidian) path
 export kb="/Users/greggannicott/kb/"
 
+# Projects path (eg. where you manage projects using Obsidian)
+export projects="/Users/greggannicott/projects/"
+
 # BFF related vars
 export bff_url="http://localhost:3123"
 
