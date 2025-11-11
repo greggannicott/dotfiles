@@ -137,3 +137,35 @@ vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source c
 -- Use ripgrep in place of grep
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --follow --hidden"
 vim.o.grepformat = "%f:%l:%c:%m"
+
+-- Yank (copy) path mappings
+wk.add({
+	{ "<leader>y", group = "Yank Paths" },
+	{
+		"<leader>yd",
+		function()
+			local dir = vim.fn.expand("%:p:h")
+			vim.fn.setreg("+", dir)
+			vim.notify("Copied directory: " .. dir, vim.log.levels.INFO)
+		end,
+		desc = "Yank Directory",
+	},
+	{
+		"<leader>yf",
+		function()
+			local file = vim.fn.expand("%:p")
+			vim.fn.setreg("+", file)
+			vim.notify("Copied file path: " .. file, vim.log.levels.INFO)
+		end,
+		desc = "Yank Full File Path",
+	},
+	{
+		"<leader>yn",
+		function()
+			local name = vim.fn.expand("%:t")
+			vim.fn.setreg("+", name)
+			vim.notify("Copied file name: " .. name, vim.log.levels.INFO)
+		end,
+		desc = "Yank File Name",
+	},
+})
