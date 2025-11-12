@@ -211,6 +211,8 @@ alias rhs="run-hub-service"
 alias run-hub-ui="npm run start"
 alias rhu="run-hub-ui"
 
+alias cdpr="cd $project_root"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

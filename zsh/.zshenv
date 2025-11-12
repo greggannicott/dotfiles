@@ -53,3 +53,9 @@ export bff_url="http://localhost:3123"
 
 # Add NPM to the path (for nvim/mason)
 export PATH=/Users/greggannicott/.nvm/versions/node/v18.20.4/bin:$PATH
+
+# Set a variable containing the root of the tmux session.
+# Only do so if you are inside of tmux.
+if [ -n "$TMUX" ]; then
+  project_root=$(tmux display-message -p "#{session_path}")
+fi
