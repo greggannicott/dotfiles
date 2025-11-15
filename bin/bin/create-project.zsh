@@ -50,6 +50,7 @@ create_worktree ()
 UI_WORKTREE_OPTION="Create UI Worktree"
 BACKEND_WORKTREE_OPTION="Create Backend Worktree"
 NOTION_PROJECT_OPTION="Create Notion Project"
+OBSIDIAN_PROJECT_OPTION="Create Obsidian Project"
 INSTALL_DEPENDENCIES_OPTION="Install Dependencies"
 OPEN_TMUX_TOO_YOUNG_OPTION="Open tmux-too-young following creation of project"
 COPY_BRANCH_NAME_OPTION="Copy branch name to clipboard"
@@ -59,7 +60,7 @@ name=""
 project_type="bug"
 branch_name="IS-"
 # For some reason you need commas either end of the string. Without this the first and last options are not set by default.
-DEFAULT_OPTIONS=",$NOTION_PROJECT_OPTION,$INSTALL_DEPENDENCIES_OPTION,$OPEN_TMUX_TOO_YOUNG_OPTION,$COPY_BRANCH_NAME_OPTION,"
+DEFAULT_OPTIONS=",$OBSIDIAN_PROJECT_OPTION,$INSTALL_DEPENDENCIES_OPTION,$OPEN_TMUX_TOO_YOUNG_OPTION,$COPY_BRANCH_NAME_OPTION,"
 
 # Prompt user for values. 
 name=$(gum input --header="Project Name:" --value="$name")
@@ -72,7 +73,7 @@ branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
 # Prompt user for options
-script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BACKEND_WORKTREE_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
+script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
 check_exit_code $?
 
 if [[ "${script_options[@]}" =~ $UI_WORKTREE_OPTION ]]; then
@@ -83,6 +84,9 @@ if [[ "${script_options[@]}" =~ $BACKEND_WORKTREE_OPTION ]]; then
 fi
 if [[ "${script_options[@]}" =~ $NOTION_PROJECT_OPTION ]]; then
     notion=true
+fi
+if [[ "${script_options[@]}" =~ $OBSIDIAN_PROJECT_OPTION ]]; then
+    obsidian=true
 fi
 if [[ "${script_options[@]}" =~ $INSTALL_DEPENDENCIES_OPTION ]]; then
     install_dependencies=true
@@ -97,6 +101,11 @@ fi
 # Validate inputs
 if [[ -z $name && $notion == true ]]; then
     echo "Error: Project Name is required when Notion project is being created."
+    exit 1
+fi
+
+if [[ -z $name && $obsidian == true ]]; then
+    echo "Error: Project Name is required when Obsidian project is being created."
     exit 1
 fi
 
@@ -128,6 +137,32 @@ if [ "$notion" = "true" ]; then
     fi
     output_heading "Creating Notion project for '$name'"
     create-notion-project.zsh --name $name --jira-id $jira_id --branch $branch_name --type $project_type --current
+fi
+
+if [ "$obsidian" = "true" ]; then
+    # Extract JIRA ID from branch name
+    if [[ $branch_name =~ ^([A-Z]+-[0-9]+) ]]; then
+        jira_id=${match[1]}  # This captures the first group
+    fi
+    output_heading "Creating Obsidian project for '$name'"
+
+    payload=$(jq -n \
+        --arg name "$name" \
+        --arg jiraId "$jira_id" \
+        --arg branch "$branch_name" \
+        --arg projectType "$project_type" \
+        '{
+            name: $name,
+            jiraId: $jiraId,
+            branch: $branch,
+            context: "work",
+            duration: "limited",
+            projectStatus: "in progress",
+            projectType: $projectType,
+            isCurrent: true
+        }')
+
+    curl -s "http://localhost:8082/projects/" --data $payload | jq    
 fi
 
 # Copy branch name to clipboard as it might be handy
