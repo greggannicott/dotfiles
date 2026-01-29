@@ -14,7 +14,7 @@ export PATH="$HOME/bin:$PATH"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim'
+  export EDITOR='nvim --clean'
 fi
 
 # Add homebrew's ruby to the path. Required for `colorls`.
