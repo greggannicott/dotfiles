@@ -107,12 +107,6 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#move
-ctrl-alt-h = 'move left'
-ctrl-alt-j = 'move down'
-ctrl-alt-k = 'move up'
-ctrl-alt-l = 'move right'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -189,6 +183,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 alt-r = 'mode resize'
+alt-shift-r = 'mode move' # I don't like alt+shift+r, but alt+m was taking by Monkeytype.
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -214,6 +209,14 @@ k = 'resize height -50'
 l = 'resize width +50'
 minus = 'resize smart -50'
 equal = 'resize smart +50'
+esc = 'mode main'
+enter = 'mode main'
+
+[mode.move.binding]
+h = 'move left'
+j = 'move down'
+k = 'move up'
+l = 'move right'
 esc = 'mode main'
 enter = 'mode main'
 
