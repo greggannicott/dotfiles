@@ -8,6 +8,5 @@
       "tail": "allow"
     },
     "webfetch": "allow"
-  },
-  "keybinds": {}
+  }
 }
