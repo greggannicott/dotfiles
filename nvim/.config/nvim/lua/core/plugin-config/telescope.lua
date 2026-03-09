@@ -116,7 +116,7 @@ wk.add({
 		require("telescope.builtin").buffers,
 		desc = "Search existing Buffers",
 	},
-	{ "<leader>sc", require("telescope.builtin").commands, desc = "Search Commands" },
+	{ "<leader>sc", require("telescope.builtin").git_status, desc = "Search Current Git Changes" },
 	{
 		"<leader>sd",
 		require("telescope.builtin").diagnostics,
