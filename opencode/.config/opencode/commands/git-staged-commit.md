@@ -8,3 +8,5 @@ description: Commit staged git changes
 - If there is no Jira ID, use the Conventional Commits pattern (eg. feat, bug etc)
 - Use recent commits to guide how to write commit.
 - Ask clarifying questions if no files are staged
+
+ALWAYS PROMPT TO CONFIRM MESSAGE IS OK
