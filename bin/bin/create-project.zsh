@@ -49,7 +49,6 @@ create_worktree ()
 # Setup possible options
 UI_WORKTREE_OPTION="Create UI Worktree"
 BACKEND_WORKTREE_OPTION="Create Backend Worktree"
-NOTION_PROJECT_OPTION="Create Notion Project"
 OBSIDIAN_PROJECT_OPTION="Create Obsidian Project"
 INSTALL_DEPENDENCIES_OPTION="Install Dependencies"
 OPEN_TMUX_TOO_YOUNG_OPTION="Open tmux-too-young following creation of project"
@@ -73,7 +72,7 @@ branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
 # Prompt user for options
-script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION $NOTION_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
+script_options=("${(@f)$(gum choose $UI_WORKTREE_OPTION $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION $INSTALL_DEPENDENCIES_OPTION $OPEN_TMUX_TOO_YOUNG_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected \"$DEFAULT_OPTIONS\")}")
 check_exit_code $?
 
 if [[ "${script_options[@]}" =~ $UI_WORKTREE_OPTION ]]; then
@@ -81,9 +80,6 @@ if [[ "${script_options[@]}" =~ $UI_WORKTREE_OPTION ]]; then
 fi
 if [[ "${script_options[@]}" =~ $BACKEND_WORKTREE_OPTION ]]; then
     backend=true
-fi
-if [[ "${script_options[@]}" =~ $NOTION_PROJECT_OPTION ]]; then
-    notion=true
 fi
 if [[ "${script_options[@]}" =~ $OBSIDIAN_PROJECT_OPTION ]]; then
     obsidian=true
@@ -96,12 +92,6 @@ if [[ "${script_options[@]}" =~ $OPEN_TMUX_TOO_YOUNG_OPTION ]]; then
 fi
 if [[ "${script_options[@]}" =~ $COPY_BRANCH_NAME_OPTION ]]; then
     copy_branch=true
-fi
-
-# Validate inputs
-if [[ -z $name && $notion == true ]]; then
-    echo "Error: Project Name is required when Notion project is being created."
-    exit 1
 fi
 
 if [[ -z $name && $obsidian == true ]]; then
@@ -127,16 +117,6 @@ fi
 # Create worktree for the Backend
 if [ "$backend" = "true" ]; then
     create_worktree "ironstream-hub-backend" $branch_name $install_dependencies
-fi
-
-if [ "$notion" = "true" ]; then
-    # Extract JIRA ID from branch name
-    if [[ $branch_name =~ ^([A-Z]+-[0-9]+) ]]; then
-        jira_id=${match[1]}  # This captures the first group
-        echo "Jira ID" $jira_id
-    fi
-    output_heading "Creating Notion project for '$name'"
-    create-notion-project.zsh --name $name --jira-id $jira_id --branch $branch_name --type $project_type --current
 fi
 
 if [ "$obsidian" = "true" ]; then
