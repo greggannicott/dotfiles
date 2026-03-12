@@ -155,11 +155,9 @@ if [ "$obsidian" = "true" ]; then
             name: $name,
             jiraId: $jiraId,
             branch: $branch,
-            context: "work",
-            duration: "limited",
-            projectStatus: "in progress",
-            projectType: $projectType,
-            isCurrent: true
+            context: "Work",
+            ongoing: false,
+            projectStatus: "02 - Doing",
         }')
 
     curl -s "http://localhost:8082/projects/" --data $payload | jq    
