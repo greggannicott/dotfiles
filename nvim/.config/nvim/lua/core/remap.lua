@@ -102,11 +102,11 @@ vim.o.diffopt = "internal,filler,closeoff,linematch:60"
 
 -- Tab related mappings
 wk.add({
-	{ "<leader>T", group = "Tabs" },
-	{ "<leader>Tc", "<cmd>:tabclose<CR>", desc = "Close Tab" },
+	{ "<leader>T",  group = "Tabs" },
+	{ "<leader>Tc", "<cmd>:tabclose<CR>",    desc = "Close Tab" },
 	{ "<leader>Th", "<cmd>:tabprevious<CR>", desc = "Previous Tab" },
-	{ "<leader>Tl", "<cmd>:tabnext<CR>", desc = "Next Tab" },
-	{ "<leader>Tn", "<cmd>:tabnew<CR>", desc = "New Tab" },
+	{ "<leader>Tl", "<cmd>:tabnext<CR>",     desc = "Next Tab" },
+	{ "<leader>Tn", "<cmd>:tabnew<CR>",      desc = "New Tab" },
 })
 vim.keymap.set("n", "L", "<cmd>tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "H", "<cmd>tabprevious<CR>", { desc = "Previous Tab" })
@@ -124,6 +124,12 @@ vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted
 -- Quickfix List Mappings
 vim.api.nvim_set_keymap("n", "[[", "<cmd>cprev<CR>", { desc = "Previous Quickfix" })
 vim.api.nvim_set_keymap("n", "]]", "<cmd>cnext<CR>", { desc = "Next Quickfix" })
+wk.add({
+	{ "<leader>q",  group = "Quickfix" },
+	{ "<leader>qc", "<cmd>:cclose<CR>",                         { desc = "Close" } },
+	{ "<leader>qd", "<cmd>:lua vim.diagnostic.setqflist()<CR>", { desc = "Display Diagnostics" } },
+	{ "<leader>qo", "<cmd>:copen<CR>",                          { desc = "Open" } },
+})
 
 -- EXPERIMENT: Disable h/j/k/l movement in normal mode
 --[[ vim.api.nvim_set_keymap("n", "h", "<Nop>", { silent = true })
