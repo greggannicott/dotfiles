@@ -70,16 +70,12 @@ COPY_BRANCH_NAME_OPTION="Copy branch name to clipboard"
 
 # Set default values
 name=""
-project_type="bug"
 branch_name="IS-"
 # For some reason you need commas either end of the string. Without this the first and last options are not set by default.
 DEFAULT_OPTIONS=",$OBSIDIAN_PROJECT_OPTION,$INSTALL_DEPENDENCIES_OPTION,$OPEN_TMUX_TOO_YOUNG_OPTION,$COPY_BRANCH_NAME_OPTION,"
 
 # Prompt user for values. 
 name=$(gum input --header="Project Name:" --value="$name")
-check_exit_code $?
-
-project_type=$(gum choose "story" "bug" --header="Project Type:" --selected="$project_type")
 check_exit_code $?
 
 branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
@@ -144,7 +140,6 @@ if [ "$obsidian" = "true" ]; then
         --arg name "$name" \
         --arg jiraId "$jira_id" \
         --arg branch "$branch_name" \
-        --arg projectType "$project_type" \
         '{
             name: $name,
             jiraId: $jiraId,
