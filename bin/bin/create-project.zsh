@@ -2,6 +2,12 @@
 
 figlet "Create Project"
 
+# Check BFF connectivity
+if ! curl -s -f -o /dev/null --max-time 5 "http://localhost:8082/projects"; then
+    echo "Exiting. Unable to connect to BFF. Check it is running."
+    exit 1
+fi
+
 # Get the directory of the current script
 script_directory="$(cd "$(dirname "$0")" && pwd)"
 
