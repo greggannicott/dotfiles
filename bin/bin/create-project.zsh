@@ -3,7 +3,7 @@
 figlet "Create Project"
 
 # Check BFF connectivity
-if ! curl -s -f -o /dev/null --max-time 5 "http://localhost:8082/projects"; then
+if ! curl -s -o /dev/null --max-time 5 "http://localhost:8082/status"; then
     echo "$(tput setaf 1)Exiting. Unable to connect to $(tput sgr0)$(tput bold)BFF$(tput sgr0)$(tput setaf 1). Check it is running.$(tput sgr0)"
     exit 1
 fi
