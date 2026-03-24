@@ -166,7 +166,7 @@ if [ "$copy_branch" = "true" ]; then
     echo ""
 fi
 
-# Copy branch name to clipboard as it might be handy
+# Open project with tmux-too-young
 if [ "$open_tmux_too_young" = "true" ]; then
     output_heading "Opening project with tmux-too-young"
     echo ""
