@@ -8,6 +8,14 @@ if ! curl -s -f -o /dev/null --max-time 5 "http://localhost:8082/projects"; then
     exit 1
 fi
 
+# Check VPN connectivity
+ssh_output=$(ssh -T -o ConnectTimeout=5 -o StrictHostKeyChecking=no git@sourcefront.syncsort.com 2>&1)
+ssh_exit_code=$?
+if [ $ssh_exit_code -ne 0 ] && [ $ssh_exit_code -ne 1 ] && ! echo "$ssh_output" | grep -q "shell request failed"; then
+    echo "Exiting. Unable to connect to Bitbucket. Check you are connected to the VPN."
+    exit 1
+fi
+
 # Get the directory of the current script
 script_directory="$(cd "$(dirname "$0")" && pwd)"
 
