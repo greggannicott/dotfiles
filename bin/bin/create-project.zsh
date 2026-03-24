@@ -4,7 +4,7 @@ figlet "Create Project"
 
 # Check BFF connectivity
 if ! curl -s -f -o /dev/null --max-time 5 "http://localhost:8082/projects"; then
-    echo "Exiting. Unable to connect to BFF. Check it is running."
+    echo "$(tput setaf 1)Exiting. Unable to connect to $(tput sgr0)$(tput bold)BFF$(tput sgr0)$(tput setaf 1). Check it is running.$(tput sgr0)"
     exit 1
 fi
 
@@ -12,7 +12,7 @@ fi
 ssh_output=$(ssh -T -o ConnectTimeout=5 -o StrictHostKeyChecking=no git@sourcefront.syncsort.com 2>&1)
 ssh_exit_code=$?
 if [ $ssh_exit_code -ne 0 ] && [ $ssh_exit_code -ne 1 ] && ! echo "$ssh_output" | grep -q "shell request failed"; then
-    echo "Exiting. Unable to connect to Bitbucket. Check you are connected to the VPN."
+    echo "$(tput setaf 1)Exiting. Unable to connect to $(tput sgr0)$(tput bold)Bitbucket$(tput sgr0)$(tput setaf 1). Check you are connected to the VPN.$(tput sgr0)"
     exit 1
 fi
 
