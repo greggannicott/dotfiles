@@ -93,8 +93,8 @@ vim.go.winbar = "%=%m %f"
 vim.go.splitright = true
 vim.go.splitbelow = true
 
-vim.api.nvim_set_keymap("n", "<C-w>|", "<cmd>:vnew<cr>", { desc = "New Vertical Window Split" })
-vim.api.nvim_set_keymap("n", "<C-w>-", "<cmd>:new<cr>", { desc = "New Horizontal Window Split" })
+vim.api.nvim_set_keymap("n", "<C-w>|", "<cmd>:vsplit<cr>", { desc = "New Vertical Window Split" })
+vim.api.nvim_set_keymap("n", "<C-w>-", "<cmd>:split<cr>", { desc = "New Horizontal Window Split" })
 
 -- Always have the top/bottom N lines displayed in buffer
 vim.o.scrolloff = 8
