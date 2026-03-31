@@ -103,14 +103,14 @@ wk.add({
 		desc = "Change base: previous commit (~1)",
 	},
 	{
-		"[h",
+		"[c",
 		function()
 			gitsigns.nav_hunk("prev")
 		end,
 		desc = "Previous hunk",
 	},
 	{
-		"]h",
+		"]c",
 		function()
 			gitsigns.nav_hunk("next")
 		end,
