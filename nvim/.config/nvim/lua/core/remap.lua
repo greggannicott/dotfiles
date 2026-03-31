@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local gitsigns = require("gitsigns")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -128,10 +129,22 @@ vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted
 vim.api.nvim_set_keymap("n", "[[", "<cmd>cprev<CR>", { desc = "Previous Quickfix" })
 vim.api.nvim_set_keymap("n", "]]", "<cmd>cnext<CR>", { desc = "Next Quickfix" })
 wk.add({
-	{ "<leader>q", group = "Quickfix" },
-	{ "<leader>qc", "<cmd>:cclose<CR>", { desc = "Close" } },
-	{ "<leader>qd", "<cmd>:lua vim.diagnostic.setqflist()<CR>", { desc = "Display Diagnostics" } },
-	{ "<leader>qo", "<cmd>:copen<CR>", { desc = "Open" } },
+	{ "<leader>q", name = "Quickfix" },
+	{
+		"<leader>qc",
+		gitsigns.setqflist,
+		desc = "Display Buffer Git Changes",
+	},
+	{
+		"<leader>qC",
+		function()
+			gitsigns.setqflist("all")
+		end,
+		desc = "Display All Git Changes",
+	},
+	{ "<leader>qd", vim.diagnostic.setqflist, desc = "Display Diagnostics" },
+	{ "<leader>qo", "<cmd>copen<CR>", desc = "Open" },
+	{ "<leader>qx", "<cmd>cclose<CR>", desc = "Close" },
 })
 
 -- EXPERIMENT: Disable h/j/k/l movement in normal mode
