@@ -48,6 +48,10 @@ gitsigns.setup({
 		vim.keymap.set("n", "<leader>ghv", gitsigns.preview_hunk, { buffer = bufnr })
 		vim.keymap.set("n", "<leader>ghs", gitsigns.stage_hunk, { buffer = bufnr })
 		vim.keymap.set("n", "<leader>ghr", gitsigns.reset_hunk, { buffer = bufnr })
+
+		-- Add text object support
+		vim.keymap.set({ "o", "x" }, "ic", gitsigns.select_hunk)
+		vim.keymap.set({ "o", "x" }, "ac", gitsigns.select_hunk)
 	end,
 })
 
