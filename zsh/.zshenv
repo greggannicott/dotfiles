@@ -53,6 +53,7 @@ export bff_url="http://localhost:3123"
 
 # GG Launcher vars
 export GG_LAUNCHER_ROOT_DIR=~/code/gg-launcher/
+export GG_LAUNCHER_HELPERS_DIR=$GG_LAUNCHER_ROOT_DIR/helpers/
 
 # Add NPM to the path (for nvim/mason)
 export PATH=/Users/greggannicott/.nvm/versions/node/v18.20.4/bin:$PATH
