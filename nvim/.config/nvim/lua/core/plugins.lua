@@ -24,7 +24,6 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "VeryLazy",
-		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{
@@ -53,8 +52,9 @@ require("lazy").setup({
 	{
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		},
 		-- Runs each time the package is updated. It updates the parses
 		-- used by 'nvim-treesitter'.

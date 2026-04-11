@@ -1,7 +1,7 @@
-local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = {
 		"c",
@@ -30,8 +30,6 @@ require("nvim-treesitter.configs").setup({
 	-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
 	auto_install = true,
 
-	highlight = { enable = true },
-	indent = { enable = true },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -41,6 +39,48 @@ require("nvim-treesitter.configs").setup({
 			node_decremental = "<M-space>",
 		},
 	},
+	init = function()
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				-- Enable treesitter highlighting and disable regex syntax
+				pcall(vim.treesitter.start)
+				-- Enable treesitter-based indentation
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
+		})
+
+		local ensureInstalled = {
+			"c",
+			"cpp",
+			"go",
+			"lua",
+			"python",
+			"rust",
+			"tsx",
+			"typescript",
+			"vimdoc",
+			"vim",
+			"html",
+			"json",
+			"jsdoc",
+			"markdown",
+			"scss",
+			"yaml",
+			"gitcommit",
+			"diff",
+			"git_rebase",
+			"tmux",
+			"angular",
+		}
+
+		local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+		local parsersToInstall = vim.iter(ensureInstalled)
+			:filter(function(parser)
+				return not vim.tbl_contains(alreadyInstalled, parser)
+			end)
+			:totable()
+		require("nvim-treesitter").install(parsersToInstall)
+	end,
 	textobjects = {
 		select = {
 			enable = false,
