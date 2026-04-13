@@ -156,6 +156,15 @@ require("lazy").setup({
 	"mfussenegger/nvim-dap",
 	{ "leoluz/nvim-dap-go", event = "VeryLazy", opts = {} },
 	{
+		"igorlfs/nvim-dap-view",
+		-- let the plugin lazy load itself
+		lazy = false,
+		version = "1.*",
+		---@module 'dap-view'
+		---@type dapview.Config
+		opts = {},
+	},
+	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
 			"ray-x/guihua.lua",
