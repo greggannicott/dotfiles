@@ -112,6 +112,16 @@ init-scripts:
 obsidian-directory: "path to obsidian directory containing your knowledge base"
 ```
 
-# Obsidian Web Clipper Templates
+# Obsidian Web Clipper Settings & Templates
 
-TODO
+There is no easy way to keep your web clipper settings and templates in sync, so you use the Dotfiles as a way to have a version of the truth.
+
+- Make your required changes in the browser.
+- In the Web Clipper Settings, go to 'General' and scroll to the bottom and select 'Export all settings'. This will create a JSON file that contains your settings and templates.
+- Copy the export file into the `obsidian/web-clipper/` directory of dotfiles. Add, commit and push.
+- On your other machine, pull the changes.
+- Copy the JSON contents of the file.
+- In the Web Clipper Settings, choose 'Import all settings'.
+- Paste in the JSON contents and import.
+
+This will replace all your settings and templates.
