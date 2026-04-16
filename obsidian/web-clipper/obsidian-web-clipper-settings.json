@@ -346,6 +346,10 @@
     {
       "name": "oscar-nominations",
       "type": "multitext"
+    },
+    {
+      "name": "formats-owned",
+      "type": "multitext"
     }
   ],
   "reader_settings": {
@@ -529,6 +533,12 @@
         "type": "checkbox"
       },
       {
+        "id": "1776366933633opyp3v82k",
+        "name": "formats-owned",
+        "value": "",
+        "type": "multitext"
+      },
+      {
         "id": "177633638977708zc2q5",
         "name": "rating",
         "value": "",
@@ -570,7 +580,8 @@
     ],
     "noteNameFormat": "{{schema:@MusicAlbum:name}}",
     "path": "References/",
-    "id": "1776336389759mqnuvgq"
+    "id": "1776336389759mqnuvgq",
+    "context": ""
   },
   "template_1776336408794oe4kohr": {
     "schemaVersion": "0.1.0",
@@ -651,6 +662,12 @@
         "type": "checkbox"
       },
       {
+        "id": "1776366949599x9147650x",
+        "name": "formats-owned",
+        "value": "",
+        "type": "multitext"
+      },
+      {
         "id": "1776336408797wqv0gkl",
         "name": "rating",
         "value": "",
@@ -692,7 +709,8 @@
     ],
     "noteNameFormat": "{{schema:@MusicRelease:name}}",
     "path": "References/",
-    "id": "1776336408794oe4kohr"
+    "id": "1776336408794oe4kohr",
+    "context": ""
   },
   "template_1776336428413kjx87ix": {
     "schemaVersion": "0.1.0",
