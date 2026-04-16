@@ -1,0 +1,118 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Movie - IMDb",
+	"behavior": "create",
+	"noteContentFormat": "# Synopsis\n\n{{schema:@Movie:description}}\n",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Movie]]",
+			"type": "multitext"
+		},
+		{
+			"name": "topics",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "year",
+			"value": "{{schema:@Movie:datePublished|date:\\\"YYYY\\\"}}",
+			"type": "number"
+		},
+		{
+			"name": "genre",
+			"value": "{{schema:@Movie:genre}}",
+			"type": "multitext"
+		},
+		{
+			"name": "director",
+			"value": "{{description|split:\\\"Directed by \\\"|slice:1|split:\\\". With\\\"|first|split:\\\", \\\"| map:x => \\\"${x}\\\" | map:x => x.str | wikilink | join}}",
+			"type": "multitext"
+		},
+		{
+			"name": "actors",
+			"value": "{{schema:@Movie:actor|map:a => a.name|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+			"type": "multitext"
+		},
+		{
+			"name": "cover",
+			"value": "{{image}}",
+			"type": "text"
+		},
+		{
+			"name": "duration",
+			"value": "{{schema:@Movie:duration}}",
+			"type": "text"
+		},
+		{
+			"name": "imdb-url",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "aliases",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "tags",
+			"value": "inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "rating",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "imdb-rating",
+			"value": "{{schema:@Movie:aggregateRating.ratingValue}}",
+			"type": "text"
+		},
+		{
+			"name": "to-watch",
+			"value": "",
+			"type": "checkbox"
+		},
+		{
+			"name": "watched",
+			"value": "",
+			"type": "checkbox"
+		},
+		{
+			"name": "watched-on",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "with-becky?",
+			"value": "",
+			"type": "checkbox"
+		},
+		{
+			"name": "reason-comment",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "reason-links",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "oscar-nominations",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "short",
+			"value": "",
+			"type": "checkbox"
+		}
+	],
+	"triggers": [
+		"schema:@Movie"
+	],
+	"noteNameFormat": "{{schema:@Movie:name}}",
+	"path": "References/"
+}

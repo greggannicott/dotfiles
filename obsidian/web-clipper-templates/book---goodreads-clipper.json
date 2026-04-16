@@ -1,0 +1,88 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Book - Goodreads",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Book]]",
+			"type": "multitext"
+		},
+		{
+			"name": "topics",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "cover",
+			"value": "{{schema:@Book:image}}",
+			"type": "text"
+		},
+		{
+			"name": "authors",
+			"value": "{{schema:@Book:author|map:a => a.name|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+			"type": "multitext"
+		},
+		{
+			"name": "goodreadsUrl",
+			"value": "{{meta:property:og:url}}",
+			"type": "text"
+		},
+		{
+			"name": "pages",
+			"value": "{{schema:@Book:numberOfPages}}",
+			"type": "number"
+		},
+		{
+			"name": "isbn",
+			"value": "{{schema:@Book:isbn}}",
+			"type": "text"
+		},
+		{
+			"name": "toRead",
+			"value": "",
+			"type": "checkbox"
+		},
+		{
+			"name": "reading",
+			"value": "",
+			"type": "checkbox"
+		},
+		{
+			"name": "read",
+			"value": "",
+			"type": "checkbox"
+		},
+		{
+			"name": "rating",
+			"value": "",
+			"type": "number"
+		},
+		{
+			"name": "startedFinished",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "reason-comment",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "reason-links",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "tags",
+			"value": "inbox",
+			"type": "multitext"
+		}
+	],
+	"triggers": [
+		"https://www.goodreads.com"
+	],
+	"noteNameFormat": "{{schema:@Book:name}}",
+	"path": "References/"
+}

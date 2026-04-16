@@ -1,0 +1,38 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Artist - Discogs",
+	"behavior": "create",
+	"noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Artist]],[[Person]]",
+			"type": "multitext"
+		},
+		{
+			"name": "type",
+			"value": "[[Musician]]",
+			"type": "multitext"
+		},
+		{
+			"name": "cover",
+			"value": "{{image}}",
+			"type": "text"
+		},
+		{
+			"name": "tags",
+			"value": "inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "discogs-id",
+			"value": "{{schema:@MusicGroup:@id}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"schema:@MusicGroup"
+	],
+	"noteNameFormat": "{{title}}",
+	"path": "References"
+}

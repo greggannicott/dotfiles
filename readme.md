@@ -111,3 +111,7 @@ init-scripts:
     init: "command used to initiate repo, eg npm install"
 obsidian-directory: "path to obsidian directory containing your knowledge base"
 ```
+
+# Obsidian Web Clipper Templates
+
+TODO

@@ -1,0 +1,53 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Podcast - Apple",
+	"behavior": "create",
+	"noteContentFormat": "# Description\n\n{{schema:@CreativeWorkSeries:description}}\n\n# Episodes\n\n![[Shows on Channel.base]]\n",
+	"properties": [
+		{
+			"name": "cover",
+			"value": "{{schema:@CreativeWorkSeries:thumbnailUrl}}",
+			"type": "text"
+		},
+		{
+			"name": "apple-podcast-url",
+			"value": "{{schema:@CreativeWorkSeries:url}}",
+			"type": "text"
+		},
+		{
+			"name": "aliases",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "podcast-type",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"name": "categories",
+			"value": "[[Channel]]",
+			"type": "multitext"
+		},
+		{
+			"name": "type",
+			"value": "[[Podcast]]",
+			"type": "multitext"
+		},
+		{
+			"name": "tags",
+			"value": "inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "topics",
+			"value": "",
+			"type": "multitext"
+		}
+	],
+	"triggers": [
+		"https://podcasts.apple.com"
+	],
+	"noteNameFormat": "{{schema:@CreativeWorkSeries:name}}",
+	"path": "References/"
+}
