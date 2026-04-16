@@ -1,0 +1,1497 @@
+{
+  "general_settings": {
+    "betaFeatures": false,
+    "legacyMode": false,
+    "openBehavior": "embedded",
+    "saveBehavior": "addToObsidian",
+    "showMoreActionsButton": false,
+    "silentOpen": false
+  },
+  "highlighter_settings": {
+    "alwaysShowHighlights": true,
+    "highlightBehavior": "highlight-inline",
+    "highlighterEnabled": true
+  },
+  "interpreter_settings": {
+    "defaultPromptContext": "",
+    "interpreterAutoRun": false,
+    "interpreterEnabled": false,
+    "interpreterModel": "",
+    "models": [],
+    "providers": []
+  },
+  "migrationVersion": 1,
+  "property_types": [
+    {
+      "defaultValue": "{{title}}",
+      "name": "title",
+      "type": "text"
+    },
+    {
+      "defaultValue": "{{url}}",
+      "name": "source",
+      "type": "text"
+    },
+    {
+      "name": "author",
+      "type": "multitext"
+    },
+    {
+      "defaultValue": "{{published}}",
+      "name": "published",
+      "type": "date"
+    },
+    {
+      "defaultValue": "{{date}}",
+      "name": "created",
+      "type": "date"
+    },
+    {
+      "name": "description",
+      "type": "text"
+    },
+    {
+      "name": "tags",
+      "type": "multitext"
+    },
+    {
+      "name": "rating",
+      "type": "number"
+    },
+    {
+      "name": "watched?",
+      "type": "checkbox"
+    },
+    {
+      "name": "watchedOn",
+      "type": "date"
+    },
+    {
+      "name": "aliases",
+      "type": "multitext"
+    },
+    {
+      "name": "genre",
+      "type": "multitext"
+    },
+    {
+      "name": "year",
+      "type": "number"
+    },
+    {
+      "name": "cover",
+      "type": "text"
+    },
+    {
+      "name": "length",
+      "type": "number"
+    },
+    {
+      "name": "director",
+      "type": "multitext"
+    },
+    {
+      "name": "duration",
+      "type": "text"
+    },
+    {
+      "name": "artists",
+      "type": "multitext"
+    },
+    {
+      "name": "labels",
+      "type": "multitext"
+    },
+    {
+      "name": "genres",
+      "type": "multitext"
+    },
+    {
+      "name": "album",
+      "type": "text"
+    },
+    {
+      "name": "albumYear",
+      "type": "text"
+    },
+    {
+      "name": "spotify",
+      "type": "text"
+    },
+    {
+      "name": "withBecky?",
+      "type": "checkbox"
+    },
+    {
+      "name": "season",
+      "type": "number"
+    },
+    {
+      "name": "episodes",
+      "type": "number"
+    },
+    {
+      "name": "toWatch?",
+      "type": "checkbox"
+    },
+    {
+      "name": "reasonLinks",
+      "type": "multitext"
+    },
+    {
+      "name": "reasonComment",
+      "type": "text"
+    },
+    {
+      "name": "imdbRating",
+      "type": "number"
+    },
+    {
+      "name": "actors",
+      "type": "multitext"
+    },
+    {
+      "name": "imdbUrl",
+      "type": "text"
+    },
+    {
+      "name": "discogsUrl",
+      "type": "text"
+    },
+    {
+      "name": "pages",
+      "type": "number"
+    },
+    {
+      "name": "read",
+      "type": "checkbox"
+    },
+    {
+      "name": "toRead",
+      "type": "checkbox"
+    },
+    {
+      "name": "authors",
+      "type": "multitext"
+    },
+    {
+      "name": "goodreadsUrl",
+      "type": "text"
+    },
+    {
+      "name": "format",
+      "type": "text"
+    },
+    {
+      "name": "startedFinished",
+      "type": "text"
+    },
+    {
+      "name": "radioUkUrl",
+      "type": "text"
+    },
+    {
+      "name": "applePodcastsUrl",
+      "type": "text"
+    },
+    {
+      "name": "isbn",
+      "type": "text"
+    },
+    {
+      "name": "episodeNumber",
+      "type": "number"
+    },
+    {
+      "name": "datePublished",
+      "type": "text"
+    },
+    {
+      "name": "podcast",
+      "type": "text"
+    },
+    {
+      "name": "reading",
+      "type": "text"
+    },
+    {
+      "name": "inputSource",
+      "type": "text"
+    },
+    {
+      "name": "uploadDate",
+      "type": "text"
+    },
+    {
+      "name": "url",
+      "type": "text"
+    },
+    {
+      "name": "stravaWorkout",
+      "type": "multitext"
+    },
+    {
+      "name": "podcastType",
+      "type": "text"
+    },
+    {
+      "name": "type",
+      "type": "multitext"
+    },
+    {
+      "name": "categories",
+      "type": "multitext"
+    },
+    {
+      "name": "topics",
+      "type": "multitext"
+    },
+    {
+      "defaultValue": "{{schema:@PodcastEpisode:url}}",
+      "name": "apple-podcasts-url",
+      "type": "text"
+    },
+    {
+      "defaultValue": "[[References/{{schema:@PodcastEpisode:partOfSeries.name}}]]",
+      "name": "channel",
+      "type": "text"
+    },
+    {
+      "name": "strava-workout",
+      "type": "text"
+    },
+    {
+      "name": "reason-comment",
+      "type": "text"
+    },
+    {
+      "name": "reason-links",
+      "type": "text"
+    },
+    {
+      "defaultValue": "{{schema:@CreativeWorkSeries:url}}",
+      "name": "apple-podcast-url",
+      "type": "text"
+    },
+    {
+      "name": "podcast-type",
+      "type": "text"
+    },
+    {
+      "defaultValue": "{{url}}",
+      "name": "imdb-url",
+      "type": "text"
+    },
+    {
+      "defaultValue": "{{schema:@Movie:aggregateRating.ratingValue}}",
+      "name": "imdb-rating",
+      "type": "text"
+    },
+    {
+      "name": "to-watch",
+      "type": "checkbox"
+    },
+    {
+      "name": "watched",
+      "type": "checkbox"
+    },
+    {
+      "name": "watched-on",
+      "type": "text"
+    },
+    {
+      "name": "with-becky?",
+      "type": "checkbox"
+    },
+    {
+      "name": "short",
+      "type": "checkbox"
+    },
+    {
+      "defaultValue": "[[References/{{site}}]]",
+      "name": "website",
+      "type": "multitext"
+    },
+    {
+      "defaultValue": "{{schema:@MusicAlbum:@id}}",
+      "name": "discogs-id",
+      "type": "text"
+    },
+    {
+      "defaultValue": "{{schema:@MusicAlbum:numTracks}}",
+      "name": "track-count",
+      "type": "number"
+    },
+    {
+      "name": "owned",
+      "type": "checkbox"
+    },
+    {
+      "defaultValue": "obsidian-web-clipper-discogs",
+      "name": "input-source",
+      "type": "text"
+    },
+    {
+      "name": "to-buy",
+      "type": "checkbox"
+    },
+    {
+      "name": "buy-from",
+      "type": "multitext"
+    },
+    {
+      "name": "in-rotation",
+      "type": "checkbox"
+    },
+    {
+      "name": "oscar-nominations",
+      "type": "multitext"
+    }
+  ],
+  "reader_settings": {
+    "appearance": "auto",
+    "autoScroll": true,
+    "blendImages": true,
+    "colorLinks": false,
+    "customCss": "",
+    "darkTheme": "same",
+    "defaultFont": "",
+    "followLinks": true,
+    "fontSize": 1.5,
+    "fonts": [],
+    "highlightActiveLine": true,
+    "lightTheme": "default",
+    "lineHeight": 1.6,
+    "maxWidth": 38,
+    "pinPlayer": true
+  },
+  "stats": {
+    "addToObsidian": 124,
+    "copyToClipboard": 0,
+    "saveFile": 0,
+    "share": 0
+  },
+  "template_1775724289928f6y4f05": {
+    "schemaVersion": "0.1.0",
+    "name": "Default",
+    "behavior": "create",
+    "noteContentFormat": "{{content}}",
+    "properties": [
+      {
+        "id": "177572428992959lqc72",
+        "name": "categories",
+        "value": "[[Clipping]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1775724289929lnva4ds",
+        "name": "type",
+        "value": "[[Article]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1775724289929rt6ud3l",
+        "name": "title",
+        "value": "{{title}}",
+        "type": "text"
+      },
+      {
+        "id": "1775724289929s0fmdjb",
+        "name": "author",
+        "value": "{{author|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1775724289929ydbg0jy",
+        "name": "source",
+        "value": "{{url}}",
+        "type": "text"
+      },
+      {
+        "id": "1775724289929gh0ch2e",
+        "name": "published",
+        "value": "{{published}}",
+        "type": "date"
+      },
+      {
+        "id": "1775724289929457ef4d",
+        "name": "created",
+        "value": "{{date}}",
+        "type": "date"
+      },
+      {
+        "id": "1775724289929upmfgjy",
+        "name": "description",
+        "value": "{{description}}",
+        "type": "text"
+      },
+      {
+        "id": "17757242899297w3z3ak",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1775724289929o9jn5c0",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1775724289929b5fmk4w",
+        "name": "website",
+        "value": "[[References/{{site}}]]",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [],
+    "noteNameFormat": "{{title}}",
+    "path": "Clippings/",
+    "id": "1775724289928f6y4f05",
+    "context": ""
+  },
+  "template_1776336389759mqnuvgq": {
+    "schemaVersion": "0.1.0",
+    "name": "Album - Master - Discogs",
+    "behavior": "create",
+    "noteContentFormat": "# Songs\n\n![[Songs On Music Release.base]]\n",
+    "properties": [
+      {
+        "id": "177633638977786w3p0t",
+        "name": "categories",
+        "value": "[[Music Release]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336389777evg62j9",
+        "name": "type",
+        "value": "[[Album]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336389777z8x75gm",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "17763363897778na0xv3",
+        "name": "artists",
+        "value": "{{schema:@MusicAlbum:byArtist|template:\\\"${name}\\\"|wikilink}}",
+        "type": "multitext"
+      },
+      {
+        "id": "17763363897777bw7qe8",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336389777l6xtqh3",
+        "name": "genres",
+        "value": "{{schema:@MusicAlbum:genre|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "17763363897770qluf89",
+        "name": "year",
+        "value": "{{schema:@MusicAlbum:datePublished}}",
+        "type": "number"
+      },
+      {
+        "id": "1776336389777zy5j6ou",
+        "name": "discogs-id",
+        "value": "{{schema:@MusicAlbum:@id}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336389777a9se2k5",
+        "name": "reason-comment",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336389777gca3uww",
+        "name": "reason-links",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336389777m97dgz6",
+        "name": "track-count",
+        "value": "{{schema:@MusicAlbum:numTracks}}",
+        "type": "number"
+      },
+      {
+        "id": "177633638977751pbrb8",
+        "name": "owned",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "177633638977708zc2q5",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "1776336389777r56pk3v",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336389777yqxxzd5",
+        "name": "input-source",
+        "value": "obsidian-web-clipper-discogs",
+        "type": "text"
+      },
+      {
+        "id": "1776336389777q0spnle",
+        "name": "to-buy",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "17763363897771bbumz0",
+        "name": "buy-from",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336389777ufiftm8",
+        "name": "in-rotation",
+        "value": "",
+        "type": "checkbox"
+      }
+    ],
+    "triggers": [
+      "schema:@MusicAlbum"
+    ],
+    "noteNameFormat": "{{schema:@MusicAlbum:name}}",
+    "path": "References/",
+    "id": "1776336389759mqnuvgq"
+  },
+  "template_1776336408794oe4kohr": {
+    "schemaVersion": "0.1.0",
+    "name": "Album - Release - Discogs",
+    "behavior": "create",
+    "noteContentFormat": "# Songs\n\n![[Songs On Music Release.base]]\n",
+    "properties": [
+      {
+        "id": "1776336408797c6hqs9q",
+        "name": "categories",
+        "value": "[[Music Release]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336408797cmmrvje",
+        "name": "type",
+        "value": "[[Album]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336408797jvdb6ek",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336408797ouuiwi7",
+        "name": "artists",
+        "value": "{{schema:@MusicRelease:releaseOf.byArtist|map:a => a.name|map:item => \\\"${item}\\\"|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336408797lkfvh30",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "17763364087974whkdwk",
+        "name": "genres",
+        "value": "{{schema:@MusicRelease:genre|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336408797o59pg5m",
+        "name": "year",
+        "value": "{{schema:@MusicRelease:datePublished}}",
+        "type": "number"
+      },
+      {
+        "id": "1776336408797elr3ozv",
+        "name": "discogs-id",
+        "value": "{{schema:@MusicRelease:@id}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336408797teoqc38",
+        "name": "reason-comment",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336408797rlzff9x",
+        "name": "reason-links",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336408797px62rvv",
+        "name": "track-count",
+        "value": "{{schema:@MusicRelease:numTracks}}",
+        "type": "number"
+      },
+      {
+        "id": "17763364087978hhgzix",
+        "name": "owned",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336408797wqv0gkl",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "1776336408797tn9zvi2",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336408797cwc6euz",
+        "name": "input-source",
+        "value": "obsidian-web-clipper-discogs",
+        "type": "text"
+      },
+      {
+        "id": "1776336408797947h3w0",
+        "name": "to-buy",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336408797l2zvyid",
+        "name": "buy-from",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "17763364087976xcwo85",
+        "name": "in-rotation",
+        "value": "",
+        "type": "checkbox"
+      }
+    ],
+    "triggers": [
+      "schema:@MusicRelease"
+    ],
+    "noteNameFormat": "{{schema:@MusicRelease:name}}",
+    "path": "References/",
+    "id": "1776336408794oe4kohr"
+  },
+  "template_1776336428413kjx87ix": {
+    "schemaVersion": "0.1.0",
+    "name": "Artist - Discogs",
+    "behavior": "create",
+    "noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]",
+    "properties": [
+      {
+        "id": "17763364284135lpsrb5",
+        "name": "categories",
+        "value": "[[Artist]],[[Person]]",
+        "type": "multitext"
+      },
+      {
+        "id": "17763364284132yt998w",
+        "name": "type",
+        "value": "[[Musician]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336428413adtx4vw",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336428413t8lk4mo",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336428413n3dy37k",
+        "name": "discogs-id",
+        "value": "{{schema:@MusicGroup:@id}}",
+        "type": "text"
+      }
+    ],
+    "triggers": [
+      "schema:@MusicGroup"
+    ],
+    "noteNameFormat": "{{title}}",
+    "path": "References",
+    "id": "1776336428413kjx87ix"
+  },
+  "template_17763364602993m5gc2t": {
+    "schemaVersion": "0.1.0",
+    "name": "Band - Discogs",
+    "behavior": "create",
+    "noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]\n",
+    "properties": [
+      {
+        "id": "1776336460300p9yc5x2",
+        "name": "categories",
+        "value": "[[Artist]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336460300vg3jofz",
+        "name": "type",
+        "value": "[[Band]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336460300if8auld",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336460300tbhkjou",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336460300jbzzxlg",
+        "name": "discogs-id",
+        "value": "{{schema:@MusicGroup:@id}}",
+        "type": "text"
+      }
+    ],
+    "triggers": [
+      "schema:@MusicGroup"
+    ],
+    "noteNameFormat": "{{title}}",
+    "path": "References",
+    "id": "17763364602993m5gc2t"
+  },
+  "template_1776336487463qvpd3mw": {
+    "schemaVersion": "0.1.0",
+    "name": "Movie - IMDb",
+    "behavior": "create",
+    "noteContentFormat": "# Synopsis\n\n{{schema:@Movie:description}}\n",
+    "properties": [
+      {
+        "id": "1776336487467mzo8r0b",
+        "name": "categories",
+        "value": "[[Movie]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336487467lpfexuu",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "17763364874676ac79gq",
+        "name": "year",
+        "value": "{{schema:@Movie:datePublished|date:\\\"YYYY\\\"}}",
+        "type": "number"
+      },
+      {
+        "id": "1776336487467kt2ar8x",
+        "name": "genre",
+        "value": "{{schema:@Movie:genre}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336487467zaycfy3",
+        "name": "director",
+        "value": "{{description|split:\\\"Directed by \\\"|slice:1|split:\\\". With\\\"|first|split:\\\", \\\"| map:x => \\\"${x}\\\" | map:x => x.str | wikilink | join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "17763364874671z5b2ty",
+        "name": "actors",
+        "value": "{{schema:@Movie:actor|map:a => a.name|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336487467pzbhfy9",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "17763364874673symqj4",
+        "name": "duration",
+        "value": "{{schema:@Movie:duration}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336487467pzttjq9",
+        "name": "imdb-url",
+        "value": "{{url}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336487467utii3oy",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336487467hp1qtcq",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "17763364874675l8ene2",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "1776336487467qhxldco",
+        "name": "imdb-rating",
+        "value": "{{schema:@Movie:aggregateRating.ratingValue}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336487467v26aq1r",
+        "name": "to-watch",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "17763364874679zty7gz",
+        "name": "watched",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336487467ieic10k",
+        "name": "watched-on",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336487467ov7v22q",
+        "name": "with-becky?",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336487467e9b1dsk",
+        "name": "reason-comment",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336487467to4a3sn",
+        "name": "reason-links",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336487467fi723n7",
+        "name": "oscar-nominations",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336487467m4ip4dg",
+        "name": "short",
+        "value": "",
+        "type": "checkbox"
+      }
+    ],
+    "triggers": [
+      "schema:@Movie"
+    ],
+    "noteNameFormat": "{{schema:@Movie:name}}",
+    "path": "References/",
+    "id": "1776336487463qvpd3mw"
+  },
+  "template_1776336550020uk1t09x": {
+    "schemaVersion": "0.1.0",
+    "name": "Podcast - Apple",
+    "behavior": "create",
+    "noteContentFormat": "# Description\n\n{{schema:@CreativeWorkSeries:description}}\n\n# Episodes\n\n![[Shows on Channel.base]]\n",
+    "properties": [
+      {
+        "id": "1776336550020uzvuftc",
+        "name": "cover",
+        "value": "{{schema:@CreativeWorkSeries:thumbnailUrl}}",
+        "type": "text"
+      },
+      {
+        "id": "17763365500203klhlg7",
+        "name": "apple-podcast-url",
+        "value": "{{schema:@CreativeWorkSeries:url}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336550020dkmergh",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336550020opxisz9",
+        "name": "podcast-type",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336550020hi0nge6",
+        "name": "categories",
+        "value": "[[Channel]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336550020a94k314",
+        "name": "type",
+        "value": "[[Podcast]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336550020kbmirkw",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336550020iozr7ee",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "https://podcasts.apple.com"
+    ],
+    "noteNameFormat": "{{schema:@CreativeWorkSeries:name}}",
+    "path": "References/",
+    "id": "1776336550020uk1t09x"
+  },
+  "template_17763365891698cuor4j": {
+    "schemaVersion": "0.1.0",
+    "name": "Podcast Episode - Apple",
+    "behavior": "create",
+    "noteContentFormat": "# Description\n\n{{schema:@PodcastEpisode:description}}\n",
+    "properties": [
+      {
+        "id": "17763365891703nmxpxc",
+        "name": "categories",
+        "value": "[[Show]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336589170uf59sul",
+        "name": "type",
+        "value": "[[Podcast Episode]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336589170r9kxep1",
+        "name": "cover",
+        "value": "{{schema:@PodcastEpisode:thumbnailUrl}}",
+        "type": "text"
+      },
+      {
+        "id": "17763365891709cq62ol",
+        "name": "apple-podcasts-url",
+        "value": "{{schema:@PodcastEpisode:url}}",
+        "type": "text"
+      },
+      {
+        "id": "17763365891709eajudr",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336589170vqszuik",
+        "name": "episodeNumber",
+        "value": "{{schema:@PodcastEpisode:episodeNumber}}",
+        "type": "number"
+      },
+      {
+        "id": "1776336589170tgwmg2m",
+        "name": "datePublished",
+        "value": "{{schema:@PodcastEpisode:datePublished}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336589170xoiejbq",
+        "name": "description",
+        "value": "{{schema:@PodcastEpisode:description}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336589170fhoin2j",
+        "name": "duration",
+        "value": "{{schema:@PodcastEpisode:duration}}",
+        "type": "text"
+      },
+      {
+        "id": "17763365891709omd56f",
+        "name": "channel",
+        "value": "[[References/{{schema:@PodcastEpisode:partOfSeries.name}}]]",
+        "type": "text"
+      },
+      {
+        "id": "1776336589170top8cg0",
+        "name": "strava-workout",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "17763365891704ahkq68",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "17763365891701jz2rvo",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "https://podcasts.apple.com",
+      "schema:@PodcastEpisode"
+    ],
+    "noteNameFormat": "{{schema:@PodcastEpisode:partOfSeries.name}} - {{schema:@PodcastEpisode:name}}",
+    "path": "References/",
+    "id": "17763365891698cuor4j"
+  },
+  "template_1776336622804hwt141s": {
+    "schemaVersion": "0.1.0",
+    "name": "Radio Station - Radio UK",
+    "behavior": "create",
+    "noteContentFormat": "# Radio Shows\n\n![[Shows on Channel.base]]",
+    "properties": [
+      {
+        "id": "17763366228051o23gt9",
+        "name": "cover",
+        "value": "{{schema:@RadioStation:image.url}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336622805fvor979",
+        "name": "radioUkUrl",
+        "value": "{{schema:@RadioStation:url}}",
+        "type": "text"
+      },
+      {
+        "id": "177633662280584sn1fm",
+        "name": "categories",
+        "value": "[[Channel]]",
+        "type": "multitext"
+      },
+      {
+        "id": "17763366228057oy44dx",
+        "name": "type",
+        "value": "[[Radio Station]]",
+        "type": "multitext"
+      },
+      {
+        "id": "17763366228057m57yxj",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336622805xpwfkw8",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "https://www.radio-uk.co.uk/",
+      "schema:@RadioStation"
+    ],
+    "noteNameFormat": "{{schema:@RadioStation:name}}",
+    "path": "References/",
+    "id": "1776336622804hwt141s"
+  },
+  "template_1776336654329kq51wuz": {
+    "schemaVersion": "0.1.0",
+    "name": "TV Show - IMDB",
+    "behavior": "create",
+    "noteContentFormat": "# Synopsis\n\n{{schema:@TVSeries:description}}\n",
+    "properties": [
+      {
+        "id": "1776336654331v8x925m",
+        "name": "categories",
+        "value": "[[Show]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336654331tewu5wu",
+        "name": "type",
+        "value": "[[TV Show]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336654332by047wu",
+        "name": "year",
+        "value": "{{schema:@TVSeries:datePublished|date:\\\"YYYY\\\"}}",
+        "type": "number"
+      },
+      {
+        "id": "1776336654332lojsdk1",
+        "name": "genre",
+        "value": "{{schema:@TVSeries:genre}}",
+        "type": "multitext"
+      },
+      {
+        "id": "17763366543325tei9rf",
+        "name": "actors",
+        "value": "{{schema:@TVSeries:actor|map:a => a.name|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "17763366543329dar106",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336654332psequs5",
+        "name": "episodes",
+        "value": "{{selector:[data-testid=\\\"hero-subnav-bar-series-episode-count\\\"]|trim}}",
+        "type": "number"
+      },
+      {
+        "id": "17763366543323uves3c",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336654332bzwo4jn",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336654332gbukx6i",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "1776336654332aesjbua",
+        "name": "imdb-rating",
+        "value": "{{schema:@TVSeries:aggregateRating.ratingValue}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336654332h36uway",
+        "name": "watched",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336654332wbe8ja4",
+        "name": "to-watch",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "17763366543320bm8pee",
+        "name": "reason-comment",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336654332vekw1n8",
+        "name": "reason-links",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336654332d8bxki7",
+        "name": "imdb-url",
+        "value": "{{url}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336654332lsrw5by",
+        "name": "channel",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336654332kj46nj0",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "schema:@TVSeries"
+    ],
+    "noteNameFormat": "{{schema:@TVSeries:name}}",
+    "path": "References/",
+    "id": "1776336654329kq51wuz"
+  },
+  "template_1776336684292z3cjgn8": {
+    "schemaVersion": "0.1.0",
+    "name": "Web Site",
+    "behavior": "create",
+    "noteContentFormat": "",
+    "properties": [
+      {
+        "id": "1776336684293nas7185",
+        "name": "categories",
+        "value": "[[Web Site]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336684293onzgs70",
+        "name": "url",
+        "value": "{{domain}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336684293s5kqxbm",
+        "name": "authors",
+        "value": "{{author|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336684293zd9h35d",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "17763366842939laltj4",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336684293q94l4g2",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [],
+    "noteNameFormat": "{{site}}",
+    "path": "References/",
+    "id": "1776336684292z3cjgn8"
+  },
+  "template_17763367109110rmdz0e": {
+    "schemaVersion": "0.1.0",
+    "name": "YouTube Video",
+    "behavior": "create",
+    "noteContentFormat": "# Description\n\n{{schema:@VideoObject:description}}\n",
+    "properties": [
+      {
+        "id": "17763367109137krz17v",
+        "name": "author",
+        "value": "[[{{schema:@VideoObject:author}}]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336710913dsw2s8i",
+        "name": "categories",
+        "value": "[[Clipping]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336710913hiwcfp6",
+        "name": "type",
+        "value": "[[Video]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336710913o3guy0y",
+        "name": "genre",
+        "value": "{{schema:@VideoObject:genre}}",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336710913q30whhz",
+        "name": "cover",
+        "value": "{{schema:@VideoObject:thumbnailUrl}}",
+        "type": "text"
+      },
+      {
+        "id": "17763367109137p0srcp",
+        "name": "uploadDate",
+        "value": "{{schema:@VideoObject:uploadDate}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336710913tyb9o6h",
+        "name": "duration",
+        "value": "{{schema:@VideoObject:duration}}",
+        "type": "text"
+      },
+      {
+        "id": "17763367109138c499e2",
+        "name": "url",
+        "value": "{{schema:@VideoObject:@id}}",
+        "type": "text"
+      },
+      {
+        "id": "17763367109130eq0wlv",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336710913vbt1q7n",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "schema:@VideoObject"
+    ],
+    "noteNameFormat": "{{title}}",
+    "path": "Clippings/",
+    "id": "17763367109110rmdz0e"
+  },
+  "template_1776336744565dg6qni9": {
+    "schemaVersion": "0.1.0",
+    "name": "Book - Goodreads",
+    "behavior": "create",
+    "noteContentFormat": "",
+    "properties": [
+      {
+        "id": "17763367445676p4azka",
+        "name": "categories",
+        "value": "[[Book]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1776336744567nykasyy",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "177633674456730an7mm",
+        "name": "cover",
+        "value": "{{schema:@Book:image}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336744567o71ams8",
+        "name": "authors",
+        "value": "{{schema:@Book:author|map:a => a.name|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "type": "multitext"
+      },
+      {
+        "id": "17763367445674oppxlz",
+        "name": "goodreadsUrl",
+        "value": "{{meta:property:og:url}}",
+        "type": "text"
+      },
+      {
+        "id": "17763367445672z21t29",
+        "name": "pages",
+        "value": "{{schema:@Book:numberOfPages}}",
+        "type": "number"
+      },
+      {
+        "id": "1776336744567pokgkiq",
+        "name": "isbn",
+        "value": "{{schema:@Book:isbn}}",
+        "type": "text"
+      },
+      {
+        "id": "1776336744567ggrgtqn",
+        "name": "toRead",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336744567f7f3prq",
+        "name": "reading",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336744567wlpbu24",
+        "name": "read",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776336744567h7sqrkd",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "1776336744567nl3y7o7",
+        "name": "startedFinished",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336744567v6i6liv",
+        "name": "reason-comment",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336744567r26pqpb",
+        "name": "reason-links",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1776336744567oc2b3tc",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "https://www.goodreads.com"
+    ],
+    "noteNameFormat": "{{schema:@Book:name}}",
+    "path": "References/",
+    "id": "1776336744565dg6qni9"
+  },
+  "template_list": [
+    "1775724289928f6y4f05",
+    "1776336389759mqnuvgq",
+    "1776336408794oe4kohr",
+    "1776336428413kjx87ix",
+    "17763364602993m5gc2t",
+    "1776336744565dg6qni9",
+    "1776336487463qvpd3mw",
+    "17763365891698cuor4j",
+    "1776336550020uk1t09x",
+    "1776336622804hwt141s",
+    "1776336654329kq51wuz",
+    "1776336684292z3cjgn8",
+    "17763367109110rmdz0e"
+  ],
+  "vaults": [
+    "pkm"
+  ]
+}
