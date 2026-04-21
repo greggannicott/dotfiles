@@ -350,6 +350,14 @@
     {
       "name": "formats-owned",
       "type": "multitext"
+    },
+    {
+      "name": "to-listen",
+      "type": "checkbox"
+    },
+    {
+      "name": "growing",
+      "type": "checkbox"
     }
   ],
   "reader_settings": {
@@ -579,6 +587,18 @@
         "name": "in-rotation",
         "value": "",
         "type": "checkbox"
+      },
+      {
+        "id": "1776753147464wxqiaw1re",
+        "name": "to-listen",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "1776753153978e35szte3u",
+        "name": "growing",
+        "value": "",
+        "type": "checkbox"
       }
     ],
     "triggers": [
@@ -706,6 +726,18 @@
       {
         "id": "17763364087976xcwo85",
         "name": "in-rotation",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "17767531675128c299agg0",
+        "name": "to-listen",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
+        "id": "17767531712770wn6ku39h",
+        "name": "growing",
         "value": "",
         "type": "checkbox"
       }
