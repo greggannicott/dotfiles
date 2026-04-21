@@ -358,6 +358,10 @@
     {
       "name": "growing",
       "type": "checkbox"
+    },
+    {
+      "name": "to-listen-notes",
+      "type": "text"
     }
   ],
   "reader_settings": {
@@ -378,7 +382,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 146,
+    "addToObsidian": 151,
     "copyToClipboard": 88,
     "saveFile": 0,
     "share": 0
@@ -595,6 +599,12 @@
         "type": "checkbox"
       },
       {
+        "id": "1776763867098x1lv2bk1j",
+        "name": "to-listen-notes",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
         "id": "1776753153978e35szte3u",
         "name": "growing",
         "value": "",
@@ -734,6 +744,12 @@
         "name": "to-listen",
         "value": "",
         "type": "checkbox"
+      },
+      {
+        "id": "1776763876914cud1w2spl",
+        "name": "to-listen-notes",
+        "value": "",
+        "type": "text"
       },
       {
         "id": "17767531712770wn6ku39h",
@@ -1034,11 +1050,13 @@
       }
     ],
     "triggers": [
+      "schema:@CreativeWorkSeries",
       "https://podcasts.apple.com"
     ],
     "noteNameFormat": "{{schema:@CreativeWorkSeries:name}}",
     "path": "References/",
-    "id": "1776336550020uk1t09x"
+    "id": "1776336550020uk1t09x",
+    "context": ""
   },
   "template_17763365891698cuor4j": {
     "schemaVersion": "0.1.0",
@@ -1126,12 +1144,13 @@
       }
     ],
     "triggers": [
-      "https://podcasts.apple.com",
-      "schema:@PodcastEpisode"
+      "schema:@PodcastEpisode",
+      "https://podcasts.apple.com"
     ],
     "noteNameFormat": "{{schema:@PodcastEpisode:partOfSeries.name}} - {{schema:@PodcastEpisode:name}}",
     "path": "References/",
-    "id": "17763365891698cuor4j"
+    "id": "17763365891698cuor4j",
+    "context": ""
   },
   "template_1776336622804hwt141s": {
     "schemaVersion": "0.1.0",
