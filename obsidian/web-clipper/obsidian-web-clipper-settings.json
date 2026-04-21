@@ -370,8 +370,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 124,
-    "copyToClipboard": 0,
+    "addToObsidian": 146,
+    "copyToClipboard": 88,
     "saveFile": 0,
     "share": 0
   },
@@ -446,6 +446,12 @@
         "name": "website",
         "value": "[[References/{{site}}]]",
         "type": "multitext"
+      },
+      {
+        "id": "1776751609429bgdvrjjje",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
       }
     ],
     "triggers": [],
@@ -1498,8 +1504,8 @@
     "1775724289928f6y4f05",
     "1776336389759mqnuvgq",
     "1776336408794oe4kohr",
-    "1776336428413kjx87ix",
     "17763364602993m5gc2t",
+    "1776336428413kjx87ix",
     "1776336744565dg6qni9",
     "1776336487463qvpd3mw",
     "17763365891698cuor4j",
