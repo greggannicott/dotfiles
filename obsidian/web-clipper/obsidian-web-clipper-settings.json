@@ -382,8 +382,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 151,
-    "copyToClipboard": 88,
+    "addToObsidian": 156,
+    "copyToClipboard": 90,
     "saveFile": 0,
     "share": 0
   },
@@ -511,7 +511,7 @@
       {
         "id": "1776336389777l6xtqh3",
         "name": "genres",
-        "value": "{{schema:@MusicAlbum:genre|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "value": "{{schema:@MusicAlbum:genre|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|replace:\\\" / \\\":\\\"-\\\"|wikilink|join}}",
         "type": "multitext"
       },
       {
@@ -602,7 +602,7 @@
         "id": "1776763867098x1lv2bk1j",
         "name": "to-listen-notes",
         "value": "",
-        "type": "checkbox"
+        "type": "text"
       },
       {
         "id": "1776753153978e35szte3u",
@@ -658,7 +658,7 @@
       {
         "id": "17763364087974whkdwk",
         "name": "genres",
-        "value": "{{schema:@MusicRelease:genre|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|wikilink|join}}",
+        "value": "{{schema:@MusicRelease:genre|map:a => a|map:a => \\\"${a}\\\"|map:a => a.str|replace:\\\" / \\\":\\\"-\\\"|wikilink|join}}",
         "type": "multitext"
       },
       {
