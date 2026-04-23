@@ -382,8 +382,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 156,
-    "copyToClipboard": 90,
+    "addToObsidian": 161,
+    "copyToClipboard": 107,
     "saveFile": 0,
     "share": 0
   },
@@ -476,7 +476,7 @@
     "schemaVersion": "0.1.0",
     "name": "Album - Master - Discogs",
     "behavior": "create",
-    "noteContentFormat": "# Songs\n\n![[Songs On Music Release.base]]\n",
+    "noteContentFormat": "# Songs\n\n![[Songs For Music Release.base]]\n",
     "properties": [
       {
         "id": "177633638977786w3p0t",
@@ -623,7 +623,7 @@
     "schemaVersion": "0.1.0",
     "name": "Album - Release - Discogs",
     "behavior": "create",
-    "noteContentFormat": "# Songs\n\n![[Songs On Music Release.base]]\n",
+    "noteContentFormat": "# Songs\n\n![[Songs For Music Release.base]]\n",
     "properties": [
       {
         "id": "1776336408797c6hqs9q",
@@ -998,7 +998,7 @@
     "schemaVersion": "0.1.0",
     "name": "Podcast - Apple",
     "behavior": "create",
-    "noteContentFormat": "# Description\n\n{{schema:@CreativeWorkSeries:description}}\n\n# Episodes\n\n![[Shows on Channel.base]]\n",
+    "noteContentFormat": "# Description\n\n{{schema:@CreativeWorkSeries:description}}\n\n# Episodes\n\n![[Shows for Channel.base]]\n",
     "properties": [
       {
         "id": "1776336550020uzvuftc",
@@ -1156,7 +1156,7 @@
     "schemaVersion": "0.1.0",
     "name": "Radio Station - Radio UK",
     "behavior": "create",
-    "noteContentFormat": "# Radio Shows\n\n![[Shows on Channel.base]]",
+    "noteContentFormat": "# Radio Shows\n\n![[Shows for Channel.base]]",
     "properties": [
       {
         "id": "17763366228051o23gt9",
@@ -1201,7 +1201,8 @@
     ],
     "noteNameFormat": "{{schema:@RadioStation:name}}",
     "path": "References/",
-    "id": "1776336622804hwt141s"
+    "id": "1776336622804hwt141s",
+    "context": ""
   },
   "template_1776336654329kq51wuz": {
     "schemaVersion": "0.1.0",
