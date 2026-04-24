@@ -362,6 +362,10 @@
     {
       "name": "to-listen-notes",
       "type": "text"
+    },
+    {
+      "name": "quit",
+      "type": "checkbox"
     }
   ],
   "reader_settings": {
@@ -382,8 +386,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 161,
-    "copyToClipboard": 107,
+    "addToObsidian": 165,
+    "copyToClipboard": 148,
     "saveFile": 0,
     "share": 0
   },
@@ -1467,10 +1471,22 @@
         "type": "multitext"
       },
       {
+        "id": "1777053384479rcmmxcgms",
+        "name": "type",
+        "value": "",
+        "type": "multitext"
+      },
+      {
         "id": "177633674456730an7mm",
         "name": "cover",
         "value": "{{schema:@Book:image}}",
         "type": "text"
+      },
+      {
+        "id": "1776336744567oc2b3tc",
+        "name": "tags",
+        "value": "inbox",
+        "type": "multitext"
       },
       {
         "id": "1776336744567o71ams8",
@@ -1480,7 +1496,7 @@
       },
       {
         "id": "17763367445674oppxlz",
-        "name": "goodreadsUrl",
+        "name": "goodreads-url",
         "value": "{{meta:property:og:url}}",
         "type": "text"
       },
@@ -1498,7 +1514,7 @@
       },
       {
         "id": "1776336744567ggrgtqn",
-        "name": "toRead",
+        "name": "to-read",
         "value": "",
         "type": "checkbox"
       },
@@ -1539,10 +1555,10 @@
         "type": "text"
       },
       {
-        "id": "1776336744567oc2b3tc",
-        "name": "tags",
-        "value": "inbox",
-        "type": "multitext"
+        "id": "1777053316088c3gqsos7r",
+        "name": "quit",
+        "value": "",
+        "type": "checkbox"
       }
     ],
     "triggers": [
@@ -1550,7 +1566,8 @@
     ],
     "noteNameFormat": "{{schema:@Book:name}}",
     "path": "References/",
-    "id": "1776336744565dg6qni9"
+    "id": "1776336744565dg6qni9",
+    "context": ""
   },
   "template_list": [
     "1775724289928f6y4f05",
