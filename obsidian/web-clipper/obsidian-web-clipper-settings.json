@@ -366,6 +366,14 @@
     {
       "name": "quit",
       "type": "checkbox"
+    },
+    {
+      "name": "goodreads-url",
+      "type": "text"
+    },
+    {
+      "name": "to-read",
+      "type": "text"
     }
   ],
   "reader_settings": {
@@ -386,7 +394,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 165,
+    "addToObsidian": 166,
     "copyToClipboard": 148,
     "saveFile": 0,
     "share": 0
@@ -1531,6 +1539,12 @@
         "type": "checkbox"
       },
       {
+        "id": "1777053316088c3gqsos7r",
+        "name": "quit",
+        "value": "",
+        "type": "checkbox"
+      },
+      {
         "id": "1776336744567h7sqrkd",
         "name": "rating",
         "value": "",
@@ -1553,12 +1567,6 @@
         "name": "reason-links",
         "value": "",
         "type": "text"
-      },
-      {
-        "id": "1777053316088c3gqsos7r",
-        "name": "quit",
-        "value": "",
-        "type": "checkbox"
       }
     ],
     "triggers": [
