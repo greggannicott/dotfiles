@@ -212,7 +212,7 @@
     },
     {
       "name": "reading",
-      "type": "text"
+      "type": "checkbox"
     },
     {
       "name": "inputSource",
@@ -373,7 +373,7 @@
     },
     {
       "name": "to-read",
-      "type": "text"
+      "type": "checkbox"
     }
   ],
   "reader_settings": {
@@ -1530,7 +1530,7 @@
         "id": "1776336744567f7f3prq",
         "name": "reading",
         "value": "",
-        "type": "text"
+        "type": "checkbox"
       },
       {
         "id": "1776336744567wlpbu24",
@@ -1549,12 +1549,6 @@
         "name": "rating",
         "value": "",
         "type": "number"
-      },
-      {
-        "id": "1776336744567nl3y7o7",
-        "name": "startedFinished",
-        "value": "",
-        "type": "text"
       },
       {
         "id": "1776336744567v6i6liv",
