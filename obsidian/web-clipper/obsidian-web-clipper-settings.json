@@ -374,6 +374,10 @@
     {
       "name": "to-read",
       "type": "checkbox"
+    },
+    {
+      "name": "goodreads-rating",
+      "type": "number"
     }
   ],
   "reader_settings": {
@@ -394,8 +398,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 167,
-    "copyToClipboard": 148,
+    "addToObsidian": 196,
+    "copyToClipboard": 151,
     "saveFile": 0,
     "share": 0
   },
@@ -1475,7 +1479,7 @@
       {
         "id": "1777053384479rcmmxcgms",
         "name": "type",
-        "value": "",
+        "value": "[[Pleasure Book]]",
         "type": "multitext"
       },
       {
@@ -1507,6 +1511,12 @@
         "name": "goodreads-url",
         "value": "{{meta:property:og:url}}",
         "type": "text"
+      },
+      {
+        "id": "1777063080401vz4f4413t",
+        "name": "goodreads-rating",
+        "value": "{{schema:@Book:aggregateRating.ratingValue}}",
+        "type": "number"
       },
       {
         "id": "17763367445672z21t29",
