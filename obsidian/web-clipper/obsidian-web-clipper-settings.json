@@ -394,7 +394,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 166,
+    "addToObsidian": 167,
     "copyToClipboard": 148,
     "saveFile": 0,
     "share": 0
@@ -1473,14 +1473,14 @@
         "type": "multitext"
       },
       {
-        "id": "1776336744567nykasyy",
-        "name": "topics",
+        "id": "1777053384479rcmmxcgms",
+        "name": "type",
         "value": "",
         "type": "multitext"
       },
       {
-        "id": "1777053384479rcmmxcgms",
-        "name": "type",
+        "id": "1776336744567nykasyy",
+        "name": "topics",
         "value": "",
         "type": "multitext"
       },
