@@ -398,7 +398,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 261,
+    "addToObsidian": 266,
     "copyToClipboard": 155,
     "saveFile": 0,
     "share": 0
@@ -598,9 +598,15 @@
       },
       {
         "id": "17763363897771bbumz0",
-        "name": "buy-from",
+        "name": "to-buy-from",
         "value": "",
-        "type": "multitext"
+        "type": "text"
+      },
+      {
+        "id": "1777212087757tmcf814w3",
+        "name": "to-buy-priority",
+        "value": "",
+        "type": "checkbox"
       },
       {
         "id": "1776336389777ufiftm8",
@@ -745,9 +751,15 @@
       },
       {
         "id": "1776336408797l2zvyid",
-        "name": "buy-from",
+        "name": "to-buy-from",
         "value": "",
         "type": "multitext"
+      },
+      {
+        "id": "1777212067127tewgpa40h",
+        "name": "to-buy-priority",
+        "value": "",
+        "type": "checkbox"
       },
       {
         "id": "17763364087976xcwo85",
