@@ -378,6 +378,14 @@
     {
       "name": "goodreads-rating",
       "type": "number"
+    },
+    {
+      "name": "to-buy-from",
+      "type": "text"
+    },
+    {
+      "name": "to-buy-priority",
+      "type": "checkbox"
     }
   ],
   "reader_settings": {
@@ -398,7 +406,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 266,
+    "addToObsidian": 267,
     "copyToClipboard": 155,
     "saveFile": 0,
     "share": 0
