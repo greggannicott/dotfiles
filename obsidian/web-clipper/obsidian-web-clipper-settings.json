@@ -406,7 +406,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 267,
+    "addToObsidian": 271,
     "copyToClipboard": 155,
     "saveFile": 0,
     "share": 0
@@ -480,7 +480,7 @@
       {
         "id": "1775724289929b5fmk4w",
         "name": "website",
-        "value": "[[References/{{site}}]]",
+        "value": "[[{{site}}]]",
         "type": "multitext"
       },
       {
