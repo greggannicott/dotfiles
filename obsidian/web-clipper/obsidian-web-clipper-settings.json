@@ -28,7 +28,6 @@
       "type": "text"
     },
     {
-      "defaultValue": "{{url}}",
       "name": "source",
       "type": "text"
     },
@@ -409,7 +408,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 293,
+    "addToObsidian": 307,
     "copyToClipboard": 156,
     "saveFile": 0,
     "share": 0
@@ -1463,7 +1462,7 @@
       },
       {
         "id": "17763367109138c499e2",
-        "name": "url",
+        "name": "source",
         "value": "{{schema:@VideoObject:@id}}",
         "type": "text"
       },
@@ -1612,7 +1611,7 @@
     "behavior": "create",
     "noteNameFormat": "{{title}}",
     "path": "References/",
-    "noteContentFormat": "",
+    "noteContentFormat": "# Videos\n\n![[Videos for Channel.base]]",
     "properties": [
       {
         "id": "17774002456142v56tzn8y",
