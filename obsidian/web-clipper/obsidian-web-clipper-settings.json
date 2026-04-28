@@ -252,7 +252,6 @@
       "type": "text"
     },
     {
-      "defaultValue": "[[References/{{schema:@PodcastEpisode:partOfSeries.name}}]]",
       "name": "channel",
       "type": "text"
     },
@@ -386,6 +385,10 @@
     {
       "name": "to-buy-priority",
       "type": "checkbox"
+    },
+    {
+      "name": "company",
+      "type": "text"
     }
   ],
   "reader_settings": {
@@ -406,8 +409,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 271,
-    "copyToClipboard": 155,
+    "addToObsidian": 293,
+    "copyToClipboard": 156,
     "saveFile": 0,
     "share": 0
   },
@@ -1418,9 +1421,9 @@
     "properties": [
       {
         "id": "17763367109137krz17v",
-        "name": "author",
+        "name": "channel",
         "value": "[[{{schema:@VideoObject:author}}]]",
-        "type": "multitext"
+        "type": "text"
       },
       {
         "id": "1776336710913dsw2s8i",
@@ -1478,11 +1481,13 @@
       }
     ],
     "triggers": [
-      "schema:@VideoObject"
+      "schema:@VideoObject",
+      "https://www.youtube.com/"
     ],
     "noteNameFormat": "{{title}}",
     "path": "Clippings/",
-    "id": "17763367109110rmdz0e"
+    "id": "17763367109110rmdz0e",
+    "context": ""
   },
   "template_1776336744565dg6qni9": {
     "schemaVersion": "0.1.0",
@@ -1601,6 +1606,69 @@
     "id": "1776336744565dg6qni9",
     "context": ""
   },
+  "template_1777400184050kahzgiqgd": {
+    "id": "1777400184050kahzgiqgd",
+    "name": "YouTube Channel",
+    "behavior": "create",
+    "noteNameFormat": "{{title}}",
+    "path": "References/",
+    "noteContentFormat": "",
+    "properties": [
+      {
+        "id": "17774002456142v56tzn8y",
+        "name": "categories",
+        "value": "[[Channel]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1777400260539z4fl4mbb9",
+        "name": "type",
+        "value": "[[YouTube Channel]]",
+        "type": "multitext"
+      },
+      {
+        "id": "1777400383356u9jxz76su",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      },
+      {
+        "id": "1777400292021dt2a1qft8",
+        "name": "url",
+        "value": "{{url}}",
+        "type": "text"
+      },
+      {
+        "id": "1777400287873swib3nz8v",
+        "name": "company",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "id": "1777400274954u83maxg3w",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "17774002797731y3vhkaqh",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1777400283923jv5hpp0vd",
+        "name": "tags",
+        "value": "",
+        "type": "multitext"
+      }
+    ],
+    "triggers": [
+      "https://www.youtube.com/"
+    ],
+    "context": "",
+    "vault": "pkm"
+  },
   "template_list": [
     "1775724289928f6y4f05",
     "1776336389759mqnuvgq",
@@ -1614,7 +1682,8 @@
     "1776336622804hwt141s",
     "1776336654329kq51wuz",
     "1776336684292z3cjgn8",
-    "17763367109110rmdz0e"
+    "17763367109110rmdz0e",
+    "1777400184050kahzgiqgd"
   ],
   "vaults": [
     "pkm"
