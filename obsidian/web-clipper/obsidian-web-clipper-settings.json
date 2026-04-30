@@ -252,7 +252,7 @@
     },
     {
       "name": "channel",
-      "type": "text"
+      "type": "multitext"
     },
     {
       "name": "strava-workout",
@@ -408,7 +408,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 327,
+    "addToObsidian": 330,
     "copyToClipboard": 156,
     "saveFile": 0,
     "share": 0
@@ -1422,7 +1422,7 @@
         "id": "17763367109137krz17v",
         "name": "channel",
         "value": "[[{{schema:@VideoObject:author}}]]",
-        "type": "text"
+        "type": "multitext"
       },
       {
         "id": "1776336710913dsw2s8i",
