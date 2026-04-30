@@ -408,7 +408,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 309,
+    "addToObsidian": 327,
     "copyToClipboard": 156,
     "saveFile": 0,
     "share": 0
@@ -1416,7 +1416,7 @@
     "schemaVersion": "0.1.0",
     "name": "YouTube Video",
     "behavior": "create",
-    "noteContentFormat": "![]({{schema:@VideoObject:@id}})\n\n# Notes\n\n- \n",
+    "noteContentFormat": "![]({{schema:@VideoObject:@id}})\n\n# Notes\n\n- ",
     "properties": [
       {
         "id": "17763367109137krz17v",
@@ -1668,6 +1668,61 @@
     "context": "",
     "vault": "pkm"
   },
+  "template_1777442919433prfvhmvwq": {
+    "id": "1777442919433prfvhmvwq",
+    "name": "Company - Wikipedia",
+    "behavior": "create",
+    "noteNameFormat": "{{title}}",
+    "path": "References",
+    "noteContentFormat": "# Slogans\n\n![[Slogans for Company.base]]\n",
+    "properties": [
+      {
+        "id": "1777442966066jj9htoe8j",
+        "name": "categories",
+        "value": "[[Company]]",
+        "type": "multitext"
+      },
+      {
+        "id": "177744298365000magxkpu",
+        "name": "type",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1777442988165wmibitpw4",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1777442993516j96m4c7fw",
+        "name": "rating",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "id": "17774429972130tx0t9m5g",
+        "name": "tags",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1777442999316dvizg2jl8",
+        "name": "aliases",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1777443004087j63vt4vij",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
+      }
+    ],
+    "triggers": [],
+    "context": "",
+    "vault": "pkm"
+  },
   "template_list": [
     "1775724289928f6y4f05",
     "1776336389759mqnuvgq",
@@ -1675,6 +1730,7 @@
     "17763364602993m5gc2t",
     "1776336428413kjx87ix",
     "1776336744565dg6qni9",
+    "1777442919433prfvhmvwq",
     "1776336487463qvpd3mw",
     "17763365891698cuor4j",
     "1776336550020uk1t09x",
