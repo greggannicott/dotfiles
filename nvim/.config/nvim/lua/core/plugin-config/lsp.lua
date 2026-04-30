@@ -44,6 +44,7 @@ local on_attach = function(client, bufnr)
 	nmap("<leader>cI", require("telescope.builtin").lsp_implementations, "Search Implementations")
 
 	nmap("<leader>cD", vim.lsp.buf.type_definition, "Goto Type Definition")
+	nmap("gt", vim.lsp.buf.type_definition, "Goto Type Definition")
 
 	nmap("<C-t>", function()
 		require("telescope.builtin").lsp_document_symbols({
