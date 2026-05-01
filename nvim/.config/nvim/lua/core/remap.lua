@@ -149,8 +149,9 @@ wk.add({
 
 -- Back and Forward Navigation
 -- These have been chosen to try and match Chrome, Arc and Obsidian. You can't use cmd and so you've used ctrl instead.
-vim.api.nvim_set_keymap("n", "<C-[>", "<C-o>", { desc = "Back" })
-vim.api.nvim_set_keymap("n", "<C-]>", "<C-i>", { desc = "Forwards" })
+-- NOTE: DISABLED. This is because C-[ is considered the same as esc by the terminal. As a result, whenever you pressed escape in nvim (which is a lot!) you'd go backwards :)
+-- vim.api.nvim_set_keymap("n", "<C-[>", "<C-o>", { desc = "Back" })
+-- vim.api.nvim_set_keymap("n", "<C-]>", "<C-i>", { desc = "Forwards" })
 
 -- EXPERIMENT: Disable h/j/k/l movement in normal mode
 --[[ vim.api.nvim_set_keymap("n", "h", "<Nop>", { silent = true })
