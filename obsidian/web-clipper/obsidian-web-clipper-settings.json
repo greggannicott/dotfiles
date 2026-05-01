@@ -408,7 +408,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 330,
+    "addToObsidian": 346,
     "copyToClipboard": 156,
     "saveFile": 0,
     "share": 0
@@ -1134,7 +1134,7 @@
       },
       {
         "id": "1776336589170vqszuik",
-        "name": "episodeNumber",
+        "name": "episode-number",
         "value": "{{schema:@PodcastEpisode:episodeNumber}}",
         "type": "number"
       },
@@ -1160,7 +1160,7 @@
         "id": "17763365891709omd56f",
         "name": "channel",
         "value": "[[{{schema:@PodcastEpisode:partOfSeries.name}}]]",
-        "type": "text"
+        "type": "multitext"
       },
       {
         "id": "1776336589170top8cg0",
@@ -1179,6 +1179,12 @@
         "name": "topics",
         "value": "",
         "type": "multitext"
+      },
+      {
+        "id": "1777617429444fiozod02y",
+        "name": "rating",
+        "value": "",
+        "type": "number"
       }
     ],
     "triggers": [
