@@ -1257,7 +1257,7 @@
     "schemaVersion": "0.1.0",
     "name": "TV Show - IMDB",
     "behavior": "create",
-    "noteContentFormat": "# Synopsis\n\n{{schema:@TVSeries:description}}\n",
+    "noteContentFormat": "# Synopsis\n\n{{schema:@TVSeries:description}}\n\n# Music\n\n![[Songs for Show.base]]\n\n",
     "properties": [
       {
         "id": "1776336654331v8x925m",
@@ -1359,7 +1359,7 @@
         "id": "1776336654332lsrw5by",
         "name": "channel",
         "value": "",
-        "type": "text"
+        "type": "multitext"
       },
       {
         "id": "1776336654332kj46nj0",
@@ -1373,7 +1373,8 @@
     ],
     "noteNameFormat": "{{schema:@TVSeries:name}}",
     "path": "References/",
-    "id": "1776336654329kq51wuz"
+    "id": "1776336654329kq51wuz",
+    "context": ""
   },
   "template_1776336684292z3cjgn8": {
     "schemaVersion": "0.1.0",
