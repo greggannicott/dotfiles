@@ -388,6 +388,10 @@
     {
       "name": "company",
       "type": "text"
+    },
+    {
+      "name": "episode-number",
+      "type": "text"
     }
   ],
   "reader_settings": {
@@ -408,8 +412,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 346,
-    "copyToClipboard": 156,
+    "addToObsidian": 352,
+    "copyToClipboard": 158,
     "saveFile": 0,
     "share": 0
   },
@@ -896,7 +900,7 @@
     "schemaVersion": "0.1.0",
     "name": "Movie - IMDb",
     "behavior": "create",
-    "noteContentFormat": "# Synopsis\n\n{{schema:@Movie:description}}\n",
+    "noteContentFormat": "# Synopsis\n\n{{schema:@Movie:description}}\n\n# Music\n\n![[Songs for Movie.base]]\n\n",
     "properties": [
       {
         "id": "1776336487467mzo8r0b",
@@ -1030,7 +1034,8 @@
     ],
     "noteNameFormat": "{{schema:@Movie:name}}",
     "path": "References/",
-    "id": "1776336487463qvpd3mw"
+    "id": "1776336487463qvpd3mw",
+    "context": ""
   },
   "template_1776336550020uk1t09x": {
     "schemaVersion": "0.1.0",
