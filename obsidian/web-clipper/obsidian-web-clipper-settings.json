@@ -412,7 +412,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 418,
+    "addToObsidian": 422,
     "copyToClipboard": 158,
     "saveFile": 0,
     "share": 0
@@ -1435,6 +1435,12 @@
         "name": "rating",
         "value": "",
         "type": "number"
+      },
+      {
+        "id": "1777916120043mc45z4s6b",
+        "name": "cover",
+        "value": "{{image}}",
+        "type": "text"
       }
     ],
     "triggers": [],
