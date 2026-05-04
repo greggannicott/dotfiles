@@ -412,7 +412,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 352,
+    "addToObsidian": 418,
     "copyToClipboard": 158,
     "saveFile": 0,
     "share": 0
@@ -1090,6 +1090,12 @@
         "name": "topics",
         "value": "",
         "type": "multitext"
+      },
+      {
+        "id": "1777879106750qe9t6lkaj",
+        "name": "rating",
+        "value": "",
+        "type": "number"
       }
     ],
     "triggers": [
@@ -1242,6 +1248,12 @@
         "name": "topics",
         "value": "",
         "type": "multitext"
+      },
+      {
+        "id": "1777879126650zmzqndqzw",
+        "name": "rating",
+        "value": "",
+        "type": "number"
       }
     ],
     "triggers": [
@@ -1417,12 +1429,19 @@
         "name": "tags",
         "value": "inbox",
         "type": "multitext"
+      },
+      {
+        "id": "17778791366829ymzfgpja",
+        "name": "rating",
+        "value": "",
+        "type": "number"
       }
     ],
     "triggers": [],
     "noteNameFormat": "{{site}}",
     "path": "References/",
-    "id": "1776336684292z3cjgn8"
+    "id": "1776336684292z3cjgn8",
+    "context": ""
   },
   "template_17763367109110rmdz0e": {
     "schemaVersion": "0.1.0",
@@ -1489,6 +1508,12 @@
         "name": "tags",
         "value": "inbox",
         "type": "multitext"
+      },
+      {
+        "id": "1777879152783og7yuq6qo",
+        "name": "rating",
+        "value": "",
+        "type": "number"
       }
     ],
     "triggers": [
