@@ -404,6 +404,18 @@
     {
       "name": "year-of-death",
       "type": "text"
+    },
+    {
+      "name": "media_link",
+      "type": "text"
+    },
+    {
+      "name": "to-consume",
+      "type": "checkbox"
+    },
+    {
+      "name": "consumed",
+      "type": "checkbox"
     }
   ],
   "reader_settings": {
@@ -1558,6 +1570,18 @@
         "name": "media_link",
         "value": "{{schema:@VideoObject:@id}}",
         "type": "text"
+      },
+      {
+        "id": "1779302538408itctc6e2j",
+        "name": "to-consume",
+        "value": "true",
+        "type": "checkbox"
+      },
+      {
+        "id": "17793025487568tby7nnem",
+        "name": "consumed",
+        "value": "",
+        "type": "checkbox"
       }
     ],
     "triggers": [
