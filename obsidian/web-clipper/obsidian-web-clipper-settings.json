@@ -424,7 +424,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 422,
+    "addToObsidian": 470,
     "copyToClipboard": 158,
     "saveFile": 0,
     "share": 0
@@ -1485,7 +1485,7 @@
     "schemaVersion": "0.1.0",
     "name": "YouTube Video",
     "behavior": "create",
-    "noteContentFormat": "![]({{schema:@VideoObject:@id}})\n\n# Notes\n\n- ",
+    "noteContentFormat": "# Notes\n\n- ",
     "properties": [
       {
         "id": "17763367109137krz17v",
@@ -1552,6 +1552,12 @@
         "name": "rating",
         "value": "",
         "type": "number"
+      },
+      {
+        "id": "17792839607203apmpz7rb",
+        "name": "media_link",
+        "value": "{{schema:@VideoObject:@id}}",
+        "type": "text"
       }
     ],
     "triggers": [
