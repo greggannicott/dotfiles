@@ -427,7 +427,7 @@
     "darkTheme": "same",
     "defaultFont": "",
     "followLinks": true,
-    "fontSize": 1.5,
+    "fontSize": 9,
     "fonts": [],
     "highlightActiveLine": true,
     "lightTheme": "default",
@@ -436,8 +436,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 470,
-    "copyToClipboard": 158,
+    "addToObsidian": 507,
+    "copyToClipboard": 160,
     "saveFile": 0,
     "share": 0
   },
@@ -669,6 +669,12 @@
         "name": "growing",
         "value": "",
         "type": "checkbox"
+      },
+      {
+        "id": "1780152367344raxyf400d",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
       }
     ],
     "triggers": [
@@ -791,7 +797,7 @@
         "id": "1776336408797l2zvyid",
         "name": "to-buy-from",
         "value": "",
-        "type": "multitext"
+        "type": "text"
       },
       {
         "id": "1777212067127tewgpa40h",
@@ -822,6 +828,12 @@
         "name": "growing",
         "value": "",
         "type": "checkbox"
+      },
+      {
+        "id": "1780152373842olbaa8ero",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
       }
     ],
     "triggers": [
@@ -879,6 +891,12 @@
         "name": "year-of-death",
         "value": "",
         "type": "text"
+      },
+      {
+        "id": "1780152384042vdshjvzv8",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
       }
     ],
     "triggers": [
@@ -930,6 +948,12 @@
         "name": "year-of-formation",
         "value": "",
         "type": "text"
+      },
+      {
+        "id": "17801523797761o8q15682",
+        "name": "topics",
+        "value": "",
+        "type": "multitext"
       }
     ],
     "triggers": [
