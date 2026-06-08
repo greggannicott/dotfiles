@@ -436,8 +436,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 507,
-    "copyToClipboard": 160,
+    "addToObsidian": 542,
+    "copyToClipboard": 161,
     "saveFile": 0,
     "share": 0
   },
@@ -1562,7 +1562,7 @@
       {
         "id": "1776336710913tyb9o6h",
         "name": "duration",
-        "value": "{{schema:@VideoObject:duration}}",
+        "value": "{{schema:@VideoObject:duration|duration}}",
         "type": "text"
       },
       {
