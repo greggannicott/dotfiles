@@ -1562,6 +1562,12 @@
       {
         "id": "1776336710913tyb9o6h",
         "name": "duration",
+        "value": "{{schema:@VideoObject:duration}}",
+        "type": "text"
+      },
+      {
+        "id": "1780946013127w65psrb9w",
+        "name": "duration-readable",
         "value": "{{schema:@VideoObject:duration|duration}}",
         "type": "text"
       },
