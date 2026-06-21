@@ -77,7 +77,3 @@ Traits follow the pattern "title.md"" in the root directory with frontmatter cat
 Each note represents a trait.
 
 The frontmatter `trait-type` indicates whether I consider it a good or bad trait.
-
-# Skill Feedback
-
-After you've done this, provide feedback on how I can improve this skill to make things quicker for you.
