@@ -15,7 +15,7 @@ Consider the following when performing the review:
 
 Details on how to obtain these can be found below.
 
-The outcome of this should be a new note in the PKM named `{yyyy-%V}-ai-weekly-review - V2.md`. `%V` should represent the week number, padded with a zero.
+The outcome of this should be a new note in the PKM named `{yyyy-%V}-ai-weekly-review.md`. `%V` should represent the week number, padded with a zero.
 
 This should be in the root directory.
 
@@ -27,7 +27,7 @@ Populate the following sections:
 
 - Review: Your thoughts on my week. Don't re-iterate what happened but look for insights. By reading this I should have an idea of your thinking behind what you suggest in actions. Break it down into readable paragraphs. Feel free to use subheadings. Try to keep sections brief.
 - Actions. Use checkboxes for each item in the sub sections. The title of the action should be at the checkbox level. Notes related to the checkbox (eg. your reasoning, what I can gain etc) should be sub-bullets.
-  - Potential Tasks: Tasks I could create to act on your review. Don't extract things I say should be done. Instead look for insights and suggest things to me. _Among other things_, consider how AI can be used to achieve or augment things. Inspire me with some ideas.
+  - Potential Tasks: Tasks I could create to act on your review. Don't extract things I say should be done. Instead look for insights and suggest things to me. _Among other things_, consider how AI can be used to achieve or augment things, what processes and frameworks can I put in place. Inspire me with some ideas.
   - Experiments: Some new experiments I could start. Again, inspire me. Don't just extract ideas I have.
   - Application, Script and Project Ideas: Off the back of your review, any new application, script or just general project ideas?
   - Blog Posts: Potential blog posts that could be written based on my week.
@@ -40,9 +40,7 @@ Use the `obsidian-markdown` skill to query the PKM vault files.
 
 Journal Notes are notes I am randomly create throughout the week whenever I might have a thought that may be worth noting down. It helps me to get things out of my brain and as something to reflect on later on.
 
-Use the pkm tool to obtain journal notes for the past 10 days.
-
-Include at the bottom of the note a list of the journal notes used.
+Use the pkm tool to obtain journal notes for the last 10 days.
 
 ## Experiment Reviews
 
