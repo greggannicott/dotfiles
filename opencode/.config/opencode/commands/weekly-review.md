@@ -15,7 +15,7 @@ Consider the following when performing the review:
 
 Details on how to obtain these can be found below.
 
-The outcome of this should be a new note in the PKM named `{yyyy-%V}-ai-weekly-review.md`. `%V` should represent the week number, padded with a zero.
+The outcome of this should be a new note in the PKM named `{yyyy-%V}-ai-weekly-review - V2.md`. `%V` should represent the week number, padded with a zero.
 
 This should be in the root directory.
 
@@ -40,11 +40,9 @@ Use the `obsidian-markdown` skill to query the PKM vault files.
 
 Journal Notes are notes I am randomly create throughout the week whenever I might have a thought that may be worth noting down. It helps me to get things out of my brain and as something to reflect on later on.
 
-Journals follow the pattern YYYY-MM-DD HHMM - title.md in the root directory with frontmatter categories: [\"[[Journal]]\"].
+Use the pkm tool to obtain journal notes for the past 10 days.
 
-Find all journal notes from the past 10 days.
-
-Search for [[Journal]] in files matching YYYY-MM-\*.md since the cutoff date.
+Include at the bottom of the note a list of the journal notes used.
 
 ## Experiment Reviews
 

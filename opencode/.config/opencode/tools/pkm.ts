@@ -1,5 +1,25 @@
 import { tool } from "@opencode-ai/plugin"
 
+function formatJournalEntries(entries) {
+  if (!Array.isArray(entries) || entries.length === 0) {
+    return "No journal entries found."
+  }
+  return entries
+    .map(
+      (entry, i) =>
+        `### ${i + 1}. ${entry.title}\n**Date:** ${entry.date}\n**Topics:** ${entry.topics?.length ? entry.topics.join(", ") : "None"}\n**Body:** ${entry.body}\n**Reflected:** ${entry.reflected}\n**Inbox:** ${entry.inbox}\n`,
+    )
+    .join("\n")
+}
+
+function todayString() {
+  const d = new Date()
+  const yyyy = d.getFullYear()
+  const mm = String(d.getMonth() + 1).padStart(2, "0")
+  const dd = String(d.getDate()).padStart(2, "0")
+  return `${yyyy}-${mm}-${dd}`
+}
+
 export default tool({
   description: "Return Journal entries",
   args: {},
@@ -12,15 +32,35 @@ export default tool({
 
     const entries = await response.json()
 
-    if (!Array.isArray(entries) || entries.length === 0) {
-      return "No journal entries found."
+    return formatJournalEntries(entries)
+  },
+})
+
+export const journalLastDays = tool({
+  description: "Return Journal entries for last number of days",
+  args: {
+    days: tool.schema
+      .number()
+      .int()
+      .positive()
+      .describe("Number of days to include, counting back from today inclusively"),
+  },
+  async execute(args) {
+    const to = todayString()
+    const fromDate = new Date()
+    fromDate.setDate(fromDate.getDate() - (args.days - 1))
+    const yyyy = fromDate.getFullYear()
+    const mm = String(fromDate.getMonth() + 1).padStart(2, "0")
+    const dd = String(fromDate.getDate()).padStart(2, "0")
+    const from = `${yyyy}-${mm}-${dd}`
+
+    const response = await fetch(`http://localhost:8082/pkm/journals/?from=${from}&to=${to}`)
+
+    if (!response.ok) {
+      return `Failed to fetch journal entries: ${response.status} ${response.statusText}`
     }
 
-    return entries
-      .map(
-        (entry, i) =>
-          `### ${i + 1}. ${entry.title}\n**Date:** ${entry.date}\n**Topics:** ${entry.topics?.length ? entry.topics.join(", ") : "None"}\n**Body:** ${entry.body}\n**Reflected:** ${entry.reflected}\n**Inbox:** ${entry.inbox}\n`,
-      )
-      .join("\n")
+    const entries = await response.json()
+    return formatJournalEntries(entries)
   },
 })
