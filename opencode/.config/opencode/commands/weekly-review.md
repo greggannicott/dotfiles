@@ -29,6 +29,7 @@ Populate the following sections:
 - Actions. Use checkboxes for each item in the sub sections. The title of the action should be at the checkbox level. Notes related to the checkbox (eg. your reasoning, what I can gain etc) should be sub-bullets.
   - Potential Tasks: Tasks I could create to act on your review. Don't extract things I say should be done. Instead look for insights and suggest things to me. _Among other things_, consider how AI can be used to achieve or augment things. Inspire me with some ideas.
   - Experiments: Some new experiments I could start. Again, inspire me. Don't just extract ideas I have.
+  - Application, Script and Project Ideas: Off the back of your review, any new application, script or just general project ideas?
   - Blog Posts: Potential blog posts that could be written based on my week.
 
 # How To Obtain Required Information
