@@ -75,7 +75,7 @@
     },
     {
       "name": "year",
-      "type": "number"
+      "type": "text"
     },
     {
       "name": "cover",
@@ -416,6 +416,10 @@
     {
       "name": "consumed",
       "type": "checkbox"
+    },
+    {
+      "name": "duration-readable",
+      "type": "text"
     }
   ],
   "reader_settings": {
@@ -436,8 +440,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 542,
-    "copyToClipboard": 161,
+    "addToObsidian": 559,
+    "copyToClipboard": 163,
     "saveFile": 0,
     "share": 0
   },
@@ -571,8 +575,8 @@
       {
         "id": "17763363897770qluf89",
         "name": "year",
-        "value": "{{schema:@MusicAlbum:datePublished}}",
-        "type": "number"
+        "value": "[[{{schema:@MusicAlbum:datePublished}}]]",
+        "type": "text"
       },
       {
         "id": "1776336389777zy5j6ou",
@@ -730,8 +734,8 @@
       {
         "id": "1776336408797o59pg5m",
         "name": "year",
-        "value": "{{schema:@MusicRelease:datePublished}}",
-        "type": "number"
+        "value": "[[{{schema:@MusicRelease:datePublished}}]]",
+        "type": "text"
       },
       {
         "id": "1776336408797elr3ozv",
@@ -985,8 +989,8 @@
       {
         "id": "17763364874676ac79gq",
         "name": "year",
-        "value": "{{schema:@Movie:datePublished|date:\\\"YYYY\\\"}}",
-        "type": "number"
+        "value": "[[{{schema:@Movie:datePublished|date:\\\"YYYY\\\"}}]]",
+        "type": "text"
       },
       {
         "id": "1776336487467kt2ar8x",
@@ -1354,8 +1358,8 @@
       {
         "id": "1776336654332by047wu",
         "name": "year",
-        "value": "{{schema:@TVSeries:datePublished|date:\\\"YYYY\\\"}}",
-        "type": "number"
+        "value": "[[{{schema:@TVSeries:datePublished|date:\\\"YYYY\\\"}}]]",
+        "type": "text"
       },
       {
         "id": "1776336654332lojsdk1",
