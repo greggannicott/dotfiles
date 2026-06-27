@@ -63,3 +63,4 @@ export PATH=/Users/greggannicott/.nvm/versions/node/v18.20.4/bin:$PATH
 if [ -n "$TMUX" ]; then
   project_root=$(tmux display-message -p "#{session_path}")
 fi
+. "$HOME/.cargo/env"
