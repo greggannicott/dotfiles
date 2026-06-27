@@ -60,9 +60,7 @@ Sub bullets are my thoughts.
 
 Identities represent either the person I am or the kind of person I want to be. Use this information to guide your suggestions. Don't review the identities though. I don't want feedback on them or their notes.
 
-Identities follow the pattern "title.md"" in the root directory with frontmatter categories: [\"[[Identity]]\"].
-
-The frontmatter `aspirational?` indicates whether it is who I am or the kind of person I want to be.
+Use the pkm tool to obtain all identities.
 
 ## Traits
 
