@@ -36,6 +36,34 @@ export default tool({
   },
 })
 
+function formatIdentities(identities) {
+  if (!Array.isArray(identities) || identities.length === 0) {
+    return "No identities found."
+  }
+  return identities
+    .map(
+      (identity, i) =>
+        `### ${i + 1}. ${identity.name}\n**Aspirational:** ${identity.aspirational}\n**Topics:** ${identity.topics?.length ? identity.topics.join(", ") : "None"}\n\n${identity.perfectVersion}\n`,
+    )
+    .join("\n---\n")
+}
+
+export const identities = tool({
+  description: "Return Identities",
+  args: {},
+  async execute() {
+    const response = await fetch("http://localhost:8082/pkm/identities/")
+
+    if (!response.ok) {
+      return `Failed to fetch identities: ${response.status} ${response.statusText}`
+    }
+
+    const data = await response.json()
+
+    return formatIdentities(data)
+  },
+})
+
 export const journalLastDays = tool({
   description: "Return Journal entries for last number of days",
   args: {
