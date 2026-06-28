@@ -132,14 +132,19 @@ require("lazy").setup({
 		opts = {},
 		event = "VeryLazy",
 	},
-	-- Have your vim keybindings work with tmux when navigating windows
+	-- Seamless <C-h/j/k/l> across Neovim splits, herdr panes, and tmux panes.
+	-- vim-tmux-navigator acts as the tmux fallback; its own mappings are disabled
+	-- and vim-herdr-navigation provides the actual <C-h/j/k/l> mappings instead.
 	{
 		"christoomey/vim-tmux-navigator",
-		event = function()
-			-- Only load it if we are inside of a tmux session.
-			if vim.fn.exists("$TMUX") == 1 then
-				return { "VeryLazy" }
-			end
+		lazy = false,
+		init = function()
+			vim.g.tmux_navigator_no_mappings = 1
+			vim.g.tmux_navigator_disable_when_zoomed = 1
+			vim.g.tmux_navigator_no_wrap = 1
+		end,
+		config = function()
+			dofile(vim.fn.expand("~/src/personal/vim-herdr-navigation/editor/nvim.lua"))
 		end,
 	},
 	-- Highlight lines used when specifying ranges:
@@ -209,6 +214,16 @@ require("lazy").setup({
 		event = "VeryLazy",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
+		"navarasu/onedark.nvim",
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			require("onedark").setup({
+				style = "darker",
+			})
+			require("onedark").load()
+		end,
 	},
 	--[[ {
 		"CopilotC-Nvim/CopilotChat.nvim",
