@@ -14,6 +14,32 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function navigate_split(direction, tmux_command)
+	local current_win = vim.api.nvim_get_current_win()
+	vim.cmd("wincmd " .. direction)
+	if vim.api.nvim_get_current_win() ~= current_win then
+		return
+	end
+
+	local herdr_direction = ({ h = "left", j = "down", k = "up", l = "right" })[direction]
+	local herdr_bin = vim.env.HERDR_BIN_PATH
+	if herdr_direction and vim.env.HERDR_PANE_ID and vim.fn.executable(herdr_bin or "herdr") == 1 then
+		vim.fn.jobstart({
+			herdr_bin or "herdr",
+			"pane",
+			"focus",
+			"--direction",
+			herdr_direction,
+			"--current",
+		}, { detach = true })
+		return
+	end
+
+	if vim.env.TMUX then
+		vim.cmd(tmux_command)
+	end
+end
+
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
 --
@@ -144,7 +170,18 @@ require("lazy").setup({
 			vim.g.tmux_navigator_no_wrap = 1
 		end,
 		config = function()
-			dofile(vim.fn.expand("~/src/personal/vim-herdr-navigation/editor/nvim.lua"))
+			vim.keymap.set("n", "<C-h>", function()
+				navigate_split("h", "TmuxNavigateLeft")
+			end, { silent = true, desc = "Navigate left" })
+			vim.keymap.set("n", "<C-j>", function()
+				navigate_split("j", "TmuxNavigateDown")
+			end, { silent = true, desc = "Navigate down" })
+			vim.keymap.set("n", "<C-k>", function()
+				navigate_split("k", "TmuxNavigateUp")
+			end, { silent = true, desc = "Navigate up" })
+			vim.keymap.set("n", "<C-l>", function()
+				navigate_split("l", "TmuxNavigateRight")
+			end, { silent = true, desc = "Navigate right" })
 		end,
 	},
 	-- Highlight lines used when specifying ranges:
