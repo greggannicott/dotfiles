@@ -13,6 +13,7 @@ Consider the following when performing the review:
 - Identities
 - Traits
 - Daily Notes
+- Weekly Note
 
 Details on how to obtain these can be found below.
 
@@ -75,6 +76,25 @@ The frontmatter `trait-type` indicates whether I consider it a good or bad trait
 
 ## Daily Notes
 
-Daily Notes contain properties relating to a given day. This can includes a note field which might state something that impacted the day (eg. very hot, hungover, the fact I forgot to do something etc), whether the day is a work day or not (which impacts what I will do on the day), a daily win, ratings for the day and whether certain habit goals have been achieved.
+Daily Notes contain properties relating to a given day. This can include:
+
+- Path: the path to the daily note file
+- Notes field: might state something that impacted the day (eg. very hot, hungover, the fact I forgot to do something etc) to provide context.
+- Whether the day is a work day or not (which impacts what I will do on the day)
+- A daily win
+- Rating(s) for the day
+- Whether certain habit goals have been achieved.
 
 Using the PKM tool, pull in the daily notes for the current year/week number and use the data as part of your review.
+
+## Weekly Note
+
+Weekly Notes contain properties relating to a given week. This can include:
+
+- Path: the path to the weekly note file
+- Notes for the week that can add context (eg. there was a heat wave, you were focused on a particular thing, you were busy for a certain reason etc)
+- Weekly Surprise: One thing that surprised me for the week.
+- Durations: how long certain tasks took
+- Habit Tracking fields: Whether I achieved certain habit goals, along with certain details.
+
+Using the PKM tool, pull in the weekly note for the current year/week number and use the data as part of your review.
