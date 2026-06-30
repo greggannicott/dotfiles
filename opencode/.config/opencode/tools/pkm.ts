@@ -64,6 +64,64 @@ export const identities = tool({
   },
 })
 
+function formatDailyNotes(notes) {
+  if (!Array.isArray(notes) || notes.length === 0) {
+    return "No daily notes found."
+  }
+  return notes
+    .map(
+      (note, i) =>
+        `### ${i + 1}. ${note.name} (${note.day})\n**Week:** ${note.yearWeek} | **Workday:** ${note.isWorkday}\n` +
+        (note.notes ? `**Notes:** ${note.notes}\n` : "") +
+        `**Daily Win:** ${note.dailyWin}\n` +
+        (note.workEffortRating != null ? `**Work Effort Rating:** ${note.workEffortRating}/5\n` : "") +
+        `**Habits:**\n` +
+        `- Work Startup Routine: ${note.htWorkStartupRoutine}\n` +
+        `- Work Shutdown Routine: ${note.htWorkShutdownRoutine}\n` +
+        `- Page A Day: ${note.htPageADay}\n` +
+        `- Standing Desk: ${note.htStandingDesk}\n` +
+        `- Daily Curls: ${note.htDailyCurls}\n` +
+        `- Daily Push Ups: ${note.htDailyPushUps}\n` +
+        (note.htConsecutiveFullPushUps != null ? `- Consecutive Full Push Ups: ${note.htConsecutiveFullPushUps}\n` : ""),
+    )
+    .join("\n---\n")
+}
+
+export const dailyNotes = tool({
+  description: "Return Daily Notes",
+  args: {
+    yearWeek: tool.schema
+      .string()
+      .optional()
+      .describe("ISO year-week to filter by (e.g. 2026-W27)"),
+    from: tool.schema
+      .string()
+      .optional()
+      .describe("Start date for range filter (YYYY-MM-DD, inclusive)"),
+    to: tool.schema
+      .string()
+      .optional()
+      .describe("End date for range filter (YYYY-MM-DD, inclusive)"),
+  },
+  async execute(args) {
+    const params = new URLSearchParams()
+    if (args.yearWeek) params.set("yearWeek", args.yearWeek)
+    if (args.from) params.set("from", args.from)
+    if (args.to) params.set("to", args.to)
+    const qs = params.toString()
+    const url = `http://localhost:8082/pkm/daily-notes/${qs ? `?${qs}` : ""}`
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      return `Failed to fetch daily notes: ${response.status} ${response.statusText}`
+    }
+
+    const notes = await response.json()
+    return formatDailyNotes(notes)
+  },
+})
+
 export const journalLastDays = tool({
   description: "Return Journal entries for last number of days",
   args: {
