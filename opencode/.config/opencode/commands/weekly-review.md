@@ -12,6 +12,7 @@ Consider the following when performing the review:
 - Experiment Reviews
 - Identities
 - Traits
+- Daily Notes
 
 Details on how to obtain these can be found below.
 
@@ -44,13 +45,13 @@ Use the pkm tool to obtain journal notes for the last 10 days.
 
 ## Experiment Reviews
 
-Experiments represent personal experiments I am either considering trying, currently tried or have tried.
+Experiments represent personal experiments I am either considering trying, currently trying or have tried.
 
 Experiments follow the pattern "title.md"" in the root directory with frontmatter categories: [\"[[Experiment]]\"].
 
 Experiments are ongoing when they have a `started` property but `ended` is empty. grep for started: in frontmatter and confirm ended: is absent or empty.
 
-To read my own personal review of this experiment for the week, find the "Weekly Reviews" sectionfor each experiment. Within this is a "Reviews" section.
+To read my own personal review of this experiment for the week, find the "Weekly Reviews" section for each experiment. Within this is a "Reviews" section.
 
 Each high level bullet represents a week. The week number is formatted `{yyyy-ww} - {Brief summary}`
 
@@ -71,3 +72,9 @@ Traits follow the pattern "title.md"" in the root directory with frontmatter cat
 Each note represents a trait.
 
 The frontmatter `trait-type` indicates whether I consider it a good or bad trait.
+
+## Daily Notes
+
+Daily Notes contain properties relating to a given day. This can includes a note field which might state something that impacted the day (eg. very hot, hungover, the fact I forgot to do something etc), whether the day is a work day or not (which impacts what I will do on the day), a daily win, ratings for the day and whether certain habit goals have been achieved.
+
+Using the PKM tool, pull in the daily notes for the current year/week number and use the data as part of your review.
