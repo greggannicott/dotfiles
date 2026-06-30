@@ -134,10 +134,16 @@ function formatWeeklyNotes(notes) {
         (note.weeklySurprise ? `**Weekly Surprise:** ${note.weeklySurprise}\n` : "") +
         (note.weeklyReviewDuration != null ? `**Weekly Review Duration:** ${note.weeklyReviewDuration} min\n` : "") +
         (note.weeklyRefinementDuration != null ? `**Weekly Refinement Duration:** ${note.weeklyRefinementDuration} min\n` : "") +
+        (note.htMusicNewAlbum ? `**New Album:** ${note.htMusicNewAlbum}\n` : "") +
+        (note.htMusicOther ? `**Other Music:** ${note.htMusicOther}\n` : "") +
+        (note.htMusicVariousComp ? `**Various Artists Compilation:** ${note.htMusicVariousComp}\n` : "") +
+        (note.htMovieAtHome ? `**Movie at Home:** ${note.htMovieAtHome}\n` : "") +
         `**Habits:**\n` +
         `- Workout 1: ${note.htWorkout1}\n` +
         `- Workout 2: ${note.htWorkout2}\n` +
-        `- Workout 3: ${note.htWorkout3}\n`,
+        `- Workout 3: ${note.htWorkout3}\n` +
+        `- Educational Book: ${note.htEducationalBook}\n` +
+        `- Blog Post: ${note.htBlog}\n`,
     )
     .join("\n---\n")
 }
