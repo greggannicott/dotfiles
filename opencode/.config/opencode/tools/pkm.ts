@@ -122,6 +122,56 @@ export const dailyNotes = tool({
   },
 })
 
+function formatWeeklyNotes(notes) {
+  if (!Array.isArray(notes) || notes.length === 0) {
+    return "No weekly notes found."
+  }
+  return notes
+    .map(
+      (note, i) =>
+        `### ${i + 1}. Week ${note.week}\n` +
+        (note.notes ? `**Notes:** ${note.notes}\n` : "") +
+        (note.weeklySurprise ? `**Weekly Surprise:** ${note.weeklySurprise}\n` : "") +
+        (note.weeklyReviewDuration != null ? `**Weekly Review Duration:** ${note.weeklyReviewDuration} min\n` : "") +
+        (note.weeklyRefinementDuration != null ? `**Weekly Refinement Duration:** ${note.weeklyRefinementDuration} min\n` : "") +
+        `**Habits:**\n` +
+        `- Workout 1: ${note.htWorkout1}\n` +
+        `- Workout 2: ${note.htWorkout2}\n` +
+        `- Workout 3: ${note.htWorkout3}\n`,
+    )
+    .join("\n---\n")
+}
+
+export const weeklyNotes = tool({
+  description: "Return Weekly Notes",
+  args: {
+    from: tool.schema
+      .string()
+      .optional()
+      .describe("Start week for range filter (YYYY-Www, inclusive, e.g. 2026-W01)"),
+    to: tool.schema
+      .string()
+      .optional()
+      .describe("End week for range filter (YYYY-Www, inclusive, e.g. 2026-W26)"),
+  },
+  async execute(args) {
+    const params = new URLSearchParams()
+    if (args.from) params.set("from", args.from)
+    if (args.to) params.set("to", args.to)
+    const qs = params.toString()
+    const url = `http://localhost:8082/pkm/weekly-notes/${qs ? `?${qs}` : ""}`
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      return `Failed to fetch weekly notes: ${response.status} ${response.statusText}`
+    }
+
+    const notes = await response.json()
+    return formatWeeklyNotes(notes)
+  },
+})
+
 export const journalLastDays = tool({
   description: "Return Journal entries for last number of days",
   args: {
