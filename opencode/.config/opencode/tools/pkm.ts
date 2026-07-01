@@ -142,8 +142,10 @@ function formatWeeklyNotes(notes) {
         `- Workout 1: ${note.htWorkout1}\n` +
         `- Workout 2: ${note.htWorkout2}\n` +
         `- Workout 3: ${note.htWorkout3}\n` +
-        `- Educational Book: ${note.htEducationalBook}\n` +
-        `- Blog Post: ${note.htBlog}\n`,
+        `- Educational Book: ${note.htEducationalBook}` +
+        (note.htEducationalBookDuration != null ? ` (${note.htEducationalBookDuration} min)` : "") + "\n" +
+        `- Blog Post: ${note.htBlog}` +
+        (note.htBlogDuration != null ? ` (${note.htBlogDuration} min)` : "") + "\n",
     )
     .join("\n---\n")
 }
