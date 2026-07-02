@@ -208,3 +208,75 @@ export const journalLastDays = tool({
     return formatJournalEntries(entries)
   },
 })
+
+function formatGoals(goals) {
+  if (!Array.isArray(goals) || goals.length === 0) {
+    return "No goals found."
+  }
+  return goals
+    .map(
+      (goal, i) =>
+        `### ${i + 1}. ${goal.name}\n` +
+        `**Path:** ${goal.path}\n` +
+        `**Tags:** ${goal.tags?.length ? goal.tags.join(", ") : "None"}\n` +
+        `**Topics:** ${goal.topics?.length ? goal.topics.join(", ") : "None"}\n` +
+        (goal.achieved != null ? `**Achieved:** ${goal.achieved}\n` : "") +
+        (goal.identities?.length ? `**Identities:** ${goal.identities.join(", ")}\n` : "") +
+        `**Created:** ${goal.createdAt}\n` +
+        `**Modified:** ${goal.modifiedAt}\n\n` +
+        `${goal.body}`,
+    )
+    .join("\n---\n")
+}
+
+export const goals = tool({
+  description: "Return Goals",
+  args: {},
+  async execute() {
+    const response = await fetch("http://localhost:8082/pkm/goals/")
+
+    if (!response.ok) {
+      return `Failed to fetch goals: ${response.status} ${response.statusText}`
+    }
+
+    const data = await response.json()
+
+    return formatGoals(data)
+  },
+})
+
+function formatApps(apps) {
+  if (!Array.isArray(apps) || apps.length === 0) {
+    return "No apps found."
+  }
+  return apps
+    .map(
+      (app, i) =>
+        `### ${i + 1}. ${app.name}\n` +
+        `**Path:** ${app.path}\n` +
+        `**Tags:** ${app.tags?.length ? app.tags.join(", ") : "None"}\n` +
+        `**Topics:** ${app.topics?.length ? app.topics.join(", ") : "None"}\n` +
+        `**Company:** ${app.company?.length ? app.company.join(", ") : "None"}\n` +
+        (app.rating != null ? `**Rating:** ${app.rating}/5\n` : "") +
+        `**Created:** ${app.createdAt}\n` +
+        `**Modified:** ${app.modifiedAt}\n\n` +
+        `${app.body}`,
+    )
+    .join("\n---\n")
+}
+
+export const apps = tool({
+  description: "Return Apps",
+  args: {},
+  async execute() {
+    const response = await fetch("http://localhost:8082/pkm/apps/")
+
+    if (!response.ok) {
+      return `Failed to fetch apps: ${response.status} ${response.statusText}`
+    }
+
+    const data = await response.json()
+
+    return formatApps(data)
+  },
+})
