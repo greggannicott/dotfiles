@@ -1,16 +1,205 @@
 import { tool } from "@opencode-ai/plugin"
 
-function formatJournalEntries(entries) {
-  if (!Array.isArray(entries) || entries.length === 0) {
-    return "No journal entries found."
-  }
-  return entries
-    .map(
-      (entry, i) =>
-        `### ${i + 1}. ${entry.title}\n**Date:** ${entry.date}\n**Topics:** ${entry.topics?.length ? entry.topics.join(", ") : "None"}\n**Body:** ${entry.body}\n**Reflected:** ${entry.reflected}\n**Inbox:** ${entry.inbox}\n`,
-    )
-    .join("\n")
+const BFF_BASE = "http://localhost:8082"
+
+interface QueryParamDef {
+  name: string
+  type: "string" | "number"
+  description: string
 }
+
+interface CollectionConfig {
+  name: string
+  endpoint: string
+  description: string
+  queryParams?: QueryParamDef[]
+}
+
+const METADATA_KEYS = ["name", "path", "createdAt", "modifiedAt"]
+
+function formatValue(value: unknown): string | null {
+  if (value === null || value === undefined) return null
+  if (typeof value === "string" && value === "") return null
+  if (typeof value === "boolean") return value ? "Yes" : "No"
+  if (typeof value === "string" || typeof value === "number") return String(value)
+  if (Array.isArray(value)) {
+    const formatted = value.map(formatValue).filter(Boolean)
+    return formatted.length > 0 ? formatted.join(", ") : null
+  }
+  return null
+}
+
+function formatItem(item: Record<string, unknown>, index: number): string {
+  const lines: string[] = []
+
+  lines.push(`### ${index}. ${item.name || "Unknown"}`)
+
+  for (const key of METADATA_KEYS) {
+    if (key === "name") continue
+    const value = formatValue(item[key])
+    if (value) {
+      const label =
+        key === "createdAt"
+          ? "Created"
+          : key === "modifiedAt"
+            ? "Modified"
+            : key.charAt(0).toUpperCase() + key.slice(1)
+      lines.push(`**${label}:** ${value}`)
+    }
+  }
+
+  if (item.body) {
+    lines.push("")
+    lines.push(String(item.body))
+  }
+
+  const otherKeys = Object.keys(item).filter(
+    (k) => !METADATA_KEYS.includes(k) && k !== "body",
+  )
+  if (otherKeys.length > 0) {
+    lines.push("")
+    for (const key of otherKeys) {
+      const value = formatValue(item[key])
+      if (value) {
+        const label = key.charAt(0).toUpperCase() + key.slice(1)
+        lines.push(`**${label}:** ${value}`)
+      }
+    }
+  }
+
+  return lines.join("\n")
+}
+
+function formatCollection(items: Record<string, unknown>[]): string {
+  if (!Array.isArray(items) || items.length === 0) {
+    return "No items found."
+  }
+  return items.map((item, i) => formatItem(item, i + 1)).join("\n---\n")
+}
+
+function makeCollectionTool(config: CollectionConfig) {
+  const args: Record<string, any> = {}
+  if (config.queryParams) {
+    for (const param of config.queryParams) {
+      if (param.type === "number") {
+        args[param.name] = tool.schema
+          .number()
+          .optional()
+          .describe(param.description)
+      } else {
+        args[param.name] = tool.schema
+          .string()
+          .optional()
+          .describe(param.description)
+      }
+    }
+  }
+
+  return tool({
+    description: config.description,
+    args,
+    async execute(rawArgs) {
+      const params = new URLSearchParams()
+      if (config.queryParams) {
+        for (const param of config.queryParams) {
+          const value = rawArgs[param.name]
+          if (value != null) {
+            params.set(param.name, String(value))
+          }
+        }
+      }
+      const qs = params.toString()
+      const url = `${BFF_BASE}${config.endpoint}${qs ? `?${qs}` : ""}`
+
+      const response = await fetch(url)
+      if (!response.ok) {
+        return `Failed to fetch ${config.name.toLowerCase()}s: ${response.status} ${response.statusText}`
+      }
+
+      const data = await response.json()
+      return formatCollection(data)
+    },
+  })
+}
+
+export const journals = makeCollectionTool({
+  name: "Journal",
+  endpoint: "/pkm/journals/",
+  description: "Return Journal entries",
+  queryParams: [
+    {
+      name: "from",
+      type: "string",
+      description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+    },
+    {
+      name: "to",
+      type: "string",
+      description: "End date for range filter (YYYY-MM-DD, inclusive)",
+    },
+  ],
+})
+
+export const identities = makeCollectionTool({
+  name: "Identity",
+  endpoint: "/pkm/identities/",
+  description: "Return Identities",
+})
+
+export const dailyNotes = makeCollectionTool({
+  name: "Daily Note",
+  endpoint: "/pkm/daily-notes/",
+  description: "Return Daily Notes",
+  queryParams: [
+    {
+      name: "yearWeek",
+      type: "string",
+      description: "ISO year-week to filter by (e.g. 2026-W27)",
+    },
+    {
+      name: "from",
+      type: "string",
+      description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+    },
+    {
+      name: "to",
+      type: "string",
+      description: "End date for range filter (YYYY-MM-DD, inclusive)",
+    },
+  ],
+})
+
+export const weeklyNotes = makeCollectionTool({
+  name: "Weekly Note",
+  endpoint: "/pkm/weekly-notes/",
+  description: "Return Weekly Notes",
+  queryParams: [
+    {
+      name: "from",
+      type: "string",
+      description:
+        "Start week for range filter (YYYY-Www, inclusive, e.g. 2026-W01)",
+    },
+    {
+      name: "to",
+      type: "string",
+      description:
+        "End week for range filter (YYYY-Www, inclusive, e.g. 2026-W26)",
+    },
+  ],
+})
+
+export const goals = makeCollectionTool({
+  name: "Goal",
+  endpoint: "/pkm/goals/",
+  description: "Return Goals",
+})
+
+export const apps = makeCollectionTool({
+  name: "App",
+  endpoint: "/pkm/apps/",
+  description: "Return Apps",
+})
 
 function todayString() {
   const d = new Date()
@@ -19,166 +208,6 @@ function todayString() {
   const dd = String(d.getDate()).padStart(2, "0")
   return `${yyyy}-${mm}-${dd}`
 }
-
-export default tool({
-  description: "Return Journal entries",
-  args: {},
-  async execute() {
-    const response = await fetch("http://localhost:8082/pkm/journals/")
-
-    if (!response.ok) {
-      return `Failed to fetch journal entries: ${response.status} ${response.statusText}`
-    }
-
-    const entries = await response.json()
-
-    return formatJournalEntries(entries)
-  },
-})
-
-function formatIdentities(identities) {
-  if (!Array.isArray(identities) || identities.length === 0) {
-    return "No identities found."
-  }
-  return identities
-    .map(
-      (identity, i) =>
-        `### ${i + 1}. ${identity.name}\n**Aspirational:** ${identity.aspirational}\n**Topics:** ${identity.topics?.length ? identity.topics.join(", ") : "None"}\n\n${identity.perfectVersion}\n`,
-    )
-    .join("\n---\n")
-}
-
-export const identities = tool({
-  description: "Return Identities",
-  args: {},
-  async execute() {
-    const response = await fetch("http://localhost:8082/pkm/identities/")
-
-    if (!response.ok) {
-      return `Failed to fetch identities: ${response.status} ${response.statusText}`
-    }
-
-    const data = await response.json()
-
-    return formatIdentities(data)
-  },
-})
-
-function formatDailyNotes(notes) {
-  if (!Array.isArray(notes) || notes.length === 0) {
-    return "No daily notes found."
-  }
-  return notes
-    .map(
-      (note, i) =>
-        `### ${i + 1}. ${note.name} (${note.day})\n**Week:** ${note.yearWeek} | **Workday:** ${note.isWorkday}\n` +
-        (note.notes ? `**Notes:** ${note.notes}\n` : "") +
-        `**Daily Win:** ${note.dailyWin}\n` +
-        (note.workEffortRating != null ? `**Work Effort Rating:** ${note.workEffortRating}/5\n` : "") +
-        `**Habits:**\n` +
-        `- Work Startup Routine: ${note.htWorkStartupRoutine}\n` +
-        `- Work Shutdown Routine: ${note.htWorkShutdownRoutine}\n` +
-        `- Page A Day: ${note.htPageADay}\n` +
-        `- Standing Desk: ${note.htStandingDesk}\n` +
-        `- Daily Curls: ${note.htDailyCurls}\n` +
-        `- Daily Push Ups: ${note.htDailyPushUps}\n` +
-        (note.htConsecutiveFullPushUps != null ? `- Consecutive Full Push Ups: ${note.htConsecutiveFullPushUps}\n` : ""),
-    )
-    .join("\n---\n")
-}
-
-export const dailyNotes = tool({
-  description: "Return Daily Notes",
-  args: {
-    yearWeek: tool.schema
-      .string()
-      .optional()
-      .describe("ISO year-week to filter by (e.g. 2026-W27)"),
-    from: tool.schema
-      .string()
-      .optional()
-      .describe("Start date for range filter (YYYY-MM-DD, inclusive)"),
-    to: tool.schema
-      .string()
-      .optional()
-      .describe("End date for range filter (YYYY-MM-DD, inclusive)"),
-  },
-  async execute(args) {
-    const params = new URLSearchParams()
-    if (args.yearWeek) params.set("yearWeek", args.yearWeek)
-    if (args.from) params.set("from", args.from)
-    if (args.to) params.set("to", args.to)
-    const qs = params.toString()
-    const url = `http://localhost:8082/pkm/daily-notes/${qs ? `?${qs}` : ""}`
-
-    const response = await fetch(url)
-
-    if (!response.ok) {
-      return `Failed to fetch daily notes: ${response.status} ${response.statusText}`
-    }
-
-    const notes = await response.json()
-    return formatDailyNotes(notes)
-  },
-})
-
-function formatWeeklyNotes(notes) {
-  if (!Array.isArray(notes) || notes.length === 0) {
-    return "No weekly notes found."
-  }
-  return notes
-    .map(
-      (note, i) =>
-        `### ${i + 1}. Week ${note.week}\n` +
-        (note.notes ? `**Notes:** ${note.notes}\n` : "") +
-        (note.weeklySurprise ? `**Weekly Surprise:** ${note.weeklySurprise}\n` : "") +
-        (note.weeklyReviewDuration != null ? `**Weekly Review Duration:** ${note.weeklyReviewDuration} min\n` : "") +
-        (note.weeklyRefinementDuration != null ? `**Weekly Refinement Duration:** ${note.weeklyRefinementDuration} min\n` : "") +
-        (note.htMusicNewAlbum ? `**New Album:** ${note.htMusicNewAlbum}\n` : "") +
-        (note.htMusicOther ? `**Other Music:** ${note.htMusicOther}\n` : "") +
-        (note.htMusicVariousComp ? `**Various Artists Compilation:** ${note.htMusicVariousComp}\n` : "") +
-        (note.htMovieAtHome ? `**Movie at Home:** ${note.htMovieAtHome}\n` : "") +
-        `**Habits:**\n` +
-        `- Workout 1: ${note.htWorkout1}\n` +
-        `- Workout 2: ${note.htWorkout2}\n` +
-        `- Workout 3: ${note.htWorkout3}\n` +
-        `- Educational Book: ${note.htEducationalBook}` +
-        (note.htEducationalBookDuration != null ? ` (${note.htEducationalBookDuration} min)` : "") + "\n" +
-        `- Blog Post: ${note.htBlog}` +
-        (note.htBlogDuration != null ? ` (${note.htBlogDuration} min)` : "") + "\n",
-    )
-    .join("\n---\n")
-}
-
-export const weeklyNotes = tool({
-  description: "Return Weekly Notes",
-  args: {
-    from: tool.schema
-      .string()
-      .optional()
-      .describe("Start week for range filter (YYYY-Www, inclusive, e.g. 2026-W01)"),
-    to: tool.schema
-      .string()
-      .optional()
-      .describe("End week for range filter (YYYY-Www, inclusive, e.g. 2026-W26)"),
-  },
-  async execute(args) {
-    const params = new URLSearchParams()
-    if (args.from) params.set("from", args.from)
-    if (args.to) params.set("to", args.to)
-    const qs = params.toString()
-    const url = `http://localhost:8082/pkm/weekly-notes/${qs ? `?${qs}` : ""}`
-
-    const response = await fetch(url)
-
-    if (!response.ok) {
-      return `Failed to fetch weekly notes: ${response.status} ${response.statusText}`
-    }
-
-    const notes = await response.json()
-    return formatWeeklyNotes(notes)
-  },
-})
 
 export const journalLastDays = tool({
   description: "Return Journal entries for last number of days",
@@ -198,85 +227,39 @@ export const journalLastDays = tool({
     const dd = String(fromDate.getDate()).padStart(2, "0")
     const from = `${yyyy}-${mm}-${dd}`
 
-    const response = await fetch(`http://localhost:8082/pkm/journals/?from=${from}&to=${to}`)
+    const url = `${BFF_BASE}/pkm/journals/?from=${from}&to=${to}`
+    const response = await fetch(url)
 
     if (!response.ok) {
       return `Failed to fetch journal entries: ${response.status} ${response.statusText}`
     }
 
     const entries = await response.json()
-    return formatJournalEntries(entries)
+    return formatCollection(entries)
   },
 })
 
-function formatGoals(goals) {
-  if (!Array.isArray(goals) || goals.length === 0) {
-    return "No goals found."
-  }
-  return goals
-    .map(
-      (goal, i) =>
-        `### ${i + 1}. ${goal.name}\n` +
-        `**Path:** ${goal.path}\n` +
-        `**Tags:** ${goal.tags?.length ? goal.tags.join(", ") : "None"}\n` +
-        `**Topics:** ${goal.topics?.length ? goal.topics.join(", ") : "None"}\n` +
-        (goal.achieved != null ? `**Achieved:** ${goal.achieved}\n` : "") +
-        (goal.identities?.length ? `**Identities:** ${goal.identities.join(", ")}\n` : "") +
-        `**Created:** ${goal.createdAt}\n` +
-        `**Modified:** ${goal.modifiedAt}\n\n` +
-        `${goal.body}`,
-    )
-    .join("\n---\n")
-}
-
-export const goals = tool({
-  description: "Return Goals",
+export const schemaDiscovery = tool({
+  description: "List all available PKM collection endpoints and their schemas",
   args: {},
   async execute() {
-    const response = await fetch("http://localhost:8082/pkm/goals/")
+    const response = await fetch(`${BFF_BASE}/pkm/schema`)
 
     if (!response.ok) {
-      return `Failed to fetch goals: ${response.status} ${response.statusText}`
+      return `Failed to fetch schema: ${response.status} ${response.statusText}`
     }
 
-    const data = await response.json()
+    const schemas = await response.json()
 
-    return formatGoals(data)
-  },
-})
+    if (!Array.isArray(schemas) || schemas.length === 0) {
+      return "No collection endpoints found."
+    }
 
-function formatApps(apps) {
-  if (!Array.isArray(apps) || apps.length === 0) {
-    return "No apps found."
-  }
-  return apps
-    .map(
-      (app, i) =>
-        `### ${i + 1}. ${app.name}\n` +
-        `**Path:** ${app.path}\n` +
-        `**Tags:** ${app.tags?.length ? app.tags.join(", ") : "None"}\n` +
-        `**Topics:** ${app.topics?.length ? app.topics.join(", ") : "None"}\n` +
-        `**Company:** ${app.company?.length ? app.company.join(", ") : "None"}\n` +
-        (app.rating != null ? `**Rating:** ${app.rating}/5\n` : "") +
-        `**Created:** ${app.createdAt}\n` +
-        `**Modified:** ${app.modifiedAt}\n\n` +
-        `${app.body}`,
+    const lines = schemas.map(
+      (s: Record<string, string>, i: number) =>
+        `### ${i + 1}. ${s.name}\n**Collection:** ${s.collection}\n**Schema:** ${s.schema}`,
     )
-    .join("\n---\n")
-}
 
-export const apps = tool({
-  description: "Return Apps",
-  args: {},
-  async execute() {
-    const response = await fetch("http://localhost:8082/pkm/apps/")
-
-    if (!response.ok) {
-      return `Failed to fetch apps: ${response.status} ${response.statusText}`
-    }
-
-    const data = await response.json()
-
-    return formatApps(data)
+    return lines.join("\n---\n")
   },
 })
