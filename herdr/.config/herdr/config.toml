@@ -229,6 +229,10 @@ hide_tab_bar_when_single_tab = true
 # Background notification popup delivery
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
+
+[ui.sidebar.spaces]
+row_gap = 1
+
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
