@@ -159,6 +159,12 @@ type = "plugin_action"
 command = "dev.herdr-launcher.open-launcher"
 description = "open launcher"
 
+[[keys.command]]
+key = "prefix+u"
+type = "plugin_action"
+command = "url-picker.pick"
+description = "pick a url"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]
