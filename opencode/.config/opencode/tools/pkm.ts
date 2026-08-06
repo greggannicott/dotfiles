@@ -263,3 +263,9 @@ export const schemaDiscovery = tool({
     return lines.join("\n---\n")
   },
 })
+
+export const traits = makeCollectionTool({
+  name: "Trait",
+  endpoint: "/pkm/traits/",
+  description: "Return Traits",
+})

@@ -16,19 +16,26 @@ The tools file lives at `~/.config/opencode/tools/pkm.ts` (symlinked from `dotfi
 
 Ask the user for:
 
-- **Endpoint path** — e.g. `/pkm/goals/`. The full path used when calling `curl http://localhost:8082{path}`.
-- **Export name** — e.g. `goals` (the tool will be named `pkm_goals`). If the user isn't sure, suggest deriving it from the endpoint path.
-- **Description** — the tool's help text, e.g. `"Return Goals"`. Suggest a default.
-- **Query parameters** (if any) — name, type (`string` or `number`), and description for each.
+- **Collection item name** — the note type to create a tool for, always singular and lowercase, e.g. `identity`, `goal`, `song`, `journal`, `daily note`.
 
-**Completion criterion:** You have the endpoint path, export name, description, and any query params.
+From the item name, derive:
+
+- **Endpoint path** — `/pkm/{name}/`, always using the plural form (e.g. `identity` → `/pkm/identities/`, `daily note` → `/pkm/daily-notes/`).
+- **Export name** — plural, camelCase for multi-word names (e.g. `identity` → `identities`, `daily note` → `dailyNotes`). The tool will be named `pkm_{exportName}`.
+- **Name** — singular, heading case, each word capitalised (e.g. `identity` → `Identity`, `daily note` → `Daily Note`).
+- **Description** — default to `"Return {Plural Name}"` (e.g. `"Return Identities"`), but let the user override.
+
+Verify the endpoint exists by fetching the schema from `http://localhost:8082/pkm/schema` (use the `pkm_schemaDiscovery` tool). Confirm the derived endpoint is listed before proceeding.
+
+Present the derived endpoint and export name as a confirmation. For the description, offer the default pre-filled with a "Custom description" option.
+
+Also ask about **query parameters** (if any) — name, type (`string` or `number`), and description for each.
+
+**Completion criterion:** The user has confirmed the endpoint, name, and description, and any query params are known.
 
 ### 2. Read the go-bff readme
 
-Read `~/code/go-bff/readme.md`. Find the section documenting the endpoint. Extract:
-
-- Any **query parameters** the endpoint accepts (e.g. `yearWeek`, `from`, `to`)
-- The **parameter types** — string or number
+Read `~/code/go-bff/readme.md`. Find the section documenting the endpoint. Extract any **query parameters** the endpoint accepts — for each, note the name, type (`string` or `number`), and description.
 
 **Completion criterion:** You have the query params with types and descriptions.
 

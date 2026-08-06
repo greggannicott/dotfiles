@@ -26,6 +26,7 @@ name = "one-dark"
 # red = "#ff6188"
 # green = "#a6e3a1"
 
+auto_switch = false
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -151,6 +152,12 @@ key = "prefix+shift+l"
 type = "plugin_action"
 command = "third774.last-workspace.toggle"
 description = "last workspace"
+
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "dev.herdr-launcher.open-launcher"
+description = "open launcher"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
