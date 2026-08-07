@@ -12,10 +12,16 @@ let reportSeq = Date.now() * 1000;
 let requestChain = Promise.resolve();
 let reportedRootSessionID;
 
-// Subagent (task tool) sessions carry a parentID; the main agent session does
-// not. Their lifecycle events would otherwise clobber the pane's real state, so
-// learn child session ids from session.created/updated and drop their reports.
+// Track child sessions so their events cannot replace the pane's root session.
+// Their user prompts still project state without attaching the child session id.
 const childSessions = new Set();
+const CHILD_EVENT_STATES = new Map([
+  ["permission.asked", "blocked"],
+  ["question.asked", "blocked"],
+  ["permission.replied", "working"],
+  ["question.replied", "working"],
+  ["question.rejected", "working"],
+]);
 
 function nextReportSeq() {
   reportSeq += 1;
@@ -28,7 +34,19 @@ function sessionIDFromProperties(properties) {
     : undefined;
 }
 
+const SESSION_STATE_BY_STATUS = new Map([
+  ["idle", "idle"],
+  ["active", "working"],
+  ["busy", "working"],
+  ["pending", "working"],
+  ["retry", "working"],
+  ["running", "working"],
+  ["streaming", "working"],
+  ["working", "working"],
+]);
+
 function stateFromSessionStatus(status) {
+<<<<<<< Updated upstream
   // session.status carries { type: "idle" | "busy" | "retry" }; older builds used a bare string.
   const kind = typeof status === "string" ? status : status?.type;
   if (typeof kind !== "string") return undefined;
@@ -46,6 +64,29 @@ function stateFromSessionStatus(status) {
     default:
       return undefined;
   }
+||||||| Stash base
+  if (typeof status !== "string") {
+    return undefined;
+  }
+  switch (status.toLowerCase()) {
+    case "idle":
+      return "idle";
+    case "active":
+    case "busy":
+    case "pending":
+    case "running":
+    case "streaming":
+    case "working":
+      return "working";
+    default:
+      return undefined;
+  }
+=======
+  const kind = typeof status === "string" ? status : status?.type;
+  return typeof kind === "string"
+    ? SESSION_STATE_BY_STATUS.get(kind.toLowerCase())
+    : undefined;
+>>>>>>> Stashed changes
 }
 
 function request(method, params) {
@@ -144,6 +185,7 @@ export const HerdrAgentStatePlugin = async () => {
         childSessions.add(info.id);
       }
       if (sessionID && childSessions.has(sessionID)) {
+<<<<<<< Updated upstream
         // Child session events are dropped so they cannot clobber the pane's
         // root-agent state, but a subagent waiting on the user must still
         // surface as blocked (and clear once answered). Report state only,
@@ -160,6 +202,12 @@ export const HerdrAgentStatePlugin = async () => {
             break;
           default:
             break;
+||||||| Stash base
+=======
+        const state = CHILD_EVENT_STATES.get(type);
+        if (state) {
+          await reportState(state);
+>>>>>>> Stashed changes
         }
         return;
       }

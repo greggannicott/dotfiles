@@ -5,6 +5,17 @@ local dapview = require("dap-view")
 -- Initialize dap-go with default settings
 dapgo.setup()
 
+dap.configurations.go = dap.configurations.go or {}
+
+table.insert(dap.configurations.go, {
+	type = "go",
+	name = "Attach to running Go process",
+	request = "attach",
+	mode = "local",
+	processId = require("dap.utils").pick_process,
+	cwd = "${workspaceFolder}",
+})
+
 -- Key mappings for debugging
 local wk = require("which-key")
 
