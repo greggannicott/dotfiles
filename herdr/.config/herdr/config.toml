@@ -65,7 +65,7 @@ auto_switch = false
 
 # Prefix-mode actions
 # help = "prefix+?"
-# settings = "prefix+s"
+settings = "prefix+,"
 detach = "prefix+d"
 # reload_config = "prefix+shift+r"
 # open_notification_target = "prefix+o"
@@ -98,13 +98,13 @@ switch_workspace = "prefix+shift+1..9"
 # focus_pane_right = "prefix+l"
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
-# last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
+last_pane = "prefix+b"    # jump to last focused pane/tab
 split_vertical = "prefix+|"
 split_horizontal = "prefix+-"
 # close_pane = "prefix+x"
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
-# toggle_sidebar = "prefix+b"
+toggle_sidebar = "prefix+s"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
