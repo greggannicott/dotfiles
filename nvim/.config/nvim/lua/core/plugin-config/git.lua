@@ -227,6 +227,8 @@ require("diffview").setup({
 				actions.select_prev_entry,
 				{ desc = "Open the diff for the previous file" },
 			},
+			{ "n", "[c", "[c", { desc = "Go to previous change" } },
+			{ "n", "]c", "]c", { desc = "Go to next change" } },
 			{
 				"n",
 				"gf",
