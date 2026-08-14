@@ -154,6 +154,8 @@ tmux-too-young-search() {
     fi
 }
 
+gitroot() { cd "$(git rev-parse --show-toplevel)" }
+
 # Add fzf completion for `add-worktree`
 # Usage: `add-worktree **<TAB>`
 _fzf_complete_add-worktree() {
@@ -187,6 +189,7 @@ interactive_rip_grep() (
 )
 
 # Aliases
+alias gr="gitroot"
 alias gs="git status -s"
 alias gss="git status"
 alias gp="git push"
