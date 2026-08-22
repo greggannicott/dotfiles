@@ -2,7 +2,7 @@ output_heading ()
 {
     echo
     tput bold ; echo "$(tput setaf 3)$1$(tput sgr0)"
-    tput bold ; echo "$(tput setaf 3)----------------------------------------------------------------------------------------------------$(tput sgr0)"
+    tput bold ; echo "$(tput setaf 3)-----------------------------------------------------------------------------------------------$(tput sgr0)"
     echo ""
 }
 
@@ -14,6 +14,16 @@ output_general_message ()
 output_error_message ()
 {
     gum log --level error "$1"
+}
+
+check_exit_code ()
+{
+    if [ $1 -ne 0 ]; then
+        echo "$(tput setaf 1)Exit code: $1$(tput sgr0)"
+        echo "$(tput setaf 1)Script exited prematurely...$(tput sgr0)"
+        read
+        exit 1
+    fi
 }
 
 install_dependencies ()
