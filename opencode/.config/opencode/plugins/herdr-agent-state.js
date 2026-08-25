@@ -2,7 +2,7 @@
 // managed by herdr; reinstalling or updating the integration overwrites this file.
 // add custom hooks/plugins beside this file instead of editing it.
 // HERDR_INTEGRATION_ID=opencode
-// HERDR_INTEGRATION_VERSION=9
+// HERDR_INTEGRATION_VERSION=10
 
 import net from "node:net";
 
@@ -46,47 +46,10 @@ const SESSION_STATE_BY_STATUS = new Map([
 ]);
 
 function stateFromSessionStatus(status) {
-<<<<<<< Updated upstream
-  // session.status carries { type: "idle" | "busy" | "retry" }; older builds used a bare string.
-  const kind = typeof status === "string" ? status : status?.type;
-  if (typeof kind !== "string") return undefined;
-  switch (kind.toLowerCase()) {
-    case "idle":
-      return "idle";
-    case "active":
-    case "busy":
-    case "pending":
-    case "running":
-    case "streaming":
-    case "working":
-    case "retry":
-      return "working";
-    default:
-      return undefined;
-  }
-||||||| Stash base
-  if (typeof status !== "string") {
-    return undefined;
-  }
-  switch (status.toLowerCase()) {
-    case "idle":
-      return "idle";
-    case "active":
-    case "busy":
-    case "pending":
-    case "running":
-    case "streaming":
-    case "working":
-      return "working";
-    default:
-      return undefined;
-  }
-=======
   const kind = typeof status === "string" ? status : status?.type;
   return typeof kind === "string"
     ? SESSION_STATE_BY_STATUS.get(kind.toLowerCase())
     : undefined;
->>>>>>> Stashed changes
 }
 
 function request(method, params) {
@@ -139,15 +102,11 @@ function requestOnce(method, params) {
   });
 }
 
-function reportSession(sessionID, sessionStartSource) {
+function reportSession(sessionID) {
   if (!sessionID) {
     return Promise.resolve();
   }
-  const params = { agent_session_id: sessionID };
-  if (sessionStartSource) {
-    params.session_start_source = sessionStartSource;
-  }
-  return request("pane.report_agent_session", params);
+  return request("pane.report_agent_session", { agent_session_id: sessionID });
 }
 
 function reportState(state, sessionID) {
@@ -185,39 +144,18 @@ export const HerdrAgentStatePlugin = async () => {
         childSessions.add(info.id);
       }
       if (sessionID && childSessions.has(sessionID)) {
-<<<<<<< Updated upstream
-        // Child session events are dropped so they cannot clobber the pane's
-        // root-agent state, but a subagent waiting on the user must still
-        // surface as blocked (and clear once answered). Report state only,
-        // without an agent_session_id, so the pane keeps the root session.
-        switch (type) {
-          case "permission.asked":
-          case "question.asked":
-            await reportState("blocked");
-            break;
-          case "permission.replied":
-          case "question.replied":
-          case "question.rejected":
-            await reportState("working");
-            break;
-          default:
-            break;
-||||||| Stash base
-=======
         const state = CHILD_EVENT_STATES.get(type);
         if (state) {
           await reportState(state);
->>>>>>> Stashed changes
         }
         return;
       }
 
       switch (type) {
         case "session.created":
-          // A root session.created is a genuine new-session start (subagent
-          // creates are dropped above). Signal it so herdr replaces the pane's
-          // prior session id instead of treating the change as cross-talk.
-          await reportSession(sessionID, "new");
+          // Creation is server-global, so an attached client may own it. The
+          // TUI plugin separately reports the root selected in this pane.
+          reportedRootSessionID = sessionID;
           break;
         case "session.updated":
           if (sessionID && sessionID !== reportedRootSessionID) {
