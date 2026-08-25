@@ -1,5 +1,48 @@
 [
   {
+    "plugin_id": "dev.herdr-launcher",
+    "name": "herdr-launcher",
+    "version": "0.0.1",
+    "min_herdr_version": "0.7.5",
+    "description": "Custom launcher for herdr",
+    "manifest_path": "/Users/greggannicott/code/herdr-launcher/herdr-plugin.toml",
+    "plugin_root": "/Users/greggannicott/code/herdr-launcher",
+    "enabled": true,
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "actions": [
+      {
+        "id": "open-launcher",
+        "title": "Open launcher",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "open.sh"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "launcher",
+        "title": "Command Launcher",
+        "placement": "popup",
+        "width": "80%",
+        "height": "80%",
+        "command": [
+          "bash",
+          "launcher.sh"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "local"
+    }
+  },
+  {
     "plugin_id": "third774.last-workspace",
     "name": "Last Workspace",
     "version": "0.1.0",
@@ -81,26 +124,50 @@
       {
         "id": "left",
         "title": "Navigate left (Vim/herdr)",
-        "contexts": ["global"],
-        "command": ["bash", "navigate.sh", "left"]
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "navigate.sh",
+          "left"
+        ]
       },
       {
         "id": "down",
         "title": "Navigate down (Vim/herdr)",
-        "contexts": ["global"],
-        "command": ["bash", "navigate.sh", "down"]
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "navigate.sh",
+          "down"
+        ]
       },
       {
         "id": "up",
         "title": "Navigate up (Vim/herdr)",
-        "contexts": ["global"],
-        "command": ["bash", "navigate.sh", "up"]
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "navigate.sh",
+          "up"
+        ]
       },
       {
         "id": "right",
         "title": "Navigate right (Vim/herdr)",
-        "contexts": ["global"],
-        "command": ["bash", "navigate.sh", "right"]
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "navigate.sh",
+          "right"
+        ]
       }
     ],
     "source": {
