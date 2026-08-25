@@ -221,6 +221,7 @@ alias cdpr="cd $project_root"
 
 # Shell Integrations
 eval "$(fzf --zsh)"
+eval "$(herdr completion zsh)"
 
 # Load local zshrc file if it exists
 if [ -f ~/.zshrc.local ]; then
