@@ -73,6 +73,9 @@ branch_name="IS-"
 name=$(gum input --header="Project Name:" --value="$name")
 check_exit_code $?
 
+id=$(gum input --header="ID (optional):" --value="")
+check_exit_code $?
+
 branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
@@ -110,16 +113,11 @@ if [ "$backend" = true ]; then
 fi
 
 if [ "$obsidian" = true ]; then
-    # Extract JIRA ID from branch name
-    jira_id=""
-    if [[ $branch_name =~ ^([A-Z]+-[0-9]+) ]]; then
-        jira_id=${match[1]}  # This captures the first group
-    fi
     output_heading "Creating Obsidian project for '$name'"
 
     payload=$(jq -n \
         --arg name "$name" \
-        --arg jiraId "$jira_id" \
+        --arg jiraId "$id" \
         --arg branch "$branch_name" \
         '{
             name: $name,
