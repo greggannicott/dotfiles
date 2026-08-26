@@ -272,6 +272,16 @@ require("lazy").setup({
 		opts = {},
 		event = "VeryLazy",
 	}, ]]
+	{
+		"pwntester/octo.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = "VeryLazy",
+		config = true,
+	},
 	{ "echasnovski/mini.nvim", version = false },
 	{
 		"greggannicott/jasmine-toggle.nvim",

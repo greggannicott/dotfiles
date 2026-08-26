@@ -6,9 +6,16 @@ fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# confirmations, etc.) must go above this block; everything else may go below it.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Add Homebrew completions to fpath before compinit runs.
+# oh-my-zsh's brew plugin also adds this, but it runs after compinit,
+# so completions installed by brew (gh, glab, etc.) are never registered.
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
+    fpath+=("/opt/homebrew/share/zsh/site-functions")
 fi
 
 # If you come from bash you might have to change your $PATH.

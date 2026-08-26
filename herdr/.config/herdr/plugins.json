@@ -43,6 +43,54 @@
     }
   },
   {
+    "plugin_id": "tdi.worktree-from-pr",
+    "name": "Worktree from PR",
+    "version": "0.2.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Create a git worktree from a GitHub PR and open it as a workspace",
+    "manifest_path": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/tdi.worktree-from-pr-10c57ec5f2ca/herdr-plugin.toml",
+    "plugin_root": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/tdi.worktree-from-pr-10c57ec5f2ca",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "pick",
+        "title": "Worktree from GitHub PR",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "node",
+          "bin/open.js"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "Pick a PR",
+        "placement": "overlay",
+        "command": [
+          "node",
+          "bin/picker.js"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "tdi",
+      "repo": "herdr-worktree-from-pr",
+      "resolved_commit": "55ab2302932c2e8c8a59ee4c316e88988bd25d13",
+      "managed_path": "/Users/greggannicott/.config/herdr/plugins/github/tdi.worktree-from-pr-10c57ec5f2ca",
+      "installed_unix_ms": 1787672476480
+    }
+  },
+  {
     "plugin_id": "third774.last-workspace",
     "name": "Last Workspace",
     "version": "0.1.0",
@@ -105,6 +153,49 @@
       "resolved_commit": "8b55ebf15deaa52b49ff1c2500aab0c19c729420",
       "managed_path": "/Users/greggannicott/.config/herdr/plugins/github/third774.last-workspace-5de7aeab3665",
       "installed_unix_ms": 1782463848566
+    }
+  },
+  {
+    "plugin_id": "url-picker",
+    "name": "URL Picker",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.4",
+    "description": "Pick a URL printed in the current pane with fzf and open it in the default browser.",
+    "manifest_path": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/url-picker-772d113e2991/herdr-plugin.toml",
+    "plugin_root": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/url-picker-772d113e2991",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "pick",
+        "title": "Pick a URL from the pane",
+        "command": [
+          "./pick.sh"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker",
+        "title": "URL Picker",
+        "placement": "popup",
+        "width": "70%",
+        "height": "60%",
+        "command": [
+          "./picker.sh"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "abrose",
+      "repo": "herdr-url-picker",
+      "resolved_commit": "b5d67d8456ff9f7105064186e64c2e755ec87e7f",
+      "managed_path": "/Users/greggannicott/.config/herdr/plugins/github/url-picker-772d113e2991",
+      "installed_unix_ms": 1786012824294
     }
   },
   {
