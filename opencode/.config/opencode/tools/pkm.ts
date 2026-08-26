@@ -269,3 +269,21 @@ export const traits = makeCollectionTool({
   endpoint: "/pkm/traits/",
   description: "Return Traits",
 })
+
+export const runs = makeCollectionTool({
+  name: "Run",
+  endpoint: "/pkm/runs/",
+  description: "Return Runs",
+  queryParams: [
+    {
+      name: "from",
+      type: "string",
+      description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+    },
+    {
+      name: "to",
+      type: "string",
+      description: "End date for range filter (YYYY-MM-DD, inclusive)",
+    },
+  ],
+})

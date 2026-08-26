@@ -3,3 +3,5 @@ tmux/.tmux/
 herdr/.config/herdr/herdr-client.log
 herdr/.config/herdr/herdr-server.log
 herdr/.config/herdr/session.json
+herdr/.config/herdr/.plugins.lock
+herdr/.config/herdr/release-notes.json
