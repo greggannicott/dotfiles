@@ -62,9 +62,8 @@ create_worktree_for_id ()
 # Setup possible options
 BACKEND_WORKTREE_OPTION="Create Backend Worktree"
 OBSIDIAN_PROJECT_OPTION="Create Obsidian Project"
-COPY_BRANCH_NAME_OPTION="Copy branch name to clipboard"
 # For some reason you need commas either end of the string. Without this the first and last options are not set by default.
-DEFAULT_OPTIONS=",$OBSIDIAN_PROJECT_OPTION,$COPY_BRANCH_NAME_OPTION,"
+DEFAULT_OPTIONS=",$OBSIDIAN_PROJECT_OPTION,"
 
 # Set default values
 name=""
@@ -78,21 +77,17 @@ branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
 # Prompt user for options
-script_options=("${(@f)$(gum choose $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected "$DEFAULT_OPTIONS")}")
+script_options=("${(@f)$(gum choose $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION --no-limit --header 'Please select options' --selected "$DEFAULT_OPTIONS")}")
 check_exit_code $?
 
 backend=false
 obsidian=false
-copy_branch=false
 
 if [[ "${script_options[@]}" =~ $BACKEND_WORKTREE_OPTION ]]; then
     backend=true
 fi
 if [[ "${script_options[@]}" =~ $OBSIDIAN_PROJECT_OPTION ]]; then
     obsidian=true
-fi
-if [[ "${script_options[@]}" =~ $COPY_BRANCH_NAME_OPTION ]]; then
-    copy_branch=true
 fi
 
 if [[ -z "$name" && "$obsidian" == true ]]; then
@@ -143,20 +138,6 @@ if [ "$obsidian" = true ]; then
     curl -s "http://localhost:8082/projects/" \
         -H "Content-Type: application/json" \
         --data "$payload" | jq
-fi
-
-# Copy branch name to clipboard as it might be handy
-if [ "$copy_branch" = true ]; then
-    output_heading "Copying branch name to clipboard"
-    if command -v pbcopy >/dev/null 2>&1; then
-        printf '%s' "$branch_name" | pbcopy
-        output_general_message "Branch name copied to clipboard: $branch_name"
-    elif command -v xclip >/dev/null 2>&1; then
-        printf '%s' "$branch_name" | xclip -selection clipboard
-        output_general_message "Branch name copied to clipboard: $branch_name"
-    else
-        output_error_message "No clipboard tool found (pbcopy/xclip). Skipping."
-    fi
 fi
 
 output_heading "Finished!"
