@@ -5,6 +5,7 @@ script_directory="$(cd "$(dirname "$0")" && pwd)"
 
 # Source helper functions
 source "$script_directory/helper-functions.zsh"
+source "$script_directory/helpers/parse-params.zsh"
 
 # Check BFF connectivity
 if ! curl -s -o /dev/null --max-time 5 "http://localhost:8082/status"; then
@@ -62,25 +63,41 @@ create_worktree_for_id ()
 # Setup possible options
 BACKEND_WORKTREE_OPTION="Create Backend Worktree"
 OBSIDIAN_PROJECT_OPTION="Create Obsidian Project"
-# For some reason you need commas either end of the string. Without this the first and last options are not set by default.
-DEFAULT_OPTIONS=",$OBSIDIAN_PROJECT_OPTION,"
+
+# Register CLI parameters
+declare_param "name" "name" "Project name"
+declare_param "id" "id" "ID (optional)"
+declare_param "branch" "branch_name" "Branch name"
+declare_param "create-worktree" "backend" "Create backend worktree" flag
+declare_param "create-project" "obsidian" "Create Obsidian project" flag
 
 # Set default values
 name=""
-branch_name="IS-"
+id=""
+branch_name=""
+backend=false
+obsidian=false
 
-# Prompt user for values.
+# Parse command-line parameters (overrides defaults)
+parse_params "$@"
+
+# Prompt user for values (prefilled from CLI params).
 name=$(gum input --header="Project Name:" --value="$name")
 check_exit_code $?
 
-id=$(gum input --header="ID (optional):" --value="")
+id=$(gum input --header="ID (optional):" --value="$id")
 check_exit_code $?
 
 branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
-# Prompt user for options
-script_options=("${(@f)$(gum choose $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION --no-limit --header 'Please select options' --selected "$DEFAULT_OPTIONS")}")
+# Prompt user for options (pre-selected from CLI flags)
+SELECTED_OPTIONS=""
+[ "$backend" = true ] && SELECTED_OPTIONS="$SELECTED_OPTIONS,$BACKEND_WORKTREE_OPTION"
+[ "$obsidian" = true ] && SELECTED_OPTIONS="$SELECTED_OPTIONS,$OBSIDIAN_PROJECT_OPTION"
+SELECTED_OPTIONS="$SELECTED_OPTIONS,"
+
+script_options=("${(@f)$(gum choose $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION --no-limit --header 'Please select options' --selected "$SELECTED_OPTIONS")}")
 check_exit_code $?
 
 backend=false
