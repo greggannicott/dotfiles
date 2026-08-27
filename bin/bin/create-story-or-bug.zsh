@@ -110,6 +110,23 @@ if [[ "${script_options[@]}" =~ $OBSIDIAN_PROJECT_OPTION ]]; then
     obsidian=true
 fi
 
+# Show selections and ask for confirmation
+output_heading "Confirm selection"
+echo "Project Name: ${name:-<none>}"
+echo "ID: ${id:-<none>}"
+echo "Branch Name: ${branch_name:-<none>}"
+echo
+echo "Create Backend Worktree: $( [ "$backend" = true ] && echo Yes || echo No )"
+echo "Create Obsidian Project: $( [ "$obsidian" = true ] && echo Yes || echo No )"
+echo
+
+if ! gum confirm --default=true --affirmative="Proceed" --negative="Cancel" "Proceed with these settings?"; then
+    output_error_message "Story/bug creation cancelled."
+    output_general_message "Press any key to exit..."
+    read
+    exit 1
+fi
+
 if [[ -z "$name" && "$obsidian" == true ]]; then
     output_error_message "Project Name is required when Obsidian project is being created."
     output_general_message "Press any key to exit..."
