@@ -77,6 +77,13 @@ function formatCollection(items: Record<string, unknown>[]): string {
   return items.map((item, i) => formatItem(item, i + 1)).join("\n---\n")
 }
 
+function formatStringList(values: string[]): string {
+  if (!Array.isArray(values) || values.length === 0) {
+    return "No items found."
+  }
+  return values.map((v) => `- ${v}`).join("\n")
+}
+
 function makeCollectionTool(config: CollectionConfig) {
   const args: Record<string, any> = {}
   if (config.queryParams) {
@@ -313,4 +320,32 @@ export const notes = makeCollectionTool({
         "How to combine topic and category filters: 'and' (default, both must match) or 'or' (either matches)",
     },
   ],
+})
+
+export const categories = tool({
+  description:
+    "List all available note categories (used to choose the category value for pkm_notes)",
+  args: {},
+  async execute() {
+    const url = `${BFF_BASE}/pkm/categories/`
+    const response = await fetch(url)
+    if (!response.ok) {
+      return `Failed to fetch categories: ${response.status} ${response.statusText}`
+    }
+    return formatStringList(await response.json())
+  },
+})
+
+export const topics = tool({
+  description:
+    "List all available note topics (used to choose the topic value for pkm_notes)",
+  args: {},
+  async execute() {
+    const url = `${BFF_BASE}/pkm/topics/`
+    const response = await fetch(url)
+    if (!response.ok) {
+      return `Failed to fetch topics: ${response.status} ${response.statusText}`
+    }
+    return formatStringList(await response.json())
+  },
 })
