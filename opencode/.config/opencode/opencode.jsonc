@@ -20,5 +20,10 @@
       "url": "https://mcp2.readwise.io/mcp",
       "enabled": false,
     },
+    "homeassistant": {
+      "type": "remote",
+      "url": "{env:HA_MCP_URL}",
+      "enabled": false,
+    },
   },
 }
