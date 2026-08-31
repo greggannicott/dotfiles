@@ -287,3 +287,30 @@ export const runs = makeCollectionTool({
     },
   ],
 })
+
+export const notes = makeCollectionTool({
+  name: "Note",
+  endpoint: "/pkm/notes/",
+  description:
+    "Return notes filtered by note type (category) and/or subject (topic). Category is the TYPE of note (e.g. Movie, App, Book); topic is the SUBJECT matter (e.g. Music, AI). Example: 'movies relating to music' = topic=music&category=movie. Use match=or to match either filter.",
+  queryParams: [
+    {
+      name: "topic",
+      type: "string",
+      description:
+        "Subject topic, e.g. 'Music', 'AI', 'Football'. Use the subject here, NOT the note type (see category).",
+    },
+    {
+      name: "category",
+      type: "string",
+      description:
+        "Note type/category, e.g. 'Movie', 'App', 'Book', 'Person', 'Journal', 'Song'. Use the desired note type here, NOT the subject (see topic).",
+    },
+    {
+      name: "match",
+      type: "string",
+      description:
+        "How to combine topic and category filters: 'and' (default, both must match) or 'or' (either matches)",
+    },
+  ],
+})
