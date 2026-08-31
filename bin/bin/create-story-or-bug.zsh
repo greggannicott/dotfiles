@@ -5,6 +5,7 @@ script_directory="$(cd "$(dirname "$0")" && pwd)"
 
 # Source helper functions
 source "$script_directory/helper-functions.zsh"
+source "$script_directory/helpers/parse-params.zsh"
 
 # Check BFF connectivity
 if ! curl -s -o /dev/null --max-time 5 "http://localhost:8082/status"; then
@@ -62,28 +63,45 @@ create_worktree_for_id ()
 # Setup possible options
 BACKEND_WORKTREE_OPTION="Create Backend Worktree"
 OBSIDIAN_PROJECT_OPTION="Create Obsidian Project"
-COPY_BRANCH_NAME_OPTION="Copy branch name to clipboard"
-# For some reason you need commas either end of the string. Without this the first and last options are not set by default.
-DEFAULT_OPTIONS=",$OBSIDIAN_PROJECT_OPTION,$COPY_BRANCH_NAME_OPTION,"
+
+# Register CLI parameters
+declare_param "name" "name" "Project name"
+declare_param "id" "id" "ID (optional)"
+declare_param "branch" "branch_name" "Branch name"
+declare_param "create-worktree" "backend" "Create backend worktree" flag
+declare_param "create-project" "obsidian" "Create Obsidian project" flag
 
 # Set default values
 name=""
-branch_name="IS-"
+id=""
+branch_name=""
+backend=false
+obsidian=false
 
-# Prompt user for values.
+# Parse command-line parameters (overrides defaults)
+parse_params "$@"
+
+# Prompt user for values (prefilled from CLI params).
 name=$(gum input --header="Project Name:" --value="$name")
+check_exit_code $?
+
+id=$(gum input --header="ID (optional):" --value="$id")
 check_exit_code $?
 
 branch_name=$(gum input --header="Branch Name:" --value="$branch_name")
 check_exit_code $?
 
-# Prompt user for options
-script_options=("${(@f)$(gum choose $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION $COPY_BRANCH_NAME_OPTION --no-limit --header 'Please select options' --selected "$DEFAULT_OPTIONS")}")
+# Prompt user for options (pre-selected from CLI flags)
+SELECTED_OPTIONS=""
+[ "$backend" = true ] && SELECTED_OPTIONS="$SELECTED_OPTIONS,$BACKEND_WORKTREE_OPTION"
+[ "$obsidian" = true ] && SELECTED_OPTIONS="$SELECTED_OPTIONS,$OBSIDIAN_PROJECT_OPTION"
+SELECTED_OPTIONS="$SELECTED_OPTIONS,"
+
+script_options=("${(@f)$(gum choose $BACKEND_WORKTREE_OPTION $OBSIDIAN_PROJECT_OPTION --no-limit --header 'Please select options' --selected "$SELECTED_OPTIONS")}")
 check_exit_code $?
 
 backend=false
 obsidian=false
-copy_branch=false
 
 if [[ "${script_options[@]}" =~ $BACKEND_WORKTREE_OPTION ]]; then
     backend=true
@@ -91,8 +109,22 @@ fi
 if [[ "${script_options[@]}" =~ $OBSIDIAN_PROJECT_OPTION ]]; then
     obsidian=true
 fi
-if [[ "${script_options[@]}" =~ $COPY_BRANCH_NAME_OPTION ]]; then
-    copy_branch=true
+
+# Show selections and ask for confirmation
+output_heading "Confirm selection"
+echo "Project Name: ${name:-<none>}"
+echo "ID: ${id:-<none>}"
+echo "Branch Name: ${branch_name:-<none>}"
+echo
+echo "Create Backend Worktree: $( [ "$backend" = true ] && echo Yes || echo No )"
+echo "Create Obsidian Project: $( [ "$obsidian" = true ] && echo Yes || echo No )"
+echo
+
+if ! gum confirm --default=true --affirmative="Proceed" --negative="Cancel" "Proceed with these settings?"; then
+    output_error_message "Story/bug creation cancelled."
+    output_general_message "Press any key to exit..."
+    read
+    exit 1
 fi
 
 if [[ -z "$name" && "$obsidian" == true ]]; then
@@ -115,16 +147,11 @@ if [ "$backend" = true ]; then
 fi
 
 if [ "$obsidian" = true ]; then
-    # Extract JIRA ID from branch name
-    jira_id=""
-    if [[ $branch_name =~ ^([A-Z]+-[0-9]+) ]]; then
-        jira_id=${match[1]}  # This captures the first group
-    fi
     output_heading "Creating Obsidian project for '$name'"
 
     payload=$(jq -n \
         --arg name "$name" \
-        --arg jiraId "$jira_id" \
+        --arg jiraId "$id" \
         --arg branch "$branch_name" \
         '{
             name: $name,
@@ -143,20 +170,6 @@ if [ "$obsidian" = true ]; then
     curl -s "http://localhost:8082/projects/" \
         -H "Content-Type: application/json" \
         --data "$payload" | jq
-fi
-
-# Copy branch name to clipboard as it might be handy
-if [ "$copy_branch" = true ]; then
-    output_heading "Copying branch name to clipboard"
-    if command -v pbcopy >/dev/null 2>&1; then
-        printf '%s' "$branch_name" | pbcopy
-        output_general_message "Branch name copied to clipboard: $branch_name"
-    elif command -v xclip >/dev/null 2>&1; then
-        printf '%s' "$branch_name" | xclip -selection clipboard
-        output_general_message "Branch name copied to clipboard: $branch_name"
-    else
-        output_error_message "No clipboard tool found (pbcopy/xclip). Skipping."
-    fi
 fi
 
 output_heading "Finished!"
