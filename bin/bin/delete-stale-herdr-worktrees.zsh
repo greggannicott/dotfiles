@@ -26,21 +26,21 @@ filtered_projects=$(curl -s "http://localhost:8082/projects/" | jq '[.[] | selec
 project_count=$(echo "$filtered_projects" | jq 'length')
 
 if [ "$project_count" -eq 0 ]; then
-    output_general_message "No stale worktree projects found."
+    output_general_message "No closed projects found."
     output_general_message "Press any key to exit..."
     read
     exit 0
 fi
 
-output_general_message "Found $project_count stale worktree project(s)"
+output_general_message "Found $project_count closed project(s)."
 
-# Filter to only projects where the worktree directory exists on disk
+# Filter to only projects where the worktree actually exists on disk
 eligible_projects="[]"
 for i in $(seq 0 $((project_count - 1))); do
     project=$(echo "$filtered_projects" | jq ".[$i]")
     repo_path=$(echo "$project" | jq -r '.repo.repoPath')
 
-    if [ -d "$repo_path" ]; then
+    if git -C "$repo_path" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         eligible_projects=$(echo "$eligible_projects" | jq --argjson project "$project" '. + [$project]')
     fi
 done
