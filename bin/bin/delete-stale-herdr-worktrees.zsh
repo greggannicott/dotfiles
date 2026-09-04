@@ -2,7 +2,7 @@
 
 clear
 
-figlet "Delete Stale Worktrees"
+figlet "Delete Stale Herdr Worktrees"
 
 # Get the directory of the current script
 script_directory="$(cd "$(dirname "$0")" && pwd)"
