@@ -86,9 +86,8 @@ $display"
 done
 
 selector_items=$(echo "$selector_items" | sed '/^$/d')
-selector_count=$(echo "$selector_items" | wc -l | tr -d ' ')
 
-if [ "$selector_count" -eq 0 ]; then
+if [ -z "$selector_items" ]; then
     output_general_message "No matching herdr workspaces found."
     output_general_message "Press any key to exit..."
     read
