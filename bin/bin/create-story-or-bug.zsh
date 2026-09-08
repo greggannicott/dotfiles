@@ -25,8 +25,8 @@ output_heading "Create Story or Bug"
 
 create_worktree_for_id ()
 {
-    id=$1
-    branch=$2
+    local id=$1
+    local branch=$2
 
     ## Obtain details regarding the repo
 
@@ -167,9 +167,18 @@ if [ "$obsidian" = true ]; then
             ]
         }')
 
-    curl -s "http://localhost:8082/projects/" \
+    output_heading "BFF Request Details"
+    echo "URL: http://localhost:8082/projects/"
+    echo "Method: POST"
+    echo "Payload:"
+    echo "$payload" | jq .
+
+    response=$(curl -s "http://localhost:8082/projects/" \
         -H "Content-Type: application/json" \
-        --data "$payload" | jq
+        --data "$payload")
+    echo
+    echo "Response:"
+    echo "$response" | jq .
 fi
 
 output_heading "Finished!"
