@@ -93,6 +93,14 @@ vim.diagnostic.config({
 	},
 })
 
+-- Returns true when `bufnr` looks like a real, on-disk file rather than a
+-- virtual buffer addressed by a URI scheme (e.g. Diffview's `diffview://`,
+-- Fugitive's `fugitive://`, `term://`, etc.).
+local function is_real_file_buffer(bufnr)
+	local bufname = vim.api.nvim_buf_get_name(bufnr)
+	return bufname ~= "" and not bufname:match("^%a[%w+.-]*://")
+end
+
 -- Setup neovim lua configuration
 require("neodev").setup()
 
@@ -132,9 +140,24 @@ mason_lspconfig.setup({
 
 mason_lspconfig.setup_handlers({
 	function(server_name)
+		-- Capture the root markers nvim-lspconfig already registered for this server
+		-- before we override `root_dir`, so real files still get correct root detection.
+		local root_markers = (vim.lsp.config[server_name] or {}).root_markers
+
 		local server_config = {
 			capabilities = capabilities,
 			on_attach = on_attach,
+			-- Never start a client for virtual/scheme buffers (e.g. Diffview's
+			-- `diffview://` buffers). gopls (and others) reject any URI whose scheme
+			-- isn't `file`, causing a "-32700 JSON RPC parse error". Not calling
+			-- `on_dir` here means the client is never started for that buffer, so no
+			-- `didOpen` with the bad URI is ever sent.
+			root_dir = function(bufnr, on_dir)
+				if not is_real_file_buffer(bufnr) then
+					return
+				end
+				on_dir(root_markers and vim.fs.root(bufnr, root_markers) or vim.fn.getcwd())
+			end,
 		}
 		-- Add settings if they exist for this server
 		if servers[server_name] then
