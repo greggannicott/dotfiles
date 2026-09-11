@@ -56,7 +56,7 @@ export GG_LAUNCHER_ROOT_DIR=~/code/gg-launcher/
 export GG_LAUNCHER_HELPERS_DIR=$GG_LAUNCHER_ROOT_DIR/helpers/
 
 # Add NPM to the path (for nvim/mason)
-export PATH=/Users/greggannicott/.nvm/versions/node/v18.20.4/bin:$PATH
+export PATH=/Users/greggannicott/.nvm/versions/node/v20.19.6/bin:$PATH
 
 # Set a variable containing the root of the tmux session.
 # Only do so if you are inside of tmux.
