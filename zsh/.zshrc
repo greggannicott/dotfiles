@@ -229,6 +229,8 @@ alias cdpr="cd $project_root"
 # Shell Integrations
 eval "$(fzf --zsh)"
 eval "$(herdr completion zsh)"
+eval "$(copilot completion zsh | sed '/^_copilot "\$@"$/d')"
+compdef _copilot copilot
 
 # Load local zshrc file if it exists
 if [ -f ~/.zshrc.local ]; then
