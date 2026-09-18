@@ -216,7 +216,8 @@ alias jira="open-jira.zsh" # First arg should be the Jira ID
 
 alias run-hub-api="go run ."
 alias rha="run-hub-api"
-alias run-hub-service="go run . foreground"
+# gcflags makes it possible to attach to the process
+alias run-hub-service="go build -gcflags='all=-N -l' -o /tmp/mcs-debug . && /tmp/mcs-debug foreground"
 alias rhs="run-hub-service"
 alias run-hub-ui="npm run start"
 alias rhu="run-hub-ui"
