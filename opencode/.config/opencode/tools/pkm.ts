@@ -349,3 +349,9 @@ export const topics = tool({
     return formatStringList(await response.json())
   },
 })
+
+export const runTypes = makeCollectionTool({
+  name: "Run Type",
+  endpoint: "/pkm/run-types/",
+  description: "Return Run Types",
+})
