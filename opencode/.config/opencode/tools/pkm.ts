@@ -355,3 +355,9 @@ export const runTypes = makeCollectionTool({
   endpoint: "/pkm/run-types/",
   description: "Return Run Types",
 })
+
+export const runningPlans = makeCollectionTool({
+  name: "Running Plan",
+  endpoint: "/pkm/running-plans/",
+  description: "Return Running Plans",
+})
