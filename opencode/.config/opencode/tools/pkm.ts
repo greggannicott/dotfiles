@@ -361,3 +361,49 @@ export const runningPlans = makeCollectionTool({
   endpoint: "/pkm/running-plans/",
   description: "Return Running Plans",
 })
+
+export const addRunningPlan = tool({
+  description: "Create a new running plan Obsidian note in the vault",
+  args: {
+    name: tool.schema
+      .string()
+      .describe("Name of the running plan; used as the note filename"),
+    type: tool.schema
+      .enum(["ai", "manMade"] as const)
+      .describe("Template used to generate the plan"),
+    watchRoutineName: tool.schema
+      .string()
+      .optional()
+      .describe("Name of the watch routine associated with the plan"),
+    runType: tool.schema
+      .string()
+      .optional()
+      .describe("Type of run; must match an existing Run Type note"),
+    goalOfPlan: tool.schema
+      .string()
+      .optional()
+      .describe("Fills the 'Goal of Plan' section"),
+    details: tool.schema
+      .string()
+      .optional()
+      .describe("Fills the 'Details' section"),
+  },
+  async execute(args) {
+    const response = await fetch(`${BFF_BASE}/pkm/running-plans/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(args),
+    })
+
+    if (!response.ok) {
+      let message = `${response.status} ${response.statusText}`
+      try {
+        const body = await response.json()
+        if (body.error) message = body.error
+      } catch {}
+      return `Failed to create running plan: ${message}`
+    }
+
+    return formatItem(await response.json(), 1)
+  },
+})
