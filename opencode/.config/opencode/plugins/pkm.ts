@@ -1,0 +1,451 @@
+import { Plugin } from "@opencode/plugin"
+import type { Info as ToolDefinition } from "@opencode/plugin/promise/tool"
+
+const BFF_BASE = "http://localhost:8082"
+const NAMESPACE = "pkm"
+
+interface QueryParamDef {
+  name: string
+  type: "string" | "number"
+  description: string
+}
+
+interface CollectionConfig {
+  name: string
+  endpoint: string
+  description: string
+  queryParams?: QueryParamDef[]
+}
+
+const METADATA_KEYS = ["name", "path", "createdAt", "modifiedAt"]
+
+function formatValue(value: unknown): string | null {
+  if (value === null || value === undefined) return null
+  if (typeof value === "string" && value === "") return null
+  if (typeof value === "boolean") return value ? "Yes" : "No"
+  if (typeof value === "string" || typeof value === "number") return String(value)
+  if (Array.isArray(value)) {
+    const formatted = value.map(formatValue).filter(Boolean)
+    return formatted.length > 0 ? formatted.join(", ") : null
+  }
+  return null
+}
+
+function formatItem(item: Record<string, unknown>, index: number): string {
+  const lines: string[] = []
+
+  lines.push(`### ${index}. ${item.name || "Unknown"}`)
+
+  for (const key of METADATA_KEYS) {
+    if (key === "name") continue
+    const value = formatValue(item[key])
+    if (value) {
+      const label =
+        key === "createdAt"
+          ? "Created"
+          : key === "modifiedAt"
+            ? "Modified"
+            : key.charAt(0).toUpperCase() + key.slice(1)
+      lines.push(`**${label}:** ${value}`)
+    }
+  }
+
+  if (item.body) {
+    lines.push("")
+    lines.push(String(item.body))
+  }
+
+  const otherKeys = Object.keys(item).filter(
+    (k) => !METADATA_KEYS.includes(k) && k !== "body",
+  )
+  if (otherKeys.length > 0) {
+    lines.push("")
+    for (const key of otherKeys) {
+      const value = formatValue(item[key])
+      if (value) {
+        const label = key.charAt(0).toUpperCase() + key.slice(1)
+        lines.push(`**${label}:** ${value}`)
+      }
+    }
+  }
+
+  return lines.join("\n")
+}
+
+function formatCollection(items: Record<string, unknown>[]): string {
+  if (!Array.isArray(items) || items.length === 0) {
+    return "No items found."
+  }
+  return items.map((item, i) => formatItem(item, i + 1)).join("\n---\n")
+}
+
+function formatStringList(values: string[]): string {
+  if (!Array.isArray(values) || values.length === 0) {
+    return "No items found."
+  }
+  return values.map((v) => `- ${v}`).join("\n")
+}
+
+function makeInput(properties: Record<string, unknown>, required: string[] = []) {
+  return {
+    type: "object",
+    properties,
+    required,
+    additionalProperties: false,
+  }
+}
+
+function optionalParam(param: QueryParamDef) {
+  return param.type === "number"
+    ? { type: "number", description: param.description }
+    : { type: "string", description: param.description }
+}
+
+function makeCollectionTool(name: string, config: CollectionConfig): ToolDefinition {
+  const properties: Record<string, unknown> = {}
+  for (const param of config.queryParams ?? []) {
+    properties[param.name] = optionalParam(param)
+  }
+
+  return {
+    name,
+    description: config.description,
+    input: makeInput(properties),
+    async execute(input: any, context) {
+      const params = new URLSearchParams()
+      for (const param of config.queryParams ?? []) {
+        const value = input[param.name]
+        if (value != null) {
+          params.set(param.name, String(value))
+        }
+      }
+      const qs = params.toString()
+      const url = `${BFF_BASE}${config.endpoint}${qs ? `?${qs}` : ""}`
+
+      const response = await fetch(url, { signal: context.signal })
+      if (!response.ok) {
+        return { content: `Failed to fetch ${config.name.toLowerCase()}s: ${response.status} ${response.statusText}` }
+      }
+
+      const data = await response.json()
+      return { content: formatCollection(data) }
+    },
+  }
+}
+
+function todayString() {
+  const d = new Date()
+  const yyyy = d.getFullYear()
+  const mm = String(d.getMonth() + 1).padStart(2, "0")
+  const dd = String(d.getDate()).padStart(2, "0")
+  return `${yyyy}-${mm}-${dd}`
+}
+
+const tools: ToolDefinition[] = [
+  makeCollectionTool("journals", {
+    name: "Journal",
+    endpoint: "/pkm/journals/",
+    description: "Return Journal entries",
+    queryParams: [
+      {
+        name: "from",
+        type: "string",
+        description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+      },
+      {
+        name: "to",
+        type: "string",
+        description: "End date for range filter (YYYY-MM-DD, inclusive)",
+      },
+    ],
+  }),
+
+  makeCollectionTool("identities", {
+    name: "Identity",
+    endpoint: "/pkm/identities/",
+    description: "Return Identities",
+  }),
+
+  makeCollectionTool("dailyNotes", {
+    name: "Daily Note",
+    endpoint: "/pkm/daily-notes/",
+    description: "Return Daily Notes",
+    queryParams: [
+      {
+        name: "yearWeek",
+        type: "string",
+        description: "ISO year-week to filter by (e.g. 2026-W27)",
+      },
+      {
+        name: "from",
+        type: "string",
+        description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+      },
+      {
+        name: "to",
+        type: "string",
+        description: "End date for range filter (YYYY-MM-DD, inclusive)",
+      },
+    ],
+  }),
+
+  makeCollectionTool("weeklyNotes", {
+    name: "Weekly Note",
+    endpoint: "/pkm/weekly-notes/",
+    description: "Return Weekly Notes",
+    queryParams: [
+      {
+        name: "from",
+        type: "string",
+        description:
+          "Start week for range filter (YYYY-Www, inclusive, e.g. 2026-W01)",
+      },
+      {
+        name: "to",
+        type: "string",
+        description:
+          "End week for range filter (YYYY-Www, inclusive, e.g. 2026-W26)",
+      },
+    ],
+  }),
+
+  makeCollectionTool("goals", {
+    name: "Goal",
+    endpoint: "/pkm/goals/",
+    description: "Return Goals",
+  }),
+
+  makeCollectionTool("apps", {
+    name: "App",
+    endpoint: "/pkm/apps/",
+    description: "Return Apps",
+  }),
+
+  {
+    name: "journalLastDays",
+    description: "Return Journal entries for last number of days",
+    input: makeInput(
+      {
+        days: {
+          type: "integer",
+          exclusiveMinimum: 0,
+          description:
+            "Number of days to include, counting back from today inclusively",
+        },
+      },
+      ["days"],
+    ),    async execute(input: any, context) {
+      const to = todayString()
+      const fromDate = new Date()
+      fromDate.setDate(fromDate.getDate() - (input.days - 1))
+      const yyyy = fromDate.getFullYear()
+      const mm = String(fromDate.getMonth() + 1).padStart(2, "0")
+      const dd = String(fromDate.getDate()).padStart(2, "0")
+      const from = `${yyyy}-${mm}-${dd}`
+
+      const url = `${BFF_BASE}/pkm/journals/?from=${from}&to=${to}`
+      const response = await fetch(url, { signal: context.signal })
+
+      if (!response.ok) {
+        return { content: `Failed to fetch journal entries: ${response.status} ${response.statusText}` }
+      }
+
+      const entries = await response.json()
+      return { content: formatCollection(entries) }
+    },
+  },
+
+  {
+    name: "schemaDiscovery",
+    description: "List all available PKM collection endpoints and their schemas",
+    input: makeInput({}),
+    async execute(_input, context) {
+      const response = await fetch(`${BFF_BASE}/pkm/schema`, {
+        signal: context.signal,
+      })
+
+      if (!response.ok) {
+        return { content: `Failed to fetch schema: ${response.status} ${response.statusText}` }
+      }
+
+      const schemas = await response.json()
+
+      if (!Array.isArray(schemas) || schemas.length === 0) {
+        return { content: "No collection endpoints found." }
+      }
+
+      const lines = schemas.map(
+        (s: Record<string, string>, i: number) =>
+          `### ${i + 1}. ${s.name}\n**Collection:** ${s.collection}\n**Schema:** ${s.schema}`,
+      )
+
+      return { content: lines.join("\n---\n") }
+    },
+  },
+
+  makeCollectionTool("traits", {
+    name: "Trait",
+    endpoint: "/pkm/traits/",
+    description: "Return Traits",
+  }),
+
+  makeCollectionTool("runs", {
+    name: "Run",
+    endpoint: "/pkm/runs/",
+    description: "Return Runs",
+    queryParams: [
+      {
+        name: "from",
+        type: "string",
+        description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+      },
+      {
+        name: "to",
+        type: "string",
+        description: "End date for range filter (YYYY-MM-DD, inclusive)",
+      },
+    ],
+  }),
+
+  makeCollectionTool("notes", {
+    name: "Note",
+    endpoint: "/pkm/notes/",
+    description:
+      "Return notes filtered by note type (category) and/or subject (topic). Category is the TYPE of note (e.g. Movie, App, Book); topic is the SUBJECT matter (e.g. Music, AI). Example: 'movies relating to music' = topic=music&category=movie. Use match=or to match either filter.",
+    queryParams: [
+      {
+        name: "topic",
+        type: "string",
+        description:
+          "Subject topic, e.g. 'Music', 'AI', 'Football'. Use the subject here, NOT the note type (see category).",
+      },
+      {
+        name: "category",
+        type: "string",
+        description:
+          "Note type/category, e.g. 'Movie', 'App', 'Book', 'Person', 'Journal', 'Song'. Use the desired note type here, NOT the subject (see topic).",
+      },
+      {
+        name: "match",
+        type: "string",
+        description:
+          "How to combine topic and category filters: 'and' (default, both must match) or 'or' (either matches)",
+      },
+    ],
+  }),
+
+  {
+    name: "categories",
+    description:
+      "List all available note categories (used to choose the category value for pkm_notes)",
+    input: makeInput({}),
+    async execute(_input, context) {
+      const url = `${BFF_BASE}/pkm/categories/`
+      const response = await fetch(url, { signal: context.signal })
+      if (!response.ok) {
+        return { content: `Failed to fetch categories: ${response.status} ${response.statusText}` }
+      }
+      return { content: formatStringList(await response.json()) }
+    },
+  },
+
+  {
+    name: "topics",
+    description:
+      "List all available note topics (used to choose the topic value for pkm_notes)",
+    input: makeInput({}),
+    async execute(_input, context) {
+      const url = `${BFF_BASE}/pkm/topics/`
+      const response = await fetch(url, { signal: context.signal })
+      if (!response.ok) {
+        return { content: `Failed to fetch topics: ${response.status} ${response.statusText}` }
+      }
+      return { content: formatStringList(await response.json()) }
+    },
+  },
+
+  makeCollectionTool("runTypes", {
+    name: "Run Type",
+    endpoint: "/pkm/run-types/",
+    description: "Return Run Types",
+  }),
+
+  makeCollectionTool("runningPlans", {
+    name: "Running Plan",
+    endpoint: "/pkm/running-plans/",
+    description: "Return Running Plans",
+  }),
+
+  {
+    name: "addRunningPlan",
+    description: "Create a new running plan Obsidian note in the vault",
+    input: makeInput(
+      {
+        name: {
+          type: "string",
+          description: "Name of the running plan; used as the note filename",
+        },
+        type: {
+          type: "string",
+          enum: ["ai", "manMade"],
+          description: "Template used to generate the plan",
+        },
+        watchRoutineName: {
+          type: "string",
+          description: "Name of the watch routine associated with the plan",
+        },
+        runType: {
+          type: "string",
+          description: "Type of run; must match an existing Run Type note",
+        },
+        goalOfPlan: {
+          type: "string",
+          description: "Fills the 'Goal of Plan' section",
+        },
+        details: {
+          type: "string",
+          description: "Fills the 'Details' section",
+        },
+      },
+      ["name", "type"],
+    ),
+    async execute(input: any, context) {
+      const response = await fetch(`${BFF_BASE}/pkm/running-plans/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+        signal: context.signal,
+      })
+
+      if (!response.ok) {
+        let message = `${response.status} ${response.statusText}`
+        try {
+          const body = await response.json()
+          if (body.error) message = body.error
+        } catch {}
+        return { content: `Failed to create running plan: ${message}` }
+      }
+
+      return { content: formatItem(await response.json(), 1) }
+    },
+  },
+]
+
+export default Plugin.define({
+  id: "pkm",
+  async setup(ctx) {
+    await ctx.tool.transform((editor) => {
+      editor.namespace({
+        name: NAMESPACE,
+        description:
+          "Personal knowledge management tools backed by a local PKM service: journals, notes, goals, runs, and related collections.",
+      })
+      for (const tool of tools) {
+        editor.add({
+          ...tool,
+          options: { namespace: NAMESPACE, codemode: true },
+        })
+      }
+    })
+  },
+})
