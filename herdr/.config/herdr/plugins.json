@@ -45,7 +45,7 @@
   {
     "plugin_id": "tdi.worktree-from-pr",
     "name": "Worktree from PR",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "min_herdr_version": "0.7.0",
     "description": "Create a git worktree from a GitHub PR and open it as a workspace",
     "manifest_path": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/tdi.worktree-from-pr-10c57ec5f2ca/herdr-plugin.toml",
@@ -85,9 +85,9 @@
       "kind": "github",
       "owner": "tdi",
       "repo": "herdr-worktree-from-pr",
-      "resolved_commit": "55ab2302932c2e8c8a59ee4c316e88988bd25d13",
+      "resolved_commit": "a20bbf0a0ff9a50e49b480a949403ee395badd1d",
       "managed_path": "/Users/greggannicott/.config/herdr/plugins/github/tdi.worktree-from-pr-10c57ec5f2ca",
-      "installed_unix_ms": 1787672476480
+      "installed_unix_ms": 1790606174656
     }
   },
   {
@@ -195,7 +195,7 @@
       "repo": "herdr-url-picker",
       "resolved_commit": "b5d67d8456ff9f7105064186e64c2e755ec87e7f",
       "managed_path": "/Users/greggannicott/.config/herdr/plugins/github/url-picker-772d113e2991",
-      "installed_unix_ms": 1786012824294
+      "installed_unix_ms": 1790606174636
     }
   },
   {
@@ -204,26 +204,14 @@
     "version": "0.1.0",
     "min_herdr_version": "0.7.0",
     "description": "Seamless Ctrl+h/j/k/l navigation across herdr panes and Vim/Neovim splits",
-    "manifest_path": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/vim-herdr-navigation/herdr-plugin.toml",
-    "plugin_root": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/vim-herdr-navigation",
+    "manifest_path": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/vim-herdr-navigation-a8bf42123d81/herdr-plugin.toml",
+    "plugin_root": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/vim-herdr-navigation-a8bf42123d81",
     "enabled": true,
     "platforms": [
       "linux",
       "macos"
     ],
     "actions": [
-      {
-        "id": "left",
-        "title": "Navigate left (Vim/herdr)",
-        "contexts": [
-          "global"
-        ],
-        "command": [
-          "bash",
-          "navigate.sh",
-          "left"
-        ]
-      },
       {
         "id": "down",
         "title": "Navigate down (Vim/herdr)",
@@ -237,15 +225,15 @@
         ]
       },
       {
-        "id": "up",
-        "title": "Navigate up (Vim/herdr)",
+        "id": "left",
+        "title": "Navigate left (Vim/herdr)",
         "contexts": [
           "global"
         ],
         "command": [
           "bash",
           "navigate.sh",
-          "up"
+          "left"
         ]
       },
       {
@@ -259,13 +247,27 @@
           "navigate.sh",
           "right"
         ]
+      },
+      {
+        "id": "up",
+        "title": "Navigate up (Vim/herdr)",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "bash",
+          "navigate.sh",
+          "up"
+        ]
       }
     ],
     "source": {
       "kind": "github",
       "owner": "paulbkim-dev",
       "repo": "vim-herdr-navigation",
-      "managed_path": "/Users/greggannicott/dotfiles/herdr/.config/herdr/plugins/github/vim-herdr-navigation"
+      "resolved_commit": "79679dacc791f70fc34de8b29a3cf9706c0f5b2f",
+      "managed_path": "/Users/greggannicott/.config/herdr/plugins/github/vim-herdr-navigation-a8bf42123d81",
+      "installed_unix_ms": 1790606045697
     }
   }
 ]
