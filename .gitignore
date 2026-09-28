@@ -5,3 +5,10 @@ herdr/.config/herdr/herdr-server.log
 herdr/.config/herdr/session.json
 herdr/.config/herdr/.plugins.lock
 herdr/.config/herdr/release-notes.json
+
+# herdr: upstream plugin clones managed by herdr, not dotfiles
+herdr/.config/herdr/plugins/github/
+
+# opencode: runtime artifacts written into the symlinked config dir
+opencode/.config/opencode/package-lock.json
+opencode/.config/opencode/service.json
