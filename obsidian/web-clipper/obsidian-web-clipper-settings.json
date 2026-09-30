@@ -440,8 +440,8 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 604,
-    "copyToClipboard": 163,
+    "addToObsidian": 687,
+    "copyToClipboard": 167,
     "saveFile": 0,
     "share": 0
   },
@@ -1061,18 +1061,6 @@
       {
         "id": "17763364874679zty7gz",
         "name": "watched",
-        "value": "",
-        "type": "checkbox"
-      },
-      {
-        "id": "1776336487467ieic10k",
-        "name": "watched-on",
-        "value": "",
-        "type": "text"
-      },
-      {
-        "id": "1776336487467ov7v22q",
-        "name": "with-becky?",
         "value": "",
         "type": "checkbox"
       },
