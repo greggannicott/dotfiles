@@ -972,7 +972,7 @@
     "schemaVersion": "0.1.0",
     "name": "Movie - IMDb",
     "behavior": "create",
-    "noteContentFormat": "# Synopsis\n\n{{schema:@Movie:description}}\n\n# Music\n\n![[Songs for Movie.base]]\n\n",
+    "noteContentFormat": "# Synopsis\n\n{{schema:@Movie:description}}\n\n# Music\n\n![[Songs for Movie.base]]\n\n# Viewings\n\n![[Viewings for Movie.base]]\n\n",
     "properties": [
       {
         "id": "1776336487467mzo8r0b",
