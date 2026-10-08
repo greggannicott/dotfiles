@@ -420,6 +420,10 @@
     {
       "name": "duration-readable",
       "type": "text"
+    },
+    {
+      "name": "problems",
+      "type": "multitext"
     }
   ],
   "reader_settings": {
@@ -440,7 +444,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 687,
+    "addToObsidian": 697,
     "copyToClipboard": 167,
     "saveFile": 0,
     "share": 0
@@ -508,6 +512,12 @@
       {
         "id": "1775724289929o9jn5c0",
         "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1791447320780ukjsoe64o",
+        "name": "problems",
         "value": "",
         "type": "multitext"
       },
@@ -1207,7 +1217,7 @@
         "id": "1776336589170vqszuik",
         "name": "episode-number",
         "value": "{{schema:@PodcastEpisode:episodeNumber}}",
-        "type": "number"
+        "type": "text"
       },
       {
         "id": "1776336589170tgwmg2m",
@@ -1248,6 +1258,12 @@
       {
         "id": "17763365891701jz2rvo",
         "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1791447566331vez84ilvs",
+        "name": "problems",
         "value": "",
         "type": "multitext"
       },
@@ -1582,6 +1598,12 @@
         "type": "multitext"
       },
       {
+        "id": "1791447745698wr3u28ggp",
+        "name": "problems",
+        "value": "",
+        "type": "multitext"
+      },
+      {
         "id": "1777879152783og7yuq6qo",
         "name": "rating",
         "value": "",
@@ -1636,6 +1658,12 @@
       {
         "id": "1776336744567nykasyy",
         "name": "topics",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1791447273081u5zasa1vj",
+        "name": "problems",
         "value": "",
         "type": "multitext"
       },
