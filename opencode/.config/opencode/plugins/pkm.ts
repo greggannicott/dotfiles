@@ -221,6 +221,12 @@ const tools: ToolDefinition[] = [
     description: "Return Apps",
   }),
 
+  makeCollectionTool("problems", {
+    name: "Problem",
+    endpoint: "/pkm/problems/",
+    description: "Return Problems",
+  }),
+
   {
     name: "journalLastDays",
     description: "Return Journal entries for last number of days",
