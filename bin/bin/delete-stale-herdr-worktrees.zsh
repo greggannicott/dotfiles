@@ -100,7 +100,7 @@ consumed_space=$title_space
 list_height=$(($(tput lines) - $consumed_space))
 
 # Display selector with all items pre-selected
-selected_items=$(echo "$selector_items" | gum choose --no-limit --height=$list_height --selected "$selector_items" --header "Select worktrees to delete (all selected by default)")
+selected_items=$(echo "$selector_items" | gum choose --no-limit --height=$list_height --selected '*' --header "Select worktrees to delete (all selected by default)")
 check_exit_code $?
 
 if [ -z "$selected_items" ]; then
