@@ -59,17 +59,12 @@ output_general_message "$eligible_count worktree(s) found on disk"
 # Fetch herdr workspaces to build a workspace ID lookup
 workspace_data=$(herdr workspace list 2>/dev/null | jq '.result.workspaces')
 
-# Build the selection items and a lookup from repoPath to workspace ID
-selector_items=""
-lookup="{}"
+# Build table rows (jira, name, status, branch) and the matching workspace IDs
+typeset -a rows_jira rows_name rows_status rows_branch rows_workspace
 
 for i in $(seq 0 $((eligible_count - 1))); do
     project=$(echo "$eligible_projects" | jq ".[$i]")
     repo_path=$(echo "$project" | jq -r '.repo.repoPath')
-    jira_id=$(echo "$project" | jq -r '.jiraId // "—"')
-    name=$(echo "$project" | jq -r '.name')
-    project_status=$(echo "$project" | jq -r '.projectStatus')
-    branch=$(echo "$project" | jq -r '.repo.branch // "—"')
 
     # Find matching workspace ID
     workspace_id=$(echo "$workspace_data" | jq -r --arg path "$repo_path" '.[] | select(.worktree.checkout_path == $path) | .workspace_id // empty' | head -1)
@@ -78,30 +73,63 @@ for i in $(seq 0 $((eligible_count - 1))); do
         continue
     fi
 
-    display="$jira_id  |  $name  |  $project_status  |  $branch"
-    selector_items="$selector_items
-$display"
-
-    lookup=$(echo "$lookup" | jq --arg key "$display" --arg wid "$workspace_id" '. + {($key): $wid}')
+    rows_jira+=("$(echo "$project" | jq -r '.jiraId // "—"')")
+    rows_name+=("$(echo "$project" | jq -r '.name')")
+    rows_status+=("$(echo "$project" | jq -r '.projectStatus')")
+    rows_branch+=("$(echo "$project" | jq -r '.repo.branch // "—"')")
+    rows_workspace+=("$workspace_id")
 done
 
-selector_items=$(echo "$selector_items" | sed '/^$/d')
-
-if [ -z "$selector_items" ]; then
+if [ ${#rows_workspace[@]} -eq 0 ]; then
     output_general_message "No matching herdr workspaces found."
     output_general_message "Press any key to exit..."
     read
     exit 0
 fi
 
-# Determine selector height
-title_space=8
-consumed_space=$title_space
-list_height=$(($(tput lines) - $consumed_space))
+# Column widths: widest value in each column (header included)
+typeset -a headers=("ID" "Name" "Status" "Branch")
+typeset -a widths=(${#headers[1]} ${#headers[2]} ${#headers[3]} ${#headers[4]})
+for i in {1..${#rows_workspace[@]}}; do
+    (( ${#rows_jira[$i]} > widths[1] )) && widths[1]=${#rows_jira[$i]}
+    (( ${#rows_name[$i]} > widths[2] )) && widths[2]=${#rows_name[$i]}
+    (( ${#rows_status[$i]} > widths[3] )) && widths[3]=${#rows_status[$i]}
+    (( ${#rows_branch[$i]} > widths[4] )) && widths[4]=${#rows_branch[$i]}
+done
 
-# Display selector with all items pre-selected
-selected_items=$(echo "$selector_items" | gum choose --no-limit --height=$list_height --selected '*' --header "Select worktrees to delete (all selected by default)")
-check_exit_code $?
+# One Dark palette, matching herdr-launcher
+reset=$'\033[0m'
+c_header=$'\033[38;2;229;192;123m'
+c_info=$'\033[38;2;86;182;194m'
+c_fg=$'\033[38;2;171;178;191m'
+c_dim=$'\033[2m'
+fzf_color="fg:#abb2bf,bg:#282c34,hl:#61afef,fg+:#abb2bf,bg+:#3e4451,hl+:#61afef,info:#56b6c2,prompt:#61afef,pointer:#e06c75,marker:#98c379,spinner:#c678dd,header:#e5c07b,border:#4b5263,label:#abb2bf,query:#abb2bf,scrollbar:#4b5263,gutter:#282c34"
+
+header_line=$(printf '%s%-*s%s  %s%-*s%s  %s%-*s%s  %s%-*s%s' \
+    "$c_header" $widths[1] "ID" "$reset" \
+    "$c_header" $widths[2] "Name" "$reset" \
+    "$c_header" $widths[3] "Status" "$reset" \
+    "$c_header" $widths[4] "Branch" "$reset")
+
+# Each row is "<display>\t<workspace id>"; only the display part is shown
+selector_items="$header_line"
+for i in {1..${#rows_workspace[@]}}; do
+    row=$(printf '%s%-*s%s  %s%-*s%s  %s%-*s%s  %s%-*s%s' \
+        "$c_info" $widths[1] "${rows_jira[$i]}" "$reset" \
+        "$c_fg" $widths[2] "${rows_name[$i]}" "$reset" \
+        "$c_header" $widths[3] "${rows_status[$i]}" "$reset" \
+        "$c_dim" $widths[4] "${rows_branch[$i]}" "$reset")
+    selector_items+=$'\n'"$row"$'\t'"${rows_workspace[$i]}"
+done
+
+# Display selector with all items pre-selected (Tab toggles, Enter confirms)
+selected_items=$(echo "$selector_items" | fzf --multi --ansi --no-sort --layout=reverse \
+    --prompt="Delete worktrees> " --delimiter=$'\t' --with-nth=1 \
+    --header-lines=1 --header-lines-border=inline --style=full \
+    --bind 'start:select-all' --color="$fzf_color" \
+    --footer "Tab: toggle  Ctrl-A: select all  Ctrl-D: deselect all  Enter: delete" \
+    --bind 'ctrl-a:select-all,ctrl-d:deselect-all' \
+    --no-hscroll)
 
 if [ -z "$selected_items" ]; then
     output_error_message "No worktrees selected. Exiting..."
@@ -114,7 +142,17 @@ fi
 selected_count=$(echo "$selected_items" | wc -l | tr -d ' ')
 
 output_heading "Confirm deletion"
-echo "$selected_items"
+# Rows are keyed by workspace ID, so map the selection back to its ID and branch
+typeset -A branch_by_workspace jira_by_workspace
+for i in {1..${#rows_workspace[@]}}; do
+    jira_by_workspace[${rows_workspace[$i]}]="${rows_jira[$i]}"
+    branch_by_workspace[${rows_workspace[$i]}]="${rows_branch[$i]}"
+done
+
+printf '  %s%-*s%s  %s%s%s\n' "$c_header" $widths[1] "ID" "$reset" "$c_header" "Branch" "$reset"
+while IFS=$'\t' read -r _ workspace_id; do
+    printf '  %s%-*s%s  %s%s%s\n' "$c_info" $widths[1] "${jira_by_workspace[$workspace_id]}" "$reset" "$c_dim" "${branch_by_workspace[$workspace_id]}" "$reset"
+done <<< "$selected_items"
 echo
 
 if ! gum confirm --default=true --affirmative="Delete" --negative="Cancel" "Delete $selected_count worktree(s) and close their workspaces?"; then
@@ -127,9 +165,7 @@ fi
 output_heading "Deleting worktrees"
 
 # Delete each selected worktree
-while IFS= read -r item; do
-    workspace_id=$(echo "$lookup" | jq -r --arg key "$item" '.[$key] // empty')
-
+while IFS=$'\t' read -r item workspace_id; do
     if [ -z "$workspace_id" ]; then
         output_error_message "Could not find workspace ID for: $item"
         continue
