@@ -391,7 +391,7 @@
     },
     {
       "name": "episode-number",
-      "type": "text"
+      "type": "number"
     },
     {
       "name": "year-of-formation",
@@ -1221,7 +1221,7 @@
         "id": "1776336589170vqszuik",
         "name": "episode-number",
         "value": "{{schema:@PodcastEpisode:episodeNumber}}",
-        "type": "text"
+        "type": "number"
       },
       {
         "id": "1776336589170tgwmg2m",
