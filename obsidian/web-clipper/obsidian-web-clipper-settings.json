@@ -424,6 +424,10 @@
     {
       "name": "problems",
       "type": "multitext"
+    },
+    {
+      "name": "guests",
+      "type": "multitext"
     }
   ],
   "reader_settings": {
@@ -444,7 +448,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 697,
+    "addToObsidian": 709,
     "copyToClipboard": 167,
     "saveFile": 0,
     "share": 0
@@ -1272,6 +1276,12 @@
         "name": "rating",
         "value": "",
         "type": "number"
+      },
+      {
+        "id": "1791926323664a6lqrzy72",
+        "name": "guests",
+        "value": "",
+        "type": "multitext"
       }
     ],
     "triggers": [
