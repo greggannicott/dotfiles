@@ -428,6 +428,10 @@
     {
       "name": "guests",
       "type": "multitext"
+    },
+    {
+      "name": "runs",
+      "type": "multitext"
     }
   ],
   "reader_settings": {
@@ -448,7 +452,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 709,
+    "addToObsidian": 710,
     "copyToClipboard": 167,
     "saveFile": 0,
     "share": 0
@@ -866,7 +870,7 @@
     "schemaVersion": "0.1.0",
     "name": "Artist - Discogs",
     "behavior": "create",
-    "noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]\n\n# Quotes\n\n![[Quotes by Person.base#List]]\n",
+    "noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Music Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]\n\n# Listens\n\n![[Listens for Artist.base]]\n",
     "properties": [
       {
         "id": "17763364284135lpsrb5",
@@ -929,7 +933,7 @@
     "schemaVersion": "0.1.0",
     "name": "Band - Discogs",
     "behavior": "create",
-    "noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]\n",
+    "noteContentFormat": "{{schema:@MusicGroup:description|strip_tags}}\n\n# Releases\n\n![[Music Releases for Artist.base]]\n\n# Songs\n\n![[Songs for Artist.base]]\n\n# Listens\n\n![[Listens for Artist.base]]\n\n# Quotes\n\n![[Quotes by Person.base#List]]",
     "properties": [
       {
         "id": "1776336460300p9yc5x2",
@@ -1248,12 +1252,6 @@
         "type": "multitext"
       },
       {
-        "id": "1776336589170top8cg0",
-        "name": "strava-workout",
-        "value": "",
-        "type": "text"
-      },
-      {
         "id": "17763365891704ahkq68",
         "name": "tags",
         "value": "inbox",
@@ -1280,6 +1278,12 @@
       {
         "id": "1791926323664a6lqrzy72",
         "name": "guests",
+        "value": "",
+        "type": "multitext"
+      },
+      {
+        "id": "1791962972353s16cjekm2",
+        "name": "runs",
         "value": "",
         "type": "multitext"
       }
