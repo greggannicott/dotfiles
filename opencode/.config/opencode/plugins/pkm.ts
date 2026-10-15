@@ -435,6 +435,62 @@ const tools: ToolDefinition[] = [
       return { content: formatItem(await response.json(), 1) }
     },
   },
+
+  makeCollectionTool("inbox", {
+    name: "Inbox",
+    endpoint: "/pkm/inbox/",
+    description: "Return Inbox items",
+    queryParams: [
+      {
+        name: "from",
+        type: "string",
+        description: "Start date for range filter (YYYY-MM-DD, inclusive)",
+      },
+      {
+        name: "to",
+        type: "string",
+        description: "End date for range filter (YYYY-MM-DD, inclusive)",
+      },
+    ],
+  }),
+
+  {
+    name: "addInboxNote",
+    description: "Create a new inbox note in the vault root",
+    input: makeInput(
+      {
+        title: {
+          type: "string",
+          description: "Title of the note; used as the file name",
+        },
+        body: {
+          type: "string",
+          description: "Markdown body of the note",
+        },
+      },
+      ["title"],
+    ),
+    async execute(input: any, context) {
+      const response = await fetch(`${BFF_BASE}/pkm/inbox/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+        signal: context.signal,
+      })
+
+      if (!response.ok) {
+        let message = `${response.status} ${response.statusText}`
+        try {
+          const body = await response.json()
+          if (body.error) message = body.error
+        } catch {}
+        return { content: `Failed to create inbox note: ${message}` }
+      }
+
+      const { name } = await response.json()
+      return { content: `Created inbox note: ${name}` }
+    },
+  },
 ]
 
 export default Plugin.define({
