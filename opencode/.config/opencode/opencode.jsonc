@@ -11,8 +11,6 @@
     { "action": "shell", "resource": "wc *", "effect": "allow" },
     { "action": "shell", "resource": "tail *", "effect": "allow" },
   ],
-  // Disable the pkm plugin's tools — the gg MCP server replaces them for testing.
-  "plugins": ["-pkm"],
   "mcp": {
     "servers": {
       "gg": {
