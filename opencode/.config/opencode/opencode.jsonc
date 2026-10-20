@@ -11,8 +11,14 @@
     { "action": "shell", "resource": "wc *", "effect": "allow" },
     { "action": "shell", "resource": "tail *", "effect": "allow" },
   ],
+  // Disable the pkm plugin's tools — the gg MCP server replaces them for testing.
+  "plugins": ["-pkm"],
   "mcp": {
     "servers": {
+      "gg": {
+        "type": "local",
+        "command": ["node", "/Users/greggannicott/code/gg-mcp/src/index.ts"],
+      },
       "chrome": {
         "type": "local",
         "command": ["npx", "chrome-devtools-mcp@latest", "--autoConnect"],
