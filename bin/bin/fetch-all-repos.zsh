@@ -9,6 +9,7 @@ source "$script_directory/helper-functions.zsh"
 repos=(
     ~/dotfiles
     ~/code/go-bff/
+    ~/code/gg-mcp/
     ~/code/herdr-launcher/
     ~/code/ironstream-hub-backend/
     ~/code/ironstream-hub-frontend/
