@@ -230,6 +230,10 @@ alias cdpr="cd $project_root"
 # Shell Integrations
 eval "$(fzf --zsh)"
 eval "$(herdr completion zsh)"
+if (( $+commands[opencode] )); then
+    eval "$(opencode --completions zsh)"
+    compdef _opencode opencode
+fi
 if (( $+commands[copilot] )); then
     eval "$(copilot completion zsh | sed '/^_copilot "\$@"$/d')"
     compdef _copilot copilot
