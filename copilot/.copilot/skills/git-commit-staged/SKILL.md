@@ -1,5 +1,5 @@
 ---
-name: git-staged-commit
+name: git-commit-staged
 description: Commit staged git changes
 ---
 
