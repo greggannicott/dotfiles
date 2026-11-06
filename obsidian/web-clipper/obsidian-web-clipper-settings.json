@@ -452,7 +452,7 @@
     "pinPlayer": true
   },
   "stats": {
-    "addToObsidian": 711,
+    "addToObsidian": 734,
     "copyToClipboard": 167,
     "saveFile": 0,
     "share": 0
@@ -565,6 +565,12 @@
         "name": "type",
         "value": "[[Album]]",
         "type": "multitext"
+      },
+      {
+        "id": "1793953020831wpjqzefb2",
+        "name": "description",
+        "value": "",
+        "type": "text"
       },
       {
         "id": "1776336389777z8x75gm",
@@ -726,6 +732,12 @@
         "type": "multitext"
       },
       {
+        "id": "17939530486477kwh9dwu3",
+        "name": "description",
+        "value": "",
+        "type": "text"
+      },
+      {
         "id": "1776336408797jvdb6ek",
         "name": "aliases",
         "value": "",
@@ -885,6 +897,12 @@
         "type": "multitext"
       },
       {
+        "id": "17939530708126m19a7auk",
+        "name": "description",
+        "value": "",
+        "type": "text"
+      },
+      {
         "id": "1776336428413adtx4vw",
         "name": "cover",
         "value": "{{image}}",
@@ -948,6 +966,12 @@
         "type": "multitext"
       },
       {
+        "id": "17939530616174w09qrnos",
+        "name": "description",
+        "value": "",
+        "type": "text"
+      },
+      {
         "id": "1776336460300if8auld",
         "name": "cover",
         "value": "{{image}}",
@@ -997,6 +1021,12 @@
         "name": "categories",
         "value": "[[Movie]]",
         "type": "multitext"
+      },
+      {
+        "id": "17939531348960whuwmgjq",
+        "name": "description",
+        "value": "{{schema:@Movie:description}}",
+        "type": "text"
       },
       {
         "id": "1776336487467lpfexuu",
@@ -1125,6 +1155,12 @@
         "id": "1776336550020uzvuftc",
         "name": "cover",
         "value": "{{schema:@CreativeWorkSeries:thumbnailUrl}}",
+        "type": "text"
+      },
+      {
+        "id": "1793953215963o0m58epej",
+        "name": "description",
+        "value": "{{schema:@CreativeWorkSeries:description}}",
         "type": "text"
       },
       {
@@ -1344,6 +1380,12 @@
         "name": "rating",
         "value": "",
         "type": "number"
+      },
+      {
+        "id": "1793953236581obksadigh",
+        "name": "description",
+        "value": "",
+        "type": "text"
       }
     ],
     "triggers": [
@@ -1372,6 +1414,12 @@
         "name": "type",
         "value": "[[TV Show]]",
         "type": "multitext"
+      },
+      {
+        "id": "179395325301502pi3e6bf",
+        "name": "description",
+        "value": "{{schema:@TVSeries:description}}",
+        "type": "text"
       },
       {
         "id": "1776336654332by047wu",
@@ -1491,6 +1539,12 @@
         "type": "multitext"
       },
       {
+        "id": "17939532679475w2ey56uo",
+        "name": "description",
+        "value": "",
+        "type": "text"
+      },
+      {
         "id": "1776336684293onzgs70",
         "name": "url",
         "value": "{{domain}}",
@@ -1562,6 +1616,12 @@
         "name": "type",
         "value": "[[Video]]",
         "type": "multitext"
+      },
+      {
+        "id": "1793953281614wpb2miaf2",
+        "name": "description",
+        "value": "",
+        "type": "text"
       },
       {
         "id": "1776336710913o3guy0y",
@@ -1674,6 +1734,12 @@
         "name": "topics",
         "value": "",
         "type": "multitext"
+      },
+      {
+        "id": "1793953087680vvt2i121n",
+        "name": "description",
+        "value": "",
+        "type": "text"
       },
       {
         "id": "1791447273081u5zasa1vj",
@@ -1795,6 +1861,12 @@
         "type": "multitext"
       },
       {
+        "id": "1793953302331oar8gkjdz",
+        "name": "description",
+        "value": "",
+        "type": "text"
+      },
+      {
         "id": "1777400383356u9jxz76su",
         "name": "cover",
         "value": "{{image}}",
@@ -1856,6 +1928,12 @@
         "name": "type",
         "value": "",
         "type": "multitext"
+      },
+      {
+        "id": "1793953096863i1m1xelou",
+        "name": "description",
+        "value": "",
+        "type": "text"
       },
       {
         "id": "1777442988165wmibitpw4",
