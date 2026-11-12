@@ -10,6 +10,7 @@ repos=(
     ~/dotfiles
     ~/code/go-bff/
     ~/code/gg-mcp/
+    ~/code/gg-opencode/
     ~/code/herdr-launcher/
     ~/code/ironstream-hub-backend/
     ~/code/ironstream-hub-frontend/
