@@ -34,4 +34,7 @@
       },
     },
   },
+  "plugins": [
+    "github:greggannicott/gg-opencode"
+  ],
 }
