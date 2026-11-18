@@ -8,13 +8,13 @@ source "$script_directory/helper-functions.zsh"
 
 repos=(
     ~/dotfiles
-    ~/code/go-bff/
+    ~/code/gg-bff/
     ~/code/gg-mcp/
     ~/code/gg-opencode/
     ~/code/herdr-launcher/
     ~/code/ironstream-hub-backend/
     ~/code/ironstream-hub-frontend/
-    ~/code/playgrounds/obsidian-playground/.obsidian/plugins/conductor-obsidian
+    ~/code/playgrounds/obsidian-playground/.obsidian/plugins/gg-obsidian
 )
 
 output_heading "Fetch All Repos"
