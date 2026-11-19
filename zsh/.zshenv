@@ -49,7 +49,7 @@ export kb="/Users/greggannicott/kb/"
 export projects="/Users/greggannicott/projects/"
 
 # BFF related vars
-export bff_url="http://localhost:3123"
+export bff_url="http://localhost:8082"
 
 # GG Launcher vars
 export GG_LAUNCHER_ROOT_DIR=~/code/gg-launcher/
